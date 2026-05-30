@@ -1,0 +1,11 @@
+# Bot registry for eval scripts
+# Each entry: name and the shell command that accepts JSON on stdin
+bots:
+  - name: v01_cpp
+    cmd: "/home/coder/IJCAI-mahjong/bot/bot_submit_test"
+
+  - name: v01_python
+    cmd: "python3 /home/coder/IJCAI-mahjong/bot"
+
+  - name: sample_cpp
+    cmd: "/home/coder/IJCAI-mahjong/eval/sample_bot"
