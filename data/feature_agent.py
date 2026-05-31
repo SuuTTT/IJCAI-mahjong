@@ -205,8 +205,11 @@ class FeatureAgent:
                 else:
                     self.wall_last = (self.wall_counts[(pid + 1) % 4] == 0)
                     self.valid = []
+                    # HU (rong) is legal even on the last discard (海底炮) — it
+                    # needs no replacement draw, so it is NOT gated by wall_last.
+                    self.valid.append(ACT["Hu"])
+                    # Peng/Gang/Chi DO need a continuation draw -> gate on wall_last.
                     if not self.wall_last:
-                        self.valid.append(ACT["Hu"])
                         if self.hand.count(tile) >= 2:
                             self.valid.append(ACT["Peng"] + TILE_INDEX[tile])
                         if self.hand.count(tile) == 3:
@@ -342,6 +345,11 @@ class FeatureAgent:
         # bound on fan — if it still reaches >=8, the judge (which uses the true
         # offers, never higher) will agree. Prevents wrong-HU / -30 penalties.
         safe_packs = tuple((p[0], p[1], 1) for p in self.packs[self.seat])
+        # isWallLast forced False: the 海底捞月/河底捞鱼 last-tile bonus is +8 fan,
+        # and our wall-count tracking is only approximate. If we ever claimed it
+        # wrongly the judge would score <8 -> illegal -30. Forcing it off makes the
+        # HU decision a strict LOWER bound on true fan (so >=8 here is always >=8
+        # for the judge). Cost: we pass the rare win that needs the last-tile bonus.
         try:
             result = MahjongFanCalculator(
                 pack=safe_packs,
@@ -351,7 +359,7 @@ class FeatureAgent:
                 isSelfDrawn=is_self,
                 is4thTile=(self.shown.get(win_tile, 0) + int(is_self)) == 4,
                 isAboutKong=is_kong,
-                isWallLast=self.wall_last or self.my_wall_last,
+                isWallLast=False,
                 seatWind=self.seat,
                 prevalentWind=self.prevalent_wind,
             )
