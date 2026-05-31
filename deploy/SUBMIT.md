@@ -5,7 +5,18 @@ Botzone gives you two upload slots: **source code** and a **Storage `data/` fold
 
 ## Files
 - `deploy/mahjong_ml_bot.zip` — the bot source (Python, `__main__.py` at root). Rebuild with `bash deploy/build_zip.sh`.
-- `train/checkpoints/bc_v3_ft_weights.npz` — the 14 MB model → goes into Storage.
+- A model `.npz` → goes into Storage `data/`. **The bot auto-discovers any `*.npz` in `data/`, so you can upload whichever size you like without renaming.**
+
+### Model size options (upload ONE to Storage `data/`)
+| File | Size | Use |
+|---|---|---|
+| `train/checkpoints/bc_tiny_fp16.npz` | **0.25 MB** | upload test — weak but legal; confirms the pipeline in seconds |
+| `train/checkpoints/bc_tiny_weights.npz` | 0.55 MB | tiny, float32 |
+| `train/checkpoints/bc_v3_ft_fp16.npz` | 6.0 MB | **recommended** — full quality, half size |
+| `train/checkpoints/bc_v3_ft_weights.npz` | 14 MB | full quality, float32 (slow upload) |
+
+Shrink any model yourself: `python3 train/quantize.py IN.npz OUT.npz` (float16, halves size).
+Start with `bc_tiny_fp16.npz` to verify upload + runtime, then swap to `bc_v3_ft_fp16.npz` for strength.
 
 ## Steps
 1. **Create the bot**: Botzone → My Bots → new bot, game **Chinese-Standard-Mahjong**, language **Python 3**.

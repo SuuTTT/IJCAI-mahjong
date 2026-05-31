@@ -23,21 +23,23 @@ class NumpyMLP:
 
     def __init__(self, path: str):
         d = np.load(path)
-        self.stem_w  = d["stem_w"];   self.stem_b  = d["stem_b"]
-        self.stem_g  = d["stem_ln_g"]; self.stem_bg = d["stem_ln_b"]
+        # Upcast to float32 on load — weights may be stored as float16 (half size).
+        g = lambda k: d[k].astype(np.float32) if k in d else None
+        self.stem_w  = g("stem_w");   self.stem_b  = g("stem_b")
+        self.stem_g  = g("stem_ln_g"); self.stem_bg = g("stem_ln_b")
         self.blocks  = []
         i = 0
         while f"block{i}_w1" in d:
             self.blocks.append({
-                "w1": d[f"block{i}_w1"], "b1": d[f"block{i}_b1"],
-                "g1": d[f"block{i}_ln1_g"], "bg1": d[f"block{i}_ln1_b"],
-                "w2": d[f"block{i}_w2"], "b2": d[f"block{i}_b2"],
-                "g2": d[f"block{i}_ln2_g"], "bg2": d[f"block{i}_ln2_b"],
+                "w1": g(f"block{i}_w1"), "b1": g(f"block{i}_b1"),
+                "g1": g(f"block{i}_ln1_g"), "bg1": g(f"block{i}_ln1_b"),
+                "w2": g(f"block{i}_w2"), "b2": g(f"block{i}_b2"),
+                "g2": g(f"block{i}_ln2_g"), "bg2": g(f"block{i}_ln2_b"),
             })
             i += 1
-        self.policy_w  = d["policy_w"]; self.policy_b  = d["policy_b"]
-        self.value_w0  = d.get("value_w0"); self.value_b0  = d.get("value_b0")
-        self.value_w   = d["value_w"];  self.value_b   = d["value_b"]
+        self.policy_w  = g("policy_w"); self.policy_b  = g("policy_b")
+        self.value_w0  = g("value_w0"); self.value_b0  = g("value_b0")
+        self.value_w   = g("value_w");  self.value_b   = g("value_b")
 
     def forward(self, obs: np.ndarray, mask: np.ndarray = None):
         x = obs.astype(np.float32) / 255.0

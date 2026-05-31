@@ -27,7 +27,7 @@ os.environ.setdefault("OMP_NUM_THREADS", "1")
 
 import numpy as np
 from data.feature_agent import (
-    FeatureAgent, ACT, ACT_DIM, TILE_LIST, TILE_INDEX, decode_chi,
+    FeatureAgent, ACT, ACT_DIM, TILE_LIST, TILE_INDEX, decode_chi, HAS_FAN,
 )
 
 # pure-python shanten fallback for discard scoring when no model
@@ -39,12 +39,25 @@ DEBUG      = os.environ.get("ML_DEBUG", "")
 _dbg = open(DEBUG, "a") if DEBUG else None
 
 model = None
+_model_err = ""
 if os.path.exists(MODEL_PATH):
     try:
         from train.numpy_infer import NumpyMLP
         model = NumpyMLP(MODEL_PATH)
     except Exception as e:
+        _model_err = f"load_fail:{e}"
         if _dbg: _dbg.write(f"model load failed: {e}\n")
+else:
+    _model_err = f"missing:{MODEL_PATH}"
+
+
+def env_status():
+    """One-line environment report, surfaced via the JSON `debug` field so it
+    shows up in Botzone's Debug Mode log. Tells us if MahjongGB (needed to HU)
+    and the model are actually available on the server."""
+    return (f"mahjong={'OK' if HAS_FAN else 'MISSING'} "
+            f"model={'OK' if model is not None else 'NONE('+_model_err+')'} "
+            f"path={os.path.basename(MODEL_PATH)}")
 
 agent = None          # FeatureAgent
 _seat = 0
@@ -152,76 +165,103 @@ def decide_draw(drawn):
 
 # ── decision after opponent discard (rtype 3 PLAY) ────────────────────────────
 
-def decide_claim(disc_tile):
-    valid = agent.valid
-    # 1) rong HU
-    if ACT["Hu"] in valid:
-        fan = agent.can_hu(disc_tile, is_self=False)
-        if _dbg: _dbg.write(f"  HU-rong check: win={disc_tile} fan={fan} "
-                            f"hand={sorted(agent.hand)} packs={agent.packs[_seat]} "
-                            f"wall_last={agent.wall_last} my_wall_last={agent.my_wall_last}\n"); _dbg.flush()
-        if fan >= 8:
-            return "HU"
-    # Near the end of the wall, claiming (peng/chi/gang) is illegal because no
-    # replacement/continuation draw remains. Only HU above is allowed; else PASS.
-    if _wall_exhausted():
-        return "PASS"
+def _chi_discard_after(disc_tile, choice):
+    """After a model-chosen CHI action index, return 'CHI mid disc' or 'PASS'."""
+    suit, mid_n, _ = decode_chi(choice)
+    mid_tile = f"{suit}{mid_n}"
+    rem = list(agent.hand)
+    for d in (-1, 0, 1):
+        tt = f"{suit}{mid_n+d}"
+        if tt == disc_tile: continue
+        if tt in rem: rem.remove(tt)
+        else: return "PASS"          # can't actually form it
+    disc_after = _peng_discard(rem, agent.packs[_seat] + [("CHI", mid_tile, 1)])
+    return f"CHI {mid_tile} {disc_after}" if disc_after else "PASS"
+
+
+def _peng_response(disc_tile):
+    """Return 'PENG disc' after a peng of disc_tile, or 'PASS'."""
+    rem, c = [], 0
+    for x in agent.hand:
+        if x == disc_tile and c < 2: c += 1
+        else: rem.append(x)
+    disc_after = _peng_discard(rem, agent.packs[_seat] + [("PENG", disc_tile, 0)])
+    return f"PENG {disc_after}" if disc_after else "PASS"
+
+
+def _heuristic_claim(disc_tile, valid):
+    """Fallback when no model: claim only if it strictly lowers shanten (the old
+    fan-blind rule). Kept so the bot still runs without trained weights."""
     s_before = _shanten_now()
-    # 2) GANG from discard (have 3)
     gang = [v for v in valid if ACT["Gang"] <= v < ACT["AnGang"]]
     if gang:
         t = TILE_LIST[gang[0] - ACT["Gang"]]
         rem = [x for x in agent.hand if x != t]
         s, _ = _shanten(rem, agent.packs[_seat] + [("GANG", t, 0)])
-        if s <= s_before:
-            return "GANG"
-    # 3) PENG — simulate peng + best discard, accept if shanten improves
+        if s <= s_before: return "GANG"
     peng = [v for v in valid if ACT["Peng"] <= v < ACT["Gang"]]
     if peng:
-        t = disc_tile
-        rem = list(agent.hand)
-        cnt = 0
-        rem2 = []
-        for x in rem:
-            if x == t and cnt < 2: cnt += 1
-            else: rem2.append(x)
-        new_packs = agent.packs[_seat] + [("PENG", t, 0)]
-        # best discard after peng
-        best_s = 99
-        for x in set(rem2):
-            r3 = list(rem2); r3.remove(x)
-            s, _ = _shanten(r3, new_packs)
-            best_s = min(best_s, s)
-        if best_s < s_before:
-            # choose discard via model if possible, else min-shanten
-            disc_after = _peng_discard(rem2, new_packs)
-            if disc_after:
-                return f"PENG {disc_after}"
-    # 4) CHI — only if legal (feat.valid already enforces "next player" + tiles)
-    chi = [v for v in valid if ACT["Chi"] <= v < ACT["Peng"]]
-    for v in chi:
-        suit, mid_n, _ = decode_chi(v)
-        mid_tile = f"{suit}{mid_n}"
-        # tiles I contribute (exclude the discard)
-        rem = list(agent.hand)
-        ok = True
-        for d in (-1, 0, 1):
-            tt = f"{suit}{mid_n+d}"
-            if tt == disc_tile: continue
-            if tt in rem: rem.remove(tt)
-            else: ok = False; break
-        if not ok: continue
-        new_packs = agent.packs[_seat] + [("CHI", mid_tile, 1)]
-        best_s = 99
-        for x in set(rem):
-            r3 = list(rem); r3.remove(x)
-            s, _ = _shanten(r3, new_packs)
-            best_s = min(best_s, s)
-        if best_s < s_before:
-            disc_after = _peng_discard(rem, new_packs)
-            if disc_after:
-                return f"CHI {mid_tile} {disc_after}"
+        rem, c = [], 0
+        for x in agent.hand:
+            if x == disc_tile and c < 2: c += 1
+            else: rem.append(x)
+        np_ = agent.packs[_seat] + [("PENG", disc_tile, 0)]
+        best = min((_shanten([y for y in rem if y != x], np_)[0] for x in set(rem)), default=99)
+        if best < s_before: return _peng_response(disc_tile)
+    for v in [v for v in valid if ACT["Chi"] <= v < ACT["Peng"]]:
+        r = _chi_discard_after(disc_tile, v)
+        if r != "PASS":
+            suit, mid_n, _ = decode_chi(v)
+            rem = list(agent.hand)
+            for d in (-1,0,1):
+                tt=f"{suit}{mid_n+d}"
+                if tt!=disc_tile and tt in rem: rem.remove(tt)
+            best = min((_shanten([y for y in rem if y != x], agent.packs[_seat]+[("CHI",f"{suit}{mid_n}",1)])[0]
+                        for x in set(rem)), default=99)
+            if best < s_before: return r
     return "PASS"
+
+
+def decide_claim(disc_tile):
+    valid = agent.valid
+    # 1) rong HU — highest priority, fan-gated (never trust the model for legality)
+    if ACT["Hu"] in valid:
+        fan = agent.can_hu(disc_tile, is_self=False)
+        if _dbg: _dbg.write(f"  HU-rong check: win={disc_tile} fan={fan}\n"); _dbg.flush()
+        if fan >= 8:
+            return "HU"
+    # No claims once the wall is exhausted (no continuation draw) — only HU above.
+    if _wall_exhausted():
+        return "PASS"
+
+    # 2) MODEL-DRIVEN claim selection over the legal {Pass, Peng, Gang, Chi} set.
+    #    The model learned from strong players WHICH tiles to claim and what to
+    #    build toward (碰碰和 / 清一色 / 混一色 …) — i.e. it accounts for fan value,
+    #    unlike the old shanten-only rule. Pass is included so it can decline a
+    #    tempting claim to chase a higher-value hand.
+    claim_acts = [v for v in valid
+                  if v == ACT["Pass"] or (ACT["Chi"] <= v < ACT["AnGang"])]
+    if model is not None and len(claim_acts) > 1:
+        mask = np.zeros(ACT_DIM, dtype=bool)
+        for v in claim_acts:
+            mask[v] = True
+        probs, _ = model.forward(agent.obs, mask)
+        choice = max(claim_acts, key=lambda v: probs[v])
+        if _dbg:
+            _dbg.write(f"  claim choice={choice} from {claim_acts} "
+                       f"p={probs[choice]:.2f}\n"); _dbg.flush()
+        if choice == ACT["Pass"]:
+            return "PASS"
+        if ACT["Chi"] <= choice < ACT["Peng"]:
+            return _chi_discard_after(disc_tile, choice)
+        if ACT["Peng"] <= choice < ACT["Gang"]:
+            return _peng_response(disc_tile)
+        if ACT["Gang"] <= choice < ACT["AnGang"]:
+            return "GANG"
+        return "PASS"
+
+    # 3) Fallback (no model): old shanten heuristic.
+    return _heuristic_claim(disc_tile, valid)
 
 
 def _peng_discard(remaining, new_packs):
@@ -462,7 +502,7 @@ def run_json_oneshot(data):
             feat(curr); resp = decide_robkong(tile1)
         else:
             feat(curr); resp = "PASS"
-    print(__import__("json").dumps({"response": resp}))
+    print(__import__("json").dumps({"response": resp, "debug": env_status()}))
 
 
 def run():

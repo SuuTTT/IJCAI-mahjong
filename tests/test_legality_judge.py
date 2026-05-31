@@ -9,7 +9,7 @@ from run_match_kr import run_match_kr
 from data.log_collector import make_wall
 
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 60
-ML = {"cmd": "MODEL=train/checkpoints/bc_v3_ft_weights.npz python3 bot/ml_bot.py", "kr": True}
+ML = {"cmd": "MODEL=train/checkpoints/bc_v3_ft_fp16.npz python3 bot/ml_bot.py", "kr": True}
 SMP = "eval/sample_bot"; V02 = "bot/bot_submit_test"
 cfgs = [[ML,V02,SMP,SMP],[V02,ML,SMP,SMP],[SMP,SMP,ML,V02],[ML,ML,ML,ML]]
 illegal = 0
