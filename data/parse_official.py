@@ -186,7 +186,9 @@ def parse_one_game(game_lines: List[str],
 
         # Update all agents
         if action == "Draw":
-            agents[pid].update(f"Player {pid} Draw")
+            # Drawing player gets "Draw tile" (adds tile to hand, computes valid)
+            # Other players get "Player N Draw" (just tracks wall count)
+            agents[pid].update(f"Draw {tile}" if tile else f"Player {pid} Draw")
             for p in range(4):
                 if p != pid:
                     agents[p].update(f"Player {pid} Draw")

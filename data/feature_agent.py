@@ -319,13 +319,29 @@ class FeatureAgent:
 
     def can_hu(self, win_tile: str, is_self: bool = False,
                is_kong: bool = False) -> int:
-        """Returns fan count if can win, else -1."""
+        """
+        Returns total fan if this is a valid >=8-fan win, else -1.
+        The fan calculator expects `hand` = concealed tiles WITHOUT the win tile.
+        For a self-draw the drawn tile is already in self.hand, so remove one copy.
+        """
         if not HAS_FAN:
             return -1
+        concealed = list(self.hand)
+        if win_tile in concealed:
+            concealed.remove(win_tile)
+        # Physical sanity: concealed + melds*3 + winTile must equal 14
+        if len(concealed) + 3 * len(self.packs[self.seat]) + 1 != 14:
+            return -1
+        # Force every meld to EXPOSED (offer=1). The fan calculator treats
+        # offer=0 as concealed and awards 门前清 (+2); since we don't perfectly
+        # track concealed kongs, forcing exposed yields a conservative LOWER
+        # bound on fan — if it still reaches >=8, the judge (which uses the true
+        # offers, never higher) will agree. Prevents wrong-HU / -30 penalties.
+        safe_packs = tuple((p[0], p[1], 1) for p in self.packs[self.seat])
         try:
             result = MahjongFanCalculator(
-                pack=tuple(self.packs[self.seat]),
-                hand=tuple(self.hand),
+                pack=safe_packs,
+                hand=tuple(concealed),
                 winTile=win_tile,
                 flowerCount=self.flower,
                 isSelfDrawn=is_self,

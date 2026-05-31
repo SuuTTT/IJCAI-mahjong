@@ -1,0 +1,59 @@
+Device: cuda  |  4,614,235 train / 512,693 val
+GPU: NVIDIA GeForce RTX 3060
+/home/coder/IJCAI-mahjong/train/train_bc_v2.py:164: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler(enabled=(device.type=="cuda"))
+Model params: 3,442,028  (hidden=512 blocks=6)
+/home/coder/IJCAI-mahjong/train/train_bc_v2.py:181: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=(device.type=="cuda")):
+/home/coder/IJCAI-mahjong/train/train_bc_v2.py:200: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=(device.type=="cuda")):
+Epoch   1/50  tr_loss=1.8989 tr_acc=0.348  va_loss=1.8205 va_acc=0.370 *
+Epoch   2/50  tr_loss=1.8177 tr_acc=0.375  va_loss=1.7750 va_acc=0.394 *
+Epoch   3/50  tr_loss=1.7905 tr_acc=0.387  va_loss=1.7537 va_acc=0.401 *
+Epoch   4/50  tr_loss=1.7717 tr_acc=0.394  va_loss=1.7387 va_acc=0.406 *
+Epoch   5/50  tr_loss=1.7554 tr_acc=0.399  va_loss=1.7158 va_acc=0.413 *
+Epoch   6/50  tr_loss=1.7385 tr_acc=0.404  va_loss=1.6969 va_acc=0.422 *
+Epoch   7/50  tr_loss=1.7219 tr_acc=0.411  va_loss=1.6723 va_acc=0.435 *
+Epoch   8/50  tr_loss=1.7068 tr_acc=0.418  va_loss=1.6671 va_acc=0.436 *
+Epoch   9/50  tr_loss=1.6933 tr_acc=0.425  va_loss=1.6541 va_acc=0.446 *
+Epoch  10/50  tr_loss=1.6815 tr_acc=0.431  va_loss=1.6327 va_acc=0.456 *
+Epoch  11/50  tr_loss=1.6703 tr_acc=0.436  va_loss=1.6166 va_acc=0.467 *
+Epoch  12/50  tr_loss=1.6607 tr_acc=0.442  va_loss=1.6128 va_acc=0.468 *
+Epoch  13/50  tr_loss=1.6516 tr_acc=0.447  va_loss=1.6002 va_acc=0.474 *
+Epoch  14/50  tr_loss=1.6436 tr_acc=0.451  va_loss=1.5946 va_acc=0.477 *
+Epoch  15/50  tr_loss=1.6356 tr_acc=0.455  va_loss=1.5863 va_acc=0.482 *
+Epoch  16/50  tr_loss=1.6289 tr_acc=0.459  va_loss=1.5834 va_acc=0.483 *
+Epoch  17/50  tr_loss=1.6231 tr_acc=0.462  va_loss=1.5720 va_acc=0.491 *
+Epoch  18/50  tr_loss=1.6172 tr_acc=0.465  va_loss=1.5651 va_acc=0.496 *
+Epoch  19/50  tr_loss=1.6115 tr_acc=0.468  va_loss=1.5671 va_acc=0.493  
+Epoch  20/50  tr_loss=1.6070 tr_acc=0.470  va_loss=1.5624 va_acc=0.500 *
+Epoch  21/50  tr_loss=1.6021 tr_acc=0.473  va_loss=1.5553 va_acc=0.498 *
+Epoch  22/50  tr_loss=1.5981 tr_acc=0.475  va_loss=1.5522 va_acc=0.502 *
+Epoch  23/50  tr_loss=1.5938 tr_acc=0.477  va_loss=1.5521 va_acc=0.501 *
+Epoch  24/50  tr_loss=1.5901 tr_acc=0.479  va_loss=1.5434 va_acc=0.506 *
+Epoch  25/50  tr_loss=1.5860 tr_acc=0.481  va_loss=1.5425 va_acc=0.509 *
+Epoch  26/50  tr_loss=1.5827 tr_acc=0.483  va_loss=1.5469 va_acc=0.503  
+Epoch  27/50  tr_loss=1.5793 tr_acc=0.485  va_loss=1.5445 va_acc=0.506  
+Epoch  28/50  tr_loss=1.5762 tr_acc=0.486  va_loss=1.5456 va_acc=0.503  
+Epoch  29/50  tr_loss=1.5730 tr_acc=0.488  va_loss=1.5385 va_acc=0.508 *
+Epoch  30/50  tr_loss=1.5699 tr_acc=0.489  va_loss=1.5341 va_acc=0.512 *
+Epoch  31/50  tr_loss=1.5671 tr_acc=0.491  va_loss=1.5378 va_acc=0.506  
+Epoch  32/50  tr_loss=1.5648 tr_acc=0.492  va_loss=1.5352 va_acc=0.509  
+Epoch  33/50  tr_loss=1.5622 tr_acc=0.493  va_loss=1.5420 va_acc=0.504  
+Epoch  34/50  tr_loss=1.5600 tr_acc=0.494  va_loss=1.5376 va_acc=0.505  
+Epoch  35/50  tr_loss=1.5577 tr_acc=0.496  va_loss=1.5424 va_acc=0.501  
+Epoch  36/50  tr_loss=1.5557 tr_acc=0.497  va_loss=1.5335 va_acc=0.507 *
+Epoch  37/50  tr_loss=1.5540 tr_acc=0.498  va_loss=1.5400 va_acc=0.503  
+Epoch  38/50  tr_loss=1.5521 tr_acc=0.499  va_loss=1.5554 va_acc=0.491  
+Epoch  39/50  tr_loss=1.5508 tr_acc=0.499  va_loss=1.5491 va_acc=0.496  
+Epoch  40/50  tr_loss=1.5494 tr_acc=0.500  va_loss=1.5699 va_acc=0.483  
+Epoch  41/50  tr_loss=1.5483 tr_acc=0.501  va_loss=1.5524 va_acc=0.493  
+Epoch  42/50  tr_loss=1.5471 tr_acc=0.501  va_loss=1.5582 va_acc=0.490  
+Epoch  43/50  tr_loss=1.5465 tr_acc=0.501  va_loss=1.5501 va_acc=0.496  
+Epoch  44/50  tr_loss=1.5454 tr_acc=0.502  va_loss=1.5549 va_acc=0.492  
+Epoch  45/50  tr_loss=1.5451 tr_acc=0.502  va_loss=1.5560 va_acc=0.492  
+Epoch  46/50  tr_loss=1.5443 tr_acc=0.503  va_loss=1.5562 va_acc=0.491  
+Early stop at epoch 46 (no improvement for 10 epochs)
+
+Best: epoch 36  val_loss=1.5335
+Exported numpy weights (58 arrays) -> train/checkpoints/bc_v3_ft_weights.npz

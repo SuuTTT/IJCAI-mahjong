@@ -1,0 +1,377 @@
+# Performance Analysis Report of the `moyu` Mahjong Agent in IJCAI 2026 Mahjong AI Competition Simulation-6
+
+## 1. Executive Summary
+
+This report analyzes all match records involving the `moyu` agent in Botzone IJCAI 2026 Mahjong AI Competition / Simulation-6. The `moyu` agent corresponds to the bot named “Official Sample 2”. The raw dataset contains 512 games involving `moyu`.
+
+At first glance, based only on raw score signs, `moyu` appears to have 158 positive-score games, 329 negative-score games, and 25 zero-score games, resulting in a raw positive-score rate of approximately 30.9%. However, further inspection shows that 139 of these positive-score games are exactly `+10`. These `+10` scores mostly come from the typical failure pattern:
+
+```text
+10, 10, 10, -30
+```
+
+This pattern usually indicates that one of the four agents failed, incorrectly declared a win, violated the rules, or otherwise triggered an abnormal penalty of `-30`, while the other three agents passively received `+10`. Therefore, these `+10` scores should not be interpreted as real wins by `moyu`.
+
+After removing `10,10,10,-30` failure-compensation games and all-zero games, there remain 346 effective normal games. Among these, `moyu` achieved only 19 true high-score wins and had 327 negative-score games, giving a corrected true win rate of approximately 5.49%.
+
+The key conclusion of this report is:
+
+**`moyu` does not score purely by luck, but most of its positive scores do not come from strategic wins. Instead, they mainly come from passive compensation caused by other agents’ failures. The number of genuine high-score wins is too small to demonstrate stable winning ability. Overall, `moyu` should be regarded as a weak baseline agent rather than a competitive Mahjong AI.**
+
+---
+
+## 2. Data Source and Analysis Target
+
+### 2.1 Data Source
+
+The data comes from the match list of Botzone2026 IJCAI 2026 Mahjong AI Competition / Simulation-6. This simulation contest is part of a weekly practice series using a Swiss-system tournament format. Its purpose is to help participants become familiar with the platform, game rules, and contest rules. The results are not counted toward the elimination or final rounds.
+
+### 2.2 Analysis Target
+
+The target of this analysis is:
+
+* Agent name: `moyu`
+* Bot name: `Official Sample 2`
+* Match scope: all games in Simulation-6 involving `moyu`
+* Total number of games: 512
+
+Each game record contains four players and their final scores. Since Mahjong is a four-player stochastic game, a single score is affected not only by the agent’s own strategy, but also by the behaviors, failures, incorrect win declarations, discards, and game outcomes of the other three agents. Therefore, this report separates raw positive scores from true strategic wins.
+
+---
+
+## 3. Statistical Criteria
+
+To avoid misleading conclusions, this report uses the following statistical criteria.
+
+### 3.1 Raw Score Statistics
+
+The raw score statistics are computed directly from the match records:
+
+* Score greater than 0: positive-score game
+* Score less than 0: negative-score game
+* Score equal to 0: zero-score game
+
+However, this criterion is misleading because many `+10` scores do not indicate that `moyu` won by playing Mahjong well.
+
+### 3.2 Identification of Failure-Compensation Games
+
+This report identifies games with the following score pattern as failure-compensation games:
+
+```text
+10, 10, 10, -30
+```
+
+This pattern usually means that one agent failed, incorrectly declared a win, violated the rules, or encountered abnormal behavior, receiving a penalty of `-30`. The other three agents then passively received `+10`.
+
+In such cases, if `moyu` receives `+10`, this does not demonstrate that its strategy outperformed the other agents.
+
+### 3.3 Definition of True Wins
+
+This report treats games where `moyu` scores higher than `+10` as true high-score wins, such as:
+
+* `+32`
+* `+33`
+* `+34`
+* `+35`
+* `+48`
+* `+51`
+* `+54`
+* `+57`
+
+These scores are more likely to come from normal winning outcomes rather than passive compensation. Therefore, they are more appropriate for evaluating `moyu`’s active winning ability.
+
+### 3.4 Definition of Effective Normal Games
+
+Effective normal games are defined as games remaining after removing:
+
+1. `10,10,10,-30` failure-compensation games;
+2. all-zero games.
+
+---
+
+## 4. Raw Statistical Results
+
+### 4.1 Raw Overview
+
+| Metric                    | Value |
+| ------------------------- | ----: |
+| Total games               |   512 |
+| Total net score           | -2905 |
+| Average score per game    | -5.67 |
+| Highest single-game score |   +57 |
+| Lowest single-game score  |   -40 |
+| Positive-score games      |   158 |
+| Negative-score games      |   329 |
+| Zero-score games          |    25 |
+| Raw positive-score rate   | 30.9% |
+| Raw negative-score rate   | 64.3% |
+
+From the raw data, `moyu` does achieve positive scores in some games. However, the raw positive-score rate is highly misleading because most positive scores are exactly `+10`.
+
+---
+
+## 5. Analysis of `+10` Compensation Games
+
+### 5.1 Proportion of `+10` Scores Among Positive Games
+
+| Metric                                       |  Value |
+| -------------------------------------------- | -----: |
+| Raw positive-score games                     |    158 |
+| Games with exactly `+10`                     |    139 |
+| Proportion of `+10` among positive games     | 87.97% |
+| True high-score wins                         |     19 |
+| Proportion of true wins among positive games | 12.03% |
+
+This shows that most of `moyu`’s positive-score games were not obtained through normal winning play, but through failure compensation.
+
+### 5.2 Breakdown of Positive Score Sources
+
+| Source of positive score   | Number of games | Score contribution |
+| -------------------------- | --------------: | -----------------: |
+| `+10` failure compensation |             139 |              +1390 |
+| True high-score wins       |              19 |               +760 |
+| Total positive scores      |             158 |              +2150 |
+
+From the perspective of score contribution, `+10` compensation accounts for approximately 64.65% of all positive-score points. From the perspective of game count, `+10` compensation accounts for approximately 87.97% of all positive-score games.
+
+Therefore, it is inaccurate to say that all of `moyu`’s scores are pure luck. However, it is fair to say that:
+
+**Most of `moyu`’s positive-score games are not generated by its own strategic ability, but by external gains caused by failures of other agents.**
+
+### 5.3 Main Sources of Failure Compensation
+
+Among all `10,10,10,-30` failure-compensation games, the main failing agents are:
+
+| Failing agent      | Number of failures |
+| ------------------ | -----------------: |
+| liuwj2000          |                 44 |
+| multi_armed_bandit |                 44 |
+| piggyQwQ           |                 20 |
+| nginx6766          |                 17 |
+| Iconoclastic       |                  8 |
+| majiang_master     |                  4 |
+| moyu               |                  2 |
+| FantasyBall        |                  1 |
+| zjy2008            |                  1 |
+
+The top four failing agents account for 125 out of 141 failure-compensation games, or 88.65%. This is consistent with the observation that several agents were repeatedly failing during the contest.
+
+For `moyu`, 139 of its `+10` scores came from cases where another agent received `-30`. These should not be counted as active wins.
+
+---
+
+## 6. Corrected Performance After Removing Failure Compensation
+
+After removing `10,10,10,-30` failure-compensation games and all-zero games, we obtain a more reliable estimate of `moyu`’s real performance.
+
+| Metric                          |  Value |
+| ------------------------------- | -----: |
+| Raw total games                 |    512 |
+| Failure-compensation games      |    141 |
+| All-zero games                  |     25 |
+| Effective normal games          |    346 |
+| True high-score wins            |     19 |
+| Negative-score games            |    327 |
+| Corrected true win rate         |  5.49% |
+| Filtered total net score        |  -4235 |
+| Filtered average score per game | -12.24 |
+
+This result is critical.
+
+Without failure compensation, `moyu`’s true win rate is only approximately 5.49%. This means that in normal games, `moyu` usually fails to achieve positive returns. It behaves more like a runnable official sample bot than a competitive agent.
+
+---
+
+## 7. Analysis of True Wins
+
+### 7.1 Score Distribution of True Wins
+
+The 19 true high-score wins of `moyu` are distributed as follows:
+
+| Score | Count |
+| ----: | ----: |
+|   +32 |     3 |
+|   +33 |     4 |
+|   +34 |     2 |
+|   +35 |     2 |
+|   +37 |     1 |
+|   +48 |     3 |
+|   +51 |     2 |
+|   +54 |     1 |
+|   +57 |     1 |
+
+These games show that `moyu` is not completely incapable of winning or achieving high scores. It can occasionally obtain high scores in normal games, but the frequency is very low.
+
+### 7.2 Are These Wins Just Luck?
+
+Based only on final score records, it is impossible to determine whether these 19 high-score wins were primarily caused by good strategy or by favorable luck. Mahjong naturally contains randomness in tile draws and strong dependence on opponent behavior. Therefore, any single-game win may contain a substantial luck component.
+
+However, from a statistical perspective, frequency matters more than isolated wins:
+
+* If an agent has a stable strategic advantage, it should generate high-score wins consistently over many games.
+* `moyu` achieved only 19 high-score wins among 346 effective normal games.
+* Meanwhile, it had 327 negative-score games, giving a negative-score rate of 94.51%.
+
+Therefore, the more appropriate conclusion is:
+
+**`moyu`’s true high-score wins may contain some strategic component, but their frequency is too low to demonstrate stable winning ability. Its few real wins are likely the result of a mixture of tile luck, opponent mistakes, and limited strategic behavior.**
+
+---
+
+## 8. Negative-Score and Risk Analysis
+
+### 8.1 Negative-Score Statistics
+
+| Metric                                            |  Value |
+| ------------------------------------------------- | -----: |
+| Raw negative-score games                          |    329 |
+| Negative-score games after filtering compensation |    327 |
+| Total raw negative score                          |  -5055 |
+| Average score among negative games                | -15.36 |
+| Lowest single-game score                          |    -40 |
+
+`moyu` has a very large number of negative-score games, and these are not merely small losses. It frequently scores `-16`, `-17`, `-18`, `-19`, `-20`, and occasionally suffers heavy losses such as `-32`, `-36`, `-38`, and `-40`.
+
+### 8.2 Common Negative Scores
+
+|      Score |                Count |
+| ---------: | -------------------: |
+|         -8 |                  147 |
+|        -16 |                   22 |
+|        -17 |                   31 |
+|        -18 |                   23 |
+|        -19 |                   28 |
+|        -20 |                   15 |
+| -21 to -40 | Multiple occurrences |
+
+The large number of `-8` games suggests that `moyu` is often in a mildly losing or passive position. The frequent scores of `-16` or lower suggest that it also often falls significantly behind or finishes at the bottom of the table.
+
+### 8.3 Risk Diagnosis
+
+Based on the negative-score distribution, the main weaknesses of `moyu` may include:
+
+1. Insufficient efficiency in reaching tenpai or winning hands;
+2. Weak defensive ability, making it easy for other agents to build a score advantage;
+3. Poor judgment of dangerous discards and opponent attack states;
+4. Lack of a stable attack-defense switching strategy;
+5. As an official sample bot, its strategy is likely simple and designed mainly for executability rather than strength.
+
+---
+
+## 9. Temporal Trend Analysis
+
+The 512 games are divided into four chronological segments, each containing 128 games.
+
+| Segment   | Games | Net score | Average score | True high-score wins | `+10` compensation games | Negative games | Zero games |
+| --------- | ----: | --------: | ------------: | -------------------: | -----------------------: | -------------: | ---------: |
+| Segment 1 |   128 |      -529 |         -4.13 |                    3 |                       44 |             75 |          6 |
+| Segment 2 |   128 |        +3 |         +0.02 |                    7 |                       54 |             60 |          7 |
+| Segment 3 |   128 |     -1478 |        -11.55 |                    6 |                        9 |            107 |          6 |
+| Segment 4 |   128 |      -901 |         -7.04 |                    3 |                       32 |             87 |          6 |
+
+Segment 2 appears close to balanced in raw score, but it contains many `+10` compensation games. Therefore, it does not prove that `moyu` improved or played well during that period.
+
+Segment 3 is the worst-performing period, with 107 negative-score games and a net score of -1478. One possible explanation is that as the Swiss-system tournament progressed, `moyu` encountered more stable or stronger opponents, exposing the limitations of the sample strategy.
+
+---
+
+## 10. Opponent-Level Analysis
+
+After removing failure-compensation games, `moyu` performs particularly poorly when certain opponents appear at the same table. The following table shows `moyu`’s average score and bottom-rate tendency when these opponents are present.
+
+| Opponent   | Co-table games | `moyu` net score | `moyu` average score | `moyu` true win rate | `moyu` bottom rate |
+| ---------- | -------------: | ---------------: | -------------------: | -------------------: | -----------------: |
+| 逐日小精灵      |             29 |             -531 |               -18.31 |                 0.0% |              69.0% |
+| pxoylngx   |             36 |             -617 |               -17.14 |                 0.0% |              66.7% |
+| zjy2008    |             17 |             -267 |               -15.71 |                 0.0% |              52.9% |
+| cerush     |             29 |             -431 |               -14.86 |                 3.4% |              65.5% |
+| Mango      |             28 |             -416 |               -14.86 |                 0.0% |              50.0% |
+| Toriel     |             21 |             -301 |               -14.33 |                 4.8% |              57.1% |
+| Flandre    |             26 |             -369 |               -14.19 |                 0.0% |              50.0% |
+| maskyuanzh |             39 |             -551 |               -14.13 |                 2.6% |              53.8% |
+| creambear  |             17 |             -239 |               -14.06 |                 5.9% |              70.6% |
+| 但闻海棠       |             27 |             -372 |               -13.78 |                 3.7% |              59.3% |
+
+These results should not be interpreted as proof that these agents individually counter `moyu`, because Mahjong is a four-player game. However, they do show that in more stable or stronger table environments, `moyu` struggles to gain an active advantage and frequently falls into the lower-score region.
+
+---
+
+## 11. Ability Assessment
+
+### 11.1 `moyu` Should Not Be Treated as a 30% Win-Rate Agent
+
+The raw positive-score rate is approximately 30.9%, but this number is severely inflated by `+10` compensation games. Since `+10` mainly comes from other agents’ failures, it does not represent true Mahjong wins.
+
+After correction, `moyu`’s true win rate is approximately 5.49%. This is a much more realistic estimate of its actual ability in normal games.
+
+### 11.2 It Is Also Inaccurate to Say That It Scores Entirely by Luck
+
+Strictly speaking, it is not accurate to say that all of `moyu`’s scores are due to luck. It does have 19 high-score wins, and these scores are clearly above `+10`, making them more likely to be normal winning outcomes.
+
+However, the number of such wins is too small to prove that its strategy is stable or effective. A more precise conclusion is:
+
+**`moyu` can occasionally obtain high scores when tile luck, game state, or opponent mistakes are favorable, but it does not demonstrate stable active winning ability.**
+
+### 11.3 Most Accurate Evaluation
+
+The most accurate evaluation is not “`moyu` wins entirely by luck”, but rather:
+
+**Most of `moyu`’s positive returns come from external failure compensation. Its few real wins may contain some strategic component, but their frequency is too low to demonstrate reliable Mahjong-playing ability. Overall, it should be regarded as a weak baseline.**
+
+---
+
+## 12. Implications for Future Agent Development
+
+If the goal is to develop a Mahjong agent stronger than the official sample, the raw positive games of `moyu` should not be used directly as high-quality winning samples. The data must be cleaned and stratified.
+
+### 12.1 Data That Should Be Removed
+
+The following data should not be used as winning samples:
+
+1. `10,10,10,-30` failure-compensation games;
+2. All-zero games;
+3. Games where positive scores are clearly caused by another agent’s collapse;
+4. Games where `moyu` receives `+10` without evidence of active winning behavior.
+
+Using such games for imitation learning or reward analysis may incorrectly reinforce ineffective behavior.
+
+### 12.2 Data Worth Analyzing
+
+The following data is more valuable:
+
+1. The 19 true high-score wins of `moyu`;
+2. Heavy-loss games of `moyu`, especially scores below `-32`;
+3. High-score games by strong agents at the same table;
+4. `-30` failure games, which can be used to build filters for invalid behaviors;
+5. Normal games where strong agents demonstrate good discard choices, defense, tenpai progression, and winning paths.
+
+### 12.3 Training Recommendations
+
+If these records are used for training or improving an agent, the following steps are recommended:
+
+1. **Build a data-cleaning rule first**
+   Remove `10,10,10,-30` failure-compensation games from positive samples.
+
+2. **Construct true-win labels**
+   Treat games with scores greater than `+10` as more reliable positive samples.
+
+3. **Analyze negative samples**
+   Review `moyu`’s heavy-loss games to identify whether the losses were caused by dealing into opponents, poor calls, bad tenpai choices, or weak risk judgment.
+
+4. **Learn from stronger agents instead of `moyu` alone**
+   The model should focus on agents that consistently obtain high scores, especially those that repeatedly outperform `moyu`.
+
+5. **Separate offensive ability from defensive ability**
+   `moyu`’s problem is not only that it wins rarely, but also that it loses frequently and sometimes heavily. Therefore, improvement should target both winning efficiency and defensive strategy.
+
+---
+
+## 13. Final Conclusion
+
+In Simulation-6, `moyu` appears to have a non-trivial number of positive-score games in the raw data. However, deeper analysis shows that most of these positive scores come from `+10` compensation caused by other agents’ failures. The 139 `+10` games account for approximately 87.97% of all positive-score games, meaning that the raw positive-score rate greatly overestimates `moyu`’s actual strength.
+
+After removing failure-compensation games and all-zero games, `moyu` has only 19 true high-score wins among 346 effective normal games, resulting in a corrected true win rate of approximately 5.49%. Its filtered average score is -12.24 per game, indicating weak active winning ability and poor overall competitiveness.
+
+Therefore, the final judgment of this report is:
+
+**`moyu` is not completely incapable of real wins, and it is not accurate to say that all of its scores are purely luck-based. However, most of its positive scores are caused by other agents’ failures, and its small number of genuine high-score wins is insufficient to prove stable strategic ability. As an official sample bot, it is useful for platform familiarization and baseline comparison, but it should not be considered an effective competitive strategy.**

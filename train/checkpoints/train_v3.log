@@ -1,0 +1,40 @@
+Stacked datasets: 6,434,783 total samples
+Device: cuda  |  5,791,304 train / 643,479 val
+GPU: NVIDIA GeForce RTX 3060
+/home/coder/IJCAI-mahjong/train/train_bc_v2.py:164: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler(enabled=(device.type=="cuda"))
+Model params: 3,442,028  (hidden=512 blocks=6)
+/home/coder/IJCAI-mahjong/train/train_bc_v2.py:181: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=(device.type=="cuda")):
+/home/coder/IJCAI-mahjong/train/train_bc_v2.py:200: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=(device.type=="cuda")):
+Epoch   1/100  tr_loss=1.8383 tr_acc=0.370  va_loss=1.7837 va_acc=0.393 *
+Epoch   2/100  tr_loss=1.7516 tr_acc=0.402  va_loss=1.6841 va_acc=0.427 *
+Epoch   3/100  tr_loss=1.6938 tr_acc=0.427  va_loss=1.6514 va_acc=0.441 *
+Epoch   4/100  tr_loss=1.6608 tr_acc=0.444  va_loss=1.5988 va_acc=0.479 *
+Epoch   5/100  tr_loss=1.6408 tr_acc=0.454  va_loss=1.6197 va_acc=0.461  
+Epoch   6/100  tr_loss=1.6283 tr_acc=0.460  va_loss=1.5910 va_acc=0.479 *
+Epoch   7/100  tr_loss=1.6266 tr_acc=0.462  va_loss=1.5637 va_acc=0.495 *
+Epoch   8/100  tr_loss=1.6216 tr_acc=0.464  va_loss=1.6341 va_acc=0.450  
+Epoch   9/100  tr_loss=1.6231 tr_acc=0.464  va_loss=1.5699 va_acc=0.490  
+Epoch  10/100  tr_loss=1.6231 tr_acc=0.463  va_loss=1.5522 va_acc=0.499 *
+Epoch  11/100  tr_loss=1.6179 tr_acc=0.466  va_loss=1.5515 va_acc=0.499 *
+Epoch  12/100  tr_loss=1.6172 tr_acc=0.467  va_loss=1.5640 va_acc=0.490  
+Epoch  13/100  tr_loss=1.6159 tr_acc=0.467  va_loss=1.7140 va_acc=0.422  
+Epoch  14/100  tr_loss=1.6263 tr_acc=0.462  va_loss=1.6919 va_acc=0.422  
+Epoch  15/100  tr_loss=1.6240 tr_acc=0.463  va_loss=1.7821 va_acc=0.388  
+Epoch  16/100  tr_loss=1.6334 tr_acc=0.459  va_loss=1.6593 va_acc=0.456  
+Epoch  17/100  tr_loss=1.6144 tr_acc=0.470  va_loss=1.6717 va_acc=0.451  
+Epoch  18/100  tr_loss=1.6184 tr_acc=0.466  va_loss=1.8075 va_acc=0.385  
+Epoch  19/100  tr_loss=1.6051 tr_acc=0.472  va_loss=1.6027 va_acc=0.471  
+Epoch  20/100  tr_loss=1.6011 tr_acc=0.474  va_loss=1.5990 va_acc=0.470  
+Epoch  21/100  tr_loss=1.6181 tr_acc=0.467  va_loss=1.6205 va_acc=0.467  
+Epoch  22/100  tr_loss=1.6167 tr_acc=0.466  va_loss=1.5751 va_acc=0.482  
+Epoch  23/100  tr_loss=1.6014 tr_acc=0.474  va_loss=1.6528 va_acc=0.442  
+Epoch  24/100  tr_loss=1.6050 tr_acc=0.473  va_loss=1.6474 va_acc=0.453  
+Epoch  25/100  tr_loss=1.5820 tr_acc=0.481  va_loss=1.6746 va_acc=0.443  
+Epoch  26/100  tr_loss=1.6042 tr_acc=0.472  va_loss=1.6245 va_acc=0.464  
+Early stop at epoch 26 (no improvement for 15 epochs)
+
+Best: epoch 11  val_loss=1.5515
+Exported numpy weights (58 arrays) -> train/checkpoints/bc_v3_weights.npz
