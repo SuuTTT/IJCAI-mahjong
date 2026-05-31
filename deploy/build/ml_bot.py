@@ -26,7 +26,7 @@ os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 
 import numpy as np
-from data.feature_agent import (
+from feature_agent import (
     FeatureAgent, ACT, ACT_DIM, TILE_LIST, TILE_INDEX, decode_chi,
 )
 
