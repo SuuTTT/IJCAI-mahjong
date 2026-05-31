@@ -1,299 +1,490 @@
 """
-ml_bot.py — Keep Running bot backed by trained MLP policy.
+ml_bot.py — feat_agent-driven hybrid bot (Keep Running + one-shot JSON).
 
-Falls back to heuristic (mahjong_bot.py) if model weights aren't available.
+Single source of truth: FeatureAgent (faithful port of the official Botzone
+engine). It tracks hand/melds and produces feat.valid = the exact set of LEGAL
+actions each turn. Decisions:
 
-Usage (Keep Running protocol, compatible with local_ai.py):
-    MODEL=train/checkpoints/bc_v1_weights.npz python3 bot/ml_bot.py
+  • HU       : only when ACT['Hu'] is legal AND feat.can_hu(...) >= 8 fan
+               (independent fan-calculator check — never a wrong-hu / -30).
+  • discard  : ML model picks among legal PLAY actions (offense + defense);
+               falls back to a shanten heuristic if no model.
+  • PENG/CHI/GANG/BUGANG : taken when legal and they reduce shanten
+               (model-scored), else PASS. Always chosen from feat.valid, so
+               they can never be illegal.
+
+Because every emitted action is drawn from feat.valid (the legal set) and HU is
+fan-gated, the bot cannot produce an illegal move (no WA / WH / -30).
+
+Env: MODEL (npz weights), ML_DEBUG (log file path).
 """
 
-import sys
-import os
-
+import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 sys.path.insert(0, os.path.dirname(__file__))
+os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+os.environ.setdefault("OMP_NUM_THREADS", "1")
 
-from data.feature_agent import FeatureAgent, ACT, ACT_DIM, TILE_LIST, decode_chi
-from mahjong_bot import (
-    GameState, decide_after_draw, decide_after_discard,
-    decide_after_gang_notify, check_hu,
+import numpy as np
+from data.feature_agent import (
+    FeatureAgent, ACT, ACT_DIM, TILE_LIST, TILE_INDEX, decode_chi,
 )
 
-SENTINEL = ">>>BOTZONE_REQUEST_KEEP_RUNNING<<<"
-MODEL_PATH = os.environ.get("MODEL", "train/checkpoints/bc_v1_weights.npz")
+# pure-python shanten fallback for discard scoring when no model
+from mahjong_bot import shanten as _shanten
 
-# ── Load model (optional) ──────────────────────────────────────────────────────
+SENTINEL   = ">>>BOTZONE_REQUEST_KEEP_RUNNING<<<"
+MODEL_PATH = os.environ.get("MODEL", "train/checkpoints/bc_v3_ft_weights.npz")
+DEBUG      = os.environ.get("ML_DEBUG", "")
+_dbg = open(DEBUG, "a") if DEBUG else None
+
 model = None
 if os.path.exists(MODEL_PATH):
     try:
-        sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-        from train.model import NumpyMLP
+        from train.numpy_infer import NumpyMLP
         model = NumpyMLP(MODEL_PATH)
-        print(f"[ml_bot] loaded model from {MODEL_PATH}", file=sys.stderr)
     except Exception as e:
-        print(f"[ml_bot] model load failed: {e}", file=sys.stderr)
+        if _dbg: _dbg.write(f"model load failed: {e}\n")
 
-# ── Game state (persists across turns) ────────────────────────────────────────
-state     = GameState()
-feat_agent = None        # FeatureAgent, reset each game
-
-
-def reset_game(seat: int, wind: int):
-    global state, feat_agent
-    state = GameState()
-    state.my_pid = seat
-    state.prevalent_wind = wind
-    feat_agent = FeatureAgent(seat)
+agent = None          # FeatureAgent
+_seat = 0
+_quan = 0
+_last_draw = None     # tile I just drew (for self-draw HU / wall-last flags)
+_last_discard = None  # last tile discarded by an opponent (for rong / claims)
 
 
-# ── Action decoding ────────────────────────────────────────────────────────────
-
-def action_idx_to_botzone(act_idx: int, valid: list) -> str:
-    """Convert action index → Botzone response string."""
-    if act_idx == ACT["Pass"]:                 return "PASS"
-    if act_idx == ACT["Hu"]:                   return "HU"
-    if ACT["Play"] <= act_idx < ACT["Chi"]:
-        t = TILE_LIST[act_idx - ACT["Play"]]
-        return f"PLAY {t}"
-    if ACT["Chi"] <= act_idx < ACT["Peng"]:
-        suit, mid_n, discard_n = decode_chi(act_idx)
-        # After chi, must discard — pick best from hand simulation
-        mid_tile = f"{suit}{mid_n}"
-        # Build what-discard via heuristic
-        disc = _pick_discard_after_chi(suit, mid_n, discard_n)
-        return f"CHI {mid_tile} {disc}" if disc else "PASS"
-    if ACT["Peng"] <= act_idx < ACT["Gang"]:
-        # After peng, must discard — pick best tile
-        tile = TILE_LIST[act_idx - ACT["Peng"]]
-        disc = _pick_discard_after_peng(tile)
-        return f"PENG {disc}" if disc else "PASS"
-    if ACT["Gang"] <= act_idx < ACT["AnGang"]:
-        return "GANG"
-    if ACT["AnGang"] <= act_idx < ACT["BuGang"]:
-        t = TILE_LIST[act_idx - ACT["AnGang"]]
-        return f"GANG {t}"
-    if act_idx >= ACT["BuGang"]:
-        t = TILE_LIST[act_idx - ACT["BuGang"]]
-        return f"BUGANG {t}"
-    return "PASS"
+def reset(seat, wind):
+    global agent, _seat, _quan, _last_draw, _last_discard
+    _seat, _quan = seat, wind
+    _last_draw = _last_discard = None
+    agent = FeatureAgent(seat)
+    agent.update(f"Wind {wind}")
 
 
-def _pick_discard_after_peng(penged_tile: str) -> str:
-    """After penging, pick best tile to discard from remaining hand."""
-    from mahjong_bot import shanten, best_discard
-    sim_hand = [t for t in state.hand if t != penged_tile]
-    # Remove two copies of penged_tile
-    rem = 2
-    filtered = []
-    for t in state.hand:
-        if t == penged_tile and rem > 0:
-            rem -= 1
-        else:
-            filtered.append(t)
-    return best_discard(filtered, state.packs) or (filtered[0] if filtered else "")
+def dbg(req, resp):
+    if _dbg:
+        _dbg.write(f"req={req!r} resp={resp!r} hand={sorted(agent.hand)} "
+                   f"packs={agent.packs[_seat]}\n"); _dbg.flush()
 
 
-def _pick_discard_after_chi(suit: str, mid_n: int, discard_n: int) -> str:
-    """After chii-ing, pick best tile to discard."""
-    from mahjong_bot import best_discard
-    sim_hand = list(state.hand)
-    discard_tile = f"{suit}{discard_n}"
-    for d in (-1, 0, 1):
-        t = f"{suit}{mid_n+d}"
-        if t != discard_tile and t in sim_hand:
-            sim_hand.remove(t)
-    return best_discard(sim_hand, state.packs) or (sim_hand[0] if sim_hand else "")
+# ── model scoring over a legal action subset ──────────────────────────────────
 
-
-# ── Decision making ────────────────────────────────────────────────────────────
-
-def decide_ml(obs, valid: list) -> int:
-    """Use model if available, else return -1 to fall back to heuristic."""
-    if model is None or not valid:
-        return -1
-    import numpy as np
+def _model_probs(valid):
     mask = np.zeros(ACT_DIM, dtype=bool)
     for v in valid:
         if 0 <= v < ACT_DIM:
             mask[v] = True
-    if mask.sum() == 0:
-        return -1
-    return model.best_action(obs, mask)
+    probs, _ = model.forward(agent.obs, mask)
+    return probs
 
 
-# ── Protocol handler ───────────────────────────────────────────────────────────
+def _best_play_tile(valid):
+    """Pick discard tile from legal PLAY actions (model if available)."""
+    plays = [v for v in valid if ACT["Play"] <= v < ACT["Chi"]]
+    if not plays:
+        return None
+    if model is not None:
+        probs = _model_probs(plays)
+        best = max(plays, key=lambda v: probs[v])
+        return TILE_LIST[best - ACT["Play"]]
+    # heuristic fallback: minimise shanten
+    best_t, best_s = None, 99
+    for v in plays:
+        t = TILE_LIST[v - ACT["Play"]]
+        rem = list(agent.hand); rem.remove(t)
+        s, _ = _shanten(rem, agent.packs[_seat])
+        if s < best_s:
+            best_s, best_t = s, t
+    return best_t
 
-def respond(r: str):
+
+def _shanten_now():
+    s, _ = _shanten(list(agent.hand), agent.packs[_seat])
+    return s
+
+
+def _wall_exhausted():
+    """True if too few tiles remain to safely kong/claim (judge forbids melds
+    that need a replacement draw when the wall is empty). Conservative margin."""
+    try:
+        return sum(agent.wall_counts) < 2
+    except Exception:
+        return False
+
+
+# ── decision after my draw (rtype 2) ──────────────────────────────────────────
+
+def decide_draw(drawn):
+    valid = agent.valid
+    # 1) HU — only if legal AND fan>=8 (fan-gated, judge-consistent)
+    if ACT["Hu"] in valid:
+        fan = agent.can_hu(drawn, is_self=True,
+                           is_kong=(_recent_kong))
+        if _dbg: _dbg.write(f"  HU-draw check: win={drawn} fan={fan} "
+                            f"hand={sorted(agent.hand)} packs={agent.packs[_seat]} "
+                            f"wall_last={agent.wall_last} my_wall_last={agent.my_wall_last} "
+                            f"recent_kong={_recent_kong}\n"); _dbg.flush()
+        if fan >= 8:
+            return "HU"
+    s_before = _shanten_now()
+    # 2) AnGang / BuGang — skip entirely if wall nearly empty (needs replacement draw)
+    if not _wall_exhausted():
+        angang = [v for v in valid if ACT["AnGang"] <= v < ACT["BuGang"]]
+        for v in angang:
+            t = TILE_LIST[v - ACT["AnGang"]]
+            rem = [x for x in agent.hand if x != t]
+            s, _ = _shanten(rem, agent.packs[_seat] + [("GANG", t, _seat)])
+            if s <= s_before:
+                return f"GANG {t}"
+        bugang = [v for v in valid if v >= ACT["BuGang"]]
+        for v in bugang:
+            t = TILE_LIST[v - ACT["BuGang"]]
+            rem = list(agent.hand); rem.remove(t)
+            s, _ = _shanten(rem, agent.packs[_seat])
+            if s <= s_before:
+                return f"BUGANG {t}"
+    # 3) discard
+    t = _best_play_tile(valid)
+    return f"PLAY {t}" if t else "PASS"
+
+
+# ── decision after opponent discard (rtype 3 PLAY) ────────────────────────────
+
+def decide_claim(disc_tile):
+    valid = agent.valid
+    # 1) rong HU
+    if ACT["Hu"] in valid:
+        fan = agent.can_hu(disc_tile, is_self=False)
+        if _dbg: _dbg.write(f"  HU-rong check: win={disc_tile} fan={fan} "
+                            f"hand={sorted(agent.hand)} packs={agent.packs[_seat]} "
+                            f"wall_last={agent.wall_last} my_wall_last={agent.my_wall_last}\n"); _dbg.flush()
+        if fan >= 8:
+            return "HU"
+    # Near the end of the wall, claiming (peng/chi/gang) is illegal because no
+    # replacement/continuation draw remains. Only HU above is allowed; else PASS.
+    if _wall_exhausted():
+        return "PASS"
+    s_before = _shanten_now()
+    # 2) GANG from discard (have 3)
+    gang = [v for v in valid if ACT["Gang"] <= v < ACT["AnGang"]]
+    if gang:
+        t = TILE_LIST[gang[0] - ACT["Gang"]]
+        rem = [x for x in agent.hand if x != t]
+        s, _ = _shanten(rem, agent.packs[_seat] + [("GANG", t, 0)])
+        if s <= s_before:
+            return "GANG"
+    # 3) PENG — simulate peng + best discard, accept if shanten improves
+    peng = [v for v in valid if ACT["Peng"] <= v < ACT["Gang"]]
+    if peng:
+        t = disc_tile
+        rem = list(agent.hand)
+        cnt = 0
+        rem2 = []
+        for x in rem:
+            if x == t and cnt < 2: cnt += 1
+            else: rem2.append(x)
+        new_packs = agent.packs[_seat] + [("PENG", t, 0)]
+        # best discard after peng
+        best_s = 99
+        for x in set(rem2):
+            r3 = list(rem2); r3.remove(x)
+            s, _ = _shanten(r3, new_packs)
+            best_s = min(best_s, s)
+        if best_s < s_before:
+            # choose discard via model if possible, else min-shanten
+            disc_after = _peng_discard(rem2, new_packs)
+            if disc_after:
+                return f"PENG {disc_after}"
+    # 4) CHI — only if legal (feat.valid already enforces "next player" + tiles)
+    chi = [v for v in valid if ACT["Chi"] <= v < ACT["Peng"]]
+    for v in chi:
+        suit, mid_n, _ = decode_chi(v)
+        mid_tile = f"{suit}{mid_n}"
+        # tiles I contribute (exclude the discard)
+        rem = list(agent.hand)
+        ok = True
+        for d in (-1, 0, 1):
+            tt = f"{suit}{mid_n+d}"
+            if tt == disc_tile: continue
+            if tt in rem: rem.remove(tt)
+            else: ok = False; break
+        if not ok: continue
+        new_packs = agent.packs[_seat] + [("CHI", mid_tile, 1)]
+        best_s = 99
+        for x in set(rem):
+            r3 = list(rem); r3.remove(x)
+            s, _ = _shanten(r3, new_packs)
+            best_s = min(best_s, s)
+        if best_s < s_before:
+            disc_after = _peng_discard(rem, new_packs)
+            if disc_after:
+                return f"CHI {mid_tile} {disc_after}"
+    return "PASS"
+
+
+def _peng_discard(remaining, new_packs):
+    """Pick the discard after a peng/chi (model-scored, in `remaining`)."""
+    if not remaining:
+        return None
+    best_t, best_s = None, 99
+    for x in set(remaining):
+        r = list(remaining); r.remove(x)
+        s, _ = _shanten(r, new_packs)
+        if s < best_s:
+            best_s, best_t = s, x
+    return best_t
+
+
+# ── BUGANG rob-kong (rtype 3 BUGANG) ──────────────────────────────────────────
+
+def decide_robkong(tile):
+    valid = agent.valid
+    if ACT["Hu"] in valid:
+        fan = agent.can_hu(tile, is_self=False, is_kong=True)
+        if fan >= 8:
+            return "HU"
+    return "PASS"
+
+
+# ── universal emit-time legality verifier (last line of defence vs -30) ───────
+
+def verify_draw(resp, drawn):
+    """Validate a response to MY draw. hand currently includes `drawn`.
+       Returns resp if physically legal, else a guaranteed-legal PLAY."""
+    hand = agent.hand
+    parts = resp.split()
+    op = parts[0] if parts else ""
+    if op == "HU":
+        return resp                                  # already fan-gated
+    if op == "PLAY" and len(parts) == 2 and parts[1] in hand:
+        return resp
+    if op == "GANG" and len(parts) == 2 and hand.count(parts[1]) >= 4 \
+            and not _wall_exhausted():
+        return resp
+    if op == "BUGANG" and len(parts) == 2 and parts[1] in hand \
+            and any(p[0] == "PENG" and p[1] == parts[1] for p in agent.packs[_seat]) \
+            and not _wall_exhausted():
+        return resp
+    # fallback: discard any tile actually in hand (never illegal)
+    return f"PLAY {hand[0]}" if hand else "PASS"
+
+
+def verify_claim(resp, disc):
+    """Validate a claim response to an opponent discard. Hand does NOT include
+       `disc`. Returns resp if physically legal, else PASS."""
+    hand = agent.hand
+    parts = resp.split()
+    op = parts[0] if parts else "PASS"
+    if op == "PASS":
+        return "PASS"
+    if op == "HU":
+        return resp                                  # fan-gated
+    if _wall_exhausted():
+        return "PASS"                                # no claims at wall end
+    if op == "GANG":
+        return "GANG" if hand.count(disc) >= 3 else "PASS"
+    if op == "PENG" and len(parts) == 2:
+        after = parts[1]
+        if hand.count(disc) >= 2:
+            # hand after removing 2 disc must still contain the discard tile
+            tmp = list(hand); tmp.remove(disc); tmp.remove(disc)
+            if after in tmp:
+                return resp
+        return "PASS"
+    if op == "CHI" and len(parts) == 3:
+        mid, after = parts[1], parts[2]
+        if not mid or mid[0] not in "WTB" or mid[0] != disc[0]:
+            return "PASS"
+        n = int(mid[1])
+        need = [f"{mid[0]}{k}" for k in (n - 1, n, n + 1) if f"{mid[0]}{k}" != disc]
+        tmp = list(hand)
+        for t in need:
+            if t in tmp: tmp.remove(t)
+            else: return "PASS"
+        if after in tmp:
+            return resp
+        return "PASS"
+    return "PASS"
+
+
+# ── protocol handler ──────────────────────────────────────────────────────────
+
+_recent_kong = False   # I declared a kong last draw (杠上开花 flag)
+
+def respond(r):
     print(r, flush=True)
     print(SENTINEL, flush=True)
 
 
-def handle(line: str):
-    parts = line.strip().split()
+def feat(line):
+    """Feed raw request to feat_agent (tracks all players)."""
+    parts = line.split(); rt = parts[0]
+    if rt == "1":
+        agent.update("Deal " + " ".join(parts[5:]))
+    elif rt == "2":
+        agent.update(f"Draw {parts[1]}")
+    elif rt == "3":
+        pid = parts[1]; act = parts[2]; rest = parts[3:]
+        m = {"DRAW": f"Player {pid} Draw",
+             "PLAY": f"Player {pid} Play {rest[0] if rest else ''}",
+             "PENG": f"Player {pid} Peng",
+             "CHI":  f"Player {pid} Chi {rest[0] if rest else ''}",
+             "GANG": f"Player {pid} Gang",
+             "BUGANG": f"Player {pid} BuGang {rest[0] if rest else ''}"}
+        if act in m:
+            agent.update(m[act])
+
+
+def handle(line):
+    global _last_draw, _last_discard, _recent_kong
+    line = line.strip()
+    parts = line.split()
     if not parts:
-        respond("PASS")
-        return
+        respond("PASS"); return
+    rt = parts[0]
 
-    rtype = parts[0]
+    if rt == "0":
+        reset(int(parts[1]), int(parts[2])); respond("PASS")
 
-    if rtype == "0":
-        seat = int(parts[1])
-        wind = int(parts[2])
-        reset_game(seat, wind)
-        if feat_agent:
-            feat_agent.update(f"Wind {wind}")
-        respond("PASS")
+    elif rt == "1":
+        feat(line); respond("PASS")
 
-    elif rtype == "1":
-        state.apply_deal(line.strip())
-        if feat_agent:
-            tiles = " ".join(parts[5:])
-            feat_agent.update(f"Deal {tiles}")
-        respond("PASS")
+    elif rt == "2":
+        _last_draw = parts[1]
+        feat(line)                      # adds drawn tile to hand, sets valid
+        resp = decide_draw(_last_draw)
+        resp = verify_draw(resp, _last_draw)     # universal legality guard
+        _recent_kong = resp.startswith("GANG") or resp.startswith("BUGANG")
+        # Apply my action to feat NOW (single application point; echo is skipped)
+        rp = resp.split()
+        if rp[0] == "PLAY":
+            agent.update(f"Player {_seat} Play {rp[1]}")
+        elif rp[0] == "GANG":            # concealed kong from hand
+            agent.update(f"Player {_seat} AnGang {rp[1]}")
+        elif rp[0] == "BUGANG":
+            agent.update(f"Player {_seat} BuGang {rp[1]}")
+        dbg(line, resp)
+        respond(resp)
 
-    elif rtype == "2":
-        tile = parts[1]
-        state.apply_draw(tile)
+    elif rt == "3":
+        pid = int(parts[1]); action = parts[2]
+        tile1 = parts[3] if len(parts) > 3 else None
 
-        # ML path
-        if feat_agent and model:
-            obs, valid = feat_agent.update(f"Draw {tile}")
-            act_idx = decide_ml(obs, valid)
-            if act_idx >= 0:
-                response = action_idx_to_botzone(act_idx, valid)
-                # Safety: if ML says HU, verify with fan calculator
-                if response == "HU":
-                    # hand includes drawn tile; check fan excluding it
-                    hand_ex = list(state.hand)
-                    if tile in hand_ex:
-                        hand_ex.remove(tile)
-                    fan = check_hu(hand_ex, state.packs, tile,
-                                   seat_wind=state.my_pid,
-                                   prevalent_wind=state.prevalent_wind,
-                                   is_self_drawn=True,
-                                   flower_count=state.flower_count)
-                    if fan < 8:
-                        response = "PASS"  # override: not safe HU
-            else:
-                response = decide_after_draw(state)
-        else:
-            response = decide_after_draw(state)
-
-        # Update state
-        if response.startswith("PLAY "):
-            state.apply_my_play(response.split()[1])
-        elif response.startswith("GANG "):
-            state.apply_my_gang(response.split()[1])
-        elif response.startswith("BUGANG "):
-            state.apply_my_bugang(response.split()[1])
-
-        respond(response)
-
-    elif rtype == "3":
-        pid    = int(parts[1])
-        action = parts[2]
-        tile1  = parts[3] if len(parts) > 3 else None
-
-        # Update feature agent with notification
-        if feat_agent:
-            if action == "DRAW":
-                feat_agent.update(f"Player {pid} Draw")
-            elif action == "PLAY":
-                feat_agent.update(f"Player {pid} Play {tile1}")
-            elif action == "PENG":
-                feat_agent.update(f"Player {pid} Peng")
-            elif action == "CHI":
-                feat_agent.update(f"Player {pid} Chi {tile1}")
-            elif action == "GANG":
-                feat_agent.update(f"Player {pid} Gang")
-            elif action == "BUGANG":
-                feat_agent.update(f"Player {pid} BuGang {tile1}")
-
-        if pid == state.my_pid:
-            state.apply_notify(line.strip())
-            respond("PASS")
-            return
-
-        state.apply_notify(line.strip())
+        # My own action echo — already applied at decision time. Never re-apply.
+        if pid == _seat:
+            respond("PASS"); return
 
         if action == "PLAY":
-            # ML response
-            if feat_agent and model:
-                obs, valid = feat_agent.update(f"Player {pid} Play {tile1}")
-                # Override: already updated above, get again after
-                act_idx = decide_ml(obs, valid)
-                if act_idx >= 0:
-                    response = action_idx_to_botzone(act_idx, valid)
-                    if response == "HU":
-                        fan = check_hu(list(state.hand), state.packs, tile1,
-                                       seat_wind=state.my_pid,
-                                       prevalent_wind=state.prevalent_wind,
-                                       is_self_drawn=False,
-                                       flower_count=state.flower_count)
-                        if fan < 8:
-                            response = "PASS"
-                else:
-                    response = decide_after_discard(state, pid)
-            else:
-                response = decide_after_discard(state, pid)
-
-            if response.startswith("PENG "):
-                state.apply_my_peng(tile1, response.split()[1])
-            elif response.startswith("CHI ") and len(response.split()) >= 3:
-                parts_r = response.split()
-                state.apply_my_chi(parts_r[1], parts_r[2], tile1)
-            elif response == "GANG":
-                state.apply_my_meld_gang(tile1)
-            respond(response)
-
-        elif action in ("GANG", "BUGANG"):
-            if feat_agent and model and action == "BUGANG":
-                obs, valid = feat_agent.update(f"Player {pid} BuGang {tile1}")
-                act_idx = decide_ml(obs, valid)
-                if act_idx >= 0:
-                    response = action_idx_to_botzone(act_idx, valid)
-                    if response == "HU":
-                        fan = check_hu(list(state.hand), state.packs, tile1,
-                                       seat_wind=state.my_pid,
-                                       prevalent_wind=state.prevalent_wind,
-                                       is_self_drawn=False, is_about_kong=True,
-                                       flower_count=state.flower_count)
-                        if fan < 8:
-                            response = "PASS"
-                else:
-                    response = decide_after_gang_notify(state)
-            else:
-                response = decide_after_gang_notify(state)
-            respond(response)
-        else:
+            _last_discard = tile1
+            feat(line)                  # feat now offers Hu/Peng/Chi/Gang/Pass
+            resp = decide_claim(tile1)
+            resp = verify_claim(resp, tile1)         # universal legality guard
+            if resp.startswith("PENG"):
+                agent.update(f"Player {_seat} Peng")
+                agent.update(f"Player {_seat} Play {resp.split()[1]}")
+            elif resp.startswith("CHI"):
+                p = resp.split()
+                agent.update(f"Player {_seat} Chi {p[1]}")
+                agent.update(f"Player {_seat} Play {p[2]}")
+            elif resp == "GANG":
+                agent.update(f"Player {_seat} Gang")  # exposed kong from discard
+                _recent_kong = True
+            dbg(line, resp)
+            respond(resp)
+        elif action == "BUGANG":
+            _last_discard = tile1
+            feat(line)
+            resp = decide_robkong(tile1)
+            dbg(line, resp)
+            respond(resp)
+        else:                            # DRAW / GANG / PENG / CHI by opponent
+            feat(line)
             respond("PASS")
-
     else:
         respond("PASS")
 
 
-# ── main ───────────────────────────────────────────────────────────────────────
+# ── one-shot JSON (Botzone upload / run_match.py) ─────────────────────────────
+
+def run_json_oneshot(data):
+    import json
+    turn_id = len(data.get("responses", []))
+    reqs  = [data["requests"][i]  for i in range(turn_id + 1)]
+    resps = [data["responses"][i] for i in range(turn_id)]
+    p0 = reqs[0].split(); reset(int(p0[1]), int(p0[2]))
+
+    # Replay history through feat_agent (authoritative state)
+    for i in range(1, turn_id):
+        req, resp = reqs[i], resps[i]
+        parts = req.split(); rt = parts[0]
+        if rt == "1":
+            feat(req)
+        elif rt == "2":
+            feat(req)
+            rp = resp.split()
+            if rp[0] == "PLAY":
+                agent.update(f"Player {_seat} Play {rp[1]}")
+            elif rp[0] == "GANG":
+                agent.update(f"Player {_seat} AnGang {rp[1]}")  # concealed kong
+            elif rp[0] == "BUGANG":
+                agent.update(f"Player {_seat} BuGang {rp[1]}")
+        elif rt == "3":
+            pid = int(parts[1]); action = parts[2]
+            tile1 = parts[3] if len(parts) > 3 else None
+            if pid == _seat:
+                continue   # my own echo — already applied at decision time
+            feat(req)
+            rp = resp.split()
+            if rp[0] == "PENG":
+                agent.update(f"Player {_seat} Peng")
+                agent.update(f"Player {_seat} Play {rp[1]}")
+            elif rp[0] == "CHI":
+                agent.update(f"Player {_seat} Chi {rp[1]}")
+                agent.update(f"Player {_seat} Play {rp[2]}")
+            elif rp[0] == "GANG" and action == "PLAY":
+                agent.update(f"Player {_seat} Gang")
+
+    # Current decision
+    curr = reqs[turn_id]; parts = curr.split(); rt = parts[0]
+    resp = "PASS"
+    if rt == "2":
+        feat(curr); resp = verify_draw(decide_draw(parts[1]), parts[1])
+    elif rt == "3":
+        pid = int(parts[1]); action = parts[2]
+        tile1 = parts[3] if len(parts) > 3 else None
+        if pid == _seat:
+            resp = "PASS"
+        elif action == "PLAY":
+            feat(curr); resp = verify_claim(decide_claim(tile1), tile1)
+        elif action == "BUGANG":
+            feat(curr); resp = decide_robkong(tile1)
+        else:
+            feat(curr); resp = "PASS"
+    print(__import__("json").dumps({"response": resp}))
+
 
 def run():
-    try:
-        handshake = sys.stdin.readline().strip()
-        if handshake != "1" and handshake:
-            handle(handshake)
-    except EOFError:
+    first = sys.stdin.readline()
+    if not first:
         return
+    first = first.strip()
+    if first.startswith("{"):
+        import json
+        run_json_oneshot(json.loads(first + sys.stdin.read()))
+        return
+    if first != "1" and first:
+        handle(first)
     while True:
-        try:
-            line = sys.stdin.readline()
-            if not line:
-                break
-            line = line.strip()
-            if line:
-                handle(line)
-        except EOFError:
+        line = sys.stdin.readline()
+        if not line:
             break
-        except Exception as e:
-            print(f"ERROR: {e}", file=sys.stderr)
-            respond("PASS")
+        line = line.strip()
+        if line:
+            try:
+                handle(line)
+            except Exception as e:
+                if _dbg: _dbg.write(f"ERROR: {e}\n"); _dbg.flush()
+                respond("PASS")
 
 
 if __name__ == "__main__":
