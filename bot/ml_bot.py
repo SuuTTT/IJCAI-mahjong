@@ -55,11 +55,85 @@ def env_status():
     """One-line environment report, surfaced via the JSON `debug` field so it
     shows up in Botzone's Debug Mode log. Tells us if MahjongGB (needed to HU)
     and the model are actually available on the server."""
-    return (f"mahjong={'OK' if HAS_FAN else 'MISSING'} "
-            f"model={'OK' if model is not None else 'NONE('+_model_err+')'} "
-            f"path={os.path.basename(MODEL_PATH)}")
+    s = (f"mahjong={'OK' if HAS_FAN else 'MISSING'} "
+         f"model={'OK' if model is not None else 'NONE('+_model_err+')'} "
+         f"path={os.path.basename(MODEL_PATH)}")
+    if model is None:
+        s += " | " + os.environ.get("MODEL_SEARCH", "no-search-info")
+    return s
 
-agent = None          # FeatureAgent
+from collections import Counter
+try:
+    from MahjongGB import MahjongFanCalculator as _FANCALC
+except Exception:
+    _FANCALC = None
+
+
+class MyHand:
+    """Independent ground-truth tracker of MY concealed tiles + melds, built ONLY
+    from unambiguous events (my deal, my draws, my discards, my melds). Used to
+    validate legality (discard tile in hand; HU fan) regardless of any desync in
+    the FeatureAgent (which is complex because it tracks all four players)."""
+    def __init__(self, seat, quan):
+        self.seat, self.quan = seat, quan
+        self.held = Counter()          # concealed tiles
+        self.melds = []                # (type, tile) ; type in PENG/CHI(mid)/GANG
+        self.flowers = 0
+
+    def deal(self, tiles):
+        self.held = Counter(t for t in tiles if t[0] != "H")
+        self.flowers = sum(1 for t in tiles if t[0] == "H")
+
+    def draw(self, t):
+        if t and t[0] != "H": self.held[t] += 1
+    def play(self, t):
+        if self.held[t] > 0: self.held[t] -= 1
+    def peng(self, t):
+        self.held[t] = max(0, self.held[t] - 2); self.melds.append(("PENG", t))
+    def chi(self, mid, disc):
+        s, n = mid[0], int(mid[1])
+        for d in (-1, 0, 1):
+            x = f"{s}{n+d}"
+            if x != disc and self.held[x] > 0: self.held[x] -= 1
+        self.melds.append(("CHI", mid))
+    def gang_discard(self, t):
+        self.held[t] = max(0, self.held[t] - 3); self.melds.append(("GANG", t))
+    def angang(self, t):
+        self.held[t] = max(0, self.held[t] - 4); self.melds.append(("GANG", t))
+    def bugang(self, t):
+        if self.held[t] > 0: self.held[t] -= 1
+        for i, (ty, tl) in enumerate(self.melds):
+            if ty == "PENG" and tl == t: self.melds[i] = ("GANG", t); break
+
+    def concealed(self):
+        return [t for t, c in self.held.items() for _ in range(c)]
+
+    def has(self, t):
+        return self.held[t] > 0
+
+    def can_hu(self, win, is_self=False, is_kong=False):
+        """Authoritative >=8-fan check on the independently-tracked hand.
+        winTile excluded from concealed (removed if present, e.g. self-draw)."""
+        if _FANCALC is None:
+            return -1
+        conc = self.concealed()
+        if win in conc:
+            conc.remove(win)
+        if len(conc) + 3 * len(self.melds) + 1 != 14:
+            return -1
+        try:
+            packs = tuple((ty, tl, 1) for ty, tl in self.melds)  # exposed -> safe lower bound
+            res = _FANCALC(pack=packs, hand=tuple(conc), winTile=win,
+                           flowerCount=self.flowers, isSelfDrawn=is_self,
+                           is4thTile=False, isAboutKong=is_kong, isWallLast=False,
+                           seatWind=self.seat, prevalentWind=self.quan)
+            return sum(c for c, _ in res)
+        except Exception:
+            return -1
+
+
+agent = None          # FeatureAgent (for model observations)
+mh = None             # MyHand (authoritative legality)
 _seat = 0
 _quan = 0
 _last_draw = None     # tile I just drew (for self-draw HU / wall-last flags)
@@ -67,11 +141,12 @@ _last_discard = None  # last tile discarded by an opponent (for rong / claims)
 
 
 def reset(seat, wind):
-    global agent, _seat, _quan, _last_draw, _last_discard
+    global agent, mh, _seat, _quan, _last_draw, _last_discard
     _seat, _quan = seat, wind
     _last_draw = _last_discard = None
     agent = FeatureAgent(seat)
     agent.update(f"Wind {wind}")
+    mh = MyHand(seat, wind)
 
 
 def dbg(req, resp):
@@ -91,14 +166,51 @@ def _model_probs(valid):
     return probs
 
 
+# Suit-concentration nudge: a SAFE value-tiebreak. The model picks the discard,
+# but among its top candidates we prefer the one that pushes the hand toward a
+# single suit (清一色 24 / 混一色 6) when the hand already leans that way. We never
+# override a confident model choice — only re-rank within its top few, and only
+# when no meld is exposed yet (so we don't wreck a committed hand). Tunable off.
+SUIT_NUDGE   = float(os.environ.get("SUIT_NUDGE", "0"))   # OFF by default: a local
+# A/B test showed the hand-tuned suit nudge LOWERED the >=8-fan-tenpai rate
+# (16%->11%) and destroyed the model's natural 清一色 — the expert-trained policy
+# already balances value vs speed better than a crude rule. Kept as opt-in only.
+NUDGE_TOPK   = 3
+NUDGE_MIN_LEAN = 7   # need >= this many tiles already in the dominant number-suit
+
+
+def _dominant_suit(tiles):
+    c = {"W": 0, "B": 0, "T": 0}
+    for t in tiles:
+        if t[0] in c:
+            c[t[0]] += 1
+    suit = max(c, key=c.get)
+    return suit, c[suit]
+
+
 def _best_play_tile(valid):
-    """Pick discard tile from legal PLAY actions (model if available)."""
+    """Pick discard from legal PLAY actions (model), with a safe suit nudge."""
     plays = [v for v in valid if ACT["Play"] <= v < ACT["Chi"]]
     if not plays:
         return None
     if model is not None:
         probs = _model_probs(plays)
-        best = max(plays, key=lambda v: probs[v])
+        ranked = sorted(plays, key=lambda v: probs[v], reverse=True)
+        best = ranked[0]
+        # Value-tiebreak: only if leaning hard to one suit and not yet melded.
+        if (SUIT_NUDGE > 0 and not agent.packs[_seat]):
+            suit, lean = _dominant_suit(agent.hand)
+            if lean >= NUDGE_MIN_LEAN:
+                # Among the model's top-K, discard the most "off-suit" tile
+                # (honors/other suits) to concentrate toward a flush.
+                top = ranked[:NUDGE_TOPK]
+                def offsuit(v):
+                    t = TILE_LIST[v - ACT["Play"]]
+                    return 0 if t[0] == suit else 1   # prefer discarding non-dominant
+                # require the model still finds it reasonable (within top-K)
+                cand = max(top, key=lambda v: (offsuit(v), probs[v]))
+                if offsuit(cand):
+                    best = cand
         return TILE_LIST[best - ACT["Play"]]
     # heuristic fallback: minimise shanten
     best_t, best_s = None, 99
@@ -160,6 +272,9 @@ def decide_draw(drawn):
                 return f"BUGANG {t}"
     # 3) discard
     t = _best_play_tile(valid)
+    if _dbg:
+        _dbg.write(f"  draw {drawn}: shanten={s_before} hand={sorted(agent.hand)} "
+                   f"packs={agent.packs[_seat]} -> PLAY {t}\n"); _dbg.flush()
     return f"PLAY {t}" if t else "PASS"
 
 
@@ -288,6 +403,63 @@ def decide_robkong(tile):
     return "PASS"
 
 
+# ── authoritative guards backed by the independent MyHand tracker ─────────────
+
+def mh_guard_draw(resp, drawn):
+    """Final authority for a draw response. Validates against MyHand (ground
+    truth). Guarantees a legal PLAY even if feat desynced. Never returns PASS."""
+    if mh is None:
+        return resp
+    parts = resp.split(); op = parts[0] if parts else ""
+    safe = f"PLAY {drawn}"                      # drawn tile is always in hand
+    if op == "HU":
+        fan = mh.can_hu(drawn, is_self=True, is_kong=_recent_kong)
+        return "HU" if fan >= 8 else safe
+    if op == "PLAY" and len(parts) == 2:
+        return resp if mh.has(parts[1]) else safe
+    if op == "GANG" and len(parts) == 2:
+        return resp if mh.held[parts[1]] >= 4 and not _wall_exhausted() else safe
+    if op == "BUGANG" and len(parts) == 2:
+        ok = mh.has(parts[1]) and any(ty == "PENG" and tl == parts[1] for ty, tl in mh.melds)
+        return resp if (ok and not _wall_exhausted()) else safe
+    return safe
+
+
+def mh_guard_claim(resp, disc):
+    """Final authority for a claim response (validate against MyHand); else PASS."""
+    if mh is None:
+        return resp
+    parts = resp.split(); op = parts[0] if parts else "PASS"
+    if op == "PASS":
+        return "PASS"
+    if op == "HU":
+        fan = mh.can_hu(disc, is_self=False)
+        return "HU" if fan >= 8 else "PASS"
+    if _wall_exhausted():
+        return "PASS"
+    if op == "GANG":
+        return "GANG" if mh.held[disc] >= 3 else "PASS"
+    if op == "PENG" and len(parts) == 2:
+        after = parts[1]
+        if mh.held[disc] >= 2:
+            tmp = Counter(mh.held); tmp[disc] -= 2
+            if tmp[after] > 0:
+                return resp
+        return "PASS"
+    if op == "CHI" and len(parts) == 3:
+        mid, after = parts[1], parts[2]
+        if not mid or mid[0] not in "WTB" or mid[0] != disc[0]:
+            return "PASS"
+        n = int(mid[1]); tmp = Counter(mh.held)
+        for k in (n-1, n, n+1):
+            t = f"{mid[0]}{k}"
+            if t == disc: continue
+            if tmp[t] > 0: tmp[t] -= 1
+            else: return "PASS"
+        return resp if tmp[after] > 0 else "PASS"
+    return "PASS"
+
+
 # ── universal emit-time legality verifier (last line of defence vs -30) ───────
 
 def verify_draw(resp, drawn):
@@ -389,22 +561,24 @@ def handle(line):
         reset(int(parts[1]), int(parts[2])); respond("PASS")
 
     elif rt == "1":
-        feat(line); respond("PASS")
+        feat(line); mh.deal(parts[5:]); respond("PASS")
 
     elif rt == "2":
         _last_draw = parts[1]
         feat(line)                      # adds drawn tile to hand, sets valid
+        mh.draw(_last_draw)
         resp = decide_draw(_last_draw)
         resp = verify_draw(resp, _last_draw)     # universal legality guard
+        resp = mh_guard_draw(resp, _last_draw)   # authoritative independent guard
         _recent_kong = resp.startswith("GANG") or resp.startswith("BUGANG")
-        # Apply my action to feat NOW (single application point; echo is skipped)
+        # Apply my action to feat + mh NOW (single application point; echo skipped)
         rp = resp.split()
         if rp[0] == "PLAY":
-            agent.update(f"Player {_seat} Play {rp[1]}")
+            agent.update(f"Player {_seat} Play {rp[1]}"); mh.play(rp[1])
         elif rp[0] == "GANG":            # concealed kong from hand
-            agent.update(f"Player {_seat} AnGang {rp[1]}")
+            agent.update(f"Player {_seat} AnGang {rp[1]}"); mh.angang(rp[1])
         elif rp[0] == "BUGANG":
-            agent.update(f"Player {_seat} BuGang {rp[1]}")
+            agent.update(f"Player {_seat} BuGang {rp[1]}"); mh.bugang(rp[1])
         dbg(line, resp)
         respond(resp)
 
@@ -421,15 +595,16 @@ def handle(line):
             feat(line)                  # feat now offers Hu/Peng/Chi/Gang/Pass
             resp = decide_claim(tile1)
             resp = verify_claim(resp, tile1)         # universal legality guard
+            resp = mh_guard_claim(resp, tile1)       # authoritative independent guard
             if resp.startswith("PENG"):
-                agent.update(f"Player {_seat} Peng")
-                agent.update(f"Player {_seat} Play {resp.split()[1]}")
+                agent.update(f"Player {_seat} Peng"); mh.peng(tile1)
+                agent.update(f"Player {_seat} Play {resp.split()[1]}"); mh.play(resp.split()[1])
             elif resp.startswith("CHI"):
                 p = resp.split()
-                agent.update(f"Player {_seat} Chi {p[1]}")
-                agent.update(f"Player {_seat} Play {p[2]}")
+                agent.update(f"Player {_seat} Chi {p[1]}"); mh.chi(p[1], tile1)
+                agent.update(f"Player {_seat} Play {p[2]}"); mh.play(p[2])
             elif resp == "GANG":
-                agent.update(f"Player {_seat} Gang")  # exposed kong from discard
+                agent.update(f"Player {_seat} Gang"); mh.gang_discard(tile1)
                 _recent_kong = True
             dbg(line, resp)
             respond(resp)
@@ -455,21 +630,21 @@ def run_json_oneshot(data):
     resps = [data["responses"][i] for i in range(turn_id)]
     p0 = reqs[0].split(); reset(int(p0[1]), int(p0[2]))
 
-    # Replay history through feat_agent (authoritative state)
+    # Replay history through feat_agent (model obs) AND MyHand (authoritative)
     for i in range(1, turn_id):
         req, resp = reqs[i], resps[i]
         parts = req.split(); rt = parts[0]
         if rt == "1":
-            feat(req)
+            feat(req); mh.deal(parts[5:])
         elif rt == "2":
-            feat(req)
+            feat(req); mh.draw(parts[1])
             rp = resp.split()
             if rp[0] == "PLAY":
-                agent.update(f"Player {_seat} Play {rp[1]}")
+                agent.update(f"Player {_seat} Play {rp[1]}"); mh.play(rp[1])
             elif rp[0] == "GANG":
-                agent.update(f"Player {_seat} AnGang {rp[1]}")  # concealed kong
+                agent.update(f"Player {_seat} AnGang {rp[1]}"); mh.angang(rp[1])
             elif rp[0] == "BUGANG":
-                agent.update(f"Player {_seat} BuGang {rp[1]}")
+                agent.update(f"Player {_seat} BuGang {rp[1]}"); mh.bugang(rp[1])
         elif rt == "3":
             pid = int(parts[1]); action = parts[2]
             tile1 = parts[3] if len(parts) > 3 else None
@@ -478,26 +653,27 @@ def run_json_oneshot(data):
             feat(req)
             rp = resp.split()
             if rp[0] == "PENG":
-                agent.update(f"Player {_seat} Peng")
-                agent.update(f"Player {_seat} Play {rp[1]}")
+                agent.update(f"Player {_seat} Peng"); mh.peng(tile1)
+                agent.update(f"Player {_seat} Play {rp[1]}"); mh.play(rp[1])
             elif rp[0] == "CHI":
-                agent.update(f"Player {_seat} Chi {rp[1]}")
-                agent.update(f"Player {_seat} Play {rp[2]}")
+                agent.update(f"Player {_seat} Chi {rp[1]}"); mh.chi(rp[1], tile1)
+                agent.update(f"Player {_seat} Play {rp[2]}"); mh.play(rp[2])
             elif rp[0] == "GANG" and action == "PLAY":
-                agent.update(f"Player {_seat} Gang")
+                agent.update(f"Player {_seat} Gang"); mh.gang_discard(tile1)
 
     # Current decision
     curr = reqs[turn_id]; parts = curr.split(); rt = parts[0]
     resp = "PASS"
     if rt == "2":
-        feat(curr); resp = verify_draw(decide_draw(parts[1]), parts[1])
+        feat(curr); mh.draw(parts[1])
+        resp = mh_guard_draw(verify_draw(decide_draw(parts[1]), parts[1]), parts[1])
     elif rt == "3":
         pid = int(parts[1]); action = parts[2]
         tile1 = parts[3] if len(parts) > 3 else None
         if pid == _seat:
             resp = "PASS"
         elif action == "PLAY":
-            feat(curr); resp = verify_claim(decide_claim(tile1), tile1)
+            feat(curr); resp = mh_guard_claim(verify_claim(decide_claim(tile1), tile1), tile1)
         elif action == "BUGANG":
             feat(curr); resp = decide_robkong(tile1)
         else:

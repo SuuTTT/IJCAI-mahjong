@@ -1,0 +1,496 @@
+{
+  "gen": 8,
+  "members": [
+    {
+      "name": "m0",
+      "box_id": "36994217",
+      "config": {
+        "lr": 2.4576000000000004e-06,
+        "shape": 0.005,
+        "ent": 0.005,
+        "add_every": 0
+      },
+      "init_pt": "/home/coder/IJCAI-mahjong/train/pbt/g8_m3.pt"
+    },
+    {
+      "name": "m1",
+      "box_id": "38702735",
+      "config": {
+        "lr": 3.8400000000000005e-06,
+        "shape": 0.005,
+        "ent": 0.005,
+        "add_every": 6
+      },
+      "init_pt": "/home/coder/IJCAI-mahjong/train/pbt/g8_m1.pt"
+    },
+    {
+      "name": "m3",
+      "box_id": "38664456",
+      "config": {
+        "lr": 3.0720000000000004e-06,
+        "shape": 0.01,
+        "ent": 0.0,
+        "add_every": 6
+      },
+      "init_pt": "/home/coder/IJCAI-mahjong/train/pbt/g8_m3.pt"
+    },
+    {
+      "name": "m4",
+      "box_id": "38764529",
+      "config": {
+        "lr": 6.144000000000001e-06,
+        "shape": 0.0,
+        "ent": 0.0,
+        "add_every": 6
+      },
+      "init_pt": "/home/coder/IJCAI-mahjong/train/pbt/g8_m5.pt"
+    },
+    {
+      "name": "m5",
+      "box_id": "38766691",
+      "config": {
+        "lr": 4.915200000000001e-06,
+        "shape": 0.005,
+        "ent": 0.005,
+        "add_every": 0
+      },
+      "init_pt": "/home/coder/IJCAI-mahjong/train/pbt/g8_m5.pt"
+    },
+    {
+      "name": "m6",
+      "box_id": "38767427",
+      "config": {
+        "lr": 2.9491200000000004e-06,
+        "shape": 0.01,
+        "ent": 0.0,
+        "add_every": 0
+      },
+      "init_pt": "/home/coder/IJCAI-mahjong/train/pbt/g8_m5.pt"
+    },
+    {
+      "name": "m7",
+      "box_id": "38768950",
+      "config": {
+        "lr": 2e-06,
+        "shape": 0.01,
+        "ent": 0.0,
+        "add_every": 6
+      },
+      "init_pt": "/home/coder/IJCAI-mahjong/train/pbt/g8_m3.pt"
+    }
+  ],
+  "pool": [
+    "bc_v3_ft_fp16.npz",
+    "ppo_vb_fp16.npz",
+    "league_best_weights.npz",
+    "poolbig_best_weights.npz",
+    "pbt_champ_g3.npz",
+    "pbt_champ_g4.npz",
+    "pbt_champ_g5.npz",
+    "pbt_champ_g6.npz",
+    "pbt_champ_g7.npz",
+    "pbt_champ_g8.npz"
+  ],
+  "history": [
+    {
+      "gen": 1,
+      "champion": "m1",
+      "champion_net": 2080,
+      "anchor_net": -1498,
+      "ranking": [
+        [
+          "m1",
+          2080
+        ],
+        [
+          "m3",
+          1562
+        ],
+        [
+          "m4",
+          344
+        ],
+        [
+          "m0",
+          292
+        ],
+        [
+          "m7",
+          -252
+        ],
+        [
+          "m5",
+          -450
+        ],
+        [
+          "_anchor",
+          -1498
+        ],
+        [
+          "m6",
+          -2078
+        ]
+      ],
+      "wins": {
+        "m1": 53,
+        "m3": 49,
+        "m4": 36,
+        "m0": 38,
+        "m7": 51,
+        "m5": 29,
+        "_anchor": 30,
+        "m6": 25
+      }
+    },
+    {
+      "gen": 2,
+      "champion": "m1",
+      "champion_net": 2370,
+      "anchor_net": -1686,
+      "ranking": [
+        [
+          "m1",
+          2370
+        ],
+        [
+          "m0",
+          1570
+        ],
+        [
+          "m4",
+          348
+        ],
+        [
+          "m5",
+          284
+        ],
+        [
+          "m3",
+          -428
+        ],
+        [
+          "m6",
+          -878
+        ],
+        [
+          "m7",
+          -1580
+        ],
+        [
+          "_anchor",
+          -1686
+        ]
+      ],
+      "wins": {
+        "m1": 46,
+        "m0": 45,
+        "m4": 33,
+        "m5": 28,
+        "m3": 35,
+        "m6": 27,
+        "m7": 18,
+        "_anchor": 29
+      }
+    },
+    {
+      "gen": 3,
+      "champion": "m0",
+      "champion_net": 2000,
+      "anchor_net": -2568,
+      "ranking": [
+        [
+          "m0",
+          2000
+        ],
+        [
+          "m1",
+          1042
+        ],
+        [
+          "m5",
+          316
+        ],
+        [
+          "m3",
+          94
+        ],
+        [
+          "m4",
+          94
+        ],
+        [
+          "m7",
+          -466
+        ],
+        [
+          "m6",
+          -512
+        ],
+        [
+          "_anchor",
+          -2568
+        ]
+      ],
+      "wins": {
+        "m0": 48,
+        "m1": 47,
+        "m5": 32,
+        "m3": 43,
+        "m4": 40,
+        "m7": 35,
+        "m6": 29,
+        "_anchor": 22
+      }
+    },
+    {
+      "gen": 4,
+      "champion": "m1",
+      "champion_net": 1666,
+      "anchor_net": -1946,
+      "ranking": [
+        [
+          "m1",
+          1666
+        ],
+        [
+          "m0",
+          636
+        ],
+        [
+          "m5",
+          596
+        ],
+        [
+          "m7",
+          452
+        ],
+        [
+          "m4",
+          -240
+        ],
+        [
+          "m3",
+          -326
+        ],
+        [
+          "m6",
+          -838
+        ],
+        [
+          "_anchor",
+          -1946
+        ]
+      ],
+      "wins": {
+        "m1": 46,
+        "m0": 40,
+        "m5": 31,
+        "m7": 31,
+        "m4": 32,
+        "m3": 34,
+        "m6": 24,
+        "_anchor": 31
+      }
+    },
+    {
+      "gen": 5,
+      "champion": "m0",
+      "champion_net": 690,
+      "anchor_net": -2516,
+      "ranking": [
+        [
+          "m0",
+          690
+        ],
+        [
+          "m5",
+          530
+        ],
+        [
+          "m7",
+          522
+        ],
+        [
+          "m1",
+          412
+        ],
+        [
+          "m3",
+          408
+        ],
+        [
+          "m6",
+          124
+        ],
+        [
+          "m4",
+          -170
+        ],
+        [
+          "_anchor",
+          -2516
+        ]
+      ],
+      "wins": {
+        "m0": 37,
+        "m5": 35,
+        "m7": 36,
+        "m1": 37,
+        "m3": 34,
+        "m6": 31,
+        "m4": 33,
+        "_anchor": 26
+      }
+    },
+    {
+      "gen": 6,
+      "champion": "m1",
+      "champion_net": 1264,
+      "anchor_net": -1386,
+      "ranking": [
+        [
+          "m1",
+          1264
+        ],
+        [
+          "m0",
+          380
+        ],
+        [
+          "m5",
+          240
+        ],
+        [
+          "m3",
+          140
+        ],
+        [
+          "m7",
+          134
+        ],
+        [
+          "m6",
+          -306
+        ],
+        [
+          "m4",
+          -466
+        ],
+        [
+          "_anchor",
+          -1386
+        ]
+      ],
+      "wins": {
+        "m1": 53,
+        "m0": 46,
+        "m5": 38,
+        "m3": 42,
+        "m7": 39,
+        "m6": 36,
+        "m4": 42,
+        "_anchor": 33
+      }
+    },
+    {
+      "gen": 7,
+      "champion": "m0",
+      "champion_net": 1264,
+      "anchor_net": -1378,
+      "ranking": [
+        [
+          "m0",
+          1264
+        ],
+        [
+          "m1",
+          1030
+        ],
+        [
+          "m3",
+          428
+        ],
+        [
+          "m5",
+          184
+        ],
+        [
+          "m4",
+          128
+        ],
+        [
+          "m7",
+          -96
+        ],
+        [
+          "_anchor",
+          -1378
+        ],
+        [
+          "m6",
+          -1560
+        ]
+      ],
+      "wins": {
+        "m0": 41,
+        "m1": 46,
+        "m3": 40,
+        "m5": 33,
+        "m4": 31,
+        "m7": 31,
+        "_anchor": 31,
+        "m6": 35
+      }
+    },
+    {
+      "gen": 8,
+      "champion": "m3",
+      "champion_net": 2134,
+      "anchor_net": -1574,
+      "ranking": [
+        [
+          "m3",
+          2134
+        ],
+        [
+          "m1",
+          1422
+        ],
+        [
+          "m5",
+          36
+        ],
+        [
+          "m6",
+          -122
+        ],
+        [
+          "m4",
+          -346
+        ],
+        [
+          "m0",
+          -478
+        ],
+        [
+          "m7",
+          -1072
+        ],
+        [
+          "_anchor",
+          -1574
+        ]
+      ],
+      "wins": {
+        "m3": 53,
+        "m1": 51,
+        "m5": 40,
+        "m6": 37,
+        "m4": 32,
+        "m0": 46,
+        "m7": 34,
+        "_anchor": 28
+      }
+    }
+  ]
+}

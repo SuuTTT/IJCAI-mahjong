@@ -1,0 +1,236 @@
+warm-start train/checkpoints/league_best.pt
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_baseline.npz
+mode=league pool_size=3 shape=0.02 add_every=12
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   1  win%=4.4 draw%=89.7 samples=33565 pool=3 loss=0.038 (97s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   2  win%=5.7 draw%=88.9 samples=33767 pool=3 loss=0.039 (94s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   3  win%=4.3 draw%=90.0 samples=33801 pool=3 loss=0.040 (96s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   4  win%=5.0 draw%=89.6 samples=33736 pool=3 loss=0.034 (88s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_best_weights.npz
+iter   5  win%=4.1 draw%=90.0 samples=33954 pool=3 loss=0.049 (97s)  | vs-baseline net=-154 *BEST*
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   6  win%=5.6 draw%=87.9 samples=33677 pool=3 loss=0.055 (99s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   7  win%=7.1 draw%=86.3 samples=33500 pool=3 loss=0.096 (98s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   8  win%=3.6 draw%=89.4 samples=33610 pool=3 loss=0.035 (98s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter   9  win%=4.9 draw%=89.1 samples=33756 pool=3 loss=0.030 (86s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_best_weights.npz
+iter  10  win%=5.0 draw%=89.7 samples=33771 pool=3 loss=0.037 (92s)  | vs-baseline net=+114 *BEST*
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  11  win%=5.6 draw%=89.6 samples=33659 pool=3 loss=0.026 (97s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it12.npz
+iter  12  win%=4.9 draw%=87.9 samples=33635 pool=4 loss=0.036 (98s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  13  win%=4.1 draw%=90.3 samples=33679 pool=4 loss=0.035 (94s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  14  win%=4.7 draw%=88.9 samples=33708 pool=4 loss=0.041 (94s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  15  win%=4.7 draw%=89.3 samples=33611 pool=4 loss=0.052 (98s)  | vs-baseline net=-114
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  16  win%=5.6 draw%=87.9 samples=33637 pool=4 loss=0.055 (100s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  17  win%=4.6 draw%=89.3 samples=33487 pool=4 loss=0.032 (98s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  18  win%=7.4 draw%=87.3 samples=33478 pool=4 loss=0.083 (98s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  19  win%=5.3 draw%=90.3 samples=33634 pool=4 loss=0.091 (94s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_best_weights.npz
+iter  20  win%=4.9 draw%=89.1 samples=33720 pool=4 loss=0.035 (101s)  | vs-baseline net=+148 *BEST*
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  21  win%=5.0 draw%=89.4 samples=33711 pool=4 loss=0.046 (99s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  22  win%=4.9 draw%=88.6 samples=33651 pool=4 loss=0.063 (99s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  23  win%=3.3 draw%=91.1 samples=33682 pool=4 loss=0.024 (98s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it24.npz
+iter  24  win%=4.7 draw%=89.4 samples=33694 pool=5 loss=0.024 (94s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  25  win%=5.3 draw%=88.4 samples=33425 pool=5 loss=0.040 (97s)  | vs-baseline net=-388
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  26  win%=4.0 draw%=90.7 samples=33733 pool=5 loss=0.040 (104s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  27  win%=5.1 draw%=89.3 samples=33676 pool=5 loss=0.017 (96s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  28  win%=6.3 draw%=87.7 samples=33463 pool=5 loss=0.031 (95s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  29  win%=3.6 draw%=89.0 samples=33700 pool=5 loss=0.038 (87s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  30  win%=4.3 draw%=89.3 samples=33643 pool=5 loss=0.036 (99s)  | vs-baseline net=-38
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  31  win%=4.7 draw%=90.4 samples=33594 pool=5 loss=0.060 (97s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  32  win%=4.0 draw%=89.6 samples=33472 pool=5 loss=0.021 (108s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  33  win%=4.6 draw%=89.3 samples=33649 pool=5 loss=0.055 (101s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  34  win%=5.6 draw%=88.1 samples=33474 pool=5 loss=0.058 (58s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  35  win%=3.3 draw%=90.6 samples=33466 pool=5 loss=0.027 (48s)  | vs-baseline net=-288
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it36.npz
+iter  36  win%=3.9 draw%=90.1 samples=33491 pool=6 loss=0.016 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  37  win%=4.9 draw%=87.7 samples=33526 pool=6 loss=0.047 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  38  win%=4.9 draw%=90.7 samples=33522 pool=6 loss=0.041 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  39  win%=3.7 draw%=89.9 samples=33588 pool=6 loss=0.031 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  40  win%=5.9 draw%=87.9 samples=33511 pool=6 loss=0.069 (47s)  | vs-baseline net=+42
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  41  win%=3.7 draw%=90.4 samples=33539 pool=6 loss=0.037 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  42  win%=4.3 draw%=89.6 samples=33429 pool=6 loss=0.023 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  43  win%=5.1 draw%=86.3 samples=33126 pool=6 loss=0.047 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  44  win%=4.6 draw%=89.1 samples=33353 pool=6 loss=0.051 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  45  win%=5.7 draw%=87.7 samples=33369 pool=6 loss=0.068 (47s)  | vs-baseline net=-100
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  46  win%=4.4 draw%=89.7 samples=33551 pool=6 loss=0.071 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  47  win%=4.9 draw%=88.6 samples=33526 pool=6 loss=0.050 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it48.npz
+iter  48  win%=5.3 draw%=87.9 samples=33512 pool=7 loss=0.083 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  49  win%=3.9 draw%=89.0 samples=33490 pool=7 loss=0.062 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  50  win%=4.1 draw%=89.1 samples=33469 pool=7 loss=0.048 (47s)  | vs-baseline net=+46
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  51  win%=5.6 draw%=88.9 samples=33623 pool=7 loss=0.062 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  52  win%=5.7 draw%=87.7 samples=33443 pool=7 loss=0.088 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  53  win%=3.4 draw%=89.0 samples=33379 pool=7 loss=0.023 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  54  win%=4.4 draw%=89.3 samples=33665 pool=7 loss=0.025 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  55  win%=4.3 draw%=91.1 samples=33587 pool=7 loss=0.028 (47s)  | vs-baseline net=+0
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  56  win%=4.9 draw%=87.9 samples=33440 pool=7 loss=0.084 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  57  win%=3.1 draw%=90.0 samples=33561 pool=7 loss=0.018 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  58  win%=4.7 draw%=89.0 samples=33508 pool=7 loss=0.044 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  59  win%=4.4 draw%=88.3 samples=33655 pool=7 loss=0.040 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it60.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  60  win%=5.0 draw%=87.9 samples=33461 pool=8 loss=0.053 (47s)  | vs-baseline net=-310
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  61  win%=3.4 draw%=88.3 samples=33197 pool=8 loss=0.026 (46s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  62  win%=3.9 draw%=88.9 samples=33465 pool=8 loss=0.027 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  63  win%=4.6 draw%=89.1 samples=33435 pool=8 loss=0.034 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  64  win%=3.4 draw%=89.9 samples=33552 pool=8 loss=0.016 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  65  win%=4.1 draw%=89.4 samples=33235 pool=8 loss=0.027 (47s)  | vs-baseline net=+40
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  66  win%=4.9 draw%=87.0 samples=33298 pool=8 loss=0.053 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  67  win%=5.3 draw%=88.0 samples=33311 pool=8 loss=0.061 (46s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  68  win%=4.1 draw%=89.7 samples=33373 pool=8 loss=0.053 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  69  win%=4.6 draw%=90.0 samples=33662 pool=8 loss=0.038 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  70  win%=3.4 draw%=89.9 samples=33453 pool=8 loss=0.037 (47s)  | vs-baseline net=-54
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  71  win%=3.9 draw%=90.1 samples=33491 pool=8 loss=0.028 (46s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it72.npz
+iter  72  win%=6.6 draw%=86.1 samples=33268 pool=9 loss=0.052 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  73  win%=3.1 draw%=91.4 samples=33368 pool=9 loss=0.009 (46s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  74  win%=5.0 draw%=88.7 samples=33414 pool=9 loss=0.014 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  75  win%=3.6 draw%=89.1 samples=33380 pool=9 loss=0.037 (47s)  | vs-baseline net=+120
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  76  win%=4.1 draw%=88.6 samples=33418 pool=9 loss=0.029 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  77  win%=4.1 draw%=88.6 samples=33407 pool=9 loss=0.028 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  78  win%=4.3 draw%=89.4 samples=33308 pool=9 loss=0.022 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  79  win%=4.6 draw%=89.3 samples=33448 pool=9 loss=0.043 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  80  win%=4.3 draw%=88.7 samples=33523 pool=9 loss=0.036 (48s)  | vs-baseline net=-70
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  81  win%=5.3 draw%=89.3 samples=33498 pool=9 loss=0.029 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  82  win%=3.9 draw%=87.9 samples=33240 pool=9 loss=0.013 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  83  win%=4.6 draw%=89.3 samples=33246 pool=9 loss=0.036 (47s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it84.npz
+iter  84  win%=4.9 draw%=88.7 samples=33324 pool=10 loss=0.036 (48s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  85  win%=4.6 draw%=88.9 samples=33377 pool=10 loss=0.041 (47s)  | vs-baseline net=+32
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  86  win%=4.3 draw%=89.3 samples=33438 pool=10 loss=0.054 (46s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+87  win%=4.0 draw%=89.4 samples=33430 pool=10 loss=0.038 (92s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  88  win%=4.9 draw%=89.9 samples=33278 pool=10 loss=0.039 (99s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  89  win%=5.9 draw%=87.9 samples=33254 pool=10 loss=0.072 (92s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  90  win%=5.0 draw%=89.1 samples=33265 pool=10 loss=0.070 (99s)  | vs-baseline net=-38
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  91  win%=5.3 draw%=88.4 samples=33182 pool=10 loss=0.038 (95s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  92  win%=4.1 draw%=89.9 samples=33475 pool=10 loss=0.043 (91s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  93  win%=4.1 draw%=89.6 samples=33238 pool=10 loss=0.020 (96s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  94  win%=4.6 draw%=88.3 samples=33375 pool=10 loss=0.059 (99s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  95  win%=5.4 draw%=87.3 samples=33428 pool=10 loss=0.053 (103s)  | vs-baseline net=+118
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_pool/snap_it96.npz
+iter  96  win%=4.0 draw%=88.7 samples=33319 pool=11 loss=0.058 (96s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  97  win%=4.4 draw%=88.3 samples=33051 pool=11 loss=0.018 (89s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  98  win%=3.4 draw%=88.9 samples=33383 pool=11 loss=0.054 (93s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter  99  win%=4.4 draw%=89.6 samples=33392 pool=11 loss=0.089 (96s)
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_rollout.npz
+iter 100  win%=3.6 draw%=90.6 samples=33369 pool=11 loss=0.024 (90s)  | vs-baseline net=+156
+Exported numpy weights (58 arrays) -> train/checkpoints/robust_weights.npz
+done

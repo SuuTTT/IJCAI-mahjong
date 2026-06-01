@@ -1,0 +1,229 @@
+warm-start train/checkpoints/ppo_vb_best.pt
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_baseline.npz
+mode=league pool_size=1 shape=0.06 add_every=0
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   1  win%=2.6 draw%=93.0 samples=38378 pool=1 loss=0.016 (30s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   2  win%=3.4 draw%=89.6 samples=38231 pool=1 loss=0.040 (29s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   3  win%=3.0 draw%=91.5 samples=38471 pool=1 loss=0.025 (29s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   4  win%=5.6 draw%=87.6 samples=38145 pool=1 loss=0.044 (29s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_best_weights.npz
+iter   5  win%=3.5 draw%=91.0 samples=38407 pool=1 loss=0.063 (29s)  | vs-baseline net=+64 *BEST*
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   6  win%=3.6 draw%=91.0 samples=38202 pool=1 loss=0.034 (29s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   7  win%=3.6 draw%=90.2 samples=38245 pool=1 loss=0.051 (30s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   8  win%=4.9 draw%=89.5 samples=38065 pool=1 loss=0.046 (29s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter   9  win%=5.4 draw%=89.0 samples=38217 pool=1 loss=0.046 (30s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  10  win%=4.6 draw%=89.2 samples=38189 pool=1 loss=0.052 (30s)  | vs-baseline net=-144
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  11  win%=4.0 draw%=90.8 samples=38475 pool=1 loss=0.048 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  12  win%=3.9 draw%=90.0 samples=38334 pool=1 loss=0.035 (30s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  13  win%=3.5 draw%=90.2 samples=38427 pool=1 loss=0.033 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  14  win%=4.0 draw%=90.2 samples=38311 pool=1 loss=0.023 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  15  win%=3.8 draw%=90.6 samples=38378 pool=1 loss=0.045 (31s)  | vs-baseline net=-80
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  16  win%=4.4 draw%=90.8 samples=38307 pool=1 loss=0.040 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  17  win%=4.2 draw%=89.6 samples=38253 pool=1 loss=0.036 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  18  win%=4.2 draw%=89.1 samples=38354 pool=1 loss=0.029 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  19  win%=4.1 draw%=89.1 samples=38404 pool=1 loss=0.044 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  20  win%=4.1 draw%=87.6 samples=38352 pool=1 loss=0.057 (31s)  | vs-baseline net=-116
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  21  win%=3.8 draw%=89.8 samples=38424 pool=1 loss=0.037 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  22  win%=3.5 draw%=90.1 samples=38458 pool=1 loss=0.040 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  23  win%=5.5 draw%=88.0 samples=38571 pool=1 loss=0.041 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  24  win%=2.9 draw%=91.2 samples=38471 pool=1 loss=0.020 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_best_weights.npz
+iter  25  win%=3.4 draw%=90.6 samples=38627 pool=1 loss=0.048 (31s)  | vs-baseline net=+140 *BEST*
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  26  win%=4.0 draw%=89.2 samples=38548 pool=1 loss=0.037 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  27  win%=3.6 draw%=90.1 samples=38637 pool=1 loss=0.036 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  28  win%=4.2 draw%=89.6 samples=38553 pool=1 loss=0.033 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  29  win%=3.5 draw%=88.8 samples=38276 pool=1 loss=0.027 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  30  win%=3.1 draw%=89.8 samples=38461 pool=1 loss=0.050 (32s)  | vs-baseline net=+20
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  31  win%=2.9 draw%=90.4 samples=38640 pool=1 loss=0.023 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  32  win%=3.2 draw%=89.8 samples=38572 pool=1 loss=0.030 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  33  win%=3.0 draw%=91.0 samples=38538 pool=1 loss=0.025 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  34  win%=3.4 draw%=87.6 samples=38354 pool=1 loss=0.025 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  35  win%=3.6 draw%=90.2 samples=38548 pool=1 loss=0.059 (32s)  | vs-baseline net=-96
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  36  win%=4.2 draw%=89.1 samples=38631 pool=1 loss=0.040 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  37  win%=3.5 draw%=88.4 samples=38542 pool=1 loss=0.035 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  38  win%=3.8 draw%=89.5 samples=38604 pool=1 loss=0.033 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  39  win%=4.9 draw%=88.8 samples=38530 pool=1 loss=0.055 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  40  win%=2.8 draw%=91.1 samples=38867 pool=1 loss=0.021 (32s)  | vs-baseline net=-158
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  41  win%=2.9 draw%=91.2 samples=38877 pool=1 loss=0.042 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  42  win%=2.8 draw%=90.0 samples=38690 pool=1 loss=0.031 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  43  win%=3.0 draw%=89.9 samples=38766 pool=1 loss=0.043 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  44  win%=3.8 draw%=88.6 samples=38799 pool=1 loss=0.031 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  45  win%=1.9 draw%=91.1 samples=38887 pool=1 loss=0.027 (32s)  | vs-baseline net=+28
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  46  win%=3.0 draw%=89.8 samples=38636 pool=1 loss=0.038 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  47  win%=2.2 draw%=92.1 samples=38859 pool=1 loss=0.010 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  48  win%=3.2 draw%=88.8 samples=38497 pool=1 loss=0.036 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  49  win%=3.5 draw%=88.8 samples=38627 pool=1 loss=0.037 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_best_weights.npz
+iter  50  win%=1.9 draw%=90.0 samples=38766 pool=1 loss=0.026 (32s)  | vs-baseline net=+160 *BEST*
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  51  win%=2.6 draw%=89.2 samples=38672 pool=1 loss=0.024 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  52  win%=3.1 draw%=88.6 samples=38529 pool=1 loss=0.031 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  53  win%=3.0 draw%=90.0 samples=38545 pool=1 loss=0.044 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  54  win%=3.1 draw%=89.2 samples=38668 pool=1 loss=0.024 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  55  win%=3.5 draw%=88.8 samples=38619 pool=1 loss=0.040 (31s)  | vs-baseline net=+78
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  56  win%=4.8 draw%=87.6 samples=38491 pool=1 loss=0.048 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  57  win%=2.4 draw%=91.1 samples=38707 pool=1 loss=0.021 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  58  win%=3.0 draw%=88.4 samples=38681 pool=1 loss=0.056 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  59  win%=3.8 draw%=90.6 samples=38475 pool=1 loss=0.036 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  60  win%=3.5 draw%=89.5 samples=38678 pool=1 loss=0.047 (32s)  | vs-baseline net=+8
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  61  win%=3.0 draw%=90.1 samples=38579 pool=1 loss=0.033 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  62  win%=3.4 draw%=88.6 samples=38611 pool=1 loss=0.024 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  63  win%=3.5 draw%=90.2 samples=38447 pool=1 loss=0.025 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  64  win%=2.8 draw%=91.1 samples=38324 pool=1 loss=0.031 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  65  win%=3.4 draw%=89.6 samples=38688 pool=1 loss=0.034 (32s)  | vs-baseline net=-128
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  66  win%=4.1 draw%=89.9 samples=38545 pool=1 loss=0.025 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  67  win%=3.5 draw%=89.5 samples=38483 pool=1 loss=0.034 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  68  win%=3.5 draw%=89.8 samples=38541 pool=1 loss=0.037 (31s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  69  win%=2.6 draw%=91.5 samples=38650 pool=1 loss=0.018 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  70  win%=2.6 draw%=90.6 samples=38719 pool=1 loss=0.034 (32s)  | vs-baseline net=-262
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  71  win%=2.2 draw%=92.5 samples=38998 pool=1 loss=0.020 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  72  win%=2.4 draw%=91.6 samples=38854 pool=1 loss=0.026 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  73  win%=2.2 draw%=90.4 samples=38864 pool=1 loss=0.017 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  74  win%=2.5 draw%=92.8 samples=39020 pool=1 loss=0.032 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  75  win%=3.0 draw%=89.5 samples=38901 pool=1 loss=0.026 (32s)  | vs-baseline net=-40
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  76  win%=3.8 draw%=89.1 samples=38664 pool=1 loss=0.032 (33s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  77  win%=3.6 draw%=88.5 samples=38628 pool=1 loss=0.030 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  78  win%=2.8 draw%=89.8 samples=38902 pool=1 loss=0.038 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  79  win%=2.2 draw%=92.4 samples=39108 pool=1 loss=0.021 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  80  win%=2.4 draw%=89.8 samples=39078 pool=1 loss=0.025 (32s)  | vs-baseline net=+118
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  81  win%=2.5 draw%=90.4 samples=39029 pool=1 loss=0.031 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  82  win%=2.1 draw%=89.9 samples=39104 pool=1 loss=0.035 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  83  win%=2.5 draw%=88.9 samples=39178 pool=1 loss=0.039 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  84  win%=3.0 draw%=90.1 samples=39024 pool=1 loss=0.024 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  85  win%=2.6 draw%=90.0 samples=39054 pool=1 loss=0.043 (32s)  | vs-baseline net=-58
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  86  win%=2.4 draw%=88.6 samples=38995 pool=1 loss=0.030 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  87  win%=3.0 draw%=90.6 samples=39052 pool=1 loss=0.019 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  88  win%=1.5 draw%=91.9 samples=39335 pool=1 loss=0.017 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  89  win%=2.4 draw%=89.6 samples=38872 pool=1 loss=0.046 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  90  win%=1.4 draw%=92.0 samples=39466 pool=1 loss=0.018 (32s)  | vs-baseline net=+12
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  91  win%=1.2 draw%=91.0 samples=39032 pool=1 loss=0.030 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  92  win%=2.1 draw%=91.4 samples=39208 pool=1 loss=0.042 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  93  win%=2.5 draw%=89.4 samples=38870 pool=1 loss=0.046 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  94  win%=2.0 draw%=91.1 samples=39156 pool=1 loss=0.030 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_best_weights.npz
+iter  95  win%=1.8 draw%=91.0 samples=39087 pool=1 loss=0.018 (32s)  | vs-baseline net=+184 *BEST*
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  96  win%=1.6 draw%=91.2 samples=39167 pool=1 loss=0.020 (33s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  97  win%=2.4 draw%=90.6 samples=39210 pool=1 loss=0.031 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  98  win%=1.5 draw%=90.9 samples=39111 pool=1 loss=0.019 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter  99  win%=1.4 draw%=90.2 samples=38973 pool=1 loss=0.030 (32s)
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_rollout.npz
+iter 100  win%=1.8 draw%=90.6 samples=39106 pool=1 loss=0.032 (32s)  | vs-baseline net=+56
+Exported numpy weights (58 arrays) -> train/checkpoints/drawpush_weights.npz
+done
