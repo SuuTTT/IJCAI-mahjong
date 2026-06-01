@@ -57,7 +57,7 @@ class NumpyMLP:
         probs /= probs.sum()
         if self.value_w0 is not None:
             h = np.maximum(0, x @ self.value_w0.T + self.value_b0)
-            value = float(np.tanh(h @ self.value_w.T + self.value_b))
+            value = float(np.ravel(np.tanh(h @ self.value_w.T + self.value_b))[0])
         else:
             value = 0.0
         return probs, value

@@ -310,3 +310,26 @@ eval/
 The biggest single jump is **v0.3 → v0.4**: supervised learning reaches diminishing returns fairly quickly because human gameplay has systematic biases. Self-play with a good reward signal (duplicate ranking score, not win/loss) is where the real ceiling lies.
 
 The biggest engineering trap is **measuring the wrong thing**: if you optimize for win-rate in random games, you will overfit to aggressive play that scores high variance but loses badly in the duplicate format. Always evaluate with the `duplicate_eval.py` packet.
+
+---
+
+## Architecture update (2026-05-31): model-driven claims
+
+The bot is now **feature-agent-driven with a model-driven policy**:
+- **State/legality**: a single `FeatureAgent` (port of the official engine) tracks the hand
+  and produces `valid` (the legal action set) every turn.
+- **Discard**: the trained policy picks the tile to discard (masked argmax over legal PLAYs).
+- **Claims (peng/chi/gang)**: now also **model-driven** — the policy scores the legal
+  `{Pass, Peng, Chi, Gang}` set and picks the best, so it can decline a tempting claim to
+  chase a higher-fan hand (碰碰和 / 清一色 / 混一色). Previously this was a fan-blind shanten
+  heuristic that rushed to tenpai on sub-8-fan hands and drew every game.
+- **HU**: fan-gated — declared only when the fan calculator confirms ≥8 (never model-trusted),
+  with `isWallLast=False` (no 海底 bonus) for a guaranteed-legal lower bound.
+- **Safety**: `verify_draw` / `verify_claim` re-check every action physically; no-model
+  fallback is the old shanten heuristic. 0 illegal in 48 sequential judge games incl. self-play.
+
+See `docs/TUTORIAL_melding_and_model.md` for a from-zero explanation.
+
+### Deployment note
+Code changed → re-upload `deploy/mahjong_ml_bot.zip`. Model weights unchanged →
+`bc_v3_ft_fp16.npz` does NOT need re-uploading. The bot auto-discovers any `data/*.npz`.
