@@ -7,3 +7,4 @@
 train/caiest_repro/arch_ck/
 train/caiest_repro/log/
 *.log
+*.bak

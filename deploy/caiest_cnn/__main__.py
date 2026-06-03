@@ -14,20 +14,29 @@ import os, sys, glob, json
 import numpy as np
 import torch
 from feature import FeatureAgent
-from model import CNNModel
 
 MARKER = ">>>BOTZONE_REQUEST_KEEP_RUNNING<<<"
 JSON_OUT = os.environ.get("BOTZONE_JSON", "1") != "0"
+_HERE = os.path.dirname(os.path.abspath(__file__))
 
 def _find_model():
-    here = os.path.dirname(os.path.abspath(__file__))
     cands = []
-    for base in (os.path.join(here, 'data'), 'data', here, '.'):
+    for base in (os.path.join(_HERE, 'data'), 'data', _HERE, '.'):
         cands += glob.glob(os.path.join(base, '*.pkl'))
     cands = sorted(set(cands), key=lambda p: os.path.getsize(p), reverse=True)
     return cands[0] if cands else None
 
-model = CNNModel()
+def _build_model():
+    # arch-aware: model_arch.json {"kind":..,"cfg":..} -> models_explore; else the caiest CNN.
+    af = os.path.join(_HERE, 'model_arch.json')
+    if os.path.exists(af):
+        a = json.load(open(af))
+        from models_explore import build
+        return build(a['kind'], **a.get('cfg', {}))
+    from model import CNNModel
+    return CNNModel()
+
+model = _build_model()
 model.load_state_dict(torch.load(os.environ.get('CAIEST_MODEL') or _find_model(),
                                   map_location=torch.device('cpu')))
 model.eval()
