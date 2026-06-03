@@ -67,15 +67,17 @@ def final_shanten(hand, melds):
         return 8
 
 
-def _rollout_chunk(npz_path, seed0, n_games, opp_npzs=None, shape=0.02):
+def _rollout_chunk(npz_path, seed0, n_games, opp_npzs=None, shape=0.02, opp_greedy=True):
     """Worker: run n_games and return (obs,mask,act,ret) + stats.
     opp_npzs: list of frozen opponent weight files (the POOL). The learner plays
     seats {0,2}; seats {1,3} are filled by opponents sampled from the pool each
-    game (league play). If opp_npzs is None/empty -> pure self-play."""
+    game (league play). If opp_npzs is None/empty -> pure self-play.
+    opp_greedy=False makes pool opponents SAMPLE (looser, varied discards) -> they
+    feed winnable situations the cautious greedy meta never produces (teaches conversion)."""
     learner = NPPolicy(npz_path)
     O, M, A, R = [], [], [], []
     wins = draws = 0
-    opp_cache = {p: NPPolicy(p, greedy=True) for p in (opp_npzs or [])}
+    opp_cache = {p: NPPolicy(p, greedy=opp_greedy) for p in (opp_npzs or [])}
     import random as _r
     for g in range(n_games):
         if opp_npzs:
@@ -107,10 +109,10 @@ def _rollout_chunk(npz_path, seed0, n_games, opp_npzs=None, shape=0.02):
             np.array(R, np.float32), wins, draws)
 
 
-def parallel_rollout(npz_path, n_games, seed0, workers, opp_npzs=None, shape=0.02):
+def parallel_rollout(npz_path, n_games, seed0, workers, opp_npzs=None, shape=0.02, opp_greedy=True):
     import multiprocessing as mp
     per = max(1, n_games // workers)
-    jobs = [(npz_path, seed0 + i * per, per, opp_npzs, shape) for i in range(workers)]
+    jobs = [(npz_path, seed0 + i * per, per, opp_npzs, shape, opp_greedy) for i in range(workers)]
     with mp.Pool(workers) as pool:
         res = pool.starmap(_rollout_chunk, jobs)
     res = [r for r in res if r]
@@ -143,6 +145,9 @@ def main():
                     help="snapshot the learner into the pool every N iters (league growth)")
     ap.add_argument("--shape", type=float, default=0.02,
                     help="HUANG shanten-closeness reward weight (0 = pure game score)")
+    ap.add_argument("--pool-sampled", action="store_true",
+                    help="SAMPLE (non-greedy) from pool opponents -> looser, varied discards "
+                         "that create winnable situations the cautious meta never feeds (conversion)")
     args = ap.parse_args()
 
     dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -173,7 +178,7 @@ def main():
         model.export_numpy(tmp_npz)          # validated forward for rollout
         obs_np, mask, act_np, ret_np, wins, draws = parallel_rollout(
             tmp_npz, args.games, seed0=100000 + it * args.games, workers=args.workers,
-            opp_npzs=pool, shape=args.shape)
+            opp_npzs=pool, shape=args.shape, opp_greedy=not args.pool_sampled)
         obs = torch.tensor(obs_np, dtype=torch.float32)
         mask = torch.tensor(mask)
         act = torch.tensor(act_np, dtype=torch.long)

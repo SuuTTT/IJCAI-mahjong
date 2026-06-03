@@ -2,3 +2,8 @@
 *.npz
 *.pyc
 *.pt
+*.pkl
+!deploy/caiest_cnn/data/cnn.pkl
+train/caiest_repro/arch_ck/
+train/caiest_repro/log/
+*.log

@@ -55,9 +55,19 @@ def main():
     ap.add_argument("--iters", type=int, default=6)
     ap.add_argument("--rank-games", type=int, default=140)
     ap.add_argument("--confirm-games", type=int, default=700)
+    ap.add_argument("--margin", type=int, default=300,
+                    help="min net margin over gen2 AND current champ (in the stable "
+                         "diverse confirm field) required to promote — filters noise")
     ap.add_argument("--tourney-workers", type=int, default=26)
     ap.add_argument("--pool-cap", type=int, default=9)
     ap.add_argument("--min-quota", type=float, default=5.0)
+    ap.add_argument("--seed-npz", default=GEN2_NPZ,
+                    help="warm-start the champion from this npz (default gen2; pass r18 to continue)")
+    ap.add_argument("--seed-pt", default=GEN2_PT,
+                    help="warm-start .pt matching --seed-npz")
+    ap.add_argument("--pool-sampled", action="store_true",
+                    help="train against SAMPLED (looser) pool opponents -> feeds winnable "
+                         "situations to teach conversion (the draw/8-fan problem)")
     a = ap.parse_args()
     rng = random.Random(20260601)
     deadline = time.time() + a.hours * 3600
@@ -106,8 +116,10 @@ def main():
         log("FATAL: <2 usable boxes"); snap("failed", 0, running=False); return
 
     # ── global best (hall of fame) seeded from gen2 ──
-    global_best_npz = os.path.join(LDIR, "global_best.npz"); shutil.copy(GEN2_NPZ, global_best_npz)
-    global_best_pt  = os.path.join(LDIR, "global_best.pt");  shutil.copy(GEN2_PT, global_best_pt)
+    global_best_npz = os.path.join(LDIR, "global_best.npz"); shutil.copy(a.seed_npz, global_best_npz)
+    global_best_pt  = os.path.join(LDIR, "global_best.pt");  shutil.copy(a.seed_pt, global_best_pt)
+    log(f"seeded champion from {os.path.basename(a.seed_npz)}; held-out anchor = gen2; "
+        f"pool_sampled={a.pool_sampled}")
     target_fp16     = os.path.join(LDIR, "target_fp16.npz")
     def quantize(src, dst):
         subprocess.run([PY, os.path.join(ROOT, "train", "quantize.py"), src, dst],
@@ -154,6 +166,7 @@ def main():
                f"--out train/checkpoints/{tag}.pt --iters {a.iters} --games {games} "
                f"--workers {workers} --epochs 2 --eval-every 9999 "
                f"--lr {c['lr']} --shape {c['shape']} --ent {c['ent']} --add-every {c['add_every']} "
+               f"{'--pool-sampled ' if a.pool_sampled else ''}"
                f"> /root/mj/{tag}.log 2>&1; echo EXIT=$?")
         log(f"  [{box['name']}] {box['role']} q={box['quota']} w={workers} g={games} cfg={c}")
         rc, out, err = ssh(box, cmd, timeout=a.iters * 120 + 900)
@@ -190,19 +203,29 @@ def main():
         net, wins, ranking = tournament(ent, a.rank_games, a.tourney_workers)
         for b in trained: b["net"] = net[b["name"]]
         log("rank: " + "  ".join(f"{r}={net[r]:+d}" for r in ranking))
-        cand_names = [r for r in ranking if not r.startswith("_")][:2]
+        # Confirm ONLY the single top-ranked candidate. Putting >1 varying candidate in the
+        # confirm field perturbs every net (a model's score swings by thousands depending on
+        # who else is seated), so a multi-candidate field gives noisy, non-comparable margins.
+        # One candidate + the FIXED anchors = a structurally identical field every round.
+        cand_names = [r for r in ranking if not r.startswith("_")][:1]
 
-        # ── stage B: large confirm among top-2 + gen2 + champion ──
+        # ── stage B: confirm in a STABLE, DIVERSE field (fixed anchors) + margin ──
+        # A 3-way {cand,gen2,best} net is misleading: with no stable punching-bag the
+        # margin swings wildly and rewards head-to-head-vs-champion exploitation that
+        # does NOT generalize to a mixed field (the actual contest). Measuring net in a
+        # fixed 4-way-style field {gen2, poolbig, SL (+ current champ)} makes "beats
+        # gen2" mean contest-relevant 4-way strength; the margin filters tournament noise.
         snap("confirm", rnd)
         c_ent = {n: ent[n] for n in cand_names}
-        c_ent["_gen2"] = GEN2_NPZ
+        c_ent["_gen2"]    = GEN2_NPZ
+        c_ent["_poolbig"] = os.path.join(CK, "poolbig_best_weights.npz")
+        c_ent["_sl"]      = os.path.join(CK, "bc_v3_ft_fp16.npz")
         if has_promoted: c_ent["_best"] = global_best_npz
         cnet, cwins, crank = tournament(c_ent, a.confirm_games, a.tourney_workers)
-        log(f"confirm({a.confirm_games}): " + "  ".join(f"{r}={cnet[r]:+d}" for r in crank))
+        log(f"confirm({a.confirm_games}, stable field): " + "  ".join(f"{r}={cnet[r]:+d}" for r in crank))
         best_cand = max(cand_names, key=lambda n: cnet[n])
-        gate_gen2 = cnet[best_cand] > cnet["_gen2"]
-        gate_best = (not has_promoted) or (cnet[best_cand] > cnet.get("_best", -10**9))
-        promoted = gate_gen2 and gate_best
+        ref = max(cnet["_gen2"], cnet.get("_best", cnet["_gen2"]))   # must beat gen2 AND champ
+        promoted = (cnet[best_cand] - ref) >= a.margin
 
         cand_box = next(b for b in trained if b["name"] == best_cand)
         if promoted:
@@ -225,10 +248,9 @@ def main():
             log(f"  ** PROMOTED {best_cand} ({cand_box['role']}): beats gen2 "
                 f"({cnet[best_cand]-cnet['_gen2']:+d}) and champ -> new deploy champion **")
         else:
-            why = []
-            if not gate_gen2: why.append(f"loses gen2 ({cnet[best_cand]-cnet['_gen2']:+d})")
-            if not gate_best: why.append("loses champ")
-            log(f"  kept champion (no promote: {best_cand} {', '.join(why)}); deploy unchanged")
+            log(f"  kept champion (no promote: {best_cand} margin over ref "
+                f"{cnet[best_cand]-ref:+d} < {a.margin}; vs gen2 {cnet[best_cand]-cnet['_gen2']:+d}); "
+                f"deploy unchanged")
 
         history.append({"round": rnd, "best_cand": best_cand, "role": cand_box["role"],
                         "promoted": promoted, "confirm_net": {k: cnet[k] for k in crank},
