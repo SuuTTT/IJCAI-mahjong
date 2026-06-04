@@ -30,14 +30,15 @@ Methods grounded in `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/Bo
   KL-to-SL leash, 200 iters. Final judge eval: **39–39 wins, net −85/80g = tie.** Pool+KL was NOT
   enough to break parity (non-transitivity holds). Late-iter reward ~0 even with the leash decayed.
   Conclusion: need ACTIVE exploiters + PFSP, not just a passive snapshot pool. → #18.
-- [🔄] **League: main-exploiter + PFSP (#18) — NOW THE PRIMARY RL.** Pool+KL tied (#15), so this is
-  the lever. `rl_league.py`: a MAIN agent (PPO + KL-to-SL leash) trained vs a PFSP mixture
-  (oversamples opponents it currently LOSES to) of {frozen SL, main snapshots, exploiter snapshots},
-  plus an EXPLOITER agent trained only to beat the current main (no leash) whose snapshots feed back
-  into the main's opponent pool. This is the research's fix for the non-transitivity parity trap.
-  Long unattended run launched.
-- [⏳] **Global reward prediction (#19).** Train Φ(state)→final standing; shaped reward
-  r_t = Φ(Sₜ)−Φ(Sₜ₋₁) for dense, low-variance signal (Suphx). Layer on if reward stays noisy.
+- [✗] **League: main-exploiter + PFSP (#18) — PARITY.** `rl_league.py` ran 400 iters, 13 exploiters
+  promoted (mechanism verified: exploiters reliably reached wr 0.6 vs main, got snapshotted, reset).
+  Judge eval of the league main vs base: 33-36 wins (parity, leaning base). The AlphaStar machinery
+  works but did not lift the main past the expert SL base.
+- [✗] **Global reward prediction / dense reward (#19) — PARITY.** Built `phi_reward.py` (Φ:(38,4,9)→
+  score, trained on 192k self-play states, **val MSE 0.206 vs 0.361 baseline = R²≈0.43**, a genuinely
+  informative predictor) + `rl_league_dense.py` (potential-based shaped return G_t=Σγ^(k-t)(r_k+
+  γΦ(s_{k+1})−Φ(s_k))). Ran 600 dense-reward league iters, 22 exploiters promoted. Clean judge eval
+  vs base: **44-52 wins, net −138/100g** — base still slightly ahead. Dense reward did NOT break parity.
 
 ## P3 — Data & test-time
 - [❓] **Distillation on full chunjiandu set (#20).** `distill.py` ready (blends champion samples
@@ -59,11 +60,18 @@ Methods grounded in `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/Bo
 - ✗ Wider/deeper-conv/attention/GNN architectures → all tie-or-below resbn40.
 - ✗ Distillation on 16–72 games → marginal (+121, noise); needs more data.
 - ✗ 8-fan look-ahead masking → null (+74/60g, 29–29 wins); the SL CNN already converts (3% draw).
+- ✗ League (main+exploiter+PFSP, rl_league.py, 400it/13 promotes) → parity (33-36 vs base).
+- ✗ Dense reward (Suphx Φ, R²≈0.43, rl_league_dense.py, 600it/22 promotes) → parity (44-52 vs base).
 - ✗ Test-time fan-rollout planner (earlier MLP era) → hurt (solitaire over-values fan-chasing).
 
 ## Binding facts
-- **resbn40 is the best base; architecture is settled.** Remaining gains = conversion (8-fan
-  masking), RL beyond parity (league/exploiters/dense reward), or distilling the #1 bot (more data).
+- **resbn40 is the best base; architecture is settled. RL IS EXHAUSTED at parity.** FIVE RL variants
+  (single-frozen, pool+KL, league+exploiters+PFSP, dense reward) ALL land at parity-or-slightly-below
+  the expert SL base — the mechanisms all work (exploiters promote, Φ has R²≈0.43, KL holds); the SL
+  CNN is simply the self-play ceiling at our scale. Matches the literature: beating strong SL needs
+  Suphx-scale compute or genuinely-stronger DATA. Remaining real gains = (1) SHIP fused resbn40 (+973,
+  in hand), (2) DISTILL the #1 bot with ≥100 games (imitates a real stronger policy — the best bet),
+  (3) pMCPA test-time adaptation.
 - The #1 bot (chunjiandu) is **SL + RL** — confirms the SL→RL direction; ~68% of our discards
   already match it. Closing that gap is the goal.
 - Deploy constraint: Botzone = Python 3.6 / torch 1.4 / ~512MB / ~6 s per turn (BN-free + legacy
