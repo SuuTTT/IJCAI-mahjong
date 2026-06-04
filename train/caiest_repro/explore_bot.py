@@ -16,12 +16,25 @@ JSON_OUT = os.environ.get("BOTZONE_JSON", "1") != "0"
 model = build(os.environ["EXP_KIND"], **json.loads(os.environ.get("EXP_CFG", "{}")))
 model.load_state_dict(torch.load(os.environ["CAIEST_MODEL"], map_location="cpu")); model.eval()
 agent=None; seatWind=0; zimo=False; angang=None
+FAN_MASK = os.environ.get("FAN_MASK", "0") != "0"
+if FAN_MASK:
+    import fan_mask
 
-def a2r(obs):
+def _logits(obs):
     with torch.no_grad():
         lg = model({'is_training': False, 'obs': {'observation': torch.from_numpy(obs['observation'][None]),
                                                   'action_mask': torch.from_numpy(obs['action_mask'][None])}})
-    return agent.action2response(int(lg.numpy().flatten().argmax()))
+    return lg.numpy().flatten()
+
+def a2r(obs):
+    return agent.action2response(int(_logits(obs).argmax()))
+
+def ranked_plays(obs):
+    """Legal discard tiles ordered by model preference (best first)."""
+    lg = _logits(obs); base = agent.OFFSET_ACT['Play']; m = obs['action_mask']
+    cand = [(lg[base + i], agent.TILE_LIST[i]) for i in range(34) if m[base + i]]
+    cand.sort(key=lambda x: -x[0])
+    return [t for _, t in cand]
 
 def process(req):
     global agent, seatWind, zimo, angang
@@ -31,9 +44,14 @@ def process(req):
         seatWind=int(t[1]); agent=FeatureAgent(seatWind); agent.request2obs('Wind %s'%t[2]); return 'PASS'
     if t[0] == '1': agent.request2obs(' '.join(['Deal',*t[5:]])); return 'PASS'
     if t[0] == '2':
-        r=a2r(agent.request2obs('Draw %s'%t[1])).split()
+        o = agent.request2obs('Draw %s'%t[1]); r=a2r(o).split()
         if r[0]=='Hu': return 'HU'
-        if r[0]=='Play': return 'PLAY %s'%r[1]
+        if r[0]=='Play':
+            if FAN_MASK:
+                packs=[(p[0],p[1]) for p in agent.packs[0]]
+                ch=fan_mask.choose_discard(agent.hand, packs, agent.seatWind, agent.prevalentWind, ranked_plays(o))
+                return 'PLAY %s'%ch
+            return 'PLAY %s'%r[1]
         if r[0]=='Gang': return 'GANG %s'%r[1]
         if r[0]=='BuGang': return 'BUGANG %s'%r[1]
         return 'PASS'
