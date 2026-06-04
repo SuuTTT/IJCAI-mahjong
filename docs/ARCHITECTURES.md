@@ -70,6 +70,25 @@ Two ways we measure strength:
 
 ---
 
+## Arch search v2 (build on resbn40) — resbn40 confirmed near-optimal
+Explored deeper/wider/hybrid resbn variants vs the resbn40 champ (head-to-head, 60 games):
+- **resbn24** (24 blocks, ~10M): val 0.890, vs r18 +1282, **vs resbn40 +90 (TIE)** — matches the
+  champ at fewer blocks (lighter; better deploy candidate IF the torch-1.4 load is solved).
+- **resbnw192** (192ch×24): val 0.895, vs r18 +1448, vs resbn40 −71 (~tie, slightly below).
+- **resbnattn** (16 conv-blocks + 4 attn layers): val 0.882, vs r18 +1352, vs resbn40 −124.
+- **resbn56** (56 blocks): training; result pending (does even-deeper help?).
+=> **resbn40 (40×128) is the sweet spot.** Wider, deeper-conv+attention don't beat it; 24-block
+ties. Diminishing returns on architecture — the next lever is RL fine-tune / distillation, not more
+arch search.
+
+## DEPLOY status / open issue
+- Live deploy = the proven **16-block CNN** (`base_16x128_final`, 344 OK verdicts on Botzone, +2826
+  vs r18). resbn40 (+973 over it) would be the upgrade BUT **crashes Botzone's torch 1.4 on load**
+  (status 120, no output) — the BN-based resbn weights (saved by the remote box's torch 2.3) don't
+  load on 1.4, where the no-BN CNN does. Open fix options: re-save resbn locally (torch 2.6 legacy,
+  matching the working CNN save) and re-test on Botzone; or train a resbn in a torch-1.4-compatible
+  way; or port the resbn forward to numpy (like NumpyMLP). Needs a Botzone test cycle (user-in-loop).
+
 ## What's NEXT
 1. **Finish + judge-benchmark the fleet candidates** (resbn40, attn, cnn_attn) vs r18 AND the
    deployed CNN champion. val_acc is promising but the judge is the decider. If resbn40/attn beats
