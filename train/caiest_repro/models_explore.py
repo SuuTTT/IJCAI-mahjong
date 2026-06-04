@@ -114,5 +114,42 @@ class TileGNN(nn.Module):
             h = torch.relu(gc(self.A @ h))               # A:(34,34) @ h:(B,34,hid) broadcast
         return _mask(self.head(h), d['obs']['action_mask'])
 
+# ---- BN-free fused version of ResBNCNN (Conv+BN folded -> Conv with bias) ----
+# Deployable on Botzone torch 1.4 (no BatchNorm running-stat / version issues). In eval mode
+# the fused model is numerically identical to the trained ResBNCNN.
+class _FusedBlock(nn.Module):
+    def __init__(self, ch):
+        super().__init__()
+        self.c1 = nn.Conv2d(ch, ch, 3, 1, 1, bias=True)
+        self.c2 = nn.Conv2d(ch, ch, 3, 1, 1, bias=True)
+    def forward(self, x):
+        y = torch.relu(self.c1(x)); y = self.c2(y); return torch.relu(x + y)
+
+class ResFused(nn.Module):
+    def __init__(self, channels=128, blocks=40, **_):
+        super().__init__()
+        self.stem = nn.Conv2d(IN_PLANES, channels, 3, 1, 1, bias=True)
+        self.body = nn.Sequential(*(_FusedBlock(channels) for _ in range(blocks)))
+        self.foot = nn.Sequential(nn.Flatten(), nn.Linear(channels * GRID, 512), nn.ReLU(), nn.Linear(512, 235))
+    def forward(self, d):
+        self.train(d.get('is_training', False))
+        x = torch.relu(self.stem(d['obs']['observation'].float()))
+        return _mask(self.foot(self.body(x)), d['obs']['action_mask'])
+
+def fuse_resbn(resbn):
+    """Return a ResFused with the same channels/blocks, weights = fuse(Conv,BN) of `resbn` (eval)."""
+    from torch.nn.utils.fusion import fuse_conv_bn_eval
+    resbn.eval()
+    ch = resbn.stem[0].out_channels; blocks = len(resbn.body)
+    f = ResFused(channels=ch, blocks=blocks).eval()
+    fs = fuse_conv_bn_eval(resbn.stem[0], resbn.stem[1])
+    f.stem.load_state_dict(fs.state_dict())
+    for i, blk in enumerate(resbn.body):
+        c1 = fuse_conv_bn_eval(blk.c1, blk.b1); c2 = fuse_conv_bn_eval(blk.c2, blk.b2)
+        f.body[i].c1.load_state_dict(c1.state_dict()); f.body[i].c2.load_state_dict(c2.state_dict())
+    f.foot.load_state_dict(resbn.foot.state_dict())
+    return f
+
 def build(kind, **cfg):
-    return {'resbn': ResBNCNN, 'attn': TileTransformer, 'cnn_attn': CNNTransformer, 'gnn': TileGNN}[kind](**cfg)
+    return {'resbn': ResBNCNN, 'resbn_fused': ResFused, 'attn': TileTransformer,
+            'cnn_attn': CNNTransformer, 'gnn': TileGNN}[kind](**cfg)

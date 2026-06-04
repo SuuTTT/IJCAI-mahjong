@@ -31,6 +31,9 @@ def _build_model():
     af = os.path.join(_HERE, 'model_arch.json')
     if os.path.exists(af):
         a = json.load(open(af))
+        if a['kind'] == 'resbn_fused':                 # BN-free fused ResNet (torch-1.4 safe)
+            from model_resfused import ResFused
+            return ResFused(**a.get('cfg', {}))
         from models_explore import build
         return build(a['kind'], **a.get('cfg', {}))
     from model import CNNModel
