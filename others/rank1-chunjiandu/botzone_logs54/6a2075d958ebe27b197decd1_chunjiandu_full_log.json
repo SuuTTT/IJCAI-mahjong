@@ -1,0 +1,3686 @@
+[
+  {
+    "keep_running": false,
+    "memory": 357,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "0 0 2",
+        "1": "0 1 2",
+        "2": "0 2 2",
+        "3": "0 3 2"
+      },
+      "display": {
+        "action": "INIT",
+        "canHu": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "quan": 2,
+        "srand": 1780512208,
+        "tileCnt": [
+          21,
+          21,
+          21,
+          21
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 491,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 481,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 493,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 483,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 3,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "1 0 0 0 0 W7 T7 B6 B6 W5 T5 W6 W6 F1 F4 W1 B1 J3",
+        "1": "1 0 0 0 0 W8 B2 W2 W1 J1 J2 B6 F3 T6 F4 T4 W6 B3",
+        "2": "1 0 0 0 0 T5 F4 T6 W8 B1 T8 F3 B4 B4 T7 W3 B5 T3",
+        "3": "1 0 0 0 0 F1 T6 T2 W2 B7 T8 T2 W3 W2 T9 J1 W7 F4"
+      },
+      "display": {
+        "action": "DEAL",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -4
+        ],
+        "hand": [
+          [
+            "W7",
+            "T7",
+            "B6",
+            "B6",
+            "W5",
+            "T5",
+            "W6",
+            "W6",
+            "F1",
+            "F4",
+            "W1",
+            "B1",
+            "J3"
+          ],
+          [
+            "W8",
+            "B2",
+            "W2",
+            "W1",
+            "J1",
+            "J2",
+            "B6",
+            "F3",
+            "T6",
+            "F4",
+            "T4",
+            "W6",
+            "B3"
+          ],
+          [
+            "T5",
+            "F4",
+            "T6",
+            "W8",
+            "B1",
+            "T8",
+            "F3",
+            "B4",
+            "B4",
+            "T7",
+            "W3",
+            "B5",
+            "T3"
+          ],
+          [
+            "F1",
+            "T6",
+            "T2",
+            "W2",
+            "B7",
+            "T8",
+            "T2",
+            "W3",
+            "W2",
+            "T9",
+            "J1",
+            "W7",
+            "F4"
+          ]
+        ],
+        "tileCnt": [
+          21,
+          21,
+          21,
+          21
+        ]
+      }
+    },
+    "time": 1,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 3,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "2 B7",
+        "1": "3 0 DRAW",
+        "2": "3 0 DRAW",
+        "3": "3 0 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -3,
+          -4,
+          -4,
+          -4
+        ],
+        "player": 0,
+        "tile": "B7",
+        "tileCnt": [
+          20,
+          21,
+          21,
+          21
+        ]
+      }
+    },
+    "time": 1,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 11,
+      "verdict": "OK",
+      "raw": "PLAY F1",
+      "debug": "",
+      "response": "PLAY F1"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 3,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 0 PLAY F1",
+        "1": "3 0 PLAY F1",
+        "2": "3 0 PLAY F1",
+        "3": "3 0 PLAY F1"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -4,
+          -3,
+          -3,
+          -3
+        ],
+        "player": 0,
+        "tile": "F1",
+        "tileCnt": [
+          20,
+          21,
+          21,
+          21
+        ]
+      }
+    },
+    "time": 1,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 8,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 8,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 DRAW",
+        "1": "2 J1",
+        "2": "3 1 DRAW",
+        "3": "3 1 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -3,
+          -4,
+          -4
+        ],
+        "player": 1,
+        "tile": "J1",
+        "tileCnt": [
+          20,
+          20,
+          21,
+          21
+        ]
+      }
+    },
+    "time": 1,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 9,
+      "verdict": "OK",
+      "raw": "PLAY B6",
+      "debug": "",
+      "response": "PLAY B6"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 PLAY B6",
+        "1": "3 1 PLAY B6",
+        "2": "3 1 PLAY B6",
+        "3": "3 1 PLAY B6"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -4,
+          -3,
+          -3
+        ],
+        "player": 1,
+        "tile": "B6",
+        "tileCnt": [
+          20,
+          20,
+          21,
+          21
+        ]
+      }
+    },
+    "time": 1,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "CHI B5 F4",
+      "debug": "",
+      "response": "CHI B5 F4"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 CHI B5 F4",
+        "1": "3 2 CHI B5 F4",
+        "2": "3 2 CHI B5 F4",
+        "3": "3 2 CHI B5 F4"
+      },
+      "display": {
+        "action": "CHI",
+        "canHu": [
+          -3,
+          -3,
+          -4,
+          -3
+        ],
+        "player": 2,
+        "tile": "F4",
+        "tileCHI": "B5",
+        "tileCnt": [
+          20,
+          20,
+          21,
+          21
+        ]
+      }
+    },
+    "time": 1,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 1,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 DRAW",
+        "1": "3 3 DRAW",
+        "2": "3 3 DRAW",
+        "3": "2 F2"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -3
+        ],
+        "player": 3,
+        "tile": "F2",
+        "tileCnt": [
+          20,
+          20,
+          21,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 8,
+      "verdict": "OK",
+      "raw": "PLAY F1",
+      "debug": "",
+      "response": "PLAY F1"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 PLAY F1",
+        "1": "3 3 PLAY F1",
+        "2": "3 3 PLAY F1",
+        "3": "3 3 PLAY F1"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -3,
+          -4
+        ],
+        "player": 3,
+        "tile": "F1",
+        "tileCnt": [
+          20,
+          20,
+          21,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "2 J3",
+        "1": "3 0 DRAW",
+        "2": "3 0 DRAW",
+        "3": "3 0 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -3,
+          -4,
+          -4,
+          -4
+        ],
+        "player": 0,
+        "tile": "J3",
+        "tileCnt": [
+          19,
+          20,
+          21,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "PLAY W1",
+      "debug": "",
+      "response": "PLAY W1"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 0 PLAY W1",
+        "1": "3 0 PLAY W1",
+        "2": "3 0 PLAY W1",
+        "3": "3 0 PLAY W1"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -4,
+          -3,
+          -3,
+          -3
+        ],
+        "player": 0,
+        "tile": "W1",
+        "tileCnt": [
+          19,
+          20,
+          21,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 DRAW",
+        "1": "2 B5",
+        "2": "3 1 DRAW",
+        "3": "3 1 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -3,
+          -4,
+          -4
+        ],
+        "player": 1,
+        "tile": "B5",
+        "tileCnt": [
+          19,
+          19,
+          21,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 10,
+      "verdict": "OK",
+      "raw": "PLAY B5",
+      "debug": "",
+      "response": "PLAY B5"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 1,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 PLAY B5",
+        "1": "3 1 PLAY B5",
+        "2": "3 1 PLAY B5",
+        "3": "3 1 PLAY B5"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -4,
+          -3,
+          -3
+        ],
+        "player": 1,
+        "tile": "B5",
+        "tileCnt": [
+          19,
+          19,
+          21,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 DRAW",
+        "1": "3 2 DRAW",
+        "2": "2 T8",
+        "3": "3 2 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -3,
+          -4
+        ],
+        "player": 2,
+        "tile": "T8",
+        "tileCnt": [
+          19,
+          19,
+          20,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PLAY F3",
+      "debug": "",
+      "response": "PLAY F3"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 PLAY F3",
+        "1": "3 2 PLAY F3",
+        "2": "3 2 PLAY F3",
+        "3": "3 2 PLAY F3"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -4,
+          -3
+        ],
+        "player": 2,
+        "tile": "F3",
+        "tileCnt": [
+          19,
+          19,
+          20,
+          20
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 DRAW",
+        "1": "3 3 DRAW",
+        "2": "3 3 DRAW",
+        "3": "2 B5"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -3
+        ],
+        "player": 3,
+        "tile": "B5",
+        "tileCnt": [
+          19,
+          19,
+          20,
+          19
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 9,
+      "verdict": "OK",
+      "raw": "PLAY F4",
+      "debug": "",
+      "response": "PLAY F4"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 PLAY F4",
+        "1": "3 3 PLAY F4",
+        "2": "3 3 PLAY F4",
+        "3": "3 3 PLAY F4"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -3,
+          -4
+        ],
+        "player": 3,
+        "tile": "F4",
+        "tileCnt": [
+          19,
+          19,
+          20,
+          19
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "2 J2",
+        "1": "3 0 DRAW",
+        "2": "3 0 DRAW",
+        "3": "3 0 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -3,
+          -4,
+          -4,
+          -4
+        ],
+        "player": 0,
+        "tile": "J2",
+        "tileCnt": [
+          18,
+          19,
+          20,
+          19
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "PLAY B1",
+      "debug": "",
+      "response": "PLAY B1"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 0 PLAY B1",
+        "1": "3 0 PLAY B1",
+        "2": "3 0 PLAY B1",
+        "3": "3 0 PLAY B1"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -4,
+          -3,
+          -3,
+          -3
+        ],
+        "player": 0,
+        "tile": "B1",
+        "tileCnt": [
+          18,
+          19,
+          20,
+          19
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 13,
+      "verdict": "OK",
+      "raw": "CHI B2 J2",
+      "debug": "",
+      "response": "CHI B2 J2"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 CHI B2 J2",
+        "1": "3 1 CHI B2 J2",
+        "2": "3 1 CHI B2 J2",
+        "3": "3 1 CHI B2 J2"
+      },
+      "display": {
+        "action": "CHI",
+        "canHu": [
+          -3,
+          -4,
+          -3,
+          -3
+        ],
+        "player": 1,
+        "tile": "J2",
+        "tileCHI": "B2",
+        "tileCnt": [
+          18,
+          19,
+          20,
+          19
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 DRAW",
+        "1": "3 2 DRAW",
+        "2": "2 T1",
+        "3": "3 2 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -3,
+          -4
+        ],
+        "player": 2,
+        "tile": "T1",
+        "tileCnt": [
+          18,
+          19,
+          19,
+          19
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PLAY B1",
+      "debug": "",
+      "response": "PLAY B1"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 PLAY B1",
+        "1": "3 2 PLAY B1",
+        "2": "3 2 PLAY B1",
+        "3": "3 2 PLAY B1"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -4,
+          -3
+        ],
+        "player": 2,
+        "tile": "B1",
+        "tileCnt": [
+          18,
+          19,
+          19,
+          19
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 DRAW",
+        "1": "3 3 DRAW",
+        "2": "3 3 DRAW",
+        "3": "2 W8"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -3
+        ],
+        "player": 3,
+        "tile": "W8",
+        "tileCnt": [
+          18,
+          19,
+          19,
+          18
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 8,
+      "verdict": "OK",
+      "raw": "PLAY F2",
+      "debug": "",
+      "response": "PLAY F2"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 PLAY F2",
+        "1": "3 3 PLAY F2",
+        "2": "3 3 PLAY F2",
+        "3": "3 3 PLAY F2"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -3,
+          -4
+        ],
+        "player": 3,
+        "tile": "F2",
+        "tileCnt": [
+          18,
+          19,
+          19,
+          18
+        ]
+      }
+    },
+    "time": 2,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "2 T3",
+        "1": "3 0 DRAW",
+        "2": "3 0 DRAW",
+        "3": "3 0 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -3,
+          -4,
+          -4,
+          -4
+        ],
+        "player": 0,
+        "tile": "T3",
+        "tileCnt": [
+          17,
+          19,
+          19,
+          18
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "PLAY J2",
+      "debug": "",
+      "response": "PLAY J2"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 1,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 0 PLAY J2",
+        "1": "3 0 PLAY J2",
+        "2": "3 0 PLAY J2",
+        "3": "3 0 PLAY J2"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -4,
+          -3,
+          -3,
+          -3
+        ],
+        "player": 0,
+        "tile": "J2",
+        "tileCnt": [
+          17,
+          19,
+          19,
+          18
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 DRAW",
+        "1": "2 W4",
+        "2": "3 1 DRAW",
+        "3": "3 1 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -3,
+          -4,
+          -4
+        ],
+        "player": 1,
+        "tile": "W4",
+        "tileCnt": [
+          17,
+          18,
+          19,
+          18
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PLAY W1",
+      "debug": "",
+      "response": "PLAY W1"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 PLAY W1",
+        "1": "3 1 PLAY W1",
+        "2": "3 1 PLAY W1",
+        "3": "3 1 PLAY W1"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -4,
+          -3,
+          -3
+        ],
+        "player": 1,
+        "tile": "W1",
+        "tileCnt": [
+          17,
+          18,
+          19,
+          18
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 1,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 DRAW",
+        "1": "3 2 DRAW",
+        "2": "2 W1",
+        "3": "3 2 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -3,
+          -4
+        ],
+        "player": 2,
+        "tile": "W1",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          18
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 1,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PLAY B4",
+      "debug": "",
+      "response": "PLAY B4"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 PLAY B4",
+        "1": "3 2 PLAY B4",
+        "2": "3 2 PLAY B4",
+        "3": "3 2 PLAY B4"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -4,
+          -3
+        ],
+        "player": 2,
+        "tile": "B4",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          18
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 DRAW",
+        "1": "3 3 DRAW",
+        "2": "3 3 DRAW",
+        "3": "2 T4"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -3
+        ],
+        "player": 3,
+        "tile": "T4",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          17
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 1,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 9,
+      "verdict": "OK",
+      "raw": "PLAY J1",
+      "debug": "",
+      "response": "PLAY J1"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 PLAY J1",
+        "1": "3 3 PLAY J1",
+        "2": "3 3 PLAY J1",
+        "3": "3 3 PLAY J1"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -3,
+          -4
+        ],
+        "player": 3,
+        "tile": "J1",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          17
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "PENG W2",
+      "debug": "",
+      "response": "PENG W2"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 PENG W2",
+        "1": "3 1 PENG W2",
+        "2": "3 1 PENG W2",
+        "3": "3 1 PENG W2"
+      },
+      "display": {
+        "action": "PENG",
+        "canHu": [
+          -3,
+          -4,
+          -3,
+          -3
+        ],
+        "player": 1,
+        "tile": "W2",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          17
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 13,
+      "verdict": "OK",
+      "raw": "CHI W2 T1",
+      "debug": "",
+      "response": "CHI W2 T1"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 CHI W2 T1",
+        "1": "3 2 CHI W2 T1",
+        "2": "3 2 CHI W2 T1",
+        "3": "3 2 CHI W2 T1"
+      },
+      "display": {
+        "action": "CHI",
+        "canHu": [
+          -3,
+          -3,
+          -4,
+          -3
+        ],
+        "player": 2,
+        "tile": "T1",
+        "tileCHI": "W2",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          17
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 DRAW",
+        "1": "3 3 DRAW",
+        "2": "3 3 DRAW",
+        "3": "2 T5"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -3
+        ],
+        "player": 3,
+        "tile": "T5",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          16
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "PLAY W2",
+      "debug": "",
+      "response": "PLAY W2"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 PLAY W2",
+        "1": "3 3 PLAY W2",
+        "2": "3 3 PLAY W2",
+        "3": "3 3 PLAY W2"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -3,
+          -4
+        ],
+        "player": 3,
+        "tile": "W2",
+        "tileCnt": [
+          17,
+          18,
+          18,
+          16
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "2 T9",
+        "1": "3 0 DRAW",
+        "2": "3 0 DRAW",
+        "3": "3 0 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -3,
+          -4,
+          -4,
+          -4
+        ],
+        "player": 0,
+        "tile": "T9",
+        "tileCnt": [
+          16,
+          18,
+          18,
+          16
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 14,
+      "verdict": "OK",
+      "raw": "PLAY B6",
+      "debug": "",
+      "response": "PLAY B6"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 0 PLAY B6",
+        "1": "3 0 PLAY B6",
+        "2": "3 0 PLAY B6",
+        "3": "3 0 PLAY B6"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -4,
+          -3,
+          -3,
+          -3
+        ],
+        "player": 0,
+        "tile": "B6",
+        "tileCnt": [
+          16,
+          18,
+          18,
+          16
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 DRAW",
+        "1": "2 T7",
+        "2": "3 1 DRAW",
+        "3": "3 1 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -3,
+          -4,
+          -4
+        ],
+        "player": 1,
+        "tile": "T7",
+        "tileCnt": [
+          16,
+          17,
+          18,
+          16
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PLAY T4",
+      "debug": "",
+      "response": "PLAY T4"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 PLAY T4",
+        "1": "3 1 PLAY T4",
+        "2": "3 1 PLAY T4",
+        "3": "3 1 PLAY T4"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -4,
+          -3,
+          -3
+        ],
+        "player": 1,
+        "tile": "T4",
+        "tileCnt": [
+          16,
+          17,
+          18,
+          16
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "CHI T4 W8",
+      "debug": "",
+      "response": "CHI T4 W8"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 CHI T4 W8",
+        "1": "3 2 CHI T4 W8",
+        "2": "3 2 CHI T4 W8",
+        "3": "3 2 CHI T4 W8"
+      },
+      "display": {
+        "action": "CHI",
+        "canHu": [
+          -3,
+          -3,
+          -4,
+          -3
+        ],
+        "player": 2,
+        "tile": "W8",
+        "tileCHI": "T4",
+        "tileCnt": [
+          16,
+          17,
+          18,
+          16
+        ]
+      }
+    },
+    "time": 3,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 1,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 DRAW",
+        "1": "3 3 DRAW",
+        "2": "3 3 DRAW",
+        "3": "2 W5"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -3
+        ],
+        "player": 3,
+        "tile": "W5",
+        "tileCnt": [
+          16,
+          17,
+          18,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 12,
+      "verdict": "OK",
+      "raw": "PLAY W2",
+      "debug": "",
+      "response": "PLAY W2"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 PLAY W2",
+        "1": "3 3 PLAY W2",
+        "2": "3 3 PLAY W2",
+        "3": "3 3 PLAY W2"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -3,
+          -4
+        ],
+        "player": 3,
+        "tile": "W2",
+        "tileCnt": [
+          16,
+          17,
+          18,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "2 B6",
+        "1": "3 0 DRAW",
+        "2": "3 0 DRAW",
+        "3": "3 0 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -3,
+          -4,
+          -4,
+          -4
+        ],
+        "player": 0,
+        "tile": "B6",
+        "tileCnt": [
+          15,
+          17,
+          18,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 14,
+      "verdict": "OK",
+      "raw": "PLAY B6",
+      "debug": "",
+      "response": "PLAY B6"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 0 PLAY B6",
+        "1": "3 0 PLAY B6",
+        "2": "3 0 PLAY B6",
+        "3": "3 0 PLAY B6"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -4,
+          -3,
+          -3,
+          -3
+        ],
+        "player": 0,
+        "tile": "B6",
+        "tileCnt": [
+          15,
+          17,
+          18,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 DRAW",
+        "1": "2 B4",
+        "2": "3 1 DRAW",
+        "3": "3 1 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -3,
+          -4,
+          -4
+        ],
+        "player": 1,
+        "tile": "B4",
+        "tileCnt": [
+          15,
+          16,
+          18,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PLAY B4",
+      "debug": "",
+      "response": "PLAY B4"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 1 PLAY B4",
+        "1": "3 1 PLAY B4",
+        "2": "3 1 PLAY B4",
+        "3": "3 1 PLAY B4"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -4,
+          -3,
+          -3
+        ],
+        "player": 1,
+        "tile": "B4",
+        "tileCnt": [
+          15,
+          16,
+          18,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 DRAW",
+        "1": "3 2 DRAW",
+        "2": "2 T8",
+        "3": "3 2 DRAW"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          4,
+          -4
+        ],
+        "player": 2,
+        "tile": "T8",
+        "tileCnt": [
+          15,
+          16,
+          17,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PLAY T6",
+      "debug": "",
+      "response": "PLAY T6"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 2 PLAY T6",
+        "1": "3 2 PLAY T6",
+        "2": "3 2 PLAY T6",
+        "3": "3 2 PLAY T6"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          -4,
+          -3
+        ],
+        "player": 2,
+        "tile": "T6",
+        "tileCnt": [
+          15,
+          16,
+          17,
+          15
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 DRAW",
+        "1": "3 3 DRAW",
+        "2": "3 3 DRAW",
+        "3": "2 T3"
+      },
+      "display": {
+        "action": "DRAW",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -3
+        ],
+        "player": 3,
+        "tile": "T3",
+        "tileCnt": [
+          15,
+          16,
+          17,
+          14
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 17,
+      "verdict": "OK",
+      "raw": "PLAY T9",
+      "debug": "",
+      "response": "PLAY T9"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "request",
+      "content": {
+        "0": "3 3 PLAY T9",
+        "1": "3 3 PLAY T9",
+        "2": "3 3 PLAY T9",
+        "3": "3 3 PLAY T9"
+      },
+      "display": {
+        "action": "PLAY",
+        "canHu": [
+          -3,
+          -3,
+          10,
+          -4
+        ],
+        "player": 3,
+        "tile": "T9",
+        "tileCnt": [
+          15,
+          16,
+          17,
+          14
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  },
+  {
+    "0": {
+      "keep_running": true,
+      "memory": 450,
+      "time": 7,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "1": {
+      "keep_running": true,
+      "memory": 286,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    },
+    "2": {
+      "keep_running": true,
+      "memory": 436,
+      "time": 6,
+      "verdict": "OK",
+      "raw": "HU",
+      "debug": "",
+      "response": "HU"
+    },
+    "3": {
+      "keep_running": true,
+      "memory": 431,
+      "time": 0,
+      "verdict": "OK",
+      "raw": "PASS",
+      "debug": "",
+      "response": "PASS"
+    }
+  },
+  {
+    "keep_running": false,
+    "memory": 4,
+    "output": {
+      "command": "finish",
+      "content": {
+        "0": -8,
+        "1": -8,
+        "2": 34,
+        "3": -18
+      },
+      "display": {
+        "action": "HU",
+        "canHu": [
+          -4,
+          -4,
+          -4,
+          -4
+        ],
+        "fan": [
+          {
+            "cnt": 1,
+            "name": "花龙",
+            "value": 8
+          },
+          {
+            "cnt": 1,
+            "name": "平和",
+            "value": 2
+          }
+        ],
+        "fanCnt": 10,
+        "player": 2,
+        "score": [
+          -8,
+          -8,
+          34,
+          -18
+        ],
+        "tileCnt": [
+          15,
+          16,
+          17,
+          14
+        ]
+      }
+    },
+    "time": 4,
+    "verdict": "OK"
+  }
+]

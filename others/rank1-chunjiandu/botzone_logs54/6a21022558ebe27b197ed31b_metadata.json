@@ -1,0 +1,33 @@
+{
+  "matchId": "6a21022558ebe27b197ed31b",
+  "status": "finished",
+  "success": true,
+  "players": [
+    {
+      "name": "[pycc]chunjiandu",
+      "imgid": "/avatar/68218edfd870d24732a2f196.png"
+    },
+    {
+      "name": "[pycc]chunjiandu",
+      "imgid": "/avatar/68218edfd870d24732a2f196.png"
+    },
+    {
+      "name": "[pycc]chunjiandu",
+      "imgid": "/avatar/68218edfd870d24732a2f196.png"
+    },
+    {
+      "name": "[pycc]chunjiandu",
+      "imgid": "/avatar/68218edfd870d24732a2f196.png"
+    }
+  ],
+  "initdata": {
+    "quan": 2,
+    "srand": 1780548122,
+    "walltiles": "T7 T1 B8 J1 B3 F4 W6 W4 W2 T6 T3 T4 T9 F3 B5 J2 W5 F4 J3 B6 W8 T5 F2 T5 B7 W8 B5 W3 J1 B4 B7 J3 J3 W7 J1 J3 F4 W3 W5 T1 J2 B3 T8 F3 T5 B3 F2 B6 W8 W1 W6 T6 W7 W5 T5 T8 T8 B4 W5 T8 F1 B6 F1 F2 B9 F1 B1 B7 T4 B6 B1 T2 B3 W6 T6 B8 T4 W1 B5 B9 W9 B9 W4 T1 T2 W2 W2 B4 T7 F3 B5 W9 T9 W4 W1 T2 W1 J1 B7 W8 W3 J2 J2 T4 B2 B2 W7 W9 B1 B2 W3 F4 T7 B9 W2 B4 T6 T2 T3 B8 T1 F3 T7 T3 W6 W7 W4 T9 B1 B2 T9 F2 F1 W9 B8 T3"
+  },
+  "viewurl": "/gameplayers/Chinese-Standard-Mahjong.html",
+  "botId": "69ef25bf83ee0a54c189cd9e",
+  "botName": "chunjiandu【9】",
+  "logRecords": 217,
+  "collectedAt": "2026-06-04T04:43:02.316Z"
+}

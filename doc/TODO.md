@@ -26,13 +26,16 @@ Methods grounded in `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/Bo
   already mostly handled by the strong SL policy, not a separate filter.
 
 ## P2 — RL fine-tune (push beyond supervised)
-- [🔄] **Pool + KL-to-SL (#15).** Parallel actor-learner (`rl_actors.py`, 22 local actors, ~25s/iter,
-  ~60× the naive loop). Model pool (SL + learner snapshots) + KL-to-SL leash (MPPO-style). Running
-  200 iters. So far ≈ parity with the base (reward ~0) — watching late iters / the eval gate
-  `/tmp/rl3_eval.txt`. Plain single-frozen-base self-play already shown to plateau (✗).
-- [⏳] **League: main-exploiter + PFSP (#18).** Add an exploiter trained only to beat the main;
-  sample opponents ∝ win-rate vs main; mixture 20% active / 30% SL / 50% historical RL. The
-  research's fix for the non-transitivity "parity trap" if plain pool+KL still plateaus.
+- [✗] **Pool + KL-to-SL (#15) — PARITY.** Parallel actor-learner (`rl_actors.py`), 20-model pool +
+  KL-to-SL leash, 200 iters. Final judge eval: **39–39 wins, net −85/80g = tie.** Pool+KL was NOT
+  enough to break parity (non-transitivity holds). Late-iter reward ~0 even with the leash decayed.
+  Conclusion: need ACTIVE exploiters + PFSP, not just a passive snapshot pool. → #18.
+- [🔄] **League: main-exploiter + PFSP (#18) — NOW THE PRIMARY RL.** Pool+KL tied (#15), so this is
+  the lever. `rl_league.py`: a MAIN agent (PPO + KL-to-SL leash) trained vs a PFSP mixture
+  (oversamples opponents it currently LOSES to) of {frozen SL, main snapshots, exploiter snapshots},
+  plus an EXPLOITER agent trained only to beat the current main (no leash) whose snapshots feed back
+  into the main's opponent pool. This is the research's fix for the non-transitivity parity trap.
+  Long unattended run launched.
 - [⏳] **Global reward prediction (#19).** Train Φ(state)→final standing; shaped reward
   r_t = Φ(Sₜ)−Φ(Sₜ₋₁) for dense, low-variance signal (Suphx). Layer on if reward stays noisy.
 
