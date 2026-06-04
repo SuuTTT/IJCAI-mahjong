@@ -76,10 +76,12 @@ Explored deeper/wider/hybrid resbn variants vs the resbn40 champ (head-to-head, 
   champ at fewer blocks (lighter; better deploy candidate IF the torch-1.4 load is solved).
 - **resbnw192** (192ch×24): val 0.895, vs r18 +1448, vs resbn40 −71 (~tie, slightly below).
 - **resbnattn** (16 conv-blocks + 4 attn layers): val 0.882, vs r18 +1352, vs resbn40 −124.
-- **resbn56** (56 blocks): training; result pending (does even-deeper help?).
-=> **resbn40 (40×128) is the sweet spot.** Wider, deeper-conv+attention don't beat it; 24-block
-ties. Diminishing returns on architecture — the next lever is RL fine-tune / distillation, not more
-arch search.
+- **resbn56** (56 blocks): val 0.894, vs r18 ~+1300, **vs resbn40 +128 (30–29, TIE)** — even deeper
+  does NOT help.
+=> **resbn40 (40×128) is the definitive sweet spot.** Wider, deeper-conv+attention don't beat it;
+56-block ties; 24-block ties (lighter). Diminishing returns on architecture — **the next lever is RL
+fine-tune / distillation, not more arch search.** RL fine-tune (sim_cnn + PPO, learner vs frozen
+resbn40) is now RUNNING; distillation pipeline ready for ~100 chunjiandu games.
 
 ## DEPLOY status / open issue
 - Live deploy = the proven **16-block CNN** (`base_16x128_final`, 344 OK verdicts on Botzone, +2826
