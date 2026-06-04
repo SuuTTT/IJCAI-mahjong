@@ -18,10 +18,12 @@ Methods grounded in `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/Bo
   legal play. High confidence (research names our exact exit-120 + the exact fix).
 
 ## P1 — Conversion: the core ceiling (deploy-time, no retrain)
-- [🔄] **8-fan look-ahead masking (#16).** `fan_mask.py`: for top-K discard candidates, avoid
-  locking into a DEAD-END tenpai (tenpai whose only wins < 8 fan); keep a ≥8-fan path. Verified it
-  discriminates (6-fan dead-end vs 45-fan flush). Wired into the bot (`FAN_MASK=1`). Benchmarking
-  vs plain resbn40 — does it lower draws / raise wins? If yes: ship it on the deploy (free win).
+- [✗] **8-fan look-ahead masking (#16) — NULL.** `fan_mask.py` built + verified (discriminates a
+  6-fan dead-end from a 45-fan flush). But resbn40+mask vs plain resbn40 = **+74 (29–29 wins, 3%
+  draws) = tie.** The expert CNN *already* converts (3% draw rate, avoids dead-end tenpai on its
+  own), so the mask rarely changes a decision — and it slows inference (shanten+fan per discard).
+  **Not shipped by default**; available behind `FAN_MASK=1`. Lesson: the conversion ceiling is
+  already mostly handled by the strong SL policy, not a separate filter.
 
 ## P2 — RL fine-tune (push beyond supervised)
 - [🔄] **Pool + KL-to-SL (#15).** Parallel actor-learner (`rl_actors.py`, 22 local actors, ~25s/iter,
@@ -53,6 +55,7 @@ Methods grounded in `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/Bo
 - ✗ High-fan human-data BC fine-tune → broke the policy (overfit a narrow slice).
 - ✗ Wider/deeper-conv/attention/GNN architectures → all tie-or-below resbn40.
 - ✗ Distillation on 16–72 games → marginal (+121, noise); needs more data.
+- ✗ 8-fan look-ahead masking → null (+74/60g, 29–29 wins); the SL CNN already converts (3% draw).
 - ✗ Test-time fan-rollout planner (earlier MLP era) → hurt (solitaire over-values fan-chasing).
 
 ## Binding facts
