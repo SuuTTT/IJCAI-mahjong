@@ -106,9 +106,14 @@ def finetune_frac(a):
     base_np = np.load(os.path.join(os.path.dirname(__file__), 'data', 'cooked_single.npz'))
     champ = np.load(a.champ)
     rng = np.random.RandomState(0); idx = rng.permutation(len(champ['act']))
-    nval = max(50, len(idx) // 10); vi, ti = idx[:nval], idx[nval:]
+    nval = max(50, len(idx) // 5); vi, ti = idx[:nval], idx[nval:]      # 20% held-out (cleaner metric)
     o_off = torch.from_numpy(base_np['obs']); m_off = torch.from_numpy(base_np['mask']); a_off = torch.from_numpy(base_np['act'].astype(np.int64))
-    o_ch = torch.from_numpy(champ['obs'][ti]); m_ch = torch.from_numpy(champ['mask'][ti]); a_ch = torch.from_numpy(champ['act'][ti].astype(np.int64))
+    cobs, cmask, cact = champ['obs'][ti], champ['mask'][ti], champ['act'][ti].astype(np.int64)
+    if getattr(a, 'augment', False):
+        from suit_aug import augment
+        cobs, cmask, cact = augment(cobs, cmask, cact)                  # 6x suit-permutation
+        print(f"suit-aug: champ train {len(ti)} -> {len(cact)}")
+    o_ch = torch.from_numpy(cobs); m_ch = torch.from_numpy(cmask); a_ch = torch.from_numpy(cact)
     n_off, n_ch = len(a_off), len(a_ch)
     f = a.champ_frac
     w = np.concatenate([np.full(n_off, (1 - f) / n_off), np.full(n_ch, f / n_ch)]).astype(np.float64)
@@ -148,6 +153,7 @@ if __name__ == '__main__':
         ap.add_argument('--champ-frac', dest='champ_frac', type=float, default=0.3)
         ap.add_argument('--steps', type=int, default=3000); ap.add_argument('--bs', type=int, default=1024)
         ap.add_argument('--lr', type=float, default=5e-5); ap.add_argument('--out', default='distilled.pkl')
+        ap.add_argument('--augment', action='store_true')
         finetune_frac(ap.parse_args())
     else:
         ap = argparse.ArgumentParser(); ap.add_argument('cmd')
