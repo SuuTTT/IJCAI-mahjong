@@ -34,11 +34,10 @@ OPPONENTS = [
 ]
 # candidates to rank (all resbn40-family — the ones that "tied" the base in monoculture eval)
 CANDIDATES = [
-    ("base",      srv("resbn", f"{CK}/explore/resbn40.pkl",           CFG40)),
-    ("dense",     srv("resbn", f"{CK}/explore/resbn40_dense.pkl",     CFG40)),
-    ("league",    srv("resbn", f"{CK}/explore/resbn40_league.pkl",    CFG40)),
+    ("base",      srv("resbn", f"{CK}/explore/resbn40.pkl",             CFG40)),
     ("distill",   srv("resbn", f"{CK}/explore/resbn40_distill100b.pkl", CFG40)),
-    ("rl3",       srv("resbn", f"{CK}/explore/resbn40_rl3.pkl",       CFG40)),
+    ("dense",     srv("resbn", f"{CK}/explore/resbn40_dense.pkl",       CFG40)),
+    ("gtdense",   srv("resbn", f"{CK}/explore/resbn40_gtdense.pkl",     CFG40)),
 ]
 
 
@@ -72,7 +71,7 @@ def main():
         tot_net = tot_w = tot_l = tot_d = tot_ill = 0
         row = []
         for oname, ocmd in OPPONENTS:
-            net, w, l, d, ill = pair_net(ccmd, ocmd, G, seed0=50000)
+            net, w, l, d, ill = pair_net(ccmd, ocmd, G, seed0=SEED0)
             tot_net += net; tot_w += w; tot_l += l; tot_d += d; tot_ill += ill
             row.append(f"{oname}:{net:+d}({w}-{l})")
             print(f"  {cname:9s} vs {oname:9s}  net={net:+5d}  W{w}-L{l}  draws={d}  ill={ill}", flush=True)
