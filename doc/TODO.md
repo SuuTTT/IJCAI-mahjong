@@ -41,10 +41,15 @@ Methods grounded in `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/Bo
   vs base: **44-52 wins, net −138/100g** — base still slightly ahead. Dense reward did NOT break parity.
 
 ## P3 — Data & test-time
-- [❓] **Distillation on full chunjiandu set (#20).** `distill.py` ready (blends champion samples
-  into official data + fine-tunes). 72 games → +121 (noise). USER: collect ~100+ 4×chunjiandu
-  self-play games → direct imitation of the #1 SL+RL policy. (chunjiandu = SL+RL, so this is a
-  shortcut to its RL-improved policy.)
+- [✓~] **Distillation on 100 chunjiandu games (#20) — DONE; needs ladder A/B.** 100 games (all
+  verified 4×chunjiandu self-play) → 3,419 champion decisions. Old blend method drowns champ (2% of
+  5.87M official) → rewrote `distill.py finetune_frac`: WeightedRandomSampler puts champ at ~25-50%
+  of every batch (no memory blowup) + held-out champ-agreement metric. **Moved agreement 0.683→0.730
+  (+5pts)** — a real, measurable shift toward the #1 bot; plateaus ~0.73 (rest not learnable from
+  state at 100 games). Local judge eval vs base = parity (45-50, then 39-37) — BUT local self-play
+  CANNOT see chunjiandu's ladder edge (it's rank-1 vs DIVERSE opponents, not vs our SL). Deploy
+  candidate FUSED + verified (resbn40_distill100b_fused, max logit diff 3.8e-5, runs through deploy
+  code). → USER: A/B `deploy/cnn_distill100b.pkl` vs the base fused model on the Botzone ladder.
 - [⏳] **pMCPA test-time adaptation (#21).** At the deal, sample hidden states, rollouts, a few
   gradient steps to adapt to the current hand, then play. We have ~6 s/turn. Stretch; measure
   gain vs latency.
