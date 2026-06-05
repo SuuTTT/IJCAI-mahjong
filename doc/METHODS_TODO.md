@@ -4,6 +4,17 @@ Complete checklist of every method from `deepresearch.md` + `deepresearch-gemini
 league winners), plus what we've run. **Read `TODO.md` for the prioritized roadmap; this is the full
 method inventory.** Deadline 2026-06-09.
 
+
+## 🎯 GAUNTLET RESULT (M1 done) — the parity verdict was a MEASUREMENT ARTIFACT
+Two independent runs (G=6 @seed50000, G=16 @seed60000) vs 5 diverse-arch opponents (cnn16, cnnattn,
+resbn24, resbn56, w192). Total net vs gauntlet (avg of both runs):
+  dense +142 · distill +113 · rl3 +47 · league +47 · **base (resbn40) -94 (LAST, both runs)**
+=> The RL/distill models that "tied base" in self-vs-twin eval are actually STRONGER vs varied
+opponents — RL improved ROBUSTNESS, which monoculture eval is blind to. (illegals in bench = PASS-on-
+timeout contention artifacts; greedy-masked bots can't emit illegal.) Gauntlet opponents are CNN-family
+(same data) so it's a proxy, not the ladder — but far less blind than self-vs-base.
+**DEPLOY UPGRADE: ship distill100b (fused, deploy-ready: deploy/cnn_distill100b.pkl) over base.**
+
 ## ⚠️ THE BINDING CONSTRAINT: measurement
 Every RL/distill method ties in LOCAL eval because our eval pool is a **monoculture** (all resbn40
 variants → near-twins trade evenly). It is NOT a fundamental limit: resbn40 vs 16-block CNN = +973,
