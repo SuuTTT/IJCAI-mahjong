@@ -161,6 +161,7 @@ def main():
     ap.add_argument('--exp-promote', type=float, default=0.58)  # exploiter winrate vs main to snapshot
     ap.add_argument('--pool-cap', type=int, default=24)
     ap.add_argument('--snap-every', type=int, default=10); ap.add_argument('--eval-every', type=int, default=25)
+    ap.add_argument('--gauntlet-games', type=int, default=0)   # >0: gate --out on diverse-gauntlet net (#23)
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
     dev = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -230,7 +231,18 @@ def main():
         for f in snaps[:-(a.pool_cap)] if len(snaps) > a.pool_cap else []:
             os.remove(f); wr.pop(os.path.basename(f), None)
         if (it + 1) % a.eval_every == 0 or it == a.iters - 1:
-            torch.save(main_m.net.state_dict(), a.out, _use_new_zipfile_serialization=False); print(f"  saved -> {a.out}", flush=True)
+            if a.gauntlet_games > 0:                                   # #23: gate on diverse-gauntlet net
+                from gauntlet_eval import gauntlet_net
+                cpu = ResBNCNN(channels=128, blocks=a.blocks); cpu.load_state_dict(main_m.net.state_dict()); cpu.eval()
+                gnet = gauntlet_net(cpu, n_games=a.gauntlet_games)
+                if gnet > best_gnet:
+                    best_gnet = gnet
+                    torch.save(main_m.net.state_dict(), a.out, _use_new_zipfile_serialization=False)
+                    print(f"  [gauntlet] net={gnet:+d} NEW BEST -> saved {a.out}", flush=True)
+                else:
+                    print(f"  [gauntlet] net={gnet:+d} (best {best_gnet:+d}, not promoted)", flush=True)
+            else:
+                torch.save(main_m.net.state_dict(), a.out, _use_new_zipfile_serialization=False); print(f"  saved -> {a.out}", flush=True)
     pool.close(); print("DONE", flush=True)
 
 
