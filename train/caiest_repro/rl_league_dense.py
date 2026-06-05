@@ -176,7 +176,12 @@ def main():
     sl_net = ResBNCNN(channels=128, blocks=a.blocks).to(dev); sl_net.load_state_dict(sl); sl_net.eval()
     opt_m = torch.optim.Adam(main_m.parameters(), lr=a.lr)
     opt_e = torch.optim.Adam(exp_m.parameters(), lr=a.lr)
-    beta = a.beta_kl
+    beta = a.beta_kl; best_gnet = -10**9
+    if a.gauntlet_games > 0:                                   # seed the bar at the START model's strength
+        from gauntlet_eval import gauntlet_net
+        _cpu = ResBNCNN(channels=128, blocks=a.blocks); _cpu.load_state_dict(main_m.net.state_dict()); _cpu.eval()
+        best_gnet = gauntlet_net(_cpu, n_games=a.gauntlet_games)
+        print(f"  [gauntlet] START net={best_gnet:+d} (promote only if beaten)", flush=True)
     # winrate tracking for PFSP: {pool_file: [w, n]} (main's results vs that opponent), decayed
     wr = {}
     snap_m = snap_e = 1
