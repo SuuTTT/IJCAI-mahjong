@@ -67,6 +67,8 @@ Methods grounded in `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/Bo
 - ✗ 8-fan look-ahead masking → null (+74/60g, 29–29 wins); the SL CNN already converts (3% draw).
 - ✗ League (main+exploiter+PFSP, rl_league.py, 400it/13 promotes) → parity (33-36 vs base).
 - ✗ Dense reward (Suphx Φ, R²≈0.43, rl_league_dense.py, 600it/22 promotes) → parity (44-52 vs base).
+- ✗ Suit-permutation augmentation (6×) for distillation → no gain (val agree 0.726→0.731, noise);
+  the distill plateau (~0.73) is limited by game DIVERSITY (100 games), not data qty — needs more games.
 - ✗ Test-time fan-rollout planner (earlier MLP era) → hurt (solitaire over-values fan-chasing).
 
 ## Binding facts
