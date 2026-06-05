@@ -26,23 +26,37 @@ def _find_model():
     cands = sorted(set(cands), key=lambda p: os.path.getsize(p), reverse=True)
     return cands[0] if cands else None
 
-def _build_model():
-    # arch-aware: model_arch.json {"kind":..,"cfg":..} -> models_explore; else the caiest CNN.
-    af = os.path.join(_HERE, 'model_arch.json')
-    if os.path.exists(af):
-        a = json.load(open(af))
-        if a['kind'] == 'resbn_fused':                 # BN-free fused ResNet (torch-1.4 safe)
-            from model_resfused import ResFused
-            return ResFused(**a.get('cfg', {}))
-        from models_explore import build
-        return build(a['kind'], **a.get('cfg', {}))
-    from model import CNNModel
-    return CNNModel()
+def _fused_from_sd(sd):
+    """Build a ResFused sized from the checkpoint's own keys (robust to any channels/blocks)."""
+    from model_resfused import ResFused
+    ch = sd['stem.weight'].shape[0]
+    blocks = 1 + max(int(k.split('.')[1]) for k in sd if k.startswith('body.') and k.endswith('.c1.weight'))
+    m = ResFused(channels=ch, blocks=blocks); m.load_state_dict(sd); return m
 
-model = _build_model()
-model.load_state_dict(torch.load(os.environ.get('CAIEST_MODEL') or _find_model(),
-                                  map_location=torch.device('cpu')))
-model.eval()
+def _cnn_from_sd(sd):
+    from model import CNNModel
+    m = CNNModel(); m.load_state_dict(sd); return m
+
+def _load_model():
+    """Load whatever checkpoint is present, auto-detecting the architecture from its KEYS so a
+    mismatched/renamed upload can't hard-crash. Order: fused ResNet, then 16-block CNNModel.
+    Returns (model_or_None, debug_str). On total failure -> None -> legal-fallback play (never RE)."""
+    path = os.environ.get('CAIEST_MODEL') or _find_model()
+    try:
+        sd = torch.load(path, map_location=torch.device('cpu'))
+    except Exception as e:
+        return None, 'load_fail:%s' % str(e)[:60]
+    keys = list(sd.keys())
+    if any('running_mean' in k for k in keys):         # un-fused BatchNorm net: unsafe on torch 1.4
+        return None, 'got_batchnorm_ckpt(need_fused)'
+    for builder in (_fused_from_sd, _cnn_from_sd):
+        try:
+            m = builder(sd); m.eval(); return m, 'ok:%s' % builder.__name__
+        except Exception:
+            continue
+    return None, 'no_arch_matched_keys'
+
+model, MODEL_DBG = _load_model()
 
 agent = None
 seatWind = 0
@@ -50,6 +64,8 @@ zimo = False
 angang = None
 
 def obs2response(obs):
+    if model is None:                                  # legal-fallback: first legal action (never illegal)
+        return agent.action2response(int(np.argmax(obs['action_mask'])))
     with torch.no_grad():
         logits = model({'is_training': False,
                         'obs': {'observation': torch.from_numpy(np.expand_dims(obs['observation'], 0)),

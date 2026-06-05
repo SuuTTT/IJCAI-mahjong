@@ -151,5 +151,7 @@ def fuse_resbn(resbn):
     return f
 
 def build(kind, **cfg):
+    if kind == 'cnn':                       # the 16-block base CNN (model.py); same input interface
+        from model import CNNModel; return CNNModel()
     return {'resbn': ResBNCNN, 'resbn_fused': ResFused, 'attn': TileTransformer,
             'cnn_attn': CNNTransformer, 'gnn': TileGNN}[kind](**cfg)
