@@ -27,7 +27,7 @@ Status: ✅ done · 🔄 running · ⏳ queued · ❓ needs data/user · ✗ tri
 ---
 
 ## P0 — MEASUREMENT (unblocks everything)
-- [ ] **M1. Diverse eval gauntlet.** Score every candidate by net across DIFFERENT-architecture
+- [✅] **M1. Diverse eval gauntlet — DONE (see GAUNTLET RESULT above).** Score every candidate by net across DIFFERENT-architecture
   opponents — 16-block CNN (base_16x128), old r18 MLP, a rule-based/heuristic bot, the
   chunjiandu-imitation (distill100b), caiest 16-block. Net-vs-gauntlet separates strong policies
   where vs-base ties. Build `eval/gauntlet.py`. **This is how we measure without the ladder.**
@@ -69,7 +69,7 @@ Status: ✅ done · 🔄 running · ⏳ queued · ❓ needs data/user · ✗ tri
 - [ ] **F1. Opponent-hand estimation + safe-discard.** Secondary net predicts opponents' tiles from
   public info; enforce safe discards vs a tenpai opponent. Refinement, not a ceiling-breaker.
 
-## TRIED — did NOT beat base (honest negatives)
+## TRIED — tied base in BLIND self-vs-twin eval, but most BEAT base on the diverse gauntlet (see top)
 - ✗ Plain self-play RL (single frozen base) → parity.
 - ✗ Pool + KL-to-SL (rl_actors.py) → parity (39-39 vs base).
 - ✗ League: main-exploiter + PFSP (rl_league.py, 400it/13 promotes) → parity (33-36).
@@ -81,7 +81,7 @@ Status: ✅ done · 🔄 running · ⏳ queued · ❓ needs data/user · ✗ tri
 - ✗ High-fan human-data BC fine-tune → broke policy. Test-time fan-rollout planner → hurt.
 
 ## Binding facts
-- **resbn40 = best base; architecture settled.** RL on the reward/opponent axes is EXHAUSTED at
-  parity in LOCAL eval — but local eval is monoculture-blind. The next real progress needs MEASUREMENT
-  (M1 gauntlet, M2 ladder), then DATA (D1), then the untried representation/oracle methods (R1, R3).
+- **resbn40 is NOT the best deployable — it's LAST on the diverse gauntlet.** RL/distill (dense,
+  distill100b, rl3) beat it; the earlier "parity" was monoculture-eval blindness. Deploy distill100b.
+  RL is NOT exhausted — it improved robustness. Next: M2 ladder (final word), D1 diverse data, R1/R3.
 - #1 bot chunjiandu = SL+RL; we match ~0.73 of its discards. Botzone = py3.6/torch1.4/~512MB/~6s.
