@@ -15,6 +15,18 @@ timeout contention artifacts; greedy-masked bots can't emit illegal.) Gauntlet o
 (same data) so it's a proxy, not the ladder — but far less blind than self-vs-base.
 **DEPLOY UPGRADE: ship distill100b (fused, deploy-ready: deploy/cnn_distill100b.pkl) over base.**
 
+
+## PROGRESS (Tier-2 build + incremental data pipeline)
+- DATA PIPELINE (incremental): collect_winners.py — drop top-player log batches under a folder, it
+  auto-extracts decisions (4-same self-play -> ALL seats; mixed -> WINNER seat only), dedups by
+  match-id, grows one cumulative npz (data/topwinners.npz). Re-distill: distill.py finetune_frac.
+  COLLECTION GUIDANCE: lead with 4x the #1 bot (渡鸦) self-play (4x more decisions/game, strongest
+  teacher, replaces mid-pack chunjiandu); supplement with 4-different-top-bot games (diverse). Aim 200+.
+- F1 safe-discard (#28): built safe_discard.py (genbutsu/furiten = a tile in opp's discards can't ron
+  them). AGGRESSIVE version tanks offense (1-6, fights the CNN's learned defense). CONSERVATIVE
+  (turn>=12, 2+ melds, top-2) = offense-NEUTRAL (+12/12g noise). Opt-in (SAFE_DISCARD=1). Small upside:
+  our CNN already defends (0 deal-ins over 4 ladder games). Ladder-A/B only; not shipped by default.
+
 ## ⚠️ THE BINDING CONSTRAINT: measurement
 Every RL/distill method ties in LOCAL eval because our eval pool is a **monoculture** (all resbn40
 variants → near-twins trade evenly). It is NOT a fundamental limit: resbn40 vs 16-block CNN = +973,
