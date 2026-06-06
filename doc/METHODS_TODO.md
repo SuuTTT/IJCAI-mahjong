@@ -1,4 +1,13 @@
-# Methods Ledger — tried, untried, and the measurement gap
+# Methods Ledger
+## 8-DAY COMPETITION PLAN (deadline 2026-06-14 23:55)
+Winning axis = strong SL ResNet (field-confirmed). Autonomous work strengthens the base; data lever
+(re-distill on top-player games) runs when data arrives. distill100b = locked floor.
+- Phase 1 (now): P-A1 stronger SL (AdamW+cosine+suit-aug, val_acc metric) + P-A2 trustworthy eval.
+- Phase 2: P-B1 curriculum-RL v2 (fix overfit) + pMCPA test-time adaptation.
+- Phase 3 (data-gated): re-distill on top-player data (collect_winners.py ready) — highest ceiling-raiser.
+- Phase 4: P-D1 pure-NumPy deploy fallback + final large-N gauntlet/ladder bake-off.
+- Phase 5: lock submission + buffer.
+ — tried, untried, and the measurement gap
 
 Complete checklist of every method from `deepresearch.md` + `deepresearch-gemini.md` (Suphx + PKU/
 league winners), plus what we've run. **Read `TODO.md` for the prioritized roadmap; this is the full
