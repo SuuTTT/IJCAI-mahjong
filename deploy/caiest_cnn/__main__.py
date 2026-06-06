@@ -12,7 +12,11 @@
 # Set BOTZONE_JSON=0 to emit raw responses (for the local run_match_kr keep-running harness).
 import os, sys, glob, json
 import numpy as np
-import torch
+try:
+    import torch                                   # primary path
+    HAS_TORCH = True
+except Exception:
+    HAS_TORCH = False                              # -> pure-NumPy fallback (zero torch-version risk)
 from feature import FeatureAgent
 
 MARKER = ">>>BOTZONE_REQUEST_KEEP_RUNNING<<<"
@@ -41,6 +45,8 @@ def _load_model():
     """Load whatever checkpoint is present, auto-detecting the architecture from its KEYS so a
     mismatched/renamed upload can't hard-crash. Order: fused ResNet, then 16-block CNNModel.
     Returns (model_or_None, debug_str). On total failure -> None -> legal-fallback play (never RE)."""
+    if not HAS_TORCH:
+        return None, 'no_torch->numpy'
     path = os.environ.get('CAIEST_MODEL') or _find_model()
     try:
         sd = torch.load(path, map_location=torch.device('cpu'))
@@ -58,19 +64,35 @@ def _load_model():
 
 model, MODEL_DBG = _load_model()
 
+NP_MODEL = None                                        # pure-NumPy fallback (used if torch model failed)
+if model is None:
+    try:
+        cands = []
+        for base in (os.path.join(_HERE, 'data'), 'data', _HERE, '.'):
+            cands += glob.glob(os.path.join(base, '*.npz'))
+        if cands:
+            npz = sorted(set(cands), key=lambda p: os.path.getsize(p), reverse=True)[0]
+            from numpy_resfused import NumpyResFused
+            NP_MODEL = NumpyResFused(npz); MODEL_DBG += '|numpy:%s' % os.path.basename(npz)
+    except Exception as e:
+        MODEL_DBG += '|numpy_fail:%s' % str(e)[:40]
+
 agent = None
 seatWind = 0
 zimo = False
 angang = None
 
 def obs2response(obs):
-    if model is None:                                  # legal-fallback: first legal action (never illegal)
-        return agent.action2response(int(np.argmax(obs['action_mask'])))
-    with torch.no_grad():
-        logits = model({'is_training': False,
-                        'obs': {'observation': torch.from_numpy(np.expand_dims(obs['observation'], 0)),
-                                'action_mask': torch.from_numpy(np.expand_dims(obs['action_mask'], 0))}})
-    return agent.action2response(int(logits.detach().numpy().flatten().argmax()))
+    if model is not None:                              # primary: torch
+        with torch.no_grad():
+            logits = model({'is_training': False,
+                            'obs': {'observation': torch.from_numpy(np.expand_dims(obs['observation'], 0)),
+                                    'action_mask': torch.from_numpy(np.expand_dims(obs['action_mask'], 0))}})
+        return agent.action2response(int(logits.detach().numpy().flatten().argmax()))
+    if NP_MODEL is not None:                           # fallback: pure NumPy (no torch)
+        lg = NP_MODEL.logits(obs['observation'], obs['action_mask'])
+        return agent.action2response(int(lg.argmax()))
+    return agent.action2response(int(np.argmax(obs['action_mask'])))   # last resort: first legal action
 
 def process(request):
     """caiest's original per-request logic, returning the Botzone response string."""
