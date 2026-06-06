@@ -19,6 +19,9 @@ agent=None; seatWind=0; zimo=False; angang=None
 FAN_MASK = os.environ.get("FAN_MASK", "0") != "0"
 if FAN_MASK:
     import fan_mask
+SAFE_DISCARD = os.environ.get("SAFE_DISCARD", "0") != "0"
+if SAFE_DISCARD:
+    import safe_discard
 
 def _logits(obs):
     with torch.no_grad():
@@ -51,6 +54,8 @@ def process(req):
                 packs=[(p[0],p[1]) for p in agent.packs[0]]
                 ch=fan_mask.choose_discard(agent.hand, packs, agent.seatWind, agent.prevalentWind, ranked_plays(o))
                 return 'PLAY %s'%ch
+            if SAFE_DISCARD:
+                return 'PLAY %s'%safe_discard.choose_discard(agent, ranked_plays(o))
             return 'PLAY %s'%r[1]
         if r[0]=='Gang': return 'GANG %s'%r[1]
         if r[0]=='BuGang': return 'BUGANG %s'%r[1]
