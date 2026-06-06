@@ -33,6 +33,20 @@ try:
     HAS_FAN = True
 except Exception:
     HAS_FAN = False
+try:
+    from MahjongGB import RegularShanten, SevenPairsShanten, ThirteenOrphansShanten
+    def _hand_shanten(concealed):
+        """Min shanten of a fully-concealed 13/14-tile hand (no melds). Big number on error."""
+        best = 99
+        for fn in (RegularShanten, SevenPairsShanten, ThirteenOrphansShanten):
+            try:
+                s, _ = fn(tuple(concealed))
+                if s < best: best = s
+            except Exception:
+                pass
+        return best
+except Exception:
+    def _hand_shanten(concealed): return 99
 
 SUITS = "WBT"
 def _full_wall(rng):
@@ -63,13 +77,18 @@ def _fan(concealed, melds, win, seat, quan, is_self, is_kong):
 class Sim:
     """One duplicate game. policy_fn(obs(N,240) uint8, mask(N,235) bool) -> act(N,)."""
 
-    def __init__(self, policy_fn, seed=0, quan=0, learner_seats=None, cnn=True):
+    def __init__(self, policy_fn, seed=0, quan=0, learner_seats=None, cnn=True,
+                 seed_hand=None, seed_seat=0):
         # policy_fn: a single callable for all seats, OR a list of 4 callables.
         self.policies = policy_fn if isinstance(policy_fn, (list, tuple)) else [policy_fn]*4
         self.rng = random.Random(seed)
         self.quan = quan
         self.cnn = cnn   # if True, policy obs/mask come from the caiest (38,4,9) feature
         self.cai = None
+        # curriculum seeding: deal `seed_seat` a specific 13-tile concealed hand (near-win),
+        # others + walls dealt randomly from the rest; that seat draws first.
+        self.seed_hand = list(seed_hand) if seed_hand else None
+        self.seed_seat = seed_seat
         # only record trajectories for these seats (default: all)
         self.learner_seats = set(range(4) if learner_seats is None else learner_seats)
 
@@ -81,22 +100,37 @@ class Sim:
             except Exception: pass
 
     def reset(self):
-        wall = _full_wall(self.rng)
-        self.walls = [wall[i*34:(i+1)*34] for i in range(4)]   # each draws from own
         self.hand = [[] for _ in range(4)]
         self.melds = [[] for _ in range(4)]   # (type, tile)
+        if self.seed_hand is not None:
+            pool = _full_wall(self.rng)                 # 136 shuffled
+            for t in self.seed_hand:                    # remove the seed tiles from the pool
+                pool.remove(t)
+            self.hand[self.seed_seat] = list(self.seed_hand)
+            for s in range(4):
+                if s != self.seed_seat:
+                    self.hand[s] = [pool.pop() for _ in range(13)]
+            per = len(pool) // 4                         # remaining -> per-seat draw stacks
+            self.walls = [pool[i*per:(i+1)*per] for i in range(4)]
+            self.cur = self.seed_seat                    # seeded seat draws first (near-win)
+        else:
+            wall = _full_wall(self.rng)
+            self.walls = [wall[i*34:(i+1)*34] for i in range(4)]   # each draws from own
+            for s in range(4):
+                self.hand[s] = [self.walls[s].pop() for _ in range(13)]
+            self.cur = 0
         self.agents = [FeatureAgent(s) for s in range(4)]
         self.cai = [CaiAgent(s) for s in range(4)] if self.cnn else None
         for s in range(4):
             self.agents[s].update(f"Wind {self.quan}")
             if self.cai is not None: self.cai[s].request2obs(f"Wind {self.quan}")
         for s in range(4):
-            self.hand[s] = [self.walls[s].pop() for _ in range(13)]
             self.agents[s].update("Deal " + " ".join(self.hand[s]))
             if self.cai is not None: self.cai[s].request2obs("Deal " + " ".join(self.hand[s]))
-        self.cur = 0
         self.traj = [[] for _ in range(4)]   # (obs,mask,act)
         self.scores = [0, 0, 0, 0]
+        # shanten of the seeded seat at start (for reward shaping)
+        self.start_shanten = _hand_shanten(self.hand[self.seed_seat]) if self.seed_hand is not None else None
 
     # ---- helpers ----
     def _obs_mask(self, seat):
