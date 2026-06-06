@@ -27,3 +27,11 @@ res25 (ResNet-25), bot32 (ckpt32). Pattern: ResNet backbone + SL or curriculum-R
 ## Our reproduction (CL-1..4)
 curriculum_states.py (shanten buckets 28/76/135/134) + sim_cnn seeding (win-rates track Fig 3.5) +
 rl_curriculum.py (5-stage, Algorithm-1 reward, KL-to-SL, gauntlet-gated from distill100b floor).
+
+## Reproduction RESULT (clean G=24 gauntlet, 120 games/candidate)
+distill100b -266 (W54) > base -660 (W43) > curriculum -956 (W42).
+Curriculum-RL trained STABLY (escaped the parity collapse — validates the method works) but DID NOT
+beat distill100b: training on seeded near-win states overfit to FINISHING hands and degraded full-game
+play (the short final 'random' stage didn't recover it). Consistent with the thesis claiming only
+top-10% — which our strong SL bot already matches. FINAL: distill100b is the Sim-7 submission.
+All in-house levers (RL/distill/ensemble/curriculum) now exhausted; distill100b is the confirmed best.

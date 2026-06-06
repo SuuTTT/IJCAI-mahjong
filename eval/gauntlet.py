@@ -33,11 +33,14 @@ OPPONENTS = [
     ("w192",    srv("resbn",    f"{CK}/explore/resbnw192.pkl", '{"channels":192,"blocks":24}')),
 ]
 # candidates to rank (all resbn40-family — the ones that "tied" the base in monoculture eval)
+EB2 = os.path.join(R, "ensemble_bot.py")
+def ens(paths):
+    return (f"MODELS={','.join(paths)} BOTZONE_JSON=0 python3 {EB2}")
+
 CANDIDATES = [
-    ("base",      srv("resbn", f"{CK}/explore/resbn40.pkl",             CFG40)),
-    ("distill",   srv("resbn", f"{CK}/explore/resbn40_distill100b.pkl", CFG40)),
-    ("dense",     srv("resbn", f"{CK}/explore/resbn40_dense.pkl",       CFG40)),
-    ("gtdense",   srv("resbn", f"{CK}/explore/resbn40_gtdense.pkl",     CFG40)),
+    ("distill",    srv("resbn", f"{CK}/explore/resbn40_distill100b.pkl", CFG40)),   # current deploy floor
+    ("curriculum", srv("resbn", f"{CK}/explore/resbn40_cl.pkl",          CFG40)),   # curriculum-RL result
+    ("base",       srv("resbn", f"{CK}/explore/resbn40.pkl",             CFG40)),   # control
 ]
 
 
