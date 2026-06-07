@@ -11,6 +11,13 @@ re-upload it for BOTH bots regardless of model.
 Recipe lesson (5 fine-tunes + 2 soups evaluated): the generalizable gain lives in the first
 ~600-800 steps; longer fine-tunes memorize and LOSE play strength (s2800: −388/100g).
 
+### Full bake-off (2026-06-07, official judge, seat-rotated; net per 60g unless noted)
+vs distill100b: **V1 +385 & +515/100g (CONFIRMED)** · V3B +151 · V3A +119 · V2 +31 (tie) ·
+soup50 −5 (tie) · soup25 −190 · s2800 −388/100g · SAFE_DISCARD −183 (keep OFF).
+vs V1: V4a (37.5k set, s1200) −40 (tie) · V4b (37.5k, s2800) −389.
+=> V1 stands alone. More teacher data (12k→37.5k, 6 agents) did NOT beat the gentle sim6-only
+recipe head-to-head. All checkpoints synced to deploy/incoming/ + box ckpt/.
+
 Same code zip for all: **`deploy/caiest_cnn_bot.zip`**. Only the Storage `data/cnn.pkl` differs.
 The bot auto-detects arch from the checkpoint keys; a wrong upload plays legal-fallback (never RE).
 
