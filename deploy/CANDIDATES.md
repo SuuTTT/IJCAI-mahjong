@@ -18,6 +18,14 @@ vs V1: V4a (37.5k set, s1200) −40 (tie) · V4b (37.5k, s2800) −389.
 => V1 stands alone. More teacher data (12k→37.5k, 6 agents) did NOT beat the gentle sim6-only
 recipe head-to-head. All checkpoints synced to deploy/incoming/ + box ckpt/.
 
+### Diverse gauntlet + defense exam (2026-06-07 evening) — V1 passes EVERY lock gate
+Rebuilt diverse opponents (modern recipe, 3 ep): g_cnn16 val .808, g_resbn24 val .859.
+Paired nets/60g (same walls): V1 +402 / +136 (pool +538) vs distill100b +278 / **−59** (pool +219).
+Deal-in exam (1,188 real lethal states): V1 40.7% vs base 39.8% (p=.24, equal defense).
+Robustness: cold start 1.84s, warm 12ms, RSS 468MB. **LOCK: sim6_v1_s600 for the final**
+(unless the overnight sl2-lineage shot — modern-recipe resbn40 + V1-style distill — beats V1).
+Side-finding: fresh 3-epoch resbn24 BEATS distill100b (−59) → the modern SL recipe matters.
+
 Same code zip for all: **`deploy/caiest_cnn_bot.zip`**. Only the Storage `data/cnn.pkl` differs.
 The bot auto-detects arch from the checkpoint keys; a wrong upload plays legal-fallback (never RE).
 
