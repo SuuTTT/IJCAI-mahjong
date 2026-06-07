@@ -1,5 +1,16 @@
 # Deploy candidates (all fused, BN-free, torch-1.4-safe, hardened loader)
 
+## ⭐ 2026-06-07: sim6_v1_s600 — FIRST CONFIRMED upgrade over distill100b
+`deploy/incoming/sim6_v1_s600.pkl`, md5 `9c1863e3b59923c5215b332bd483682c`, 55MB.
+Gentle re-distill (600 steps, lr 5e-5, champ-frac 0.3) of distill100b on 5,272 sim-6
+chunjiandu-vs-diverse-top-bots decisions. Beat distill100b in TWO independent judge h2hs:
++385/60g (34-25, walls 40000+) and +515/100g (55-44, walls 50000+); 0 illegal in 160 games.
+=> Upload as the ladder A/B bot (Storage cnn.pkl). distill100b stays the main-bot floor until
+the ladder agrees. NOTE: code zip caiest_cnn_bot.zip (md5 064a49cb…) carries the WH fix —
+re-upload it for BOTH bots regardless of model.
+Recipe lesson (5 fine-tunes + 2 soups evaluated): the generalizable gain lives in the first
+~600-800 steps; longer fine-tunes memorize and LOSE play strength (s2800: −388/100g).
+
 Same code zip for all: **`deploy/caiest_cnn_bot.zip`**. Only the Storage `data/cnn.pkl` differs.
 The bot auto-detects arch from the checkpoint keys; a wrong upload plays legal-fallback (never RE).
 
