@@ -25,7 +25,7 @@ sA = sB = wA = wB = draws = illA = illB = 0
 for g in range(N):
     aseats, bots = layouts[g % 2]
     bseats = [i for i in range(4) if i not in aseats]
-    r = run_match_kr(bots, wall_json=make_wall(40000 + g), quan=0, timeout=10)
+    r = run_match_kr(bots, wall_json=make_wall(int(os.environ.get("WALL_SEED_BASE", "40000")) + g), quan=0, timeout=10)
     sc = r["scores"]
     for s in aseats: sA += sc[s]
     for s in bseats: sB += sc[s]
