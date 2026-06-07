@@ -154,10 +154,14 @@ def emit(resp):
         print(resp, flush=True)
         print(MARKER, flush=True)   # raw keep-running marker (local run_match_kr only)
 
-def _replay_event(req, resp):
+def _replay_event(req, resp, nxt=''):
     """Rebuild state for a HISTORICAL (already-answered) request, applying our recorded
     action `resp` for our own moves (own moves are not echoed in JSON requests). Skips
-    rt=3 pid==seat echoes. Used for JSON full-history replay (robust to a fresh process)."""
+    rt=3 pid==seat echoes. Used for JSON full-history replay (robust to a fresh process).
+    `nxt` = the NEXT request in history: a recorded claim (CHI/PENG/GANG on a discard) is
+    applied ONLY if the judge's echo confirms it — a higher-priority claim by another
+    player (e.g. their PENG over our CHI) preempts ours, and applying it anyway desyncs
+    the hand permanently (sim-7 audit: 5 wrong-HUs, all traced to exactly this)."""
     global zimo, angang
     t = req.split()
     if not t: return
@@ -185,11 +189,16 @@ def _replay_event(req, resp):
         elif t[2] == 'PENG': agent.request2obs('Player %d Peng' % p)
         agent.request2obs('Player %d Play %s' % (p, t[-1]))
         rp = resp.split()                         # my recorded claim on this discard
-        if rp and rp[0] == 'PENG':
+        if not (rp and rp[0] in ('PENG', 'CHI', 'GANG')):
+            return
+        nt = (nxt or '').split()                  # judge echo must confirm the claim went through
+        if not (len(nt) >= 3 and nt[0] == '3' and int(nt[1]) == seatWind and nt[2] == rp[0]):
+            return                                # preempted by a higher-priority claim: ignore ours
+        if rp[0] == 'PENG':
             agent.request2obs('Player %d Peng' % seatWind); agent.request2obs('Player %d Play %s' % (seatWind, rp[1]))
-        elif rp and rp[0] == 'CHI':
+        elif rp[0] == 'CHI':
             agent.request2obs('Player %d Chi %s' % (seatWind, rp[1])); agent.request2obs('Player %d Play %s' % (seatWind, rp[2]))
-        elif rp and rp[0] == 'GANG':
+        elif rp[0] == 'GANG':
             agent.request2obs('Player %d Gang' % seatWind)
 
 def run_json(blob):
@@ -201,7 +210,7 @@ def run_json(blob):
     agent = None; zimo = False; angang = None
     process(R[0])                                  # INIT -> init agent
     for i in range(1, len(RESP)):                  # historical answered turns
-        _replay_event(R[i], RESP[i])
+        _replay_event(R[i], RESP[i], R[i + 1] if i + 1 < len(R) else '')
     resp = process(R[-1]) if len(R) > len(RESP) else 'PASS'   # current decision
     emit(resp)
 
