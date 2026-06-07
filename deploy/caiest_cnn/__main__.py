@@ -82,16 +82,39 @@ seatWind = 0
 zimo = False
 angang = None
 
+SAFE = os.environ.get('SAFE_DISCARD', '0') == '1'      # opt-in defensive discard filter (A/B only)
+try:
+    import safe_discard as _sd
+except Exception:
+    _sd = None
+
+def _pick(lg, mask):
+    """argmax, optionally re-ranked through the genbutsu safe-discard filter for Play actions."""
+    a = int(np.asarray(lg).flatten().argmax())
+    if not (SAFE and _sd is not None and agent is not None):
+        return a
+    try:
+        po = agent.OFFSET_ACT['Play']
+        if not (po <= a < po + 34):
+            return a
+        lgf = np.asarray(lg).flatten()
+        legal = [i for i in range(po, po + 34) if mask[i]]
+        legal.sort(key=lambda i: -float(lgf[i]))
+        t = _sd.choose_discard(agent, [agent.TILE_LIST[i - po] for i in legal])
+        return po + agent.OFFSET_TILE[t]
+    except Exception:
+        return a                                       # filter must never break the bot
+
 def obs2response(obs):
     if model is not None:                              # primary: torch
         with torch.no_grad():
             logits = model({'is_training': False,
                             'obs': {'observation': torch.from_numpy(np.expand_dims(obs['observation'], 0)),
                                     'action_mask': torch.from_numpy(np.expand_dims(obs['action_mask'], 0))}})
-        return agent.action2response(int(logits.detach().numpy().flatten().argmax()))
+        return agent.action2response(_pick(logits.detach().numpy(), obs['action_mask']))
     if NP_MODEL is not None:                           # fallback: pure NumPy (no torch)
         lg = NP_MODEL.logits(obs['observation'], obs['action_mask'])
-        return agent.action2response(int(lg.argmax()))
+        return agent.action2response(_pick(lg, obs['action_mask']))
     return agent.action2response(int(np.argmax(obs['action_mask'])))   # last resort: first legal action
 
 def process(request):
