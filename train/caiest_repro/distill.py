@@ -91,8 +91,10 @@ class MixDS:
         self.n1 = len(a1)
     def __len__(self): return self.n1 + len(self.a2)
     def __getitem__(self, i):
-        if i < self.n1: return self.o1[i], self.m1[i], self.a1[i]
-        j = i - self.n1; return self.o2[j], self.m2[j], self.a2[j]
+        if i < self.n1:
+            return np.asarray(self.o1[i]), np.asarray(self.m1[i]), np.int64(self.a1[i])
+        j = i - self.n1
+        return np.asarray(self.o2[j]), np.asarray(self.m2[j]), np.int64(self.a2[j])
 
 
 def finetune_frac(a):
@@ -103,17 +105,24 @@ def finetune_frac(a):
     from torch.utils.data import DataLoader, WeightedRandomSampler
     from models_explore import build
     dev = 'cuda' if torch.cuda.is_available() else 'cpu'
-    base_np = np.load(os.path.join(os.path.dirname(__file__), 'data', 'cooked_single.npz'))
+    ddir = os.path.join(os.path.dirname(__file__), 'data')
+    if os.path.exists(os.path.join(ddir, 'cooked_obs.npy')):
+        # memmap triplet from preprocess_chunked.py — bounded RAM on small boxes
+        o_off = np.load(os.path.join(ddir, 'cooked_obs.npy'), mmap_mode='r')
+        m_off = np.load(os.path.join(ddir, 'cooked_mask.npy'), mmap_mode='r')
+        a_off = np.load(os.path.join(ddir, 'cooked_act.npy'), mmap_mode='r')
+    else:
+        base_np = np.load(os.path.join(ddir, 'cooked_single.npz'))
+        o_off = base_np['obs']; m_off = base_np['mask']; a_off = base_np['act'].astype(np.int64)
     champ = np.load(a.champ)
     rng = np.random.RandomState(0); idx = rng.permutation(len(champ['act']))
     nval = max(50, len(idx) // 5); vi, ti = idx[:nval], idx[nval:]      # 20% held-out (cleaner metric)
-    o_off = torch.from_numpy(base_np['obs']); m_off = torch.from_numpy(base_np['mask']); a_off = torch.from_numpy(base_np['act'].astype(np.int64))
     cobs, cmask, cact = champ['obs'][ti], champ['mask'][ti], champ['act'][ti].astype(np.int64)
     if getattr(a, 'augment', False):
         from suit_aug import augment
         cobs, cmask, cact = augment(cobs, cmask, cact)                  # 6x suit-permutation
         print(f"suit-aug: champ train {len(ti)} -> {len(cact)}")
-    o_ch = torch.from_numpy(cobs); m_ch = torch.from_numpy(cmask); a_ch = torch.from_numpy(cact)
+    o_ch, m_ch, a_ch = cobs, cmask, cact                                # all-numpy (MixDS collates)
     n_off, n_ch = len(a_off), len(a_ch)
     f = a.champ_frac
     w = np.concatenate([np.full(n_off, (1 - f) / n_off), np.full(n_ch, f / n_ch)]).astype(np.float64)
