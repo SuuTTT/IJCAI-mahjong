@@ -10,12 +10,13 @@ val_acc (clean, non-noisy) — and we gauntlet the result vs resbn40 afterward.
 import os, sys, argparse, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np, torch, torch.nn as nn, torch.nn.functional as F
-from models_explore import ResBNCNN
+from models_explore import build
 from suit_aug import PERMS, action_perm, fwd_action_perm
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--warm', default='')                 # warm-start ckpt ('' = from scratch)
+    ap.add_argument('--kind', default='resbn')            # any models_explore build() kind (resbn/cnn/attn/...)
     ap.add_argument('--blocks', type=int, default=40); ap.add_argument('--channels', type=int, default=128)
     ap.add_argument('--epochs', type=int, default=6); ap.add_argument('--bs', type=int, default=1024)
     ap.add_argument('--lr', type=float, default=2e-4); ap.add_argument('--wd', type=float, default=1e-4)
@@ -23,18 +24,26 @@ def main():
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
     dev = 'cuda' if torch.cuda.is_available() else 'cpu'
-    d = np.load(os.path.join(os.path.dirname(__file__), 'data', 'cooked_single.npz'))
-    obs, mask, act = d['obs'], d['mask'], d['act'].astype(np.int64)
+    ddir = os.path.join(os.path.dirname(__file__), 'data')
+    if os.path.exists(os.path.join(ddir, 'cooked_obs.npy')):   # memmap triplet (small-RAM boxes)
+        obs = np.load(os.path.join(ddir, 'cooked_obs.npy'), mmap_mode='r')
+        mask = np.load(os.path.join(ddir, 'cooked_mask.npy'), mmap_mode='r')
+        act = np.load(os.path.join(ddir, 'cooked_act.npy'), mmap_mode='r')
+    else:
+        d = np.load(os.path.join(ddir, 'cooked_single.npz'))
+        obs, mask, act = d['obs'], d['mask'], d['act'].astype(np.int64)
     n = len(act); rng = np.random.RandomState(0); perm = rng.permutation(n)
     nval = 200000; vi, ti = perm[:nval], perm[nval:]
     print(f"data {n:,} | train {len(ti):,} val {len(vi):,}", flush=True)
-    Ot = torch.from_numpy(obs); Mt = torch.from_numpy(mask); At = torch.from_numpy(act)
+    Ot = lambda b: torch.from_numpy(np.ascontiguousarray(obs[b]))
+    Mt = lambda b: torch.from_numpy(np.ascontiguousarray(mask[b]))
+    At = lambda b: torch.from_numpy(np.ascontiguousarray(act[b]).astype(np.int64))
     # precompute suit-perm index maps on device
     rows = [torch.tensor([p[0], p[1], p[2], 3], device=dev) for p in PERMS]
     Amaps = [torch.tensor(action_perm(p), device=dev, dtype=torch.long) for p in PERMS]   # new_mask = old[A]
     Fmaps = [torch.tensor(fwd_action_perm(p), device=dev, dtype=torch.long) for p in PERMS]
 
-    m = ResBNCNN(channels=a.channels, blocks=a.blocks).to(dev)
+    m = build(a.kind, channels=a.channels, blocks=a.blocks).to(dev)
     if a.warm:
         m.load_state_dict(torch.load(a.warm, map_location='cpu')); print(f"warm-start {a.warm}", flush=True)
 
@@ -42,10 +51,10 @@ def main():
     def val_acc():
         m.eval(); correct = 0
         for i in range(0, len(vi), 8192):
-            b = vi[i:i + 8192]
-            o = Ot[b].to(dev); mk = Mt[b].float().to(dev)
+            b = np.sort(vi[i:i + 8192])                     # sorted = sequential-ish memmap reads
+            o = Ot(b).to(dev); mk = Mt(b).float().to(dev)
             pr = m({'is_training': False, 'obs': {'observation': o, 'action_mask': mk}}).argmax(1)
-            correct += (pr.cpu() == At[b]).sum().item()
+            correct += (pr.cpu() == At(b)).sum().item()
         m.train(); return correct / len(vi)
 
     base_acc = val_acc(); print(f"[val] warm/baseline acc = {base_acc:.4f}", flush=True)
@@ -57,8 +66,8 @@ def main():
     for e in range(a.epochs):
         t0 = time.time(); order = rng2.permutation(len(ti)); m.train()
         for i in range(0, len(ti) - a.bs, a.bs):
-            b = ti[order[i:i + a.bs]]
-            o = Ot[b].to(dev); mk = Mt[b].float().to(dev); y = At[b].to(dev)
+            b = np.sort(ti[order[i:i + a.bs]])              # sorted within batch (order is still random)
+            o = Ot(b).to(dev); mk = Mt(b).float().to(dev); y = At(b).to(dev)
             if a.aug > 0 and rng2.random() < a.aug:
                 pi = rng2.randint(1, 6)                          # a non-identity suit permutation
                 o = o[:, :, rows[pi], :]; mk = mk[:, Amaps[pi]]; y = Fmaps[pi][y]
