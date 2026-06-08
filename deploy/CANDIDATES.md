@@ -54,3 +54,16 @@ WALL-LUCK. (Box B walls 100000+ wedged at game 31 — env flakiness, not a bot b
 but V1 is clearly better vs the DIVERSE gauntlet (+538 vs +219) with equal defense — and the
 gauntlet ≈ the real ladder. V1 remains the pick as a safe, weakly-positive swap; distill100b
 is an equally-safe fallback. Either way: upload the WH-fixed zip (064a49cb…).
+
+### 2025-FINALIST GAUNTLET (2026-06-08) — the decisive on-distribution eval
+Built 6 imitation nets of REAL 2025 finalists (BC on extracted decisions, val 0.74-0.84):
+test1/selfregpo/pama/moumou/laigebao/bot32. Each candidate played all 6 (36g each, walls 200000+).
+TOTAL net: **distill100b +5471 > V1 +4975 > champ2025 +4905.** distill100b beat V1 on 5/6 opponents
+(+496 over 216g, consistent). This is the MOST on-distribution eval we have (real field, not our CNNs).
+- Contradicts the official-CNN gauntlet (V1 +538 > distill100b +219). Sign of "V1 vs distill100b"
+  FLIPS by opponent pool → non-transitive → neither robustly better (matches the near-twin 300g tie).
+- champ2025_test1 (distill100b distilled toward the 2025 champ, agreement 0.809) is WORST — distilling
+  on a stronger/on-distribution teacher did NOT beat the floor. Clean negative.
+=> **REVISED LOCK: distill100b (the proven floor) — it wins the most on-distribution eval and has the
+   most production history. V1 is an equal-risk fallback (no worse; won the official-CNN gauntlet).
+   Do NOT ship champ2025.** The WH-fixed zip (064a49cb) remains the one unambiguous must-ship.
