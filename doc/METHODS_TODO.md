@@ -113,3 +113,13 @@ B parallel): PEAK ~19,685 steps/sec ≈ 246 games/sec; OOM at scale on 8GB. NO l
 Python self-play (also a few hundred games/sec). Bottleneck = the policy CNN forward (same cost in
 JAX or torch) + small GPU mem, which JAX can't fix. => a JAX-native CSM env (multi-week build) is NOT
 worth it at our hardware. RL throughput is policy-forward-bound, not env-logic-bound.
+
+## 2026-06-08 — Oracle guiding (Suphx's biggest untried lever): NULL for discard SL
+Built the full pipeline: oracle teacher on 50 planes (38 public + 12 opponent-true-hand), distilled to
+38-plane public student via CE+KL on 1.2M decisions (ssh6/3060). Result: oracle teacher plateaued
+val_acc 0.827; the PUBLIC student fully recovered it (0.833) — i.e. opponents' hidden hands add ~ZERO
+recoverable predictive value for the DISCARD decision (your discard depends on your own hand). So
+oracle-guiding does NOT help discard-imitation SL. Consistent with Suphx using it for RL value/defense,
+NOT discard SL. (Student trained on 1.2M subset -> absolute strength below distill100b regardless; this
+run validates the MECHANISM + the null, not a fair vs-distill100b fight.) => oracle-guiding is an
+RL-phase lever; for our SL pipeline it's exhausted.
