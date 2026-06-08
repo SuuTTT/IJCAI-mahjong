@@ -109,3 +109,16 @@ may UNDER-rate models tuned for the strong REAL ladder. Ladder evidence contradi
 distill100b is only ~2nd on the real ladder (8 games, mostly 2nd, 1 win). => DO NOT over-trust the
 gauntlet as ground truth. Ship distill100b (safe floor) but A/B V1 + distill_raven on the real LADDER.
 Get the FULL 100 raven games for a properly-powered raven distill.
+
+### oracle_student (Suphx oracle-guiding, 1.2M subset) — gauntlet +4893, NULL lever
+Gauntlet +4893 < distill100b +5471 (md5 22c86273). Public student fully recovered the oracle teacher's
+val_acc (0.833 vs 0.827) -> opponents' hidden hands add ~0 predictive value for DISCARDS -> oracle-guiding
+is null for SL (an RL value/defense lever per Suphx). Filed; not a candidate.
+
+## ============ ALL IN-HOUSE LEVERS EXHAUSTED (2026-06-08) ============
+Gauntlet vs distill100b +5471 (on-distribution, 6 real-finalist imitations): ensemble 5368, V1 4975,
+champ2025 4905, oracle_student 4893, raven 4809, base2025 4642, base2025only 2348. NONE beat the floor.
+Also null: RL x5 (parity), soups, 8-fan mask, safe-discard, JAX throughput (no leap), oracle-guiding.
+LOCK = distill100b + WH-fixed zip (97b88497). Only unresolved levers need USER data: full-100-raven
+distill (underpowered near-miss at 41 games) + the real LADDER A/B (the gauntlet has weak-opponent bias;
+8 ladder games show distill100b ~2nd). The bot is at its achievable ceiling barring those.
