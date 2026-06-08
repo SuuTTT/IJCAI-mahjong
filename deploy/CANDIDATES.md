@@ -90,3 +90,12 @@ coherent strong policy -> coherence > diversity for play. Confound (noted, not u
 shares training data with the imitation opponents, so the gauntlet may under-rate it; only the ladder resolves.
 => distill100b stays the lock. base2025 (md5 d69c9de9) is a reasonable LADDER A/B candidate if desired.
 P4 EXHAUSTED: stronger SL base on official+2025 does not beat the focused-distillation floor.
+
+## ============ FINAL BAKE-OFF SUMMARY (2026-06-08) ============
+On-distribution finalist gauntlet (6 real-2025-finalist imitations, net/216g):
+  distill100b +5471  >  ensemble +5368  >  V1 +4975  >  champ2025 +4905  >  base2025 +4642  >  base2025only +2348
+LOCK = **distill100b** (deploy/caiest_cnn/data/cnn.pkl, md5 7e45c41...) + the WH-fixed zip (064a49cb...).
+deploy/ship/ holds the zip + 3 swappable Storage models for LADDER A/B (the only ground truth left):
+  cnn_distill100b.pkl (primary), cnn_v1.pkl (won self-play h2h), cnn_base2025.pkl (best val; gauntlet-confounded).
+Nothing in-house robustly beats distill100b — matches the field/PKU-thesis ceiling. Real remaining gains:
+ladder data, and (untried) P3 test-time search.
