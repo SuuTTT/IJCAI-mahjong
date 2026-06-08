@@ -75,3 +75,9 @@ TOTAL net: **distill100b +5471 > V1 +4975 > champ2025 +4905.** distill100b beat 
 helps, but distill100b already dominates this pool so averaging in weaker-on-pool members dilutes it.
 No robust win. **LOCK stays distill100b.** Ensemble is a deployable ≈-equal alternative, not an upgrade.
 (Stretch: a distill100b+V1 2-model or strength-weighted mix might edge it — marginal, untried.)
+
+### P4b 2025-ONLY base (2026-06-08) — clean negative (data scale dominates)
+40-block BC on all 16 finalists (1.34M decisions, no official data), val 0.826. Finalist gauntlet
+TOTAL +2348 vs distill100b +5471 (~43%). Pure on-distribution at 1.34M < official 5.87M: data
+QUANTITY dominates the on-distribution benefit. Filed as a diverse gauntlet member (md5 dd1993b1),
+not a candidate. The real P4 test is base2025 (official 5.87M + 2025 1.34M = full scale + on-dist).
