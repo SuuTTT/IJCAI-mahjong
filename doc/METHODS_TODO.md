@@ -106,3 +106,10 @@ Status: ✅ done · 🔄 running · ⏳ queued · ❓ needs data/user · ✗ tri
   distill100b, rl3) beat it; the earlier "parity" was monoculture-eval blindness. Deploy distill100b.
   RL is NOT exhausted — it improved robustness. Next: M2 ladder (final word), D1 diverse data, R1/R3.
 - #1 bot chunjiandu = SL+RL; we match ~0.73 of its discards. Botzone = py3.6/torch1.4/~512MB/~6s.
+
+## 2026-06-08 — JAX throughput probe (answered with data): NOT worth it
+jax[cuda12] runs on the RTX 5060 (sm_120). Vectorized probe (40-block CNN forward + transition,
+B parallel): PEAK ~19,685 steps/sec ≈ 246 games/sec; OOM at scale on 8GB. NO leap over our ~25-core
+Python self-play (also a few hundred games/sec). Bottleneck = the policy CNN forward (same cost in
+JAX or torch) + small GPU mem, which JAX can't fix. => a JAX-native CSM env (multi-week build) is NOT
+worth it at our hardware. RL throughput is policy-forward-bound, not env-logic-bound.
