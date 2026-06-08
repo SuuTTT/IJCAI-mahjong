@@ -23,12 +23,47 @@ MARKER = ">>>BOTZONE_REQUEST_KEEP_RUNNING<<<"
 JSON_OUT = os.environ.get("BOTZONE_JSON", "1") != "0"
 _HERE = os.path.dirname(os.path.abspath(__file__))
 
-def _find_model():
+def _selected_name():
+    """Per-bot model selection baked into the CODE zip as `model.cfg` (one line = a filename).
+    Botzone Storage `data/` is SHARED across all of a user's bots, so we CANNOT differentiate bots
+    by Storage file — we differentiate by the per-bot zip. Upload every model to the shared data/
+    once; each bot's zip picks its own via model.cfg. Falls through to cnn.<ext> then largest."""
+    for base in (_HERE, '.'):
+        f = os.path.join(base, 'model.cfg')
+        if os.path.exists(f):
+            try:
+                n = open(f).read().strip()
+                if n: return n
+            except Exception:
+                pass
+    return None
+
+def _find_model(ext='pkl'):
+    """1) per-bot model.cfg name in shared data/; 2) canonical cnn.<ext>; 3) largest (legacy)."""
+    sel = _selected_name()
+    if sel and sel.endswith('.' + ext):
+        for base in (os.path.join(_HERE, 'data'), 'data', _HERE, '.'):
+            p = os.path.join(base, sel)
+            if os.path.exists(p):
+                return p
+    for base in (os.path.join(_HERE, 'data'), 'data', _HERE, '.'):
+        c = os.path.join(base, 'cnn.' + ext)
+        if os.path.exists(c):
+            return c
     cands = []
     for base in (os.path.join(_HERE, 'data'), 'data', _HERE, '.'):
-        cands += glob.glob(os.path.join(base, '*.pkl'))
+        cands += glob.glob(os.path.join(base, '*.' + ext))
     cands = sorted(set(cands), key=lambda p: os.path.getsize(p), reverse=True)
     return cands[0] if cands else None
+
+def _model_id(path):
+    """short, verifiable identity of the loaded weights file for the debug field."""
+    try:
+        import hashlib
+        h = hashlib.md5(open(path, 'rb').read()).hexdigest()[:8]
+        return '%s md5=%s' % (os.path.basename(path), h)
+    except Exception:
+        return os.path.basename(path or '?')
 
 def _fused_from_sd(sd):
     """Build a ResFused sized from the checkpoint's own keys (robust to any channels/blocks)."""
@@ -48,6 +83,7 @@ def _load_model():
     if not HAS_TORCH:
         return None, 'no_torch->numpy'
     path = os.environ.get('CAIEST_MODEL') or _find_model()
+    mid = _model_id(path)
     try:
         sd = torch.load(path, map_location=torch.device('cpu'))
     except Exception as e:
@@ -57,7 +93,7 @@ def _load_model():
         return None, 'got_batchnorm_ckpt(need_fused)'
     for builder in (_fused_from_sd, _cnn_from_sd):
         try:
-            m = builder(sd); m.eval(); return m, 'ok:%s' % builder.__name__
+            m = builder(sd); m.eval(); return m, 'ok:%s[%s]' % (builder.__name__, mid)
         except Exception:
             continue
     return None, 'no_arch_matched_keys'
@@ -80,13 +116,10 @@ MODEL_DBG += '|' + MODEL_DBG_E if MODEL_DBG_E else ''
 NP_MODEL = None                                        # pure-NumPy fallback (used if torch model failed)
 if model is None and ENS is None:
     try:
-        cands = []
-        for base in (os.path.join(_HERE, 'data'), 'data', _HERE, '.'):
-            cands += glob.glob(os.path.join(base, '*.npz'))
-        if cands:
-            npz = sorted(set(cands), key=lambda p: os.path.getsize(p), reverse=True)[0]
+        npz = _find_model('npz')
+        if npz:
             from numpy_resfused import NumpyResFused
-            NP_MODEL = NumpyResFused(npz); MODEL_DBG += '|numpy:%s' % os.path.basename(npz)
+            NP_MODEL = NumpyResFused(npz); MODEL_DBG += '|numpy:%s' % _model_id(npz)
     except Exception as e:
         MODEL_DBG += '|numpy_fail:%s' % str(e)[:40]
 
@@ -184,11 +217,16 @@ def process(request):
         return 'PASS'
     return 'PASS'
 
+_DBG_EMITTED = [False]
 def emit(resp):
     if JSON_OUT:
         # Botzone simple interaction parses the WHOLE stdout as JSON -> output ONLY the JSON,
         # NO keep-running marker (the marker makes stdout invalid JSON -> "not JSON" / NJ).
-        print(json.dumps({"response": resp}), flush=True)
+        # `debug` shows in the match log (first turn only) so you can VERIFY which model/code loaded.
+        out = {"response": resp}
+        if not _DBG_EMITTED[0]:
+            out["debug"] = "v=WHfix2026-06-08 " + str(MODEL_DBG)[:80]; _DBG_EMITTED[0] = True
+        print(json.dumps(out), flush=True)
     else:
         print(resp, flush=True)
         print(MARKER, flush=True)   # raw keep-running marker (local run_match_kr only)
