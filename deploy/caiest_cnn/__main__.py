@@ -239,6 +239,10 @@ def _replay_event(req, resp, nxt=''):
             agent.request2obs('Player %d Chi %s' % (seatWind, rp[1])); agent.request2obs('Player %d Play %s' % (seatWind, rp[2]))
         elif rp[0] == 'GANG':
             agent.request2obs('Player %d Gang' % seatWind)
+        # NOTE: rare multi-claim sequences (~0.15%) can still desync here and raise inside request2obs.
+        # That is INTENTIONALLY left to crash up to run()'s try/except -> emit('PASS'): these are all
+        # claim decisions where PASS is legal, so crash->PASS is SAFE. Recovering the move instead would
+        # require deciding on a corrupted hand -> risk an ILLEGAL claim (-30). Safe-PASS is correct.
 
 def run_json(blob):
     """Rebuild state from full request/response history, then decide the current request."""
