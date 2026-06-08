@@ -9,3 +9,4 @@ train/caiest_repro/log/
 *.log
 *.bak
 *.bak2
+deploy/ship/*.pkl
