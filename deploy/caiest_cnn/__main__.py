@@ -62,10 +62,23 @@ def _load_model():
             continue
     return None, 'no_arch_matched_keys'
 
-model, MODEL_DBG = _load_model()
+ENS = None                                             # inference-time mixture (P2) — highest priority if set
+_ENS_SPEC = os.environ.get('ENSEMBLE_NPZS', '')
+if _ENS_SPEC:
+    try:
+        paths = [p for p in _ENS_SPEC.split(',') if p.strip()]
+        from ensemble_infer import Ensemble
+        ENS = Ensemble(paths); MODEL_DBG_E = 'ensemble:%d' % ENS.n
+    except Exception as e:
+        ENS = None; MODEL_DBG_E = 'ensemble_fail:%s' % str(e)[:40]
+else:
+    MODEL_DBG_E = ''
+
+model, MODEL_DBG = (None, 'ensemble') if ENS is not None else _load_model()
+MODEL_DBG += '|' + MODEL_DBG_E if MODEL_DBG_E else ''
 
 NP_MODEL = None                                        # pure-NumPy fallback (used if torch model failed)
-if model is None:
+if model is None and ENS is None:
     try:
         cands = []
         for base in (os.path.join(_HERE, 'data'), 'data', _HERE, '.'):
@@ -106,6 +119,9 @@ def _pick(lg, mask):
         return a                                       # filter must never break the bot
 
 def obs2response(obs):
+    if ENS is not None:                                # P2: inference-time mixture (NumPy, memory-light)
+        lg = ENS.logits(obs['observation'], obs['action_mask'])
+        return agent.action2response(_pick(lg, obs['action_mask']))
     if model is not None:                              # primary: torch
         with torch.no_grad():
             logits = model({'is_training': False,
