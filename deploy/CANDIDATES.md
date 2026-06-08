@@ -99,3 +99,13 @@ deploy/ship/ holds the zip + 3 swappable Storage models for LADDER A/B (the only
   cnn_distill100b.pkl (primary), cnn_v1.pkl (won self-play h2h), cnn_base2025.pkl (best val; gauntlet-confounded).
 Nothing in-house robustly beats distill100b — matches the field/PKU-thesis ceiling. Real remaining gains:
 ladder data, and (untried) P3 test-time search.
+
+### distill_raven (distill100b → raven #1 self-play) — gauntlet NEGATIVE, but UNDERPOWERED + gauntlet-biased
+Gauntlet TOTAL +4809 < distill100b +5471 (md5 66858558). Closest-ish but below. TWO caveats that
+matter: (1) UNDERPOWERED — only 41/100 raven games (1,569 decisions) + gentle 400-step distill
+(agreement 0.684->0.706, small move). (2) The gauntlet opponents are WEAK 24-block imitations, so the
+gauntlet rewards raw exploitation of weak bots — which distill100b (chunjiandu-tuned) does best — and
+may UNDER-rate models tuned for the strong REAL ladder. Ladder evidence contradicts the gauntlet:
+distill100b is only ~2nd on the real ladder (8 games, mostly 2nd, 1 win). => DO NOT over-trust the
+gauntlet as ground truth. Ship distill100b (safe floor) but A/B V1 + distill_raven on the real LADDER.
+Get the FULL 100 raven games for a properly-powered raven distill.
