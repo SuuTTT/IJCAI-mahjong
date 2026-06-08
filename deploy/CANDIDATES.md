@@ -45,3 +45,12 @@ Better CLEAN metrics than distill100b: val_acc 0.887 (true held-out), champion a
 0.730). Gauntlet TIED with distill100b (flips by seed — too noisy to separate). Plausibly better but
 unconfirmed in play => A/B on the LADDER vs distill100b. distill100b stays the locked floor until the
 ladder decides. Same code zip; upload as a 2nd bot's Storage cnn.pkl to compare.
+
+### Big-N fresh-wall confirmation (2026-06-08): V1 edge is REAL but SMALL (de-hyped)
+300 games walls 90000+ (box A, 0 illegal, 0 draws): V1 +36/300g = +12/100g — a marginal
+edge, effectively a TIE vs its near-twin parent. Earlier +385/60g & +515/100g were partly
+WALL-LUCK. (Box B walls 100000+ wedged at game 31 — env flakiness, not a bot bug; box A ran
+300 clean.) HONEST LOCK RATIONALE: V1 ≈ distill100b head-to-head (expected monoculture tie),
+but V1 is clearly better vs the DIVERSE gauntlet (+538 vs +219) with equal defense — and the
+gauntlet ≈ the real ladder. V1 remains the pick as a safe, weakly-positive swap; distill100b
+is an equally-safe fallback. Either way: upload the WH-fixed zip (064a49cb…).
