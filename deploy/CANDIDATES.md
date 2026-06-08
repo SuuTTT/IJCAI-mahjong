@@ -67,3 +67,11 @@ TOTAL net: **distill100b +5471 > V1 +4975 > champ2025 +4905.** distill100b beat 
 => **REVISED LOCK: distill100b (the proven floor) — it wins the most on-distribution eval and has the
    most production history. V1 is an equal-risk fallback (no worse; won the official-CNN gauntlet).
    Do NOT ship champ2025.** The WH-fixed zip (064a49cb) remains the one unambiguous must-ship.
+
+### P2 inference-time ENSEMBLE (2026-06-08) — beats the average, not the best
+3-model NumPy mixture (distill100b+V1+champ2025), softmax-averaged. Memory 323MB (< single torch
+468MB), cold 0.85s — deployable. Finalist gauntlet: **ensemble +5368 < distill100b +5471** (≈ tie,
+−103/216g), but ABOVE the naive member-average +5117 (decorrelation gave ~+250). Conclusion: mixing
+helps, but distill100b already dominates this pool so averaging in weaker-on-pool members dilutes it.
+No robust win. **LOCK stays distill100b.** Ensemble is a deployable ≈-equal alternative, not an upgrade.
+(Stretch: a distill100b+V1 2-model or strength-weighted mix might edge it — marginal, untried.)
