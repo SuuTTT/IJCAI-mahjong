@@ -81,3 +81,12 @@ No robust win. **LOCK stays distill100b.** Ensemble is a deployable ≈-equal al
 TOTAL +2348 vs distill100b +5471 (~43%). Pure on-distribution at 1.34M < official 5.87M: data
 QUANTITY dominates the on-distribution benefit. Filed as a diverse gauntlet member (md5 dd1993b1),
 not a candidate. The real P4 test is base2025 (official 5.87M + 2025 1.34M = full scale + on-dist).
+
+### P4 base2025 (official 5.87M + 2025 1.34M, modern recipe) — NEGATIVE; P4 exhausted
+Best val profile of any candidate (official 0.868, 2025 0.733) yet gauntlet TOTAL +4642 < distill100b
++5471 (−829/216g). Higher val-acc, LOWER play — the campaign's "agreement != play" law again. Mechanism:
+BC on 16 finalists averages CONFLICTING strategies (predictive but muddled); distill100b imitates ONE
+coherent strong policy -> coherence > diversity for play. Confound (noted, not used to overturn): base2025
+shares training data with the imitation opponents, so the gauntlet may under-rate it; only the ladder resolves.
+=> distill100b stays the lock. base2025 (md5 d69c9de9) is a reasonable LADDER A/B candidate if desired.
+P4 EXHAUSTED: stronger SL base on official+2025 does not beat the focused-distillation floor.
