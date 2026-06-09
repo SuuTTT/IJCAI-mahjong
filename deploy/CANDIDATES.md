@@ -122,3 +122,10 @@ Also null: RL x5 (parity), soups, 8-fan mask, safe-discard, JAX throughput (no l
 LOCK = distill100b + WH-fixed zip (97b88497). Only unresolved levers need USER data: full-100-raven
 distill (underpowered near-miss at 41 games) + the real LADDER A/B (the gauntlet has weak-opponent bias;
 8 ladder games show distill100b ~2nd). The bot is at its achievable ceiling barring those.
+
+### STRONG gauntlet re-judge (2026-06-09, 40-block finalist imitations) — lock CORROBORATED
+distill100b +4996 > V1 +4821 > raven +4779. SAME ranking as the weak gauntlet (distill100b > V1 >
+raven) -> the weak-opponent-bias did NOT hide a better candidate; distill100b is genuinely best.
+BUT the gap NARROWS vs stronger opponents (V1 -496->-175, raven -662->-217) = robustness signal:
+V1/raven get relatively more competitive as the field strengthens. The real ladder is stronger still
+-> gap could narrow/flip there -> ladder A/B remains the decider. Lock = distill100b, now well-supported.
