@@ -39,7 +39,9 @@ class NumpyResFused:
         h = _relu(f @ self.w['foot.1.weight'].T + self.w['foot.1.bias'])
         out = h @ self.w['foot.3.weight'].T + self.w['foot.3.bias']
         m = mask.astype(np.float32)
-        return out + np.clip(np.log(np.where(m > 0, m, 1e-30)), -1e38, 1e38)
+        # hard mask (match torch's -inf): the old log(1e-30)=-69 penalty was insufficient when a raw
+        # logit exceeded 69 -> a masked action (e.g. illegal Hu) could survive argmax -> phantom HU.
+        return np.where(m > 0, out, -1e9)
 
 def convert(pkl_path, npz_path):
     """One-time: torch fused .pkl -> .npz of numpy weights (run locally, ships the .npz)."""
