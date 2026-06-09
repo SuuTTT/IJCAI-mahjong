@@ -12,11 +12,19 @@
 # Set BOTZONE_JSON=0 to emit raw responses (for the local run_match_kr keep-running harness).
 import os, sys, glob, json
 import numpy as np
-try:
-    import torch                                   # primary path
-    HAS_TORCH = True
-except Exception:
-    HAS_TORCH = False                              # -> pure-NumPy fallback (zero torch-version risk)
+_HERE0 = os.path.dirname(os.path.abspath(__file__))
+# numpy-primary mode: a `numpy_only` marker baked into the zip (or env NUMPY_ONLY=1) skips torch
+# entirely -> ~91MB RSS (vs ~471MB) and ZERO torch-version risk. Plays identically (verified 0 illegal
+# vs torch). Use when the 512MB memory cap is a concern.
+_NUMPY_ONLY = os.path.exists(os.path.join(_HERE0, 'numpy_only')) or os.environ.get('NUMPY_ONLY') == '1'
+if _NUMPY_ONLY:
+    HAS_TORCH = False
+else:
+    try:
+        import torch                               # primary path
+        HAS_TORCH = True
+    except Exception:
+        HAS_TORCH = False                          # -> pure-NumPy fallback (zero torch-version risk)
 from feature import FeatureAgent
 
 MARKER = ">>>BOTZONE_REQUEST_KEEP_RUNNING<<<"
