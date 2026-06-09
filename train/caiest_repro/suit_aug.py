@@ -44,16 +44,21 @@ def fwd_action_perm(perm):
 
 PERMS = [p for p in permutations(range(3))]        # 6 suit permutations (incl identity)
 
-def augment(obs, mask, act):
-    """obs (N,38,4,9), mask (N,235) bool, act (N,) int -> 6x augmented arrays."""
+def augment(obs, mask, act, reflect=True):
+    """obs (N,38,4,9), mask (N,235) bool, act (N,) int -> 6x (suit) or 12x (suit x reflection).
+    Reflection (1<->9,...) is an EXACT label-preserving symmetry composed with each suit perm
+    (commutes: reflection within a suit, perm across suits). Verified by reflect_aug self-test."""
+    from reflect_aug import reflect_action, fwd_reflect_action, reflect_obs
+    RA = reflect_action(); RF = fwd_reflect_action()
     out_o, out_m, out_a = [], [], []
     for perm in PERMS:
         A = action_perm(perm)                      # gather: new_mask = old_mask[A]
         F = fwd_action_perm(perm)                  # new_act = F[old_act]
         rows = np.array([perm[0], perm[1], perm[2], 3])   # obs row order (suits permuted, honors fixed)
-        out_o.append(obs[:, :, rows, :])
-        out_m.append(mask[:, A])
-        out_a.append(F[act])
+        po, pm, pa = obs[:, :, rows, :], mask[:, A], F[act]
+        out_o.append(po); out_m.append(pm); out_a.append(pa)
+        if reflect:                                # compose with rank reflection -> 12x
+            out_o.append(reflect_obs(po)); out_m.append(pm[:, RA]); out_a.append(RF[pa])
     return (np.concatenate(out_o), np.concatenate(out_m), np.concatenate(out_a))
 
 def _selftest():
