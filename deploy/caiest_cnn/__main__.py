@@ -155,12 +155,29 @@ if os.environ.get('CAIEST_QNET'):
     except Exception:
         _QNET = None
 
+_VNET = None                                           # opt-in V-of-resulting-state search (A/B only)
+if os.environ.get('CAIEST_VNET'):
+    try:
+        import value_search as _vs
+        _VNET = _vs.load(os.environ['CAIEST_VNET'])
+    except Exception:
+        _VNET = None
+
 _LAST_OBS = [None]                                     # raw obs for the rerank (set in obs2response)
 
 def _pick(lg, mask):
-    """argmax; opt-in Q-rerank of near-top DISCARDS; opt-in safe-discard filter."""
+    """argmax; opt-in V-search / Q-rerank of near-top DISCARDS; opt-in safe-discard filter."""
     a = int(np.asarray(lg).flatten().argmax())
-    if _QNET is not None and agent is not None and _LAST_OBS[0] is not None:
+    if _VNET is not None and agent is not None and _LAST_OBS[0] is not None:
+        try:
+            po = agent.OFFSET_ACT['Play']
+            if po <= a < po + 34:                      # only discard decisions
+                ra = _vs.pick_discard(_VNET, _LAST_OBS[0], mask, lg, po, lambda i: agent.OFFSET_TILE[agent.TILE_LIST[i - po]])
+                if ra is not None:
+                    a = ra
+        except Exception:
+            pass
+    elif _QNET is not None and agent is not None and _LAST_OBS[0] is not None:
         try:
             po = agent.OFFSET_ACT['Play']
             if po <= a < po + 34:                      # only discard decisions; claims/Hu untouched
