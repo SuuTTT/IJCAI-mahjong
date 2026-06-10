@@ -37,9 +37,12 @@ def actor_play(arg):
     from models_explore import ResBNCNN
     from sim_cnn import Sim
     rng = random.Random(seed)
+    def _load_net(path):                          # build at the file's OWN block count (mixed-arch pool: 40-block main + 24-block g30 anchors)
+        sd = T.load(path, map_location='cpu')
+        nb = 1 + max(int(k.split('.')[1]) for k in sd if k.startswith('body.'))
+        m = ResBNCNN(channels=128, blocks=nb); m.load_state_dict(sd); m.eval(); return m
     curpath = CUR_MAIN if role == 'main' else CUR_EXP
     cur = ResBNCNN(channels=128, blocks=blocks); cur.load_state_dict(T.load(curpath, map_location='cpu')); cur.eval()
-    opp = ResBNCNN(channels=128, blocks=blocks); opp.eval()
 
     def sample_pol(store):
         def fn(obs, mask):
@@ -62,10 +65,10 @@ def actor_play(arg):
     for g in range(n_games):
         if role == 'main':
             oppf = _pick(opp_choices, rng)        # PFSP-weighted pool file
-            opp.load_state_dict(T.load(oppf, map_location='cpu'))
+            opp = _load_net(oppf)
         else:
             oppf = CUR_MAIN                        # exploiter always fights the current main
-            opp.load_state_dict(T.load(CUR_MAIN, map_location='cpu'))
+            opp = _load_net(CUR_MAIN)
         store = []
         sim = Sim([sample_pol(store), greedy(opp), sample_pol(store), greedy(opp)],
                   seed=seed * 1000 + g, quan=0, learner_seats=[0, 2], cnn=True)
@@ -136,6 +139,7 @@ def main():
     ap.add_argument('--pool-cap', type=int, default=24)
     ap.add_argument('--snap-every', type=int, default=10); ap.add_argument('--eval-every', type=int, default=25)
     ap.add_argument('--gauntlet-games', type=int, default=0)   # >0: gate --out on diverse-gauntlet net (#23)
+    ap.add_argument('--anchors', default='')                   # comma-list of non-fused pkls -> frozen diverse pool opponents (g30 imitations)
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
     dev = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -144,6 +148,10 @@ def main():
     for f in glob.glob(POOLDIR + '/*.pkl'): os.remove(f)
     sl = torch.load(a.base, map_location='cpu')
     torch.save(sl, os.path.join(POOLDIR, '00_sl.pkl'), _use_new_zipfile_serialization=False)
+    for j, ap_path in enumerate([p for p in a.anchors.split(',') if p]):   # diverse frozen anchors (g30 imitations)
+        torch.save(torch.load(ap_path, map_location='cpu'),
+                   os.path.join(POOLDIR, f'a_{j:02d}.pkl'), _use_new_zipfile_serialization=False)
+    print(f"  pool seeded: 00_sl + {len([p for p in a.anchors.split(',') if p])} diverse anchors", flush=True)
     from models_explore import ResBNCNN
     main_m = ResBNPV(blocks=a.blocks).to(dev); main_m.net.load_state_dict(sl)
     exp_m = ResBNPV(blocks=a.blocks).to(dev); exp_m.net.load_state_dict(sl)

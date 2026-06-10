@@ -19,10 +19,12 @@ def main():
     ap.add_argument('--kind', default='resbn_fused'); ap.add_argument('--cfg', default='{"channels":128,"blocks":40}')
     ap.add_argument('--beta', type=float, default=1.0); ap.add_argument('--steps', type=int, default=800)
     ap.add_argument('--bs', type=int, default=512); ap.add_argument('--lr', type=float, default=5e-5)
+    ap.add_argument('--seed', type=int, default=1)   # batch-sampler + init-noise seed -> decorrelated ensemble members
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
     import json
     dev = 'cuda' if torch.cuda.is_available() else 'cpu'
+    torch.manual_seed(a.seed)
     cfg = json.loads(a.cfg)
     z = np.load(a.champ); obs, mask, act = z['obs'], z['mask'], z['act'].astype(np.int64)
     rng = np.random.RandomState(0); idx = rng.permutation(len(act)); nval = max(50, len(idx)//5)
@@ -42,7 +44,7 @@ def main():
             pr = student({'is_training':False,'obs':{'observation':vO.to(dev),'action_mask':vM.to(dev)}}).argmax(1).cpu().numpy()
         student.train(); return float((pr==vA).mean())
     print(f"beta={a.beta} steps={a.steps} | base agreement {agree():.3f}", flush=True)
-    student.train(); n=len(cact); r=np.random.RandomState(1)
+    student.train(); n=len(cact); r=np.random.RandomState(a.seed)
     for step in range(1, a.steps+1):
         b = r.randint(0, n, size=a.bs)
         o=O[b].float().to(dev); mk=M[b].float().to(dev); y=A[b].to(dev)

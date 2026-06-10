@@ -31,7 +31,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', required=True); ap.add_argument('--ranking', required=True)
     ap.add_argument('--out'); ap.add_argument('--player', default=''); ap.add_argument('--profile', action='store_true')
+    ap.add_argument('--since', default='', help='YYYY-MM-DD: skip games older than this (decode Botzone ObjectId ts) -> filter out stale bot versions')
     a = ap.parse_args()
+    since_ts = 0
+    if a.since:
+        import datetime
+        since_ts = int(datetime.datetime.strptime(a.since, '%Y-%m-%d').replace(tzinfo=datetime.timezone.utc).timestamp())
     top = top30_names(a.ranking)
     logs = sorted(glob.glob(os.path.join(a.root, '**', '*full_log*.json'), recursive=True))
     if a.profile:
@@ -46,11 +51,17 @@ def main():
         return
     from collect_winners import _extract_game        # lazy (needs feature -> MahjongGB)
     O, M, A = [], [], []; seen = set(); ng = 0; nseat = 0
+    skipped_old = 0
     for path in logs:
         mid, names = _meta(path)
         if not names or mid in seen or os.path.getsize(path) == 0: continue
+        if since_ts:                                   # filter stale bot versions by game date (ObjectId ts)
+            try:
+                if int(mid[:8], 16) < since_ts: skipped_old += 1; continue
+            except Exception: pass
         if a.player:
-            seats = {i for i, n in enumerate(names) if a.player in n}
+            pls = [p for p in a.player.split(',') if p]    # comma-list -> match ANY (focused multi-teacher)
+            seats = {i for i, n in enumerate(names) if any(p in n for p in pls)}
         else:
             seats = {i for i, n in enumerate(names) if n in top}
         if not seats: continue
@@ -64,7 +75,7 @@ def main():
     if not O: print("no decisions extracted"); return
     obs = np.concatenate(O); mask = np.concatenate(M); act = np.concatenate(A)
     np.savez_compressed(a.out, obs=obs, mask=mask, act=act)
-    print(f"{ng} games, {nseat} top-30 seats -> {len(act)} decisions -> {a.out}")
+    print(f"{ng} games, {nseat} top-30 seats -> {len(act)} decisions -> {a.out}" + (f" (skipped {skipped_old} pre-{a.since})" if since_ts else ""))
 
 if __name__ == '__main__':
     main()
