@@ -73,10 +73,10 @@ def main():
             opt.zero_grad(); loss.backward(); opt.step()
         r, mae = val_stats()
         print(f"ep {ep}/{a.epochs}: val r={r:+.3f} mae={mae:.3f}", flush=True)
-    sd = {k: v.cpu() for k, v in net.state_dict().items()
-          if k.startswith('head') or (a.unfreeze and any(k.startswith(f'body.{len(net.body)-j-1}.') for j in range(a.unfreeze)))}
-    torch.save({'head': sd, 'unfreeze': a.unfreeze, 'blocks': a.blocks}, a.out, _use_new_zipfile_serialization=False)
-    print(f"DONE val_r={r:+.3f} -> {a.out}  (gate: proceed with search only if r >= ~0.25)", flush=True)
+    # save the FULL self-contained value net (stem+body+head) for deploy-side search
+    torch.save({k: v.cpu() for k, v in net.state_dict().items()},
+               a.out, _use_new_zipfile_serialization=False)
+    print(f"DONE val_r={r:+.3f} -> {a.out} (full net; gate: search only if r >= ~0.25)", flush=True)
 
 
 if __name__ == '__main__':
