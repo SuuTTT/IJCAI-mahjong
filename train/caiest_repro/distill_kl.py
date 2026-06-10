@@ -20,6 +20,8 @@ def main():
     ap.add_argument('--beta', type=float, default=1.0); ap.add_argument('--steps', type=int, default=800)
     ap.add_argument('--bs', type=int, default=512); ap.add_argument('--lr', type=float, default=5e-5)
     ap.add_argument('--seed', type=int, default=1)   # batch-sampler + init-noise seed -> decorrelated ensemble members
+    ap.add_argument('--student-blocks', type=int, default=0, help='distill into a SMALLER net (blocks) for fast search/rollout; fresh init via KL+CE')
+    ap.add_argument('--aw', action='store_true', help='advantage-weighted BC: weight CE by clip(1+score/48, 0.25, 3) — learn MORE from the teacher seat wins than its losses (offline-RL-lite; npz needs a score array from extract_top30 --scores)')
     ap.add_argument('--out', required=True)
     a = ap.parse_args()
     import json
@@ -32,10 +34,20 @@ def main():
     cobs, cmask, cact = augment(obs[ti], mask[ti], act[ti])         # 12x
     print(f"champ {len(act)} -> train(aug) {len(cact)} val {len(vi)}", flush=True)
     O = torch.from_numpy(cobs); M = torch.from_numpy(cmask); A = torch.from_numpy(cact)
+    WT = None
+    if a.aw:
+        w = np.clip(1.0 + z['score'].astype(np.float32) / 48.0, 0.25, 3.0)
+        WT = torch.from_numpy(np.tile(w[ti], 12))    # augment = 12 same-order blocks of ti
+        print(f"AW weights: mean={w.mean():.2f} range[{w.min():.2f},{w.max():.2f}]", flush=True)
     vO = torch.from_numpy(obs[vi]); vM = torch.from_numpy(mask[vi]).float(); vA = act[vi]
-    student = build(a.kind, **cfg).to(dev); student.load_state_dict(torch.load(a.base, map_location='cpu'))
     frozen = build(a.kind, **cfg).to(dev); frozen.load_state_dict(torch.load(a.base, map_location='cpu')); frozen.eval()
     for p in frozen.parameters(): p.requires_grad_(False)
+    if a.student_blocks and a.student_blocks != cfg.get('blocks'):
+        scfg = dict(cfg); scfg['blocks'] = a.student_blocks       # SMALL fast net for search/rollout
+        student = build(a.kind, **scfg).to(dev)                    # fresh init; learns via KL(student||frozen)+CE
+        print(f"cross-size distill: student blocks={a.student_blocks} <- teacher blocks={cfg.get('blocks')}", flush=True)
+    else:
+        student = build(a.kind, **cfg).to(dev); student.load_state_dict(torch.load(a.base, map_location='cpu'))
     opt = torch.optim.AdamW(student.parameters(), lr=a.lr, weight_decay=1e-4)
     scaler = torch.cuda.amp.GradScaler(enabled=(dev=='cuda'))
     def agree():
@@ -52,7 +64,12 @@ def main():
             tl = frozen({'is_training':False,'obs':{'observation':o,'action_mask':mk}})
         with torch.cuda.amp.autocast(enabled=(dev=='cuda')):
             sl = student({'is_training':True,'obs':{'observation':o,'action_mask':mk}})
-            loss = F.cross_entropy(sl, y) + a.beta*F.kl_div(F.log_softmax(sl,1), F.softmax(tl,1), reduction='batchmean')
+            if WT is not None:
+                wb = WT[b].to(dev)
+                ce = (F.cross_entropy(sl, y, reduction='none') * wb).sum() / wb.sum()
+            else:
+                ce = F.cross_entropy(sl, y)
+            loss = ce + a.beta*F.kl_div(F.log_softmax(sl,1), F.softmax(tl,1), reduction='batchmean')
         opt.zero_grad(); scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
         if step % 400 == 0: print(f"  step {step}/{a.steps} agree={agree():.3f}", flush=True)
     torch.save(student.state_dict(), a.out, _use_new_zipfile_serialization=False)
