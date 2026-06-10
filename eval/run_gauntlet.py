@@ -15,7 +15,7 @@ os.system(f"ln -sf {CPKL} {base}/{CD}/data/cnn.pkl")
 BC = "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 BOTZONE_JSON=0 python3 __main__.py"
 CBC = (os.environ.get("CAND_ENV", "") + " " + BC).strip()   # candidate-only extra env (e.g. CAIEST_QNET=...)
 env = dict(os.environ, MAHJONG_JUDGE=f"{base}/Chinese-Standard-Mahjong/judge/judge",
-           BENCH_TIMEOUT=os.environ.get("BENCH_TIMEOUT", "40"), WALL_SEED_BASE="600000")
+           BENCH_TIMEOUT=os.environ.get("BENCH_TIMEOUT", "40"), WALL_SEED_BASE=os.environ.get("WSB","600000"))
 total, played_all, stuck_all = 0, 0, 0
 print(f"=== gauntlet {CAND} START ===", flush=True)
 for opp in OPPS:
