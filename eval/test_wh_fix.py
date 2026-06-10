@@ -40,7 +40,7 @@ def game_stream(mid_glob):
         for rec in d:
             if 'output' in rec:
                 c = (rec['output'].get('content') or {})
-                if str(seat) in c: R.append(c[str(seat)])
+                if str(seat) in c: R.append(str(c[str(seat)]))   # finish content is an int score
             elif '0' in rec:
                 r = rec.get(str(seat))
                 if isinstance(r, dict) and len(RESP) < len(R):

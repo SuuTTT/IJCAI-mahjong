@@ -10,3 +10,6 @@ train/caiest_repro/log/
 *.bak
 *.bak2
 deploy/ship/*.pkl
+others/
+data/agents2025/
+data/raw/
