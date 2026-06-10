@@ -147,9 +147,28 @@ try:
 except Exception:
     _sd = None
 
+_QNET = None                                           # opt-in Q-rerank (minimal test-time search, A/B only)
+if os.environ.get('CAIEST_QNET'):
+    try:
+        import q_rerank as _qr
+        _QNET = _qr.load(os.environ['CAIEST_QNET'])
+    except Exception:
+        _QNET = None
+
+_LAST_OBS = [None]                                     # raw obs for the rerank (set in obs2response)
+
 def _pick(lg, mask):
-    """argmax, optionally re-ranked through the genbutsu safe-discard filter for Play actions."""
+    """argmax; opt-in Q-rerank of near-top DISCARDS; opt-in safe-discard filter."""
     a = int(np.asarray(lg).flatten().argmax())
+    if _QNET is not None and agent is not None and _LAST_OBS[0] is not None:
+        try:
+            po = agent.OFFSET_ACT['Play']
+            if po <= a < po + 34:                      # only discard decisions; claims/Hu untouched
+                ra = _qr.pick_discard(_QNET, _LAST_OBS[0], mask, lg, po)
+                if ra is not None:
+                    a = ra
+        except Exception:
+            pass                                       # rerank must never break the bot
     if not (SAFE and _sd is not None and agent is not None):
         return a
     try:
@@ -165,6 +184,7 @@ def _pick(lg, mask):
         return a                                       # filter must never break the bot
 
 def obs2response(obs):
+    _LAST_OBS[0] = obs['observation']                  # for the opt-in Q-rerank
     if ENS is not None:                                # P2: inference-time mixture (NumPy, memory-light)
         lg = ENS.logits(obs['observation'], obs['action_mask'])
         return agent.action2response(_pick(lg, obs['action_mask']))
