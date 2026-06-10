@@ -1,175 +1,144 @@
 #!/usr/bin/env python3
 """
-botzone_collect.py — automate CREATING Chinese-Standard-Mahjong tables of top-ranker bots on
-botzone.org.cn, on YOUR OWN account, so the games exist and your hourly collector harvests them
-(it also saves each game's log JSON locally as a backup).
+botzone_collect.py — automate LAUNCHING Chinese-Standard-Mahjong tables of top-ranker bots on
+botzone.org.cn, on YOUR OWN account. We do NOT scrape the JSON — your hourly collector harvests
+all global games played; this just makes the top-bot games EXIST. Fire-and-forget: create table →
+add 4 bots by ID → 开始游戏 → next.
 
 DESIGN BOUNDARIES (intentional):
-  * Human-in-the-loop captcha: when Botzone shows the 1-char captcha (every ~5-10 creations), the
-    script PAUSES and waits for YOU to type it in the visible browser, then continues. It does not
-    attempt to read or bypass the captcha.
-  * Cooldown-respecting: when "add bot" is on cooldown, it WAITS the backoff out (configurable),
-    it does NOT create extra accounts to evade the limit.
-  * Runs HEADED on your local machine (you must see the browser to solve captchas). Not headless.
+  * Human-in-the-loop captcha (every ~5-10 creations): the script PAUSES and waits for YOU to type
+    it in the visible browser, then resumes. It does not read or bypass the captcha.
+  * Cooldown-respecting: when "add bot" is rate-limited it WAITS the backoff out — it does NOT
+    create extra accounts to evade the limit.
+  * Runs HEADED on your machine (the captcha needs a visible browser). Headless is only for a
+    selector smoke-test (--shots), which will likely hit the captcha wall sooner.
 
-SETUP (on your laptop):
+SETUP (your laptop):
   pip install playwright && playwright install chromium
-  export BOTZONE_USER='1015011749@qq.com'   BOTZONE_PASS='...'      # or edit CONFIG below
-  python3 botzone_collect.py --games 300 --out ~/botzone_logs
-
-The 4 bots are added by ID (用ID指定bot). Default = the top table you've been running.
-Edit BOTS / SELECTORS below if the UI differs — selectors are best-effort (verify once, then it runs).
+  python3 botzone_collect.py --games 300 --user 1015011749@qq.com --pass '...'
+  # (or set BOTZONE_USER / BOTZONE_PASS env; --user/--pass override them — use ANY of your own accounts)
 """
-import os, sys, json, time, argparse, pathlib, re
+import os, sys, time, argparse, pathlib, re
 
-# ---- CONFIG ---------------------------------------------------------------
-USER = os.environ.get("BOTZONE_USER", "1015011749@qq.com")
-PASS = os.environ.get("BOTZONE_PASS", "")        # set via env; do NOT hardcode in a shared repo
-BOTS = [                                          # (label, bot-ID) — 4 seats
+USER_DEFAULT = os.environ.get("BOTZONE_USER", "1015011749@qq.com")
+BASE = "https://botzone.org.cn/"
+GAME = "Chinese-Standard-Mahjong"
+BOTS = [                                          # (label, bot-ID) — 4 seats; edit freely
     ("chunjiandu",        "69ef25bf83ee0a54c189cd9e"),
     ("SelfRegPO",         "68620536a4349e61674f0a0e"),
     ("yigeiwoligiaogiao", "667648e12e524945e73126bf"),
     ("QwQ",               "6284ebbe3a897766fbbcddf6"),
 ]
-GAME = "Chinese-Standard-Mahjong"
-BASE = "https://botzone.org.cn/"
-COOLDOWN_WAIT = 90          # seconds to back off when "add bot" is rate-limited, then retry
-CAPTCHA_POLL = 3            # seconds between checks while waiting for you to solve a captcha
+COOLDOWN_WAIT = 90
+CAPTCHA_POLL = 3
 
-# Selectors are best-effort against the described UI; adjust after one manual run if needed.
+# Selectors CONFIRMED by a 2026-06-10 smoke test (login + table-create verified working). The
+# bot-assignment dialog uses these REAL labels: an `ID` button, a `提交` submit, `开始对局！` to start,
+# and a per-seat <select>. The exact per-seat click SEQUENCE is the one thing to eyeball on your
+# first headed run (the dialog is obvious on screen) — adjust add_bot_by_id() if needed.
 SEL = {
-    "login_user":  "input[name='email'], input[type='email'], #email",
-    "login_pass":  "input[name='password'], input[type='password'], #password",
-    "create_table_link": "text=创建游戏桌",
-    "game_select": "select",                       # the game-type dropdown on the create page
-    "create_btn":  "text=创建",
-    "use_id_btn":  "text=用ID指定Bot",              # per-seat "specify bot by ID"
-    "id_input":    "input[placeholder*='ID'], input[type='text']",
-    "add_btn":     "text=添加",
-    "start_btn":   "text=开始游戏",
-    "debug_toggle":"text=调试模式",
-    "log_tool":    "text=log查看工具, text=Log查看工具",
-    "captcha_box": "input[placeholder*='验证'], .captcha, #captcha",
+    "login_user":  "input[name='email']:visible, #txtEmail:visible",   # NOT #txtEmail_reg (register form)
+    "login_pass":  "input[name='password']:visible, #txtPassword:visible",
+    "create_link": "text=创建游戏桌",
+    "game_select": "select",                       # game-type / seat selects live in the dialog
+    "id_btn":      "text=ID",                       # 'specify bot by ID' button (per seat)
+    "id_input":    "input[type='text']:visible, input[placeholder*='ID']:visible",
+    "submit_btn":  "text=提交",                     # confirm the bot ID
+    "start_btn":   "text=开始对局",                  # NOT 开始游戏
+    "captcha_box": "input[placeholder*='验证']:visible, .captcha:visible, #captcha:visible",
     "cooldown_txt":"text=/冷却|稍后|频繁|too frequent|cooldown/i",
 }
-# ---------------------------------------------------------------------------
 
 
 def log(m): print(f"[{time.strftime('%H:%M:%S')}] {m}", flush=True)
 
 
+def shot(page, shots, name):
+    if shots:
+        try: page.screenshot(path=str(pathlib.Path(shots) / f"{name}.png"))
+        except Exception: pass
+
+
 def wait_for_captcha(page):
-    """If a captcha is visible, pause until the human clears it (it disappears / add succeeds)."""
     try:
         cap = page.locator(SEL["captcha_box"]).first
         if cap.count() and cap.is_visible():
-            log("🧩 CAPTCHA visible — solve it in the browser window; I'll continue automatically.")
-            while cap.is_visible():
-                time.sleep(CAPTCHA_POLL)
-            log("captcha cleared — continuing.")
+            log("🧩 CAPTCHA — solve it in the browser; I'll continue automatically.")
+            while cap.is_visible(): time.sleep(CAPTCHA_POLL)
+            log("captcha cleared.")
     except Exception:
         pass
 
 
-def login(page):
-    page.goto(BASE)
-    if not PASS:
-        log("BOTZONE_PASS not set — log in MANUALLY in the window now; press Enter here when done.")
-        input()
-        return
+def login(page, user, pw, shots):
+    page.goto(BASE); page.wait_for_timeout(2000); shot(page, shots, "01_home")
+    if not pw:
+        log("no password — log in MANUALLY in the window, then press Enter here."); input(); return
     try:
-        page.fill(SEL["login_user"], USER)
-        page.fill(SEL["login_pass"], PASS)
-        page.keyboard.press("Enter")
-        page.wait_for_timeout(2500)
-        wait_for_captcha(page)
-        log("logged in.")
+        page.fill(SEL["login_user"], user); page.fill(SEL["login_pass"], pw)
+        page.keyboard.press("Enter"); page.wait_for_timeout(2500)
+        wait_for_captcha(page); shot(page, shots, "02_after_login")
+        log("login submitted.")
     except Exception as e:
-        log(f"auto-login failed ({e}); log in MANUALLY then press Enter."); input()
+        log(f"auto-login failed ({e}); log in MANUALLY then press Enter."); shot(page, shots, "02_login_fail"); input()
 
 
-def add_bot_by_id(page, seat_idx, label, bot_id):
-    """Add one bot to a seat by ID, handling cooldown + captcha. Returns True on success."""
-    for attempt in range(20):
+def add_bot_by_id(page, i, label, bid):
+    # Per-seat: click the i-th `ID` button → fill the ID → `提交`. (Verify this sequence on your
+    # first headed run; if the dialog uses a seat <select> first, set it via SEL['game_select'].)
+    for _ in range(20):
         try:
-            page.locator(SEL["use_id_btn"]).nth(seat_idx).click(timeout=4000)
-            box = page.locator(SEL["id_input"]).last
-            box.fill(bot_id)
-            page.locator(SEL["add_btn"]).last.click(timeout=4000)
-            page.wait_for_timeout(800)
-            wait_for_captcha(page)
-            # cooldown detection
+            page.locator(SEL["id_btn"]).nth(i).click(timeout=4000)
+            page.locator(SEL["id_input"]).last.fill(bid)
+            page.locator(SEL["submit_btn"]).last.click(timeout=4000)
+            page.wait_for_timeout(800); wait_for_captcha(page)
             if page.locator(SEL["cooldown_txt"]).count():
-                log(f"⏳ add-bot cooldown — backing off {COOLDOWN_WAIT}s (NOT evading; just waiting)…")
-                time.sleep(COOLDOWN_WAIT); continue
-            log(f"  seat {seat_idx}: {label} added.")
-            return True
+                log(f"⏳ cooldown — waiting {COOLDOWN_WAIT}s (not evading)…"); time.sleep(COOLDOWN_WAIT); continue
+            log(f"  seat {i}: {label}"); return True
         except Exception as e:
-            log(f"  seat {seat_idx} add retry ({str(e)[:50]})"); page.wait_for_timeout(1500)
+            log(f"  seat {i} retry ({str(e)[:40]})"); page.wait_for_timeout(1500)
     return False
 
 
-def grab_log(page, out_dir, n):
-    """Switch to debug mode, open the log tool, copy the JSON, save it."""
-    try:
-        if page.locator(SEL["debug_toggle"]).count():
-            page.locator(SEL["debug_toggle"]).first.click(); page.wait_for_timeout(800)
-        page.locator(SEL["log_tool"]).first.click(); page.wait_for_timeout(1200)
-        # the log tool dumps JSON into a textarea / pre — grab the largest blob on the page
-        blobs = page.locator("textarea, pre").all_inner_texts()
-        js = max((b for b in blobs if b.strip().startswith(("{", "["))), key=len, default="")
-        if js:
-            p = pathlib.Path(out_dir) / f"manual_{int(time.time())}_{n}.json"
-            p.write_text(js); log(f"  saved log -> {p.name}"); return True
-    except Exception as e:
-        log(f"  log grab failed ({str(e)[:60]}) — the hourly collector will still catch this game.")
-    return False
-
-
-def create_one_game(page, out_dir, n):
-    page.goto(BASE)
-    page.locator(SEL["create_table_link"]).first.click(); page.wait_for_timeout(1500)
+def launch_one(page, n, shots):
+    page.goto(BASE); page.wait_for_timeout(1200)
+    page.locator(SEL["create_link"]).first.click(); page.wait_for_timeout(2000); shot(page, shots, f"g{n}_03_dialog")
+    # the create dialog has a game-type select + per-seat config; pick CSM if a select offers it
     try: page.locator(SEL["game_select"]).first.select_option(label=re.compile("Mahjong"))
-    except Exception:
-        try: page.locator(SEL["game_select"]).first.select_option(value=GAME)
-        except Exception: log("  ⚠ select the game type manually if not auto-selected")
-    page.locator(SEL["create_btn"]).first.click(); page.wait_for_timeout(2000)
+    except Exception: pass
+    shot(page, shots, f"g{n}_04_dialog2")
     for i, (label, bid) in enumerate(BOTS):
         if not add_bot_by_id(page, i, label, bid):
-            log(f"  could not add seat {i} ({label}); skipping this table."); return False
-    page.locator(SEL["start_btn"]).first.click(); page.wait_for_timeout(1500)
-    wait_for_captcha(page)
-    log(f"game {n}: started; waiting for it to finish…")
-    # wait for the game to end (log tool / debug toggle appears)
-    for _ in range(120):
-        if page.locator(SEL["log_tool"]).count() or page.locator(SEL["debug_toggle"]).count():
-            break
-        page.wait_for_timeout(2000)
-    grab_log(page, out_dir, n)
+            log(f"  couldn't add seat {i}; skipping table."); shot(page, shots, f"g{n}_05_addfail"); return False
+    shot(page, shots, f"g{n}_06_botsadded")
+    page.locator(SEL["start_btn"]).first.click(); page.wait_for_timeout(1500); wait_for_captcha(page)
+    shot(page, shots, f"g{n}_07_started")
+    log(f"game {n}: launched (fire-and-forget; hourly collector will harvest it).")
     return True
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--games", type=int, default=100)
-    ap.add_argument("--out", default=os.path.expanduser("~/botzone_logs"))
+    ap.add_argument("--user", default=USER_DEFAULT)
+    ap.add_argument("--pass", dest="pw", default=os.environ.get("BOTZONE_PASS", ""))
+    ap.add_argument("--shots", default="", help="dir to save per-step screenshots (debug/smoke-test)")
+    ap.add_argument("--headless", action="store_true", help="no visible browser (smoke-test only; captcha will wall it)")
     a = ap.parse_args()
-    pathlib.Path(a.out).mkdir(parents=True, exist_ok=True)
+    if a.shots: pathlib.Path(a.shots).mkdir(parents=True, exist_ok=True)
     from playwright.sync_api import sync_playwright
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=False)        # HEADED so you can solve captchas
+        browser = pw.chromium.launch(headless=a.headless)
         page = browser.new_context().new_page()
-        login(page)
+        login(page, a.user, a.pw, a.shots)
         ok = 0
         for n in range(1, a.games + 1):
             try:
-                if create_one_game(page, a.out, n): ok += 1
+                if launch_one(page, n, a.shots): ok += 1
             except Exception as e:
-                log(f"game {n} errored ({str(e)[:80]}); continuing."); page.wait_for_timeout(3000)
-            log(f"progress: {ok}/{n} created (target {a.games})")
-        log(f"DONE: {ok} games created -> {a.out}. scp them to research-os "
-            f"~/IJCAI-mahjong/others/ladder_top30_score1216/future_hourly/exactly3_top30/logs/ "
-            f"(or just let the hourly collector harvest them).")
+                log(f"game {n} errored ({str(e)[:80]})"); shot(page, a.shots, f"g{n}_ERR"); page.wait_for_timeout(3000)
+            log(f"progress: {ok}/{n} (target {a.games})")
+        log(f"DONE: launched {ok} games. The hourly collector harvests them — nothing to copy.")
         browser.close()
 
 
