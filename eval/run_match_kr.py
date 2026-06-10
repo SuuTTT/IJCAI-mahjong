@@ -117,7 +117,8 @@ class KeepRunningBot:
             except queue.Empty:
                 self.dead = True
                 raise BotStuck(f"{self.label}: no SENTINEL within {self.timeout}s")
-            if line is None:      # EOF (bot exited)
+            if line is None:      # EOF (bot exited) — mark dead so a persistent driver respawns it
+                self.dead = True
                 return "PASS"
             line = line.rstrip("\r\n")
             if line == SENTINEL:
@@ -150,10 +151,15 @@ def make_bot(spec, timeout, label=""):
     return OneShotBot(cmd, timeout, label)
 
 
-def run_match_kr(bot_specs, wall_json="", quan=0, timeout=8.0, return_log=False, labels=None):
+def run_match_kr(bot_specs, wall_json="", quan=0, timeout=8.0, return_log=False, labels=None, bots=None):
+    """bots: pass a list of 4 pre-built bots to PERSIST them across games (the bot re-inits its
+    agent on every '0 ...' INIT request, so one process plays unlimited sequential games — kills
+    the per-game model-reload that caused the 7-20/72 stuck-rate). Caller owns close() then."""
     assert len(bot_specs) == 4
     labels = labels or [f"seat{i}" for i in range(4)]
-    bots = [make_bot(s, timeout, labels[i]) for i, s in enumerate(bot_specs)]
+    own_bots = bots is None
+    if own_bots:
+        bots = [make_bot(s, timeout, labels[i]) for i, s in enumerate(bot_specs)]
     log = []
     streams = [[] for _ in range(4)]
     initdata = {}
@@ -206,8 +212,9 @@ def run_match_kr(bot_specs, wall_json="", quan=0, timeout=8.0, return_log=False,
         return {"scores": [0, 0, 0, 0], "winner": -1, "quan": initdata.get("quan", 0),
                 "stuck": True, "display": None}
     finally:
-        for b in bots:
-            b.close()
+        if own_bots:
+            for b in bots:
+                b.close()
 
 
 if __name__ == "__main__":
