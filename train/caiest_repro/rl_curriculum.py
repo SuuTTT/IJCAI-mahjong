@@ -154,7 +154,12 @@ def main():
             print(f"  [gauntlet] after {names[kmax]}: net={g:+d} NEW BEST -> saved {a.out}", flush=True)
         else:
             print(f"  [gauntlet] after {names[kmax]}: net={g:+d} (best {best:+d}, not promoted)", flush=True)
-    pool.close(); print("DONE", flush=True)
+    pool.close()
+    # ALWAYS save the final trained model (in-loop gauntlet opponents were lost in the data-loss, so
+    # gnet()=0 never promotes; we gauntlet --out externally with the real bench instead).
+    torch.save(model.net.state_dict(), a.out, _use_new_zipfile_serialization=False)
+    print(f"saved final curriculum model -> {a.out}", flush=True)
+    print("DONE", flush=True)
 
 
 if __name__ == '__main__':

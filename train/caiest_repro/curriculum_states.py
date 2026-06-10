@@ -32,7 +32,7 @@ def _winner(d):
 
 def build(out, globs, kmax=3):
     logs = []
-    for g in globs: logs += glob.glob(g)
+    for g in globs: logs += glob.glob(g, recursive=True)
     buckets = collections.defaultdict(list); seen = set()
     n_games = 0
     for path in logs:
