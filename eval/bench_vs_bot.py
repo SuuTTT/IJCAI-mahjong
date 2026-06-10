@@ -5,6 +5,10 @@ official judge (2xA + 2xB, seats rotated to cancel positional bias). Unlike comp
 against a different-architecture bot (e.g. the reproduced caiest CNN).
 
   python3 eval/bench_vs_bot.py "<cmdA>" "<cmdB>" [N] [nameA] [nameB]
+
+Robust (2026-06-09): games where a bot wedges (no SENTINEL within timeout) are now ABORTED by
+run_match_kr (stuck=True) and SKIPPED here rather than hanging the whole bench. Stuck count is
+reported; if most games are stuck the verdict is unreliable (set BENCH_DEBUG=1 to capture bot stderr).
 """
 import sys, os
 sys.path.insert(0, 'eval'); sys.path.insert(0, '.')
@@ -18,14 +22,21 @@ nameA = sys.argv[4] if len(sys.argv) > 4 else "A"
 nameB = sys.argv[5] if len(sys.argv) > 5 else "B"
 
 def bot(cmd): return {"cmd": cmd, "kr": True}
-layouts = [([0, 2], [bot(A), bot(B), bot(A), bot(B)]),
-           ([1, 3], [bot(B), bot(A), bot(B), bot(A)])]
+layouts = [([0, 2], [bot(A), bot(B), bot(A), bot(B)], [nameA, nameB, nameA, nameB]),
+           ([1, 3], [bot(B), bot(A), bot(B), bot(A)], [nameB, nameA, nameB, nameA])]
 
-sA = sB = wA = wB = draws = illA = illB = 0
+sA = sB = wA = wB = draws = illA = illB = stuck = played = 0
 for g in range(N):
-    aseats, bots = layouts[g % 2]
+    aseats, bots, labels = layouts[g % 2]
     bseats = [i for i in range(4) if i not in aseats]
-    r = run_match_kr(bots, wall_json=make_wall(int(os.environ.get("WALL_SEED_BASE", "40000")) + g), quan=0, timeout=10)
+    r = run_match_kr(bots, wall_json=make_wall(int(os.environ.get("WALL_SEED_BASE", "40000")) + g),
+                     quan=0, timeout=float(os.environ.get("BENCH_TIMEOUT", "10")), labels=labels)
+    if r.get("stuck"):
+        stuck += 1
+        if (g + 1) % 10 == 0:
+            print(f"  [{g+1}/{N}] stuck={stuck} played={played} {nameA} net={sA:+d} | {nameB} net={sB:+d}", flush=True)
+        continue
+    played += 1
     sc = r["scores"]
     for s in aseats: sA += sc[s]
     for s in bseats: sB += sc[s]
@@ -38,10 +49,13 @@ for g in range(N):
     elif w in aseats: wA += 1
     else: wB += 1
     if (g + 1) % 10 == 0:
-        print(f"  [{g+1}/{N}] {nameA} net={sA:+d} w={wA} | {nameB} net={sB:+d} w={wB} | draws={draws}", flush=True)
+        print(f"  [{g+1}/{N}] {nameA} net={sA:+d} w={wA} | {nameB} net={sB:+d} w={wB} | draws={draws} stuck={stuck}", flush=True)
 
-print(f"\n{N} games (2v2 rotated, official judge)")
+print(f"\n{N} games requested, {played} played, {stuck} stuck/skipped (2v2 rotated, official judge)")
 print(f"  {nameA}: net={sA:+d}  wins={wA}  illegal={illA}")
 print(f"  {nameB}: net={sB:+d}  wins={wB}  illegal={illB}")
-print(f"  draws={draws} ({100*draws/N:.0f}%)")
-print(f"  => {nameA if sA>sB else nameB if sB>sA else 'TIE'} stronger (net diff {sA-sB:+d})")
+print(f"  draws={draws}")
+if played:
+    print(f"  => {nameA if sA>sB else nameB if sB>sA else 'TIE'} stronger (net diff {sA-sB:+d})")
+else:
+    print("  => NO VALID GAMES (all stuck) — bench/bot protocol still broken; run with BENCH_DEBUG=1")
