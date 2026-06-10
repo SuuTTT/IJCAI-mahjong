@@ -101,10 +101,15 @@ def _load_model():
         return None, 'got_batchnorm_ckpt(need_fused)'
     for builder in (_fused_from_sd, _cnn_from_sd):
         try:
-            m = builder(sd); m.eval(); return m, 'ok:%s[%s]' % (builder.__name__, mid)
+            m = builder(sd); m.eval()
+            if os.environ.get('CAIEST_GPU') == '1' and torch.cuda.is_available():  # EVAL-only fast path
+                m = m.cuda(); globals()['_DEV'] = 'cuda'                            # (never set on Botzone)
+            return m, 'ok:%s[%s]' % (builder.__name__, mid)
         except Exception:
             continue
     return None, 'no_arch_matched_keys'
+
+_DEV = 'cpu'
 
 ENS = None                                             # inference-time mixture (P2) — highest priority if set
 _ENS_SPEC = os.environ.get('ENSEMBLE_NPZS', '')
@@ -165,10 +170,11 @@ def obs2response(obs):
         return agent.action2response(_pick(lg, obs['action_mask']))
     if model is not None:                              # primary: torch
         with torch.no_grad():
-            logits = model({'is_training': False,
-                            'obs': {'observation': torch.from_numpy(np.expand_dims(obs['observation'], 0)),
-                                    'action_mask': torch.from_numpy(np.expand_dims(obs['action_mask'], 0))}})
-        return agent.action2response(_pick(logits.detach().numpy(), obs['action_mask']))
+            ob = torch.from_numpy(np.expand_dims(obs['observation'], 0))
+            mk = torch.from_numpy(np.expand_dims(obs['action_mask'], 0))
+            if _DEV == 'cuda': ob = ob.cuda(); mk = mk.cuda()   # EVAL-only fast path
+            logits = model({'is_training': False, 'obs': {'observation': ob, 'action_mask': mk}})
+        return agent.action2response(_pick(logits.detach().cpu().numpy(), obs['action_mask']))
     if NP_MODEL is not None:                           # fallback: pure NumPy (no torch)
         lg = NP_MODEL.logits(obs['observation'], obs['action_mask'])
         return agent.action2response(_pick(lg, obs['action_mask']))

@@ -1,13 +1,4 @@
-c591bfff99cee6c737267472541ea808  caiest_cnn_bot.zip
-7e45c41309502865b824f90b41a0a537  cnn_distill100b.pkl
-df7701030e8e310e21dc2e9b7bd15cad  cnn_distill100b.npz
-9c1863e3b59923c5215b332bd483682c  cnn_v1.pkl
-15522f02841b17cb9875500c7ec3be0f  cnn_v1.npz
-66858558af23f434de20b5146e252a99  cnn_raven.pkl
-abc6fed87ad4596d57953936d7a99574  cnn_raven.npz
 db86fd5b26ca235b0e3bd19acc83167c  bot_distill100b.zip
-1bff147b8ac29d48170d7640e236f72e  bot_distill100b_np.zip
-fbf0a31dbd7bfcd36ed3e54aae1c7198  bot_raven.zip
-5933f8c4befb09257baa3e45da95f233  bot_raven_np.zip
-cfdec29993553e3916f7e45ebb643232  bot_v1.zip
-99e9a9d9f4bc4c7172065ef17cfc12d7  bot_v1_np.zip
+7e45c41309502865b824f90b41a0a537  cnn_distill100b.pkl
+ad016476208115e5cd6b1f302b697fa8  bot_lad_chunjiandu.zip
+d517e6a98e95615115e414271931dafc  cnn_lad_chunjiandu.pkl

@@ -1,18 +1,31 @@
 # Deploy Guide — IJCAI Mahjong (durable reference for every milestone)
 
+## CURRENT DEPLOYED STATE (2026-06-10): 2-bot shared-data A/B
+Botzone Storage `data/` is SHARED across all of a user's bots, so bots are differentiated by a
+`model.cfg` (one line = model filename) baked into each bot's CODE zip:
+| Bot | Code zip (md5) | model.cfg → loads | model md5 |
+|---|---|---|---|
+| A (floor) | `bot_distill100b.zip` (`db86fd5b…`) | `cnn_distill100b.pkl` | `7e45c413…` |
+| B (candidate) | `bot_lad_chunjiandu.zip` (`ad016476…`) | `cnn_lad_chunjiandu.pkl` | `d517e6a9…` |
+Both `.pkl`s live together in the shared Storage `data/`. Verify each bot picked its own model via
+the first-turn debug line `[<file> md5=…]`. **The ladder A/B between these two decides the final lock.**
+
 ## The deploy payload (in `deploy/ship/`, regenerated each milestone)
 | File | What | Upload to Botzone as | md5 |
 |---|---|---|---|
-| `caiest_cnn_bot.zip` | bot CODE (WH-fixed) | **bot source** | `064a49cbbf67674bfaacb8c3061e1a09` |
-| `cnn_v1.pkl` | V1 model (candidate) | Storage `data/cnn.pkl` | `9c1863e3b59923c5215b332bd483682c` |
-| `cnn_distill100b.pkl` | distill100b (floor) | Storage `data/cnn.pkl` | `7e45c41309502865b824f90b41a0a537` |
-`MD5SUMS.txt` ships alongside — always `md5sum -c MD5SUMS.txt` after download and after Botzone upload.
+| `caiest_cnn_bot.zip` | bot CODE (WH-fixed, no model.cfg → falls back to `cnn.pkl`) | **bot source** | `c591bfff99cee6c737267472541ea808` |
+| `bot_*.zip` | per-bot CODE (same code + `model.cfg`) | **bot source** | see `MD5SUMS.txt` |
+| `cnn_*.pkl` | models (fused, torch-1.4 legacy serialization) | Storage `data/<same name>` | see `MD5SUMS.txt` |
+`MD5SUMS.txt` is the single source of truth — regenerate it whenever ship/ changes; always
+`md5sum -c MD5SUMS.txt` after download and after Botzone upload.
 
 ## Botzone upload steps
-1. My Bots → the bot → upload `caiest_cnn_bot.zip` as the **Python source** (it has `__main__.py` at root).
-2. 用户存储空间 (Storage) → upload the chosen `*.pkl` so its path is `data/cnn.pkl` (the bot auto-loads the largest `.npz`/`.pkl` in `data/`).
-3. Smoke test: run one manual match. Expect legal play + occasional `HU`. (If it only ever PLAY/PASS, MahjongGB import failed — check the log.)
-4. For an A/B: a SECOND bot, same zip, the other `.pkl` as its Storage.
+1. My Bots → the bot → upload the bot's zip as the **Python source** (it has `__main__.py` at root).
+2. 用户存储空间 (Storage) → upload the chosen `*.pkl` keeping its filename (matching the zip's
+   `model.cfg`), or as `data/cnn.pkl` for the no-cfg fallback.
+3. Smoke test: run one manual match. Expect legal play + occasional `HU`, and check the debug line
+   shows the EXPECTED model md5. (If it only ever PLAY/PASS, MahjongGB import failed — check the log.)
+4. For an A/B: a SECOND bot with a different `model.cfg` zip — NOT a different Storage (it's shared).
 
 ---
 
