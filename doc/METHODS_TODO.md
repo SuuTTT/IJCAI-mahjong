@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-06-10)** — see `docs/HANDOFF_TO_WIN.md` (authoritative). Kept for history; contains pre-RL-verdict plans.
+
 # Methods Ledger
 ## 8-DAY COMPETITION PLAN (deadline 2026-06-14 23:55)
 Winning axis = strong SL ResNet (field-confirmed). Autonomous work strengthens the base; data lever

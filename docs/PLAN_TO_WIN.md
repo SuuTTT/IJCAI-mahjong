@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-06-10)** — see `docs/HANDOFF_TO_WIN.md` (authoritative). Kept for history; contains pre-RL-verdict plans.
+
 # Plan to Win — post-2025-gauntlet (2026-06-08, deadline 06-14 23:55)
 
 **Situation (read from results, not memory):** distill100b / V1 / champ2025 are statistically

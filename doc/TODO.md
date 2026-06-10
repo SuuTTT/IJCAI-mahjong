@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-06-10)** — see `docs/HANDOFF_TO_WIN.md` (authoritative). Kept for history; contains pre-RL-verdict plans.
+
 # IJCAI Mahjong — Roadmap & TODO
 
 Living roadmap, prioritized by ROI. Deadline 2026-06-09. Current best base = **resbn40**
