@@ -8,18 +8,19 @@ import subprocess, re, json, time
 SSH = ["ssh", "-i", "/home/ubuntu/.ssh/vastai_id_ed25519", "-p", "30497",
        "-o", "StrictHostKeyChecking=no", "-o", "ConnectTimeout=20", "root@ssh8.vast.ai"]
 
+# DECISIVE bench (2026-06-10): persistent bots, 24 g/opp, duplicate walls, stuck 4.6%.
+# lad_chunjiandu beat distill100b in 5/6 matchups (+181 net / 144 games) — 3rd independent
+# eval favoring it. Older 12-g/opp numbers below the divider are NOT comparable (noisy bench).
 GAUNTLET = [
-    {"name": "lad_chunjiandu",   "net": 1935, "stuck": 7,  "note": "chunjiandu clean v10 (BEST)"},
-    {"name": "RL league r1",     "net": 1881, "stuck": 8,  "note": "PPO+diverse pool from lad_chunjiandu — no gain (−54)"},
-    {"name": "distill100b",      "net": 1863, "stuck": 7,  "note": "SL baseline — LOCKED submission"},
+    {"name": "lad_chunjiandu",  "net": 4119, "stuck": 7, "note": "CLEAN 24g/opp — wins 5/6 matchups, +181 over floor"},
+    {"name": "distill100b",     "net": 3938, "stuck": 7, "note": "CLEAN 24g/opp — SL floor, current submission"},
+    {"name": "— older 12g/opp (noisy bench, not comparable) —", "net": 0, "stuck": 0, "note": ""},
+    {"name": "RL league r1",     "net": 1881, "stuck": 8,  "note": "PPO+diverse pool — no gain over its base"},
     {"name": "ens_big_b1.0_s77", "net": 1754, "stuck": 9,  "note": "chun_big (14.7k)"},
     {"name": "ens_union",        "net": 1736, "stuck": 12, "note": "chun+alltop30 union (80k)"},
-    {"name": "klchun_b1.0",      "net": 1683, "stuck": 10, "note": "chunjiandu v2 KL"},
-    {"name": "ens_big_b1.0_s44", "net": 1674, "stuck": 12, "note": "chun_big"},
+    {"name": "cl curriculum b03","net": 1687, "stuck": 18, "note": "curriculum RL — below SL"},
     {"name": "ens_top30recent",  "net": 1601, "stuck": 11, "note": "clean recent top-30 (depolluted)"},
     {"name": "ens_top30_b1.0",   "net": 1593, "stuck": 12, "note": "alltop30 (version-polluted)"},
-    {"name": "ens_big_b0.6_s55", "net": 1485, "stuck": 20, "note": "chun_big"},
-    {"name": "ens_top30_b0.6",   "net": 1384, "stuck": 15, "note": "alltop30 (version-polluted)"},
 ]
 
 LINE = re.compile(r"it (\d+)/(\d+) main_r=([-+0-9.]+) kl=([0-9.]+) beta=([0-9.]+) "

@@ -32,6 +32,7 @@ def main():
     ap.add_argument('--root', required=True); ap.add_argument('--ranking', required=True)
     ap.add_argument('--out'); ap.add_argument('--player', default=''); ap.add_argument('--profile', action='store_true')
     ap.add_argument('--since', default='', help='YYYY-MM-DD: skip games older than this (decode Botzone ObjectId ts) -> filter out stale bot versions')
+    ap.add_argument('--scores', action='store_true', help='also record each decision seat FINAL duplicate score (for advantage-weighted BC)')
     a = ap.parse_args()
     since_ts = 0
     if a.since:
@@ -50,7 +51,17 @@ def main():
         print(f"\n{len(c)} top-30 players over {len(logs)} games")
         return
     from collect_winners import _extract_game        # lazy (needs feature -> MahjongGB)
-    O, M, A = [], [], []; seen = set(); ng = 0; nseat = 0
+
+    def _final_scores(d):
+        """The game's final duplicate scores [s0..s3] from the last display carrying 'score'."""
+        sc = None
+        for rec in d:
+            disp = (rec.get('output') or {}).get('display') or {}
+            if isinstance(disp.get('score'), list) and len(disp['score']) == 4:
+                sc = disp['score']
+        return sc
+
+    O, M, A, W = [], [], [], []; seen = set(); ng = 0; nseat = 0
     skipped_old = 0
     for path in logs:
         mid, names = _meta(path)
@@ -67,6 +78,18 @@ def main():
         if not seats: continue
         try: d = json.load(open(path))
         except Exception: continue
+        if a.scores:                                   # per-seat extraction so each decision gets ITS seat's score
+            fs = _final_scores(d)
+            if fs is None: continue
+            got = False
+            for s in seats:
+                o, m, ac = _extract_game(d, {s})
+                if ac:
+                    O.append(np.stack(o).reshape(-1, 38, 4, 9).astype(np.int8)); M.append(np.stack(m))
+                    A.append(np.array(ac, np.int16)); W.append(np.full(len(ac), fs[s], np.float32))
+                    nseat += 1; got = True
+            if got: ng += 1
+            seen.add(mid); continue
         o, m, ac = _extract_game(d, seats)
         if ac:
             O.append(np.stack(o).reshape(-1, 38, 4, 9).astype(np.int8)); M.append(np.stack(m)); A.append(np.array(ac, np.int16))
@@ -74,8 +97,11 @@ def main():
         seen.add(mid); ng += 1
     if not O: print("no decisions extracted"); return
     obs = np.concatenate(O); mask = np.concatenate(M); act = np.concatenate(A)
-    np.savez_compressed(a.out, obs=obs, mask=mask, act=act)
-    print(f"{ng} games, {nseat} top-30 seats -> {len(act)} decisions -> {a.out}" + (f" (skipped {skipped_old} pre-{a.since})" if since_ts else ""))
+    extra = {'score': np.concatenate(W)} if W else {}
+    np.savez_compressed(a.out, obs=obs, mask=mask, act=act, **extra)
+    print(f"{ng} games, {nseat} top-30 seats -> {len(act)} decisions -> {a.out}"
+          + (f" (skipped {skipped_old} pre-{a.since})" if since_ts else "")
+          + (" [with scores]" if W else ""))
 
 if __name__ == '__main__':
     main()
