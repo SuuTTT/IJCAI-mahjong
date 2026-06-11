@@ -1,0 +1,12 @@
+[SAFE] vs 渡鸦: net=+894 played=40
+[SAFE] vs knight: net=+877 played=40
+[SAFE] vs dimaria: net=+1042 played=40
+[SAFE] vs qwqwqawawa: net=+1096 played=40
+[SAFE] vs ChloePrice: net=+1051 played=40
+[SAFE] vs QiuQiuR: net=+1018 played=40
+[PLAIN] vs 渡鸦: net=+954 played=40
+[PLAIN] vs dimaria: net=+1132 played=40
+[PLAIN] vs qwqwqawawa: net=+1134 played=40
+[PLAIN] vs knight: net=+943 played=40
+[PLAIN] vs ChloePrice: net=+1066 played=40
+[PLAIN] vs QiuQiuR: net=+1066 played=40
