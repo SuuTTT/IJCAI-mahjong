@@ -141,7 +141,7 @@ seatWind = 0
 zimo = False
 angang = None
 
-SAFE = os.environ.get('SAFE_DISCARD', '0') == '1'      # opt-in defensive discard filter (A/B only)
+SAFE = os.environ.get('SAFE_DISCARD', '0') in ('1', '2')   # opt-in defense: 1=genbutsu swap, 2=+dead-shape fold
 try:
     import safe_discard as _sd
 except Exception:
@@ -163,11 +163,27 @@ if os.environ.get('CAIEST_VNET'):
     except Exception:
         _VNET = None
 
+_PIMC = os.environ.get('CAIEST_PIMC') == '1'           # opt-in anytime opponent-aware PIMC (A/B only)
+if _PIMC:
+    try:
+        import pimc_search as _pimc
+    except Exception:
+        _PIMC = False
+
 _LAST_OBS = [None]                                     # raw obs for the rerank (set in obs2response)
 
 def _pick(lg, mask):
-    """argmax; opt-in V-search / Q-rerank of near-top DISCARDS; opt-in safe-discard filter."""
+    """argmax; opt-in PIMC / V-search / Q-rerank of near-top DISCARDS; opt-in safe-discard filter."""
     a = int(np.asarray(lg).flatten().argmax())
+    if _PIMC and agent is not None:                    # anytime opponent-aware rollout search (discards only)
+        try:
+            po = agent.OFFSET_ACT['Play']
+            if po <= a < po + 34:
+                ra = _pimc.pick_discard(agent, lg, mask, po)
+                if ra is not None:
+                    return ra                          # PIMC decides; claims/Hu still by policy
+        except Exception:
+            pass                                       # search must never break the bot
     if _VNET is not None and agent is not None and _LAST_OBS[0] is not None:
         try:
             po = agent.OFFSET_ACT['Play']
