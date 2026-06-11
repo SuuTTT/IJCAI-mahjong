@@ -6,7 +6,16 @@ file). Deadline **2026-06-14 23:55** (Botzone duplicate-format final). State log
 fabricated numbers ~7× — read every result from gauntlet/judge JSON, never from memory or a proxy,
 and trust PLAY (gauntlet/ladder) over agreement proxies (agreement has repeatedly lost to play).*
 
-## TL;DR state
+## ⛔ FINAL STATE 2026-06-11 — see `docs/ANALYSIS_2026-06-11.md` (supersedes the TL;DR below)
+**SHIP = `lad_chunjiandu`, frozen & md5-verified.** Test-time search and defense both concluded as
+honest negatives (12 nulls total): PIMC opponent-aware −129/288g; SAFE −317 and dead-shape FOLD
+−267 (each lost 6/6 held-out matchups); champion-clone (SeaMan) tied. Ground truth from 44 REAL
+ladder games (tools/ladder_report.py): draws 9% / deal-ins 16% / net −0.64/g — the in-house "89%
+draws" and "1.8% deal-in" beliefs were SELF-PLAY ARTIFACTS; state the measuring field for every
+future lever claim. Remaining decision: the pre-registered 06-13 swap rule (distill100b only if it
+leads ≥0.5/g over ≥50 real games each). Upload checklist in the 06-11 analysis doc.
+
+## TL;DR state (2026-06-10, kept for history)
 - **Submission lock (safe floor): `distill100b`** (+1863 gauntlet) — proven, currently submitted.
 - **Best candidate: `lad_chunjiandu` (+1935)** — but the margin is **inside gauntlet noise**
   (stuck-rate 7–20/72); the earlier "+530" did NOT reproduce. Not a confident win.
