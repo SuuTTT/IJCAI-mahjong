@@ -1,0 +1,12 @@
+[PIMC] vs 渡鸦: net=+505 played=20
+[PIMC] vs knight: net=+507 played=20
+[PIMC] vs qwqwqawawa: net=+508 played=20
+[PIMC] vs QiuQiuR: net=+572 played=20
+[PIMC] vs ChloePrice: net=+460 played=20
+[PIMC] vs dimaria: net=+567 played=20
+[PLAIN] vs 渡鸦: net=+563 played=20
+[PLAIN] vs QiuQiuR: net=+611 played=20
+[PLAIN] vs knight: net=+567 played=20
+[PLAIN] vs ChloePrice: net=+606 played=20
+[PLAIN] vs qwqwqawawa: net=+534 played=20
+[PLAIN] vs dimaria: net=+427 played=20
