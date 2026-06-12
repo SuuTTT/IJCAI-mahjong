@@ -172,8 +172,23 @@ if _PIMC:
 
 _LAST_OBS = [None]                                     # raw obs for the rerank (set in obs2response)
 
+# opt-in claim-aggression knob (A/B only): subtract a bias from the Pass logit when a claim
+# (Chi/Peng/Gang) is legal -> meld more often. Targets the real-field diagnosis (we are OUT-PACED
+# to completion, win rate, not win quality). Hu is never affected (mask index 1); discard turns
+# have no Pass so they are untouched. CAIEST_CLAIM_BIAS=<float, e.g. 1.0>.
+_CLAIM_BIAS = float(os.environ.get('CAIEST_CLAIM_BIAS', '0') or 0)
+
 def _pick(lg, mask):
     """argmax; opt-in PIMC / V-search / Q-rerank of near-top DISCARDS; opt-in safe-discard filter."""
+    if _CLAIM_BIAS:
+        try:
+            lgf = np.asarray(lg, dtype=np.float64).flatten().copy()
+            m = np.asarray(mask).flatten()
+            if m[0] and m[36:235].any():               # Pass legal AND some Chi/Peng/Gang legal
+                lgf[0] -= _CLAIM_BIAS
+                lg = lgf
+        except Exception:
+            pass
     a = int(np.asarray(lg).flatten().argmax())
     if _PIMC and agent is not None:                    # anytime opponent-aware rollout search (discards only)
         try:
