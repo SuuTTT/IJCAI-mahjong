@@ -13,6 +13,26 @@ import numpy as np
 import determinize as _D
 import csm_rollout as _R
 
+NET = os.environ.get('CAIEST_PIMC_NET') == '1'         # net-driven rollouts (converting policy + value leaf)
+# Self-contained deploy: if the rollout nets are bundled in data/, auto-enable net-mode (Botzone has
+# no env vars). Set CAIEST_PIMC_FAST/VAL to the bundled paths if not already given.
+_here = os.path.dirname(os.path.abspath(__file__))
+_fastp = os.path.join(_here, 'data', 'fast8.pkl')
+_valp = os.path.join(_here, 'data', 'vbig.pkl')
+if not NET and os.path.exists(_fastp) and os.path.exists(_valp):
+    NET = True
+    os.environ.setdefault('CAIEST_PIMC_FAST', _fastp)
+    os.environ.setdefault('CAIEST_PIMC_FAST_BLOCKS', '8')
+    os.environ.setdefault('CAIEST_PIMC_FAST_CH', '64')
+    os.environ.setdefault('CAIEST_PIMC_VAL', _valp)
+_NR = None
+if NET:
+    try:
+        import pimc_net_rollout as _NR
+        _NR._load()
+    except Exception:
+        NET = False
+
 BUDGET_MS = float(os.environ.get('CAIEST_PIMC_MS', '4500'))
 TOPK = int(os.environ.get('CAIEST_PIMC_K', '5'))
 DELTA = float(os.environ.get('CAIEST_PIMC_DELTA', '3.0'))
@@ -64,10 +84,13 @@ def pick_discard(agent, lg, mask, play_offset):
         # one rollout per candidate this round, each on a FRESH determinized world
         for i in cands:
             world = _D.sample_shown(my_hand, packs, shown, _RNG)
-            hands = [post[i], world['hands'][1], world['hands'][2], world['hands'][3]]
-            s = _R.rollout_once(hands, world['wall'], packs, seatwinds, prevalent,
-                                start=1, max_turns=DEPTH, rng=_RNG)
-            totals[i] += s[0]
+            if NET:
+                totals[i] += _NR.rollout_once_net(post[i], world, packs, seatwinds, prevalent)
+            else:
+                hands = [post[i], world['hands'][1], world['hands'][2], world['hands'][3]]
+                s = _R.rollout_once(hands, world['wall'], packs, seatwinds, prevalent,
+                                    start=1, max_turns=DEPTH, rng=_RNG)
+                totals[i] += s[0]
         rounds += 1
         elapsed = time.time() - t0
         if rounds >= MIN_ROUNDS and elapsed >= budget:

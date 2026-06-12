@@ -164,6 +164,12 @@ if os.environ.get('CAIEST_VNET'):
         _VNET = None
 
 _PIMC = os.environ.get('CAIEST_PIMC') == '1'           # opt-in anytime opponent-aware PIMC (A/B only)
+# self-contained deploy: bundled rollout nets in data/ auto-enable net-PIMC (no Botzone env vars)
+if not _PIMC:
+    _d = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+    if os.path.exists(os.path.join(_d, 'fast8.pkl')) and os.path.exists(os.path.join(_d, 'vbig.pkl')):
+        _PIMC = True
+        os.environ.setdefault('CAIEST_PIMC_MS', '4000')   # leave headroom under Botzone's 6s
 if _PIMC:
     try:
         import pimc_search as _pimc
