@@ -164,11 +164,15 @@ if os.environ.get('CAIEST_VNET'):
         _VNET = None
 
 _PIMC = os.environ.get('CAIEST_PIMC') == '1'           # opt-in anytime opponent-aware PIMC (A/B only)
-# self-contained deploy: bundled rollout nets in data/ auto-enable net-PIMC (no Botzone env vars)
+# self-contained deploy: bundled NUMPY rollout nets in data/ auto-enable memory-fit net-PIMC
+# (no Botzone env vars; pure-numpy so torch is never imported -> fits under 512MB).
 if not _PIMC:
     _d = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-    if os.path.exists(os.path.join(_d, 'fast8.pkl')) and os.path.exists(os.path.join(_d, 'vbig.pkl')):
+    if os.path.exists(os.path.join(_d, 'fast8.npz')) and os.path.exists(os.path.join(_d, 'vbig.npz')):
         _PIMC = True
+        os.environ.setdefault('CAIEST_PIMC_NP', '1')
+        os.environ.setdefault('CAIEST_PIMC_FAST', os.path.join(_d, 'fast8.npz'))
+        os.environ.setdefault('CAIEST_PIMC_VAL', os.path.join(_d, 'vbig.npz'))
         os.environ.setdefault('CAIEST_PIMC_MS', '4000')   # leave headroom under Botzone's 6s
 if _PIMC:
     try:
@@ -313,7 +317,16 @@ def emit(resp):
         # `debug` shows in the match log (first turn only) so you can VERIFY which model/code loaded.
         out = {"response": resp}
         if not _DBG_EMITTED[0]:
-            out["debug"] = "v=WHfix2026-06-08 " + str(MODEL_DBG)[:80]; _DBG_EMITTED[0] = True
+            try:
+                _ps = ('PIMC=on(net=%s)' % getattr(__import__('pimc_search'), 'NET', '?')) if _PIMC else 'PIMC=off'
+            except Exception as _e:
+                _ps = 'PIMC=err:%s' % str(_e)[:24]
+            try:
+                _mb = int(open('/proc/self/status').read().split('VmRSS:')[1].split()[0]) // 1024
+            except Exception:
+                _mb = -1
+            out["debug"] = "v=2026-06-12 %s rss=%dMB %s" % (_ps, _mb, str(MODEL_DBG)[:60])
+            _DBG_EMITTED[0] = True
         print(json.dumps(out), flush=True)
     else:
         print(resp, flush=True)
