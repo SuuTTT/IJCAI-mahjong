@@ -17,13 +17,12 @@ NET = os.environ.get('CAIEST_PIMC_NET') == '1'         # net-driven rollouts (co
 # Self-contained deploy: if the rollout nets are bundled in data/, auto-enable net-mode (Botzone has
 # no env vars). Set CAIEST_PIMC_FAST/VAL to the bundled paths if not already given.
 _here = os.path.dirname(os.path.abspath(__file__))
-_fastp = os.path.join(_here, 'data', 'fast8.pkl')
-_valp = os.path.join(_here, 'data', 'vbig.pkl')
+_fastp = os.path.join(_here, 'data', 'fast8.npz')
+_valp = os.path.join(_here, 'data', 'vbig.npz')
 if not NET and os.path.exists(_fastp) and os.path.exists(_valp):
     NET = True
+    os.environ.setdefault('CAIEST_PIMC_NP', '1')
     os.environ.setdefault('CAIEST_PIMC_FAST', _fastp)
-    os.environ.setdefault('CAIEST_PIMC_FAST_BLOCKS', '8')
-    os.environ.setdefault('CAIEST_PIMC_FAST_CH', '64')
     os.environ.setdefault('CAIEST_PIMC_VAL', _valp)
 _NR = None
 if NET:
