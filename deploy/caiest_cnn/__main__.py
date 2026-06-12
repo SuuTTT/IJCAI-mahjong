@@ -16,7 +16,21 @@ _HERE0 = os.path.dirname(os.path.abspath(__file__))
 # numpy-primary mode: a `numpy_only` marker baked into the zip (or env NUMPY_ONLY=1) skips torch
 # entirely -> ~91MB RSS (vs ~471MB) and ZERO torch-version risk. Plays identically (verified 0 illegal
 # vs torch). Use when the 512MB memory cap is a concern.
-_NUMPY_ONLY = os.path.exists(os.path.join(_HERE0, 'numpy_only')) or os.environ.get('NUMPY_ONLY') == '1'
+def _numpy_mode():
+    """Robust numpy-mode trigger (don't depend on a single 0-byte marker that some unzip/runtime may
+    drop). Numpy mode if ANY of: the marker file, env, model.cfg names a .npz (torch can't load it),
+    or the search net data/fast8.npz is present (PIMC always ships it)."""
+    if os.path.exists(os.path.join(_HERE0, 'numpy_only')) or os.environ.get('NUMPY_ONLY') == '1':
+        return True
+    try:
+        cfg = os.path.join(_HERE0, 'model.cfg')
+        if os.path.exists(cfg) and open(cfg).read().strip().endswith('.npz'):
+            return True
+    except Exception:
+        pass
+    return os.path.exists(os.path.join(_HERE0, 'data', 'fast8.npz'))
+
+_NUMPY_ONLY = _numpy_mode()
 if _NUMPY_ONLY:
     HAS_TORCH = False
 else:
