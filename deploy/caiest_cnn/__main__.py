@@ -17,18 +17,28 @@ _HERE0 = os.path.dirname(os.path.abspath(__file__))
 # entirely -> ~91MB RSS (vs ~471MB) and ZERO torch-version risk. Plays identically (verified 0 illegal
 # vs torch). Use when the 512MB memory cap is a concern.
 def _numpy_mode():
-    """Robust numpy-mode trigger (don't depend on a single 0-byte marker that some unzip/runtime may
-    drop). Numpy mode if ANY of: the marker file, env, model.cfg names a .npz (torch can't load it),
-    or the search net data/fast8.npz is present (PIMC always ships it)."""
-    if os.path.exists(os.path.join(_HERE0, 'numpy_only')) or os.environ.get('NUMPY_ONLY') == '1':
+    """Robust numpy-mode trigger. Searches the SAME multiple base dirs _find_model uses (Botzone's
+    __file__ dir is not always where model.cfg/data resolve). Numpy mode if ANY base has: the marker,
+    a model.cfg naming a .npz (torch can't load it), or the search net fast8.npz."""
+    if os.environ.get('NUMPY_ONLY') == '1':
         return True
-    try:
-        cfg = os.path.join(_HERE0, 'model.cfg')
-        if os.path.exists(cfg) and open(cfg).read().strip().endswith('.npz'):
-            return True
-    except Exception:
-        pass
-    return os.path.exists(os.path.join(_HERE0, 'data', 'fast8.npz'))
+    cwd = os.getcwd()
+    for base in (_HERE0, '.', cwd):
+        try:
+            if os.path.exists(os.path.join(base, 'numpy_only')):
+                return True
+            cfg = os.path.join(base, 'model.cfg')
+            if os.path.exists(cfg) and open(cfg).read().strip().lower().endswith('.npz'):
+                return True
+        except Exception:
+            pass
+    for d in (os.path.join(_HERE0, 'data'), 'data', os.path.join(cwd, 'data'), _HERE0, '.'):
+        try:
+            if os.path.exists(os.path.join(d, 'fast8.npz')):
+                return True
+        except Exception:
+            pass
+    return False
 
 _NUMPY_ONLY = _numpy_mode()
 if _NUMPY_ONLY:
@@ -77,6 +87,14 @@ def _find_model(ext='pkl'):
         cands += glob.glob(os.path.join(base, '*.' + ext))
     cands = sorted(set(cands), key=lambda p: os.path.getsize(p), reverse=True)
     return cands[0] if cands else None
+
+def _find_model_named(name):
+    """Locate a specific data file across the same base dirs _find_model uses. Returns path or None."""
+    for base in (os.path.join(_HERE, 'data'), 'data', os.path.join(os.getcwd(), 'data'), _HERE, '.'):
+        p = os.path.join(base, name)
+        if os.path.exists(p):
+            return p
+    return None
 
 def _model_id(path):
     """short, verifiable identity of the loaded weights file for the debug field."""
@@ -181,12 +199,14 @@ _PIMC = os.environ.get('CAIEST_PIMC') == '1'           # opt-in anytime opponent
 # self-contained deploy: bundled NUMPY rollout nets in data/ auto-enable memory-fit net-PIMC
 # (no Botzone env vars; pure-numpy so torch is never imported -> fits under 512MB).
 if not _PIMC:
-    _d = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-    if os.path.exists(os.path.join(_d, 'fast8.npz')) and os.path.exists(os.path.join(_d, 'vbig.npz')):
+    _fast = _find_model_named('fast8.npz')                 # robust multi-base lookup (same as _find_model)
+    _val = _find_model_named('vbig.npz')
+    if _fast and _val:
         _PIMC = True
+        os.environ.setdefault('CAIEST_PIMC_NET', '1')     # tell pimc_search to use these resolved paths
         os.environ.setdefault('CAIEST_PIMC_NP', '1')
-        os.environ.setdefault('CAIEST_PIMC_FAST', os.path.join(_d, 'fast8.npz'))
-        os.environ.setdefault('CAIEST_PIMC_VAL', os.path.join(_d, 'vbig.npz'))
+        os.environ.setdefault('CAIEST_PIMC_FAST', _fast)
+        os.environ.setdefault('CAIEST_PIMC_VAL', _val)
         os.environ.setdefault('CAIEST_PIMC_MS', '4000')   # leave headroom under Botzone's 6s
 if _PIMC:
     try:
@@ -339,7 +359,7 @@ def emit(resp):
                 _mb = int(open('/proc/self/status').read().split('VmRSS:')[1].split()[0]) // 1024
             except Exception:
                 _mb = -1
-            out["debug"] = "v=2026-06-12 %s rss=%dMB %s" % (_ps, _mb, str(MODEL_DBG)[:60])
+            out["debug"] = "v=0612c %s rss=%dMB %s" % (_ps, _mb, str(MODEL_DBG)[:60])
             _DBG_EMITTED[0] = True
         print(json.dumps(out), flush=True)
     else:
