@@ -13,3 +13,4 @@ deploy/ship/*.pkl
 others/
 data/agents2025/
 data/raw/
+train/jax_env/*.npy
