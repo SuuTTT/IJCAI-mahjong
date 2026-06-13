@@ -36,3 +36,14 @@ multi-hour training run I couldn't sanity-check unattended — training on an un
 would risk presenting garbage as progress (the exact failure this project has had). The GPU is
 therefore mostly idle this block; the responsible next step (PPO integration) wants a human to eyeball
 the first learning curves. Components are committed and ready to assemble.
+
+## VALIDATED RESULTS (2026-06-13 autonomous block)
+- Win-detection: 0 false wins / 248 wins over 131,072 self-play games (vs MahjongGB). Numpy ref 100%
+  vs MahjongGB (10k); JAX vs ref 0 mismatch (20k).
+- Reward (MCR rule): 50/52 vs real game finishes (2 = log-parse feeder ambiguity, exact in env).
+- Throughput (win-aware self-play, random policy, A4000): B=65536 -> 64.8M steps/s, 589k games/s.
+  With a policy-net forward per step the bottleneck becomes the net (~1.5M steps/s ~ 20k+ games/s),
+  still millions of self-play games/hour.
+- Known non-blocking edge: ~0.05% terminal tile-conservation glitch (bystander phantom tile; reward
+  unaffected; fix in Phase-3 step rewrite).
+- Files: agari.py, agari_jax.py, build_agari_tables.py, fan_reward.py, csm_selfplay.py, csm_validate.py.
