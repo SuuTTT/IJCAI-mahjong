@@ -1,0 +1,80 @@
+START Tue Jun 9 10:58:37 UTC 2026
+data/gaunt_ChloePrice.npz: 1617 decisions | train 1456 val 161
+/root/mahjong/caiest_repro/bc_any.py:34: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(dev == 'cuda'))
+/root/mahjong/caiest_repro/bc_any.py:53: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(dev == 'cuda')):
+ep1/12 val_acc=0.2236 (1s)
+ep2/12 val_acc=0.1304 (1s)
+ep3/12 val_acc=0.2547 (1s)
+ep4/12 val_acc=0.2981 (1s)
+ep5/12 val_acc=0.2857 (1s)
+ep6/12 val_acc=0.2733 (1s)
+ep7/12 val_acc=0.3106 (1s)
+ep8/12 val_acc=0.3168 (1s)
+ep9/12 val_acc=0.3106 (1s)
+ep10/12 val_acc=0.3230 (1s)
+ep11/12 val_acc=0.3168 (1s)
+ep12/12 val_acc=0.3106 (1s)
+DONE best_val_acc=0.3230 -> /root/mahjong/ckpt/g30_ChloePrice.pkl (fused, blocks=24)
+TRAINED ChloePrice
+data/gaunt_QiuQiuR.npz: 2145 decisions | train 1931 val 214
+/root/mahjong/caiest_repro/bc_any.py:34: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(dev == 'cuda'))
+/root/mahjong/caiest_repro/bc_any.py:53: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(dev == 'cuda')):
+ep1/12 val_acc=0.3738 (1s)
+ep2/12 val_acc=0.2617 (1s)
+ep3/12 val_acc=0.2850 (1s)
+ep4/12 val_acc=0.3224 (1s)
+ep5/12 val_acc=0.3318 (1s)
+ep6/12 val_acc=0.3178 (1s)
+ep7/12 val_acc=0.2991 (1s)
+ep8/12 val_acc=0.3084 (1s)
+ep9/12 val_acc=0.3084 (1s)
+ep10/12 val_acc=0.3178 (1s)
+ep11/12 val_acc=0.3224 (1s)
+ep12/12 val_acc=0.3224 (1s)
+DONE best_val_acc=0.3738 -> /root/mahjong/ckpt/g30_QiuQiuR.pkl (fused, blocks=24)
+TRAINED QiuQiuR
+data/gaunt_Sol1.npz: 790 decisions | train 711 val 79
+/root/mahjong/caiest_repro/bc_any.py:34: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(dev == 'cuda'))
+/root/mahjong/caiest_repro/bc_any.py:53: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(dev == 'cuda')):
+ep1/12 val_acc=0.2405 (1s)
+ep2/12 val_acc=0.2278 (0s)
+ep3/12 val_acc=0.2278 (0s)
+ep4/12 val_acc=0.1646 (0s)
+ep5/12 val_acc=0.2658 (0s)
+ep6/12 val_acc=0.2911 (0s)
+ep7/12 val_acc=0.3038 (0s)
+ep8/12 val_acc=0.2532 (0s)
+ep9/12 val_acc=0.2532 (0s)
+ep10/12 val_acc=0.2405 (0s)
+ep11/12 val_acc=0.2785 (0s)
+ep12/12 val_acc=0.2911 (0s)
+DONE best_val_acc=0.3038 -> /root/mahjong/ckpt/g30_Sol1.pkl (fused, blocks=24)
+TRAINED Sol1
+data/gaunt_benaive.npz: 2253 decisions | train 2028 val 225
+/root/mahjong/caiest_repro/bc_any.py:34: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(dev == 'cuda'))
+/root/mahjong/caiest_repro/bc_any.py:53: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(dev == 'cuda')):
+/usr/local/lib/python3.10/dist-packages/torch/optim/lr_scheduler.py:224: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+ep1/12 val_acc=0.2044 (1s)
+ep2/12 val_acc=0.1644 (1s)
+ep3/12 val_acc=0.1867 (1s)
+ep4/12 val_acc=0.2667 (1s)
+ep5/12 val_acc=0.2667 (1s)
+ep6/12 val_acc=0.2711 (1s)
+ep7/12 val_acc=0.2356 (1s)
+ep8/12 val_acc=0.2311 (1s)
+ep9/12 val_acc=0.2267 (1s)
+ep10/12 val_acc=0.2489 (1s)
+ep11/12 val_acc=0.2622 (1s)
+ep12/12 val_acc=0.2622 (1s)
+DONE best_val_acc=0.2711 -> /root/mahjong/ckpt/g30_benaive.pkl (fused, blocks=24)
+TRAINED benaive
+IMIT_ALL_DONE Tue Jun 9 10:59:29 UTC 2026

@@ -72,3 +72,27 @@ def is_seven_pairs_batch(hands, n_melds):
 
 def is_win_any_batch(hands, n_melds, suit_tab, honor_tab):
     return is_win_batch(hands, n_melds, suit_tab, honor_tab) | is_seven_pairs_batch(hands, n_melds)
+
+
+def reach_and_phi(hands, n_melds, suit_tab, honor_tab):
+    """Returns (is_win(B,), phi(B,)). phi = max over reachable (sets,pair) of (sets + 0.5*pair),
+    a dense 'completion potential' in [0,4.5] for reward shaping (4 sets + pair = 4.5 = a win)."""
+    B = hands.shape[0]; need = 4 - n_melds
+    keys = [jnp.dot(hands[:, 9 * s:9 * s + 9].astype(jnp.int64), POW5_9) for s in range(3)]
+    hk = jnp.dot(hands[:, 27:34].astype(jnp.int64), POW5_7)
+    groups = [_mask_to_sp(suit_tab[keys[s]]) for s in range(3)] + [_mask_to_sp(honor_tab[hk])]
+    R = jnp.zeros((B, 5, 2), bool).at[:, 0, 0].set(True)
+    for g in groups:
+        newR = jnp.zeros_like(R)
+        for sg in range(5):
+            for pg in range(2):
+                feas = g[:, sg, pg]
+                if sg == 0 and pg == 0:
+                    newR = newR | (R & feas[:, None, None]); continue
+                tmp = jnp.zeros_like(R).at[:, sg:5, pg:2].set(R[:, :5 - sg, :2 - pg])
+                newR = newR | (tmp & feas[:, None, None])
+        R = newR
+    bi = jnp.arange(B)
+    val = (jnp.arange(5)[:, None] + 0.5 * jnp.arange(2)[None, :])           # (5,2) value of each (s,p)
+    phi = jnp.max(jnp.where(R, val[None], -1.0), axis=(1, 2))
+    return R[bi, need, 1], phi

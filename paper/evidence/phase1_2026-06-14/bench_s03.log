@@ -1,0 +1,20 @@
+  [10/144] s03 net=-213 w=3 | lad net=+213 w=7 | draws=0 stuck=0
+  [20/144] s03 net=-104 w=10 | lad net=+104 w=10 | draws=0 stuck=0
+  [30/144] s03 net=-73 w=15 | lad net=+73 w=15 | draws=0 stuck=0
+  [40/144] s03 net=-25 w=20 | lad net=+25 w=19 | draws=1 stuck=0
+  [50/144] s03 net=-166 w=23 | lad net=+166 w=26 | draws=1 stuck=0
+  [60/144] s03 net=-331 w=25 | lad net=+331 w=33 | draws=2 stuck=0
+  [70/144] s03 net=-454 w=28 | lad net=+454 w=39 | draws=3 stuck=0
+  [80/144] s03 net=-513 w=31 | lad net=+513 w=44 | draws=5 stuck=0
+  [90/144] s03 net=-378 w=37 | lad net=+378 w=46 | draws=7 stuck=0
+  [100/144] s03 net=-255 w=44 | lad net=+255 w=49 | draws=7 stuck=0
+  [110/144] s03 net=-141 w=51 | lad net=+141 w=52 | draws=7 stuck=0
+  [120/144] s03 net=-290 w=52 | lad net=+290 w=61 | draws=7 stuck=0
+  [130/144] s03 net=-301 w=57 | lad net=+301 w=65 | draws=8 stuck=0
+  [140/144] s03 net=-297 w=62 | lad net=+297 w=69 | draws=9 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  s03: net=-317  wins=63  illegal=0
+  lad: net=+317  wins=71  illegal=0
+  draws=10
+  => lad stronger (net diff -634)

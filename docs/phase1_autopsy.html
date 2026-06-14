@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 1 Autopsy — IJCAI Chinese-Standard-Mahjong</title>
+<style>
+  :root{--bg:#0e1116;--card:#161b22;--ink:#e6edf3;--mut:#9aa7b4;--acc:#58a6ff;--good:#3fb950;--bad:#f85149;--warn:#d29922;--line:#283039}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:820px;margin:0 auto;padding:32px 20px 80px}
+  h1{font-size:2rem;line-height:1.2;margin:.2em 0}
+  h2{font-size:1.35rem;margin:2em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.3em}
+  h3{font-size:1.05rem;margin:1.6em 0 .3em;color:var(--acc)}
+  a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+  .sub{color:var(--mut);font-size:1.05rem}
+  .tag{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:.8rem;color:var(--mut);margin:2px 4px 2px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:18px 0}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.94rem}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#1b2129;color:var(--mut)}
+  code{background:#1b2129;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.88em}
+  .good{color:var(--good)}.bad{color:var(--bad)}.warn{color:var(--warn)}.mut{color:var(--mut)}
+  blockquote{border-left:3px solid var(--acc);margin:1em 0;padding:.4em 1em;color:var(--mut);background:#141a21}
+  .kicker{letter-spacing:.12em;text-transform:uppercase;font-size:.75rem;color:var(--acc)}
+  hr{border:0;border-top:1px solid var(--line);margin:2.5em 0}
+  ul{padding-left:1.2em}li{margin:.3em 0}
+  footer{color:var(--mut);font-size:.85rem;margin-top:3em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="kicker">IJCAI Chinese-Standard-Mahjong · phase-1 autopsy</p>
+<h1>What We Built, What Died, and Why</h1>
+<p class="sub">A post-mortem of Phase 1 (qualifiers → Simulation-8), written on the assumption that we do
+<em>not</em> advance to the Final. The honest version: we built a lot of good infrastructure, ran ~18
+reasonable experiments, and improved the bot by exactly one bug-fix. This is the autopsy and the plan.</p>
+<p><span class="tag">Behavior cloning</span><span class="tag">Self-play RL</span><span class="tag">PIMC</span><span class="tag">Duplicate eval</span><span class="tag">Evaluation gap</span><span class="tag">2026-06-14</span></p>
+
+<div class="card">
+<strong>TL;DR.</strong> Our supervised-learning bot <code>lad_chunjiandu</code> ranked <strong>27/38 in
+Simulation-8</strong> (net <strong class="bad">+2.39</strong>/game on the duplicate ladder). We threw the
+standard playbook at it — self-play RL (×4+), distillation (×7), model soups, value/Q search, advantage-
+weighted BC, and finally <em>imitating the strongest bots that beat us</em>. <strong>Not one robustly
+beat the SL floor.</strong> The single change that demonstrably won points across the whole campaign was a
+<em>bug fix</em>. The most valuable things we built were not models but <em>measurement</em> (a trustworthy
+duplicate-format gauntlet, a GPU self-play env, a real-field collector) and a pile of <em>well-evidenced
+negative results</em> — which is exactly the substrate for a paper. The three lessons below are the part
+worth keeping.</p>
+</div>
+
+<h2>1 · Where Phase 1 actually ended</h2>
+<p>Best model: <code>lad_chunjiandu</code> — a 40-block ResNet (128 ch) distilled from the single
+strongest coherent ladder teacher (the bot <code>chunjiandu</code>), 12× suit-augmented. It is the lock and
+the submission. Around it we shipped a pure-numpy <strong>net-PIMC</strong> search bot (<code>[Claude]aaa</code>)
+that fits Botzone's 512&nbsp;MB / ~6&nbsp;s envelope. SIM-8 result: <strong>27/38</strong>.</p>
+<p>The uncomfortable framing: the bot we submit at the end of Phase 1 is the <em>same model</em> we had at
+the start of June, plus bug fixes. Every <em>modeling</em> idea we tried either tied it or lost.</p>
+
+<h2>2 · What we built (the real deliverables)</h2>
+<p>The infrastructure outlasts the contest. This is the part to be proud of.</p>
+
+<h3>Infrastructure</h3>
+<table>
+<tr><th>Artifact</th><th>What it is</th><th>Why it matters</th></tr>
+<tr><td><strong>JAX GPU self-play env</strong></td><td>Fully-vectorized Chinese-Standard-Mahjong env; agari detection via per-suit feasibility tables (gather + tiny DP), terminal scoring by MahjongGB. <strong>Validated 0-mismatch vs the reference</strong> over 20k+ hands. ~589k games/s.</td><td>Makes self-play RL <em>throughput-possible</em> — though see Lesson 3 on whether it's <em>useful</em>.</td></tr>
+<tr><td><strong>Pure-numpy net-PIMC</strong></td><td>Opponent-aware determinized rollout search, reimplemented with zero torch (24 MB base → 139 MB total) to fit 512 MB. Anytime, never-TLE.</td><td>The deploy bot. Solved a hard memory constraint torch couldn't.</td></tr>
+<tr><td><strong>Persistent-bot duplicate gauntlet</strong></td><td>2v2 rotated, same-wall (复式) bench with persistent bot processes, thread-reader IPC, a rebuilt official C++ judge, and a played/stuck validity gate.</td><td>The <em>trustworthy yardstick</em>. Cut "stuck-noise" from 7–20/72 to ~4%. This is what let us kill bad ideas honestly.</td></tr>
+<tr><td><strong>Real-field collector</strong></td><td>Hourly + on-demand Botzone ladder/global-game collector; ObjectId-timestamp version filtering; per-bot duplicate-score ranking.</td><td>The only ground truth. Exposed that self-play beliefs were inverted (see §3).</td></tr>
+<tr><td><strong>Distill / RL toolkit</strong></td><td><code>distill_kl</code> (KL-leashed BC, AWBC), <code>fuse2bn</code>/<code>bn2fuse</code> (exact fused↔non-fused), <code>extract_top30</code> (date/player-filtered decision extraction), value/Q heads, a PFSP RL league.</td><td>Reusable for any future data drop. Rebuilt twice after data loss.</td></tr>
+</table>
+
+<h3>Algorithms tried</h3>
+<table>
+<tr><th>Approach</th><th>Verdict (vs <code>lad_chunjiandu</code>, 144g duplicate)</th></tr>
+<tr><td>SL distill from a coherent strong teacher</td><td class="good">WON — this <em>is</em> <code>lad_chunjiandu</code>, the lock</td></tr>
+<tr><td>Self-play RL (league/curriculum, β-sweeps)</td><td class="bad">NULL ×4+ — ties or collapses; exploiter win-rate ~0</td></tr>
+<tr><td>Warm-started self-play RL (Tjong path)</td><td class="warn">INFEASIBLE — forward-bound, ~50 min/iteration (measured)</td></tr>
+<tr><td>Value-of-resulting-state search rerank</td><td class="warn">+57/144g — inside the noise floor</td></tr>
+<tr><td>Q(s,a) rerank of near-top discards</td><td class="bad">NULL — policy's own ordering beats Q overrides</td></tr>
+<tr><td>Advantage-weighted BC (AWBC)</td><td class="bad">NULL — coherence beats advantage-weighting at our data scale</td></tr>
+<tr><td>Strong-teacher distill (the bots that beat us)</td><td class="bad">NULL — best (TypeC β0.3) ties; most lose; bigger data didn't help</td></tr>
+<tr><td>Champion clone, soups, 8-fan mask, defense knobs</td><td class="bad">NULL ×5+</td></tr>
+</table>
+
+<h3>The two findings that actually moved understanding</h3>
+<ul>
+<li><strong>The "win8 = 0%" wall was partly an instrumentation bug.</strong> Our RL reward called
+<code>MahjongFanCalculator(verbose=False)</code>, then summed <code>fan*count</code> — but with
+<code>verbose=False</code> the calculator returns <code>(fan, name)</code> pairs, so the product was
+<code>int × string</code> and <code>sum()</code> threw on <em>every win</em> → all wins scored 0 →
+"RL can't convert." Fixed (<code>verbose=True</code>), the warm-started policy wins ≥8-fan
+<strong>53%</strong> of the time in self-play, not 0%. <span class="mut">(Production was never affected —
+the deployed bot's fan logic was always correct.)</span> Lesson in miniature: a "scientific" null can be a
+typo.</li>
+<li><strong>Full-net warm-started RL is compute-infeasible, measured.</strong> 558 s/rollout, 5.3 s ×
+~470 minibatches/iteration ≈ <strong>50 min/iter</strong> on an A4000; a useful run needs hundreds. The
+40-block policy forward dominates every self-play step (~1.9e15 MACs/rollout). This quantifies the standing
+"RL won't be unlocked by compute" intuition into a hard number.</li>
+</ul>
+
+<h2>3 · The graveyard — and why it's the point</h2>
+<p>Eighteen-plus interventions, ~one win (a bug fix). In most projects that reads as failure. Here it is the
+<em>result</em>: it is a forensic demonstration of the <strong>evaluation gap</strong> — that in imperfect-
+information games, every in-house evaluation layer can silently invert ground truth.</p>
+<ul>
+<li><strong>Self-play artifacts.</strong> In-house self-play said 85–89% draws, 1.8% deal-ins → "conversion
+is the disease, defense is a non-lever." The real ladder: 9% draws, 16–23% deal-ins. Both conclusions
+inverted.</li>
+<li><strong>Clone-field circularity.</strong> Gauntlets vs imitations of opponents rewarded +thousands
+in-house while the real ladder said −0.6 to −6/game. Clone opponents neither convert nor punish like the
+field.</li>
+<li><strong>Agreement ≠ play — shown cleanly, twice.</strong> The champion-clone (val-acc 0.81) tied a
+rank-3 clone in play. And this session: the strong-teacher distill with the <em>highest</em> teacher-
+agreement (0.737) <em>lost the most</em> (−364/144g). Higher agreement, worse play.</li>
+<li><strong>Noise-floor illiteracy.</strong> Identical bots scatter ±537 net over 144 games. Most of our
+"effects" lived inside that band. The decisive margins were ~+181/144g — and even those were t≈1.35.</li>
+<li><strong>Harness contamination.</strong> Co-tenant CPU starvation, a stale deadlocking bench (every game
+"stuck", read as a verdict), and a remembered baseline that transferred across configs as a phantom "+4119".</li>
+</ul>
+<blockquote>The campaign's most reproducible finding is that "which model is best" is <strong>non-transitive</strong>:
+the answer flips with the opponent pool and the seating. That is not a bug in our setup — it is a property of
+the game, and it is the thesis of the paper.</blockquote>
+
+<h2>4 · Three lessons (the ones that would have changed Phase 1)</h2>
+
+<h3>Lesson 1 — Do the literature review <em>first</em>, not at hour 200</h3>
+<p>We rediscovered, the hard way, things that were already published. The clearest example:
+<strong>"Tjong: A transformer-based Mahjong AI via hierarchical decision-making and fan backward"</strong>
+(CAAI Trans. Intelligence Technology, 2024). Tjong's recipe is <em>exactly</em> the wall we spent weeks
+banging on: supervised-learn first to ~95% action accuracy, <em>then</em> RL with a <strong>"fan backward"
+reward-shaping</strong> scheme that propagates the terminal fan reward backward to densify the
+notoriously sparse 8-fan signal. That is the published answer to our <code>win8=0</code> problem. We
+independently re-derived potential-based shaping and the SL-warm-start idea — months after someone wrote
+the paper. Had we read it in week 1, we'd have started from fan-backward shaping and skipped several RL
+nulls. <strong>Action:</strong> a literature pass (Suphx, Tjong, PKU-MCR, NAGA, PIMC/IS-MCTS) is now step 0
+of any future cycle, with a one-page "what they did / what we'll borrow" per paper.</p>
+
+<h3>Lesson 2 — Mine the competition itself for intelligence, early</h3>
+<p>The Simulation rounds are a free intelligence feed and we tapped it far too late. Only at the very end did
+we rank the field from the duplicate logs and learn three things that should have shaped strategy on day&nbsp;1:</p>
+<ul>
+<li><strong>We were below our own teacher.</strong> Our deployed bot sits at +2.39; the bot we distilled from
+(<code>chunjiandu</code>) sits at +5.16. We lost ~2.8 points/game in the distillation and never noticed,
+because we never benchmarked against the teacher's <em>current</em> ladder self.</li>
+<li><strong>Several of the strongest bots are LLM-API players</strong> — <code>kimi_k2</code> (+8.63),
+<code>gpt_5_mini</code>, <code>glm_5_2</code>, <code>opus</code>. They are <em>not</em> behavior-clonable
+from a few hundred games, and their presence reframes "what is the field" entirely. We can't out-imitate a
+reasoning model with a CNN.</li>
+<li><strong>The clonable strong bots</strong> (<code>mythos</code> +9.73, <code>TypeC青雀</code> +8.02,
+<code>hhhhhhhhh</code> +7.82) we only had as scattered opponents until the last hours, when we finally
+collected their full game sets. By then there was no time to act, and the distill-toward-them experiment
+turned out null anyway.</li>
+</ul>
+<p><strong>Action:</strong> a standing "field intelligence" job from round 1 — per-bot duplicate ranking,
+version-filtered, plus a quick taxonomy (SL / RL / search / LLM) of the top 16, refreshed every Simulation.
+Know who you're chasing before you build the chase.</p>
+
+<h3>Lesson 3 — Is Mahjong a good testbed for learning-based methods? Honestly: partly.</h3>
+<p>After a full campaign, our answer is nuanced. Chinese-Standard-Mahjong is a <em>magnificent</em> testbed
+for studying <strong>evaluation</strong> and <strong>imperfect-information robustness</strong> — high variance,
+non-transitivity, a brutal 8-fan scoring cliff, and a real public ladder to falsify against. It forces honesty.</p>
+<p>But it is a <em>frustrating</em> testbed for demonstrating that learning-algorithm X beats Y:</p>
+<ul>
+<li><strong>The noise floor swamps method gains.</strong> ±537/144g for identical bots means you need huge
+sample sizes (or duplicate format, which we built) just to see a 1-point effect. Most "algorithm wins" are
+unmeasurable.</li>
+<li><strong>Sparse, cliff-shaped reward.</strong> The 8-fan floor makes the RL signal near-binary and rare;
+without published tricks (fan-backward) it doesn't train. The reward is a scoring-rule artifact, not a
+property of good play.</li>
+<li><strong>A hard imitation ceiling + dominant SL.</strong> SL beats feasible-compute RL here (we replicate
+the PKU/Suphx finding), so the "learning" story is mostly "behavior-clone the best teacher" — which caps you
+<em>at</em> the teacher and is bottlenecked by data and coherence, not by clever algorithms.</li>
+<li><strong>Eval, not modeling, is the bottleneck.</strong> We spent more engineering on <em>trusting our
+numbers</em> than on models — and that was the correct allocation.</li>
+</ul>
+<p><strong>Verdict:</strong> use Mahjong to study honest evaluation and robustness (the paper), or to ship a
+strong SL bot — but don't pick it to showcase a shiny new RL algorithm. The game will hide your signal in
+its variance, and the published SL baseline is already very hard to beat.</p>
+
+<h2>5 · The plan</h2>
+<h3>If we ever get back in the ring (contest track)</h3>
+<ol>
+<li><strong>Literature-first.</strong> Implement Tjong's fan-backward reward shaping before any RL run.</li>
+<li><strong>Small-net warm-started RL</strong> (the one feasible RL path we scoped but didn't run): distill
+the 40-block SL net into a ~64-ch/3-block net (~100× cheaper forward → seconds/iter), BC-warm-start it, then
+self-play RL with fan-backward shaping. The full net is forward-bound; a small net is the only way RL is
+even tractable on our hardware.</li>
+<li><strong>Field intelligence from round 1</strong> (Lesson 2): rank, taxonomize, and target the strongest
+<em>clonable</em> bot with a large, coherent, version-filtered dataset — not a pooled blend (coherence &gt;
+diversity held every time).</li>
+<li><strong>Close the teacher gap:</strong> we're 2.8 points below <code>chunjiandu</code>; a clean
+re-distill on its <em>current</em> ladder games may recover that for free.</li>
+</ol>
+<h3>The real output (research track)</h3>
+<p>The negative results <em>are</em> the contribution. The plan is the ToG paper —
+<strong>"The Evaluation Gap: Why In-House Benchmarks Fail to Predict Real-Field Performance in Imperfect-
+Information Games"</strong> (skeleton in <code>paper/TOG_SKELETON.md</code>, plan in
+<code>paper/PAPER_PLAN.md</code>). Core: the evaluation-gap failure taxonomy, the imitation-ceiling
+experiment, the noise-floor quantification, and a <em>verified evaluation protocol</em> + open toolkit. This
+session contributed three fresh, paper-ready pieces: the scoring-bug-as-null finding, the measured RL-
+infeasibility number, and the strong-teacher-distill null with the actual beat-us-bot data.</p>
+
+<h2>6 · Resources</h2>
+<p>Every model, dataset, tool, and log is indexed in the repo
+<a href="../README.md"><code>README.md</code></a>, with the chronological record in
+<a href="../CHANGELOG.md"><code>CHANGELOG.md</code></a> and the detailed findings in
+<a href="FINDINGS_2026-06-14.md"><code>docs/FINDINGS_2026-06-14.md</code></a>. The companion campaign log
+is <a href="index.html">"Chasing the Ceiling"</a>.</p>
+
+<footer>
+<hr>
+IJCAI-2026 Chinese-Standard-Mahjong · Phase-1 autopsy · 2026-06-14. Every number in this post traces to a
+log file in <code>paper/evidence/</code> or a bench log on the build boxes. Written in the same spirit as the
+campaign log: the honest version, including the parts where the improvements were mirages.
+</footer>
+
+</div>
+</body>
+</html>

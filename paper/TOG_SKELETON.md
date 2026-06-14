@@ -6,6 +6,12 @@ Working thesis: under in-house evaluation (self-play, clone gauntlets, agreement
 reasonable interventions passed in-house plausibility and failed reality, quantify WHY each
 evaluation layer misled, and distill a verified protocol + open toolkit.*
 
+> **See also:** [`PAPER_PLAN.md`](PAPER_PLAN.md) for submit-status per section + the minimum path to a
+> draft. New 2026-06-14 material ready to fold in: the **scoring-bug-as-null** (§4), the **measured
+> RL-infeasibility** number (§5/§8), and the **strong-teacher distill null with real beat-us-bot data**
+> (§5 — the cleanest imitation-ceiling datapoint). Details: [`../docs/FINDINGS_2026-06-14.md`](../docs/FINDINGS_2026-06-14.md);
+> autopsy: [`../docs/phase1_autopsy.html`](../docs/phase1_autopsy.html). (Intervention count is now ~18, not 12.)
+
 ## 1. Introduction
 - Setting: IJCAI Chinese-Standard-Mahjong competition (Botzone, duplicate format, 8-fan floor).
 - The practitioner's loop: idea → in-house eval → ship. Claim: every layer of that loop can

@@ -38,6 +38,9 @@
 
 <div class="card">
 <strong>TL;DR.</strong> Our strong supervised-learning bot sits at rank ~14/69. We threw the standard playbook at it — RL, distillation, model soups, more data, even imitating the actual 2025 champion. <strong>None of it robustly beats the SL floor.</strong> The single change that demonstrably won points was a <em>bug fix</em>. The most useful thing we built was not a better model but a <em>better way to measure</em> — and it revealed that "which model is best" is <strong>non-transitive</strong>: the answer flips depending on who you test against. This post is the honest version of that story, and the plan it points to.
+<br><br><strong>Update (2026-06-14):</strong> Phase 1 is over — we ranked 27/38 in Simulation-8, and the
+strong-teacher distill that might have saved it turned out null. The full post-mortem, three lessons, and
+forward plan are in the <a href="phase1_autopsy.html">Phase-1 Autopsy →</a>
 </div>
 
 <h2>The game, and the floor</h2>

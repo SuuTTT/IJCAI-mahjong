@@ -1,0 +1,22 @@
+[wait] training to finish (ep10 + pkl)...
+[done] SeaMan training complete:
+ep8/10 val_acc=0.7933 (264s)
+ep9/10 val_acc=0.8093 (265s)
+ep10/10 val_acc=0.8118 (262s)
+===== GAUNTLET A: lad_seaman (champion clone) =====
+  vs qwqwqawawa: net=-140 played=7 stuck=0
+  vs dimaria: net=-300 played=15 stuck=0
+  vs 渡鸦: net=-240 played=12 stuck=0
+  vs knight: net=-220 played=11 stuck=13
+  vs ChloePrice: net=-280 played=14 stuck=0
+  vs QiuQiuR: net=-240 played=12 stuck=0
+=== gauntlet seaman TOTAL net=-1420 (played=71 stuck=13) ===
+===== GAUNTLET B: lad_chunjiandu (current ship, SAME walls) =====
+  vs qwqwqawawa: net=-300 played=15 stuck=0
+  vs dimaria: net=-240 played=12 stuck=0
+  vs 渡鸦: net=-220 played=11 stuck=13
+  vs knight: net=-200 played=10 stuck=0
+  vs ChloePrice: net=-160 played=8 stuck=0
+  vs QiuQiuR: net=-220 played=11 stuck=0
+=== gauntlet chunbase TOTAL net=-1340 (played=67 stuck=13) ===
+SEAMAN_GAUNTLET_DONE

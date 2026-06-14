@@ -1,0 +1,18 @@
+data/seaman.npz: 176425 decisions | train 158783 val 17642
+/root/mahjong/caiest_repro/bc_any.py:34: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=(dev == 'cuda'))
+/root/mahjong/caiest_repro/bc_any.py:53: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(dev == 'cuda')):
+/usr/local/lib/python3.10/dist-packages/torch/optim/lr_scheduler.py:224: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+ep1/10 val_acc=0.4499 (337s)
+ep2/10 val_acc=0.5320 (340s)
+ep3/10 val_acc=0.6016 (343s)
+ep4/10 val_acc=0.6454 (345s)
+ep5/10 val_acc=0.6905 (331s)
+ep6/10 val_acc=0.7308 (317s)
+ep7/10 val_acc=0.7681 (264s)
+ep8/10 val_acc=0.7933 (264s)
+ep9/10 val_acc=0.8093 (265s)
+ep10/10 val_acc=0.8118 (262s)
+DONE best_val_acc=0.8118 -> /root/mahjong/ckpt/lad_seaman.pkl (fused, blocks=40)

@@ -13,7 +13,8 @@ import json, glob, os, sys, collections
 
 ROOTS = ['others/ladder_top30_score1216/future_hourly',
          'others/ladder_top30_score1216/backfill_24h',
-         'others/ladder_top30_score1216/bulk_ranked_matches']
+         'others/ladder_top30_score1216/bulk_ranked_matches',
+         'others/ladder_top30_score1216/ours_backfill']
 PATTERNS = [a.lower() for a in (sys.argv[1:] or ['wangyongyi', 'caiest'])]
 
 
