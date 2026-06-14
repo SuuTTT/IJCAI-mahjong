@@ -46,3 +46,25 @@ multi-seed confirmation (each cell is one gauntlet).
 2. Imitation benefit tracks *teacher coherence with the base*, not teacher *strength* — the imitation ceiling.
 3. Data scale can't fix an incoherent teacher.
 4. The KL-leash β has a sweet spot (0.5–0.7); too tight = no learning, too loose = drift.
+
+## REPLICATION (6 wall seeds/cell) — the single-run grid was noise-dominated
+
+The §5 grid above used ONE 144g gauntlet per cell. Re-running the key cells at 6 independent
+wall seeds collapses every effect toward zero:
+
+| cell | single-run (grid) | 6-seed mean ± sd | verdict |
+|------|------------------:|-----------------:|---------|
+| 0.5_chunjiandu (our teacher) | +459 | **+48 ± 186** | within noise |
+| 0.7_chunjiandu (our teacher) | +487 | **+23 ± 379** | within noise |
+| 0.5_mythos (strongest +9.73) | -737 | **-77 ± 283** | within noise |
+| 0.5_typec (+8.02) | +19 | **+22 ± 373** | within noise |
+| 0.5_scale_2000 | +331 | **-24 ± 201** | within noise |
+
+**Every key cell ties `lad_chunjiandu` once replicated** (all |mean| < the σ≈115 identical-bot floor,
+and the per-cell sd 186–370 shows non-identical comparisons are noisier still). The single-gauntlet
+"+459 (≈4σ)" chunjiandu lead — which a naive pipeline would have SHIPPED — is a noise artifact.
+
+**This is the paper's sharpest result:** the §6 noise floor catching a single-run false positive in
+real time. It is the evaluation-gap thesis demonstrated on our own pipeline, end to end: there is no
+re-distillation lever that beats the teacher you were distilled from; what looks like one is the noise
+floor. Confirms the campaign-wide finding that ~18 interventions all sit inside the noise band.
