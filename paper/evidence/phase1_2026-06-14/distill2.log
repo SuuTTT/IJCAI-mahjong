@@ -1,0 +1,13 @@
+beta=0.3 steps=700 | base agreement 0.679
+DONE agree=0.707 -> /root/typec_full_aw_b0.3.pkl
+  ^ typec_full beta=0.3
+beta=0.5 steps=700 | base agreement 0.679
+DONE agree=0.713 -> /root/typec_full_aw_b0.5.pkl
+  ^ typec_full beta=0.5
+beta=0.3 steps=700 | base agreement 0.683
+DONE agree=0.736 -> /root/strong5_full_aw_b0.3.pkl
+  ^ strong5_full beta=0.3
+beta=0.4 steps=700 | base agreement 0.690
+DONE agree=0.744 -> /root/mythos_full_aw_b0.4.pkl
+  ^ mythos_full beta=0.4
+CYCLE2_DONE

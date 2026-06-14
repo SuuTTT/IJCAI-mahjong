@@ -1,0 +1,20 @@
+  [10/144] cand_b05 net=-2 w=5 | lad net=+2 w=4 | draws=1 stuck=0
+  [20/144] cand_b05 net=+228 w=14 | lad net=-228 w=5 | draws=1 stuck=0
+  [30/144] cand_b05 net=+215 w=19 | lad net=-215 w=10 | draws=1 stuck=0
+  [40/144] cand_b05 net=+198 w=24 | lad net=-198 w=15 | draws=1 stuck=0
+  [50/144] cand_b05 net=+198 w=29 | lad net=-198 w=19 | draws=2 stuck=0
+  [60/144] cand_b05 net=+16 w=31 | lad net=-16 w=26 | draws=3 stuck=0
+  [70/144] cand_b05 net=-126 w=33 | lad net=+126 w=33 | draws=4 stuck=0
+  [80/144] cand_b05 net=-196 w=36 | lad net=+196 w=38 | draws=6 stuck=0
+  [90/144] cand_b05 net=-159 w=41 | lad net=+159 w=42 | draws=7 stuck=0
+  [100/144] cand_b05 net=-188 w=46 | lad net=+188 w=47 | draws=7 stuck=0
+  [110/144] cand_b05 net=+6 w=54 | lad net=-6 w=49 | draws=7 stuck=0
+  [120/144] cand_b05 net=-76 w=57 | lad net=+76 w=56 | draws=7 stuck=0
+  [130/144] cand_b05 net=-62 w=62 | lad net=+62 w=61 | draws=7 stuck=0
+  [140/144] cand_b05 net=-13 w=68 | lad net=+13 w=65 | draws=7 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  cand_b05: net=-8  wins=70  illegal=0
+  lad: net=+8  wins=67  illegal=0
+  draws=7
+  => lad stronger (net diff -16)

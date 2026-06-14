@@ -1,0 +1,3 @@
+gredux2.sh: line 13: T++352: syntax error in expression (error token is "352")
+gredux2.sh: line 13: T++234: syntax error in expression (error token is "234")
+gredux2.sh: line 13: T++249: syntax error in expression (error token is "249")

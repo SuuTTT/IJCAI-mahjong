@@ -1,0 +1,7 @@
+beta=0.3 steps=700 | base agreement 0.646
+DONE agree=0.737 -> /root/strong5_aw_b0.3.pkl
+beta=0.5 steps=700 | base agreement 0.646
+DONE agree=0.721 -> /root/strong5_aw_b0.5.pkl
+beta=1.0 steps=700 | base agreement 0.646
+DONE agree=0.702 -> /root/strong5_aw_b1.0.pkl
+ALL_DONE

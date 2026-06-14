@@ -1,0 +1,73 @@
+=== GRID dimaria2025 -> g_dimaria (18:07) ===
+data/dimaria2025.npz: 176068 decisions | train 158462 val 17606
+ep1/10 val_acc=0.4901 (170s)
+ep2/10 val_acc=0.5825 (188s)
+ep3/10 val_acc=0.6327 (194s)
+ep4/10 val_acc=0.6730 (194s)
+ep5/10 val_acc=0.7146 (194s)
+ep6/10 val_acc=0.7564 (196s)
+ep7/10 val_acc=0.7956 (195s)
+ep8/10 val_acc=0.8157 (195s)
+ep9/10 val_acc=0.8315 (195s)
+ep10/10 val_acc=0.8352 (194s)
+=== GRID pama2025 -> g_pama (18:39) ===
+data/pama2025.npz: 174946 decisions | train 157452 val 17494
+ep1/10 val_acc=0.4683 (192s)
+ep2/10 val_acc=0.5640 (193s)
+ep3/10 val_acc=0.6182 (193s)
+ep4/10 val_acc=0.6475 (194s)
+ep5/10 val_acc=0.6954 (194s)
+ep6/10 val_acc=0.7438 (193s)
+ep7/10 val_acc=0.7816 (193s)
+ep8/10 val_acc=0.8095 (193s)
+ep9/10 val_acc=0.8220 (193s)
+ep10/10 val_acc=0.8262 (192s)
+=== GRID moumou2025 -> g_moumou (19:11) ===
+data/moumou2025.npz: 176861 decisions | train 159175 val 17686
+ep1/10 val_acc=0.4527 (193s)
+ep2/10 val_acc=0.5383 (193s)
+ep3/10 val_acc=0.5973 (194s)
+ep4/10 val_acc=0.6526 (194s)
+ep5/10 val_acc=0.6955 (193s)
+ep6/10 val_acc=0.7423 (192s)
+ep7/10 val_acc=0.7778 (194s)
+ep8/10 val_acc=0.8082 (195s)
+ep9/10 val_acc=0.8253 (194s)
+ep10/10 val_acc=0.8265 (194s)
+=== GRID seaman_22k -> g_seaman22 (19:43) ===
+data/seaman_22k.npz: 22000 decisions | train 19800 val 2200
+ep1/10 val_acc=0.2855 (23s)
+ep2/10 val_acc=0.2914 (24s)
+ep3/10 val_acc=0.2991 (24s)
+ep4/10 val_acc=0.3195 (24s)
+ep5/10 val_acc=0.3232 (23s)
+ep6/10 val_acc=0.3450 (24s)
+ep7/10 val_acc=0.3568 (23s)
+ep8/10 val_acc=0.3764 (23s)
+ep9/10 val_acc=0.3786 (24s)
+ep10/10 val_acc=0.3836 (24s)
+=== GRID seaman_44k -> g_seaman44 (19:47) ===
+data/seaman_44k.npz: 44000 decisions | train 39600 val 4400
+ep1/10 val_acc=0.3025 (47s)
+ep2/10 val_acc=0.3627 (48s)
+ep3/10 val_acc=0.4070 (48s)
+ep4/10 val_acc=0.4634 (48s)
+ep5/10 val_acc=0.4884 (48s)
+ep6/10 val_acc=0.5177 (48s)
+ep7/10 val_acc=0.5464 (48s)
+ep8/10 val_acc=0.5634 (48s)
+ep9/10 val_acc=0.5766 (48s)
+ep10/10 val_acc=0.5839 (48s)
+=== GRID seaman_88k -> g_seaman88 (19:55) ===
+data/seaman_88k.npz: 88000 decisions | train 79200 val 8800
+ep1/10 val_acc=0.3493 (95s)
+ep2/10 val_acc=0.4535 (96s)
+ep3/10 val_acc=0.4991 (96s)
+ep4/10 val_acc=0.5288 (96s)
+ep5/10 val_acc=0.5962 (96s)
+ep6/10 val_acc=0.6265 (96s)
+ep7/10 val_acc=0.6534 (96s)
+ep8/10 val_acc=0.6815 (96s)
+ep9/10 val_acc=0.6984 (97s)
+ep10/10 val_acc=0.7013 (97s)
+GRID_TRAIN_DONE
