@@ -15,12 +15,12 @@ DESIGN BOUNDARIES (intentional):
 
 SETUP (your laptop):
   pip install playwright && playwright install chromium
-  python3 botzone_collect.py --games 300 --user redacted-helper@example.com --pass '...'
+  python3 botzone_collect.py --games 300 --user your-botzone-email --pass '...'
   # (or set BOTZONE_USER / BOTZONE_PASS env; --user/--pass override them — use ANY of your own accounts)
 """
 import os, sys, time, argparse, pathlib, re
 
-USER_DEFAULT = os.environ.get("BOTZONE_USER", "redacted-helper@example.com")
+USER_DEFAULT = os.environ.get("BOTZONE_USER", "")   # set BOTZONE_USER env (do not hardcode account)
 BASE = "https://botzone.org.cn/"
 GAME = "Chinese-Standard-Mahjong"
 BOTS = [                                          # (label, bot-ID) — 4 seats; edit freely
