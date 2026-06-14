@@ -11,7 +11,7 @@ can't do that. It also **waits out the add-bot cooldown** rather than evading it
 ## Run
 ```bash
 pip install playwright && playwright install chromium
-export BOTZONE_USER='1015011749@qq.com'
+export BOTZONE_USER='your-botzone-email'
 export BOTZONE_PASS='your-password'        # treat as exposed — consider rotating after
 python3 botzone_collect.py --games 300 --out ~/botzone_logs
 ```
