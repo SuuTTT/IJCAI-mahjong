@@ -4,6 +4,9 @@ An honest campaign to build a competitive Chinese-Standard-Mahjong (MCR) bot for
 contest — and, increasingly, a research artifact about **why in-house evaluation lies** in imperfect-
 information games.
 
+> 🌐 **Project page:** https://suuttt.github.io/IJCAI-mahjong/ — milestones, autopsy, campaign log, paper.
+> 🤗 **Models & data:** [HF model repo](https://huggingface.co/Dannibal/ijcai-mahjong-phase1) · [raw games dataset](https://huggingface.co/datasets/Dannibal/ijcai-mahjong-sim8-games)
+
 > **Phase-1 status (2026-06-14):** Submission is `lad_chunjiandu` + the net-PIMC bot `[Claude]aaa`.
 > Simulation-8 result: **27/38** (net +2.39/g). ~18 modeling interventions tried; the only demonstrable
 > win across the campaign was a bug fix. See the **[Phase-1 Autopsy](docs/phase1_autopsy.html)** and
