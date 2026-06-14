@@ -1,0 +1,59 @@
+0.2_chunjiandu_full 0.804 +123
+0.2_damselfish_full 0.597 -417
+0.2_mythos_full 0.738 -202
+0.2_resnet50_full 0.757 -5
+0.2_scale_2000 0.740 -260
+0.2_scale_4000 0.685 -338
+0.2_scale_8000 0.738 -494
+0.2_typec_full 0.717 -350
+0.3_chunjiandu_full 0.802 +207
+0.3_damselfish_full 0.603 +90
+0.3_mythos_full 0.741 -348
+0.3_resnet50_full 0.747 +53
+0.3_scale_16000 0.726 -333
+0.3_scale_2000 0.730 +123
+0.3_scale_4000 0.681 -252
+0.3_scale_8000 0.738 -454
+0.3_typec_full 0.718 -107
+0.5_chunjiandu_full 0.802 +459
+0.5_damselfish_full 0.585 -1
+0.5_mythos_full 0.737 -737
+0.5_resnet50_full 0.734 -102
+0.5_scale_16000 0.726 -117
+0.5_scale_2000 0.728 +331
+0.5_scale_4000 0.672 -25
+0.5_scale_8000 0.726 -117
+0.5_typec_full 0.719 +19
+0.7_chunjiandu_full 0.806 +487
+0.7_damselfish_full 0.574 +205
+0.7_mythos_full 0.729 +99
+0.7_resnet50_full 0.734 +96
+0.7_scale_16000 0.720 -217
+0.7_scale_2000 0.730 +45
+0.7_scale_4000 0.676 +195
+0.7_scale_8000 0.726 -179
+0.7_typec_full 0.706 -22
+0.9_chunjiandu_full 0.803 +180
+0.9_damselfish_full 0.575 +43
+0.9_mythos_full 0.726 -327
+0.9_resnet50_full 0.722 -11
+0.9_scale_16000 0.717 -373
+0.9_scale_2000 0.728 +128
+0.9_scale_4000 0.674 -61
+0.9_scale_8000 0.721 -433
+0.9_typec_full 0.709 -75
+1.0_chunjiandu_full 0.803 -121
+1.0_damselfish_full 0.559 +563
+1.0_mythos_full 0.724 -140
+1.0_resnet50_full 0.720 -7
+1.0_scale_16000 0.713 -133
+1.0_scale_2000 0.738 +158
+1.0_scale_4000 0.680 +403
+1.0_scale_8000 0.719 +57
+1.0_typec_full 0.706 +59
+###NOISE###
+nf_600000 net=-8
+nf_601000 net=-95
+nf_602000 net=-20
+nf_603000 net=+242
+nf_604000 net=+82
