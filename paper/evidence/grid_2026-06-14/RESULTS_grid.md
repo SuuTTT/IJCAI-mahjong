@@ -38,8 +38,10 @@ teacher. (Contrast: the coherent `chunjiandu` set helps at all sizes.)
 `chunjiandu` (our own teacher) by β: 0.2 +123 · 0.3 +207 · **0.5 +459*** · **0.7 +487*** · 0.9 +180 · 1.0 −121
 (* = outside 2σ=231). At a moderate KL leash (β0.5–0.7), distilling `lad_chunjiandu` toward `chunjiandu` beats it
 by **+459 to +487/144g (~4σ)** — recovering the ~2.8 pt/game gap we'd lost to our own teacher. β1.0 (over-leashed)
-doesn't move; low β (0.2–0.3) drifts. **This is a real, significant, shippable Round-2 candidate** — pending
-multi-seed confirmation (each cell is one gauntlet).
+doesn't move; low β (0.2–0.3) drifts. This *looked* like a real, significant, shippable Round-2 candidate
+from these single-gauntlet numbers — **but the multi-seed replication below REFUTES it** (6-seed mean +48,
+within noise). It was a false positive. Left here verbatim because the false-positive → replication arc is
+exactly the paper's point.
 
 ## Takeaways for the paper
 1. r(agreement, play) ≈ 0 on a controlled grid — agreement is not a valid model-selection signal.
