@@ -1,0 +1,20 @@
+  [10/144] c_0.5_mythos_full net=+109 w=6 | opp net=-109 w=4 | draws=0 stuck=0
+  [20/144] c_0.5_mythos_full net=+28 w=10 | opp net=-28 w=10 | draws=0 stuck=0
+  [30/144] c_0.5_mythos_full net=-9 w=14 | opp net=+9 w=15 | draws=1 stuck=0
+  [40/144] c_0.5_mythos_full net=+108 w=20 | opp net=-108 w=19 | draws=1 stuck=0
+  [50/144] c_0.5_mythos_full net=+81 w=24 | opp net=-81 w=24 | draws=2 stuck=0
+  [60/144] c_0.5_mythos_full net=+39 w=28 | opp net=-39 w=29 | draws=3 stuck=0
+  [70/144] c_0.5_mythos_full net=+55 w=33 | opp net=-55 w=34 | draws=3 stuck=0
+  [80/144] c_0.5_mythos_full net=-67 w=35 | opp net=+67 w=40 | draws=5 stuck=0
+  [90/144] c_0.5_mythos_full net=-14 w=40 | opp net=+14 w=44 | draws=6 stuck=0
+  [100/144] c_0.5_mythos_full net=-30 w=45 | opp net=+30 w=49 | draws=6 stuck=0
+  [110/144] c_0.5_mythos_full net=-109 w=49 | opp net=+109 w=55 | draws=6 stuck=0
+  [120/144] c_0.5_mythos_full net=-192 w=53 | opp net=+192 w=61 | draws=6 stuck=0
+  [130/144] c_0.5_mythos_full net=-219 w=58 | opp net=+219 w=66 | draws=6 stuck=0
+  [140/144] c_0.5_mythos_full net=-163 w=64 | opp net=+163 w=70 | draws=6 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  c_0.5_mythos_full: net=-173  wins=65  illegal=0
+  opp: net=+173  wins=71  illegal=0
+  draws=8
+  => opp stronger (net diff -346)

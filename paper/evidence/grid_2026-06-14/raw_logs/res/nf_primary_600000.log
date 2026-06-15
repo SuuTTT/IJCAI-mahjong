@@ -1,0 +1,20 @@
+  [10/144] nf_primary_600000 net=-8 w=4 | opp net=+8 w=6 | draws=0 stuck=0
+  [20/144] nf_primary_600000 net=+143 w=11 | opp net=-143 w=9 | draws=0 stuck=0
+  [30/144] nf_primary_600000 net=-44 w=15 | opp net=+44 w=14 | draws=1 stuck=0
+  [40/144] nf_primary_600000 net=-86 w=19 | opp net=+86 w=20 | draws=1 stuck=0
+  [50/144] nf_primary_600000 net=-206 w=22 | opp net=+206 w=27 | draws=1 stuck=0
+  [60/144] nf_primary_600000 net=-114 w=29 | opp net=+114 w=30 | draws=1 stuck=0
+  [70/144] nf_primary_600000 net=-54 w=35 | opp net=+54 w=34 | draws=1 stuck=0
+  [80/144] nf_primary_600000 net=-30 w=40 | opp net=+30 w=38 | draws=2 stuck=0
+  [90/144] nf_primary_600000 net=+88 w=47 | opp net=-88 w=41 | draws=2 stuck=0
+  [100/144] nf_primary_600000 net=+150 w=53 | opp net=-150 w=45 | draws=2 stuck=0
+  [110/144] nf_primary_600000 net=+27 w=56 | opp net=-27 w=52 | draws=2 stuck=0
+  [120/144] nf_primary_600000 net=+215 w=64 | opp net=-215 w=54 | draws=2 stuck=0
+  [130/144] nf_primary_600000 net=+161 w=68 | opp net=-161 w=60 | draws=2 stuck=0
+  [140/144] nf_primary_600000 net=+185 w=74 | opp net=-185 w=64 | draws=2 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  nf_primary_600000: net=+187  wins=76  illegal=0
+  opp: net=-187  wins=66  illegal=0
+  draws=2
+  => nf_primary_600000 stronger (net diff +374)

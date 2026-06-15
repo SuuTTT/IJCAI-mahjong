@@ -1,0 +1,20 @@
+  [10/144] g5_0.2_resnet50_full net=-85 w=5 | opp net=+85 w=5 | draws=0 stuck=0
+  [20/144] g5_0.2_resnet50_full net=+20 w=11 | opp net=-20 w=8 | draws=1 stuck=0
+  [30/144] g5_0.2_resnet50_full net=+98 w=17 | opp net=-98 w=12 | draws=1 stuck=0
+  [40/144] g5_0.2_resnet50_full net=+188 w=23 | opp net=-188 w=15 | draws=2 stuck=0
+  [50/144] g5_0.2_resnet50_full net=+227 w=27 | opp net=-227 w=20 | draws=3 stuck=0
+  [60/144] g5_0.2_resnet50_full net=+45 w=30 | opp net=-45 w=27 | draws=3 stuck=0
+  [70/144] g5_0.2_resnet50_full net=+71 w=36 | opp net=-71 w=31 | draws=3 stuck=0
+  [80/144] g5_0.2_resnet50_full net=+47 w=40 | opp net=-47 w=37 | draws=3 stuck=0
+  [90/144] g5_0.2_resnet50_full net=-20 w=43 | opp net=+20 w=42 | draws=5 stuck=0
+  [100/144] g5_0.2_resnet50_full net=+119 w=51 | opp net=-119 w=44 | draws=5 stuck=0
+  [110/144] g5_0.2_resnet50_full net=-22 w=54 | opp net=+22 w=51 | draws=5 stuck=0
+  [120/144] g5_0.2_resnet50_full net=+163 w=61 | opp net=-163 w=54 | draws=5 stuck=0
+  [130/144] g5_0.2_resnet50_full net=+181 w=67 | opp net=-181 w=57 | draws=6 stuck=0
+  [140/144] g5_0.2_resnet50_full net=+30 w=70 | opp net=-30 w=64 | draws=6 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  g5_0.2_resnet50_full: net=-5  wins=71  illegal=0
+  opp: net=+5  wins=66  illegal=0
+  draws=7
+  => opp stronger (net diff -10)

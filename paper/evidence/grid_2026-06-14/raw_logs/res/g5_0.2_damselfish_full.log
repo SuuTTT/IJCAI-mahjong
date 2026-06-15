@@ -1,0 +1,20 @@
+  [10/144] g5_0.2_damselfish_full net=-265 w=2 | opp net=+265 w=8 | draws=0 stuck=0
+  [20/144] g5_0.2_damselfish_full net=-254 w=6 | opp net=+254 w=13 | draws=1 stuck=0
+  [30/144] g5_0.2_damselfish_full net=-315 w=10 | opp net=+315 w=19 | draws=1 stuck=0
+  [40/144] g5_0.2_damselfish_full net=-287 w=15 | opp net=+287 w=24 | draws=1 stuck=0
+  [50/144] g5_0.2_damselfish_full net=-234 w=20 | opp net=+234 w=29 | draws=1 stuck=0
+  [60/144] g5_0.2_damselfish_full net=-202 w=24 | opp net=+202 w=34 | draws=2 stuck=0
+  [70/144] g5_0.2_damselfish_full net=-20 w=32 | opp net=+20 w=35 | draws=3 stuck=0
+  [80/144] g5_0.2_damselfish_full net=-112 w=35 | opp net=+112 w=42 | draws=3 stuck=0
+  [90/144] g5_0.2_damselfish_full net=-148 w=39 | opp net=+148 w=47 | draws=4 stuck=0
+  [100/144] g5_0.2_damselfish_full net=-190 w=43 | opp net=+190 w=53 | draws=4 stuck=0
+  [110/144] g5_0.2_damselfish_full net=-351 w=45 | opp net=+351 w=60 | draws=5 stuck=0
+  [120/144] g5_0.2_damselfish_full net=-114 w=53 | opp net=+114 w=62 | draws=5 stuck=0
+  [130/144] g5_0.2_damselfish_full net=-96 w=59 | opp net=+96 w=66 | draws=5 stuck=0
+  [140/144] g5_0.2_damselfish_full net=-269 w=61 | opp net=+269 w=73 | draws=6 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  g5_0.2_damselfish_full: net=-417  wins=62  illegal=0
+  opp: net=+417  wins=76  illegal=0
+  draws=6
+  => opp stronger (net diff -834)

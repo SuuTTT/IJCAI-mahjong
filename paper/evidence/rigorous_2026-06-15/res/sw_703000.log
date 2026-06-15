@@ -1,0 +1,20 @@
+  [10/144] sw_703000 net=+112 w=7 | opp net=-112 w=2 | draws=1 stuck=0
+  [20/144] sw_703000 net=-9 w=10 | opp net=+9 w=8 | draws=2 stuck=0
+  [30/144] sw_703000 net=+108 w=16 | opp net=-108 w=12 | draws=2 stuck=0
+  [40/144] sw_703000 net=-89 w=17 | opp net=+89 w=21 | draws=2 stuck=0
+  [50/144] sw_703000 net=-227 w=20 | opp net=+227 w=28 | draws=2 stuck=0
+  [60/144] sw_703000 net=-65 w=28 | opp net=+65 w=30 | draws=2 stuck=0
+  [70/144] sw_703000 net=-58 w=34 | opp net=+58 w=34 | draws=2 stuck=0
+  [80/144] sw_703000 net=-51 w=38 | opp net=+51 w=40 | draws=2 stuck=0
+  [90/144] sw_703000 net=+91 w=45 | opp net=-91 w=43 | draws=2 stuck=0
+  [100/144] sw_703000 net=+28 w=50 | opp net=-28 w=48 | draws=2 stuck=0
+  [110/144] sw_703000 net=-103 w=52 | opp net=+103 w=56 | draws=2 stuck=0
+  [120/144] sw_703000 net=-147 w=57 | opp net=+147 w=61 | draws=2 stuck=0
+  [130/144] sw_703000 net=-151 w=62 | opp net=+151 w=66 | draws=2 stuck=0
+  [140/144] sw_703000 net=-216 w=65 | opp net=+216 w=73 | draws=2 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  sw_703000: net=-270  wins=66  illegal=0
+  opp: net=+270  wins=76  illegal=0
+  draws=2
+  => opp stronger (net diff -540)

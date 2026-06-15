@@ -1,0 +1,20 @@
+  [10/144] g_mythos_full_653000 net=-193 w=2 | opp net=+193 w=7 | draws=1 stuck=0
+  [20/144] g_mythos_full_653000 net=-378 w=5 | opp net=+378 w=14 | draws=1 stuck=0
+  [30/144] g_mythos_full_653000 net=-432 w=9 | opp net=+432 w=20 | draws=1 stuck=0
+  [40/144] g_mythos_full_653000 net=-485 w=13 | opp net=+485 w=26 | draws=1 stuck=0
+  [50/144] g_mythos_full_653000 net=-367 w=19 | opp net=+367 w=29 | draws=2 stuck=0
+  [60/144] g_mythos_full_653000 net=-455 w=22 | opp net=+455 w=36 | draws=2 stuck=0
+  [70/144] g_mythos_full_653000 net=-432 w=26 | opp net=+432 w=42 | draws=2 stuck=0
+  [80/144] g_mythos_full_653000 net=-508 w=29 | opp net=+508 w=48 | draws=3 stuck=0
+  [90/144] g_mythos_full_653000 net=-641 w=32 | opp net=+641 w=55 | draws=3 stuck=0
+  [100/144] g_mythos_full_653000 net=-666 w=38 | opp net=+666 w=59 | draws=3 stuck=0
+  [110/144] g_mythos_full_653000 net=-584 w=45 | opp net=+584 w=62 | draws=3 stuck=0
+  [120/144] g_mythos_full_653000 net=-461 w=52 | opp net=+461 w=65 | draws=3 stuck=0
+  [130/144] g_mythos_full_653000 net=-456 w=57 | opp net=+456 w=70 | draws=3 stuck=0
+  [140/144] g_mythos_full_653000 net=-345 w=63 | opp net=+345 w=73 | draws=4 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  g_mythos_full_653000: net=-475  wins=63  illegal=0
+  opp: net=+475  wins=77  illegal=0
+  draws=4
+  => opp stronger (net diff -950)

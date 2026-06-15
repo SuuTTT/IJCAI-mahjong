@@ -1,0 +1,20 @@
+  [10/144] g5_0.2_typec_full net=-100 w=4 | opp net=+100 w=6 | draws=0 stuck=0
+  [20/144] g5_0.2_typec_full net=-77 w=8 | opp net=+77 w=11 | draws=1 stuck=0
+  [30/144] g5_0.2_typec_full net=-99 w=13 | opp net=+99 w=16 | draws=1 stuck=0
+  [40/144] g5_0.2_typec_full net=-117 w=18 | opp net=+117 w=21 | draws=1 stuck=0
+  [50/144] g5_0.2_typec_full net=-88 w=23 | opp net=+88 w=26 | draws=1 stuck=0
+  [60/144] g5_0.2_typec_full net=-323 w=24 | opp net=+323 w=34 | draws=2 stuck=0
+  [70/144] g5_0.2_typec_full net=-179 w=31 | opp net=+179 w=36 | draws=3 stuck=0
+  [80/144] g5_0.2_typec_full net=-213 w=35 | opp net=+213 w=42 | draws=3 stuck=0
+  [90/144] g5_0.2_typec_full net=-334 w=39 | opp net=+334 w=48 | draws=3 stuck=0
+  [100/144] g5_0.2_typec_full net=-320 w=44 | opp net=+320 w=53 | draws=3 stuck=0
+  [110/144] g5_0.2_typec_full net=-458 w=47 | opp net=+458 w=60 | draws=3 stuck=0
+  [120/144] g5_0.2_typec_full net=-234 w=55 | opp net=+234 w=62 | draws=3 stuck=0
+  [130/144] g5_0.2_typec_full net=-313 w=58 | opp net=+313 w=67 | draws=5 stuck=0
+  [140/144] g5_0.2_typec_full net=-358 w=61 | opp net=+358 w=73 | draws=6 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  g5_0.2_typec_full: net=-350  wins=63  illegal=0
+  opp: net=+350  wins=74  illegal=0
+  draws=7
+  => opp stronger (net diff -700)

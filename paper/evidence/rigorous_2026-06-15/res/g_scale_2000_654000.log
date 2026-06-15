@@ -1,0 +1,20 @@
+  [10/144] g_scale_2000_654000 net=+119 w=5 | opp net=-119 w=5 | draws=0 stuck=0
+  [20/144] g_scale_2000_654000 net=+42 w=8 | opp net=-42 w=12 | draws=0 stuck=0
+  [30/144] g_scale_2000_654000 net=-35 w=12 | opp net=+35 w=18 | draws=0 stuck=0
+  [40/144] g_scale_2000_654000 net=+89 w=18 | opp net=-89 w=21 | draws=1 stuck=0
+  [50/144] g_scale_2000_654000 net=+174 w=25 | opp net=-174 w=24 | draws=1 stuck=0
+  [60/144] g_scale_2000_654000 net=+211 w=29 | opp net=-211 w=27 | draws=4 stuck=0
+  [70/144] g_scale_2000_654000 net=+281 w=35 | opp net=-281 w=31 | draws=4 stuck=0
+  [80/144] g_scale_2000_654000 net=+146 w=38 | opp net=-146 w=38 | draws=4 stuck=0
+  [90/144] g_scale_2000_654000 net=+68 w=41 | opp net=-68 w=44 | draws=5 stuck=0
+  [100/144] g_scale_2000_654000 net=+140 w=46 | opp net=-140 w=48 | draws=6 stuck=0
+  [110/144] g_scale_2000_654000 net=+322 w=53 | opp net=-322 w=51 | draws=6 stuck=0
+  [120/144] g_scale_2000_654000 net=+213 w=57 | opp net=-213 w=57 | draws=6 stuck=0
+  [130/144] g_scale_2000_654000 net=+8 w=59 | opp net=-8 w=65 | draws=6 stuck=0
+  [140/144] g_scale_2000_654000 net=+144 w=65 | opp net=-144 w=69 | draws=6 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  g_scale_2000_654000: net=+167  wins=68  illegal=0
+  opp: net=-167  wins=70  illegal=0
+  draws=6
+  => g_scale_2000_654000 stronger (net diff +334)

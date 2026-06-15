@@ -1,0 +1,20 @@
+  [10/144] c_0.7_chunjiandu_full net=-17 w=5 | opp net=+17 w=5 | draws=0 stuck=0
+  [20/144] c_0.7_chunjiandu_full net=-146 w=8 | opp net=+146 w=11 | draws=1 stuck=0
+  [30/144] c_0.7_chunjiandu_full net=-68 w=14 | opp net=+68 w=14 | draws=2 stuck=0
+  [40/144] c_0.7_chunjiandu_full net=+19 w=20 | opp net=-19 w=18 | draws=2 stuck=0
+  [50/144] c_0.7_chunjiandu_full net=+90 w=26 | opp net=-90 w=22 | draws=2 stuck=0
+  [60/144] c_0.7_chunjiandu_full net=+137 w=32 | opp net=-137 w=26 | draws=2 stuck=0
+  [70/144] c_0.7_chunjiandu_full net=-145 w=33 | opp net=+145 w=34 | draws=3 stuck=0
+  [80/144] c_0.7_chunjiandu_full net=-406 w=33 | opp net=+406 w=44 | draws=3 stuck=0
+  [90/144] c_0.7_chunjiandu_full net=-437 w=38 | opp net=+437 w=48 | draws=4 stuck=0
+  [100/144] c_0.7_chunjiandu_full net=-471 w=43 | opp net=+471 w=53 | draws=4 stuck=0
+  [110/144] c_0.7_chunjiandu_full net=-299 w=51 | opp net=+299 w=55 | draws=4 stuck=0
+  [120/144] c_0.7_chunjiandu_full net=-280 w=57 | opp net=+280 w=59 | draws=4 stuck=0
+  [130/144] c_0.7_chunjiandu_full net=-297 w=61 | opp net=+297 w=64 | draws=5 stuck=0
+  [140/144] c_0.7_chunjiandu_full net=-252 w=67 | opp net=+252 w=68 | draws=5 stuck=0
+
+144 games requested, 144 played, 0 stuck/skipped (2v2 rotated, official judge, persistent bots)
+  c_0.7_chunjiandu_full: net=-344  wins=68  illegal=0
+  opp: net=+344  wins=71  illegal=0
+  draws=5
+  => opp stronger (net diff -688)
