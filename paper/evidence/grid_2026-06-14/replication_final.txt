@@ -1,0 +1,8 @@
+=== REPLICATION (multi wall-seed gauntlets vs lad_chunjiandu) ===
+0.5_chunjiandu_full: n=6 mean=+48 sd=186  [-144, -98, -52, -17, 238, 364]
+0.5_mythos_full: n=6 mean=-77 sd=283  [-528, -173, -170, -52, 41, 419]
+0.5_scale_2000: n=6 mean=-24 sd=201  [-306, -181, -146, 92, 129, 271]
+0.5_typec_full: n=6 mean=+22 sd=373  [-520, -365, -86, 292, 332, 481]
+0.7_chunjiandu_full: n=6 mean=+23 sd=379  [-387, -344, -220, 145, 268, 675]
+
+=== TOTALS === grid cells g5=54 | noise samples=5 sd=236
