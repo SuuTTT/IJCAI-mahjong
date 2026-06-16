@@ -1,0 +1,12 @@
+/usr/local/lib/python3.12/dist-packages/jax/_src/ops/scatter.py:104: FutureWarning: scatter inputs have incompatible types: cannot safely cast value from dtype=int32 to dtype=int8 with jax_numpy_dtype_promotion=standard. In future JAX releases this will result in an error.
+  warnings.warn(
+/usr/local/lib/python3.12/dist-packages/jax/_src/numpy/array_methods.py:125: UserWarning: Explicitly requested dtype int64 requested in astype is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/jax-ml/jax#current-gotchas for more.
+  return lax_numpy.astype(self, dtype, copy=copy, device=device)
+it0 win8=12.30% draw=71% rew=+0.27 ent=1.92 kl=0.131 vl=110.1 2g/s
+it5 win8=9.08% draw=83% rew=+0.26 ent=2.09 kl=0.224 vl=75.6 2g/s
+it10 win8=11.13% draw=77% rew=+0.32 ent=1.87 kl=0.162 vl=74.8 2g/s
+it15 win8=11.52% draw=79% rew=+0.30 ent=2.19 kl=0.216 vl=48.6 2g/s
+it20 win8=11.23% draw=81% rew=+0.32 ent=2.00 kl=0.162 vl=43.9 2g/s
+it25 win8=7.71% draw=85% rew=+0.22 ent=2.17 kl=0.154 vl=18.9 2g/s
+it30 win8=9.86% draw=82% rew=+0.30 ent=2.35 kl=0.189 vl=100.4 2g/s
+it35 win8=11.62% draw=78% rew=+0.37 ent=2.04 kl=0.231 vl=159.6 2g/s
