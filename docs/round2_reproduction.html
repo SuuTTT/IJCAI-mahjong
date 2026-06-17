@@ -53,7 +53,16 @@ Bigger is sometimes worse.</p>
 <tr><td><b>DefendPolicy</b> (Rouxqdd #1) — deal-in danger head + defensive discard rerank</td>
     <td class="pos">Yes: deal-in <b>AUC 0.85</b>; rerank +4/game vs its own control (&lambda;=16), 0 illegal</td>
     <td class="neg">No: &minus;21 / game</td></tr>
+<tr><td><b>moyu-distill + defense</b> (the last lever) — distill moyu into a net <em>with</em> the defense head, then rerank</td>
+    <td>distill reaches <b>0.887 agreement with moyu</b></td>
+    <td class="neg">No: &minus;19 / game (defense inert)</td></tr>
 </table>
+<div class="key"><strong>The sharpest single result.</strong> The final attempt distilled moyu directly, hoping for a
+moyu-strength base to apply the defense lever on. It reached <strong>88.7% action-agreement with moyu</strong> &mdash;
+and still lost <strong>&minus;19/game</strong>. You cannot distill your way to moyu: an 88.7%-agreeing student
+captures the easy discards but loses on the ~11% high-leverage decisions that decide games. moyu's strength is the
+full 40-block net + chunjiandu specialization + NET-PIMC search, not a copyable policy. <em>Agreement &ne; play</em>,
+at its starkest &mdash; and the explanation for the entire campaign.</div>
 
 <div class="key"><strong>The unifying result.</strong> Every mechanism genuinely works when reproduced faithfully —
 fan-backward raises fan-per-win, the defense head predicts deal-in at AUC 0.85, the rerank measurably helps.
