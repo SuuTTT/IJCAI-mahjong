@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Round 2: Faithfully Reproducing the Field SOTA — and Why moyu Still Wins</title>
+<style>
+ body{max-width:820px;margin:40px auto;padding:0 18px;font:16px/1.65 -apple-system,Segoe UI,Roboto,sans-serif;color:#1a1a1a}
+ h1{font-size:1.7em;line-height:1.25} h2{margin-top:1.8em;border-bottom:1px solid #eee;padding-bottom:4px}
+ code{background:#f4f4f4;padding:1px 5px;border-radius:3px;font-size:.92em}
+ table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.93em} th,td{border:1px solid #ddd;padding:6px 9px;text-align:left}
+ th{background:#fafafa} .sub{color:#666} .key{background:#fff8e1;padding:12px 14px;border-left:4px solid #f5b400;margin:1.2em 0}
+ .neg{color:#b00} .pos{color:#070} a{color:#1257a8}
+</style></head><body>
+
+<p class="sub"><a href="index.html">&larr; Campaign hub</a> · 2026-06-17</p>
+<h1>Round 2: Faithfully Reproducing the Field SOTA — and Why <code>moyu</code> Still Wins</h1>
+<p class="sub">We qualified for the IJCAI-2026 Chinese-Standard-Mahjong final (Round 1: rank 11/16). For Round 2
+(July 7) a new bot may be submitted. This is the honest record of trying to build one that beats our own
+champion <code>moyu</code> — by faithfully reproducing the published top-bot methods — and failing, credibly.</p>
+
+<h2>The honest starting point</h2>
+<p>Our earlier "RL is a dead end" verdict was based on an <em>approximation</em>, not the published recipes.
+Challenged on it ("have you actually reproduced Tjong?"), the honest answer was <strong>no</strong>. So we
+reproduced them properly. First, the base.</p>
+
+<h2>The base: SL from the official corpus (the pivot)</h2>
+<p>Distilling <code>moyu</code> into new architectures is imitation-ceiling-bound (an SE clone lost
+<strong>0&ndash;1 of 80</strong> games to moyu). The fix — the recipe the #1 field bots use — is supervised
+learning <em>from scratch</em> on the full official data. We built and <strong>verified</strong> a preprocessor
+that replays the 98,209-game official record through the deploy feature encoder:
+<strong>5,126,868 (38&times;4&times;9) decisions, 100% legal, 0 errors</strong> (and found+fixed a real
+<code>response2action</code> Chi-encoding bug along the way).</p>
+<p>From-scratch SE-ResNets reach <strong>~0.90 next-action agreement</strong> — near Tjong's reported 94.6%.
+But agreement is not play:</p>
+<table><tr><th>SL net (val-acc)</th><th>vs moyu, 320 games</th></tr>
+<tr><td>SE 128&times;28 (0.901)</td><td class="neg">&minus;10.1 / game</td></tr>
+<tr><td>SE 192&times;24 (0.906, best val)</td><td class="neg">&minus;13.8 / game</td></tr>
+<tr><td>SE 128&times;40 (0.904)</td><td class="neg">&minus;14.6 / game</td></tr>
+<tr><td>SE 256&times;12 (0.905)</td><td class="neg">&minus;16.2 / game</td></tr></table>
+<p><strong>The SL ceiling is not a capacity problem</strong> — every architecture, at every size, loses to moyu.
+Bigger is sometimes worse.</p>
+
+<h2>The faithful reproductions</h2>
+<p>Three published methods, implemented properly this time, each measured head-to-head vs moyu:</p>
+<table>
+<tr><th>Method (source)</th><th>Mechanism works?</th><th>Beats moyu?</th></tr>
+<tr><td><b>Fan-backward</b> (Tjong) — propagate the real winning fan backward, fan-weighted</td>
+    <td class="pos">Yes: <code>mean_fan</code> 16.2&rarr;17.3 (policy builds higher-fan hands); win8 ~neutral</td>
+    <td class="neg">No: RL output &minus;12 to &minus;13 / game</td></tr>
+<tr><td><b>RL hyperparameter sweep</b> — KL-leash, LR, shaping (6 configs)</td>
+    <td>&mdash;</td><td class="neg">No: all 6 <em>degrade</em> the base</td></tr>
+<tr><td><b>Transformer</b> (Tjong architecture) — CNN-stem + attention</td>
+    <td>trains</td><td class="neg">No: val 0.83 &lt; CNN 0.90 (weaker base)</td></tr>
+<tr><td><b>DefendPolicy</b> (Rouxqdd #1) — deal-in danger head + defensive discard rerank</td>
+    <td class="pos">Yes: deal-in <b>AUC 0.85</b>; rerank +4/game vs its own control (&lambda;=16), 0 illegal</td>
+    <td class="neg">No: &minus;21 / game</td></tr>
+</table>
+
+<div class="key"><strong>The unifying result.</strong> Every mechanism genuinely works when reproduced faithfully —
+fan-backward raises fan-per-win, the defense head predicts deal-in at AUC 0.85, the rerank measurably helps.
+But each operates on a <em>base policy weaker than moyu</em>, and adjusts only at the margin (+4/game defense,
+&plusmn;2/game fan) — nowhere near moyu's 10&ndash;25/game base-strength lead. moyu's lineage
+(BC &rarr; PBT-champion &rarr; distill-chunjiandu &rarr; NET-PIMC) yields a stronger base than official-data SL
+plus any of these methods. The only route to a moyu-strength base via RL is full-net RL, which is
+compute-infeasible (~50 min/iteration) — the wall this project has hit from the start.</div>
+
+<h2>Why this is a <em>credible</em> null, not a lazy one</h2>
+<ul>
+<li>The data pipeline is verified (legality 100%, a real bug found), not assumed.</li>
+<li>Every claim is a head-to-head gauntlet under a noise-floor-aware protocol (240&ndash;320 games, duplicate
+walls, thread-pinned bots, 0 illegal), not an agreement proxy &mdash; the project's iron lesson is
+<em>agreement &ne; play</em>, reconfirmed here (0.90 val nets lose by 10+/game).</li>
+<li>The published <em>mechanisms</em> reproduce (fan rises, danger is predicted) &mdash; so the null is "these
+methods don't overcome moyu's base here," not "we implemented them wrong."</li>
+</ul>
+
+<h2>Decision for Round 2</h2>
+<p><strong><code>moyu</code> is the submission.</strong> It is the strongest bot we have, robust (0 illegal across
+thousands of games), and nothing built from the official data + the published methods beats it past the noise
+floor. The negative result is the contribution: a faithful, fully-logged demonstration that the field's
+published levers (fan-backward, transformer policy, defense head) are <em>real and functional</em> but
+insufficient to top a strong, search-augmented, specialization-distilled base &mdash; the Evaluation Gap thesis,
+made concrete.</p>
+
+<p class="sub">Artifacts: verified preprocessor + 5.13M-decision corpus, SE/transformer/DefendPolicy nets,
+fan-backward RL implementation, all gauntlet logs. See the <a href="index.html">hub</a> and
+<a href="phase1_autopsy.html">Phase-1 Autopsy</a>.</p>
+</body></html>
