@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Not to Fool Yourself — IJCAI Mahjong</title>
+<style>
+  :root{--bg:#0e1116;--card:#161b22;--ink:#e6edf3;--mut:#9aa7b4;--acc:#58a6ff;--good:#3fb950;--bad:#f85149;--warn:#d29922;--line:#283039}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:780px;margin:0 auto;padding:32px 20px 80px}
+  h1{font-size:2rem;line-height:1.15;margin:.2em 0}
+  h2{font-size:1.3rem;margin:1.8em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.3em}
+  a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+  .sub{color:var(--mut);font-size:1.05rem}
+  .kicker{letter-spacing:.12em;text-transform:uppercase;font-size:.75rem;color:var(--acc)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:18px 0}
+  code{background:#1b2129;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.88em}
+  .good{color:var(--good)}.bad{color:var(--bad)}.mut{color:var(--mut)}
+  ul{padding-left:1.2em}li{margin:.4em 0}
+  footer{color:var(--mut);font-size:.85rem;margin-top:3em;border-top:1px solid var(--line);padding-top:1em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="kicker">IJCAI 2026 · Chinese-Standard-Mahjong · 2026-06-23</p>
+<h1>How Not to Fool Yourself</h1>
+<p class="sub">Verification discipline &amp; reproducibility in a competition-bot campaign. <a href="index.html">← back to project</a></p>
+
+<div class="card"><strong>TL;DR.</strong> Over a months-long campaign we produced roughly <strong>nine results that
+looked like wins and weren't</strong>. The most valuable thing we built was not a model — it was the
+<strong>discipline that caught them</strong>, plus the <strong>reproducibility</strong> that let us trust,
+rebuild, and back up what we had. Two halves of <em>not fooling yourself</em>: a gate that survives
+replication, and a setup that survives a disk wipe.</div>
+
+<h2>Part 1 — The verification gate (a single test lies)</h2>
+<p>Our recurring failure mode has a name here: <strong>the proxy that reverses.</strong> A change looks great
+on a cheap metric, then evaporates the moment you measure what you care about:</p>
+<ul>
+<li><b>Held-out accuracy ≠ play strength.</b> A 256-channel imitation scored <b>0.767 top-1 vs the
+incumbent's 0.736</b> — then <span class="bad">lost by ~37 pts/game</span> head-to-head. The highest-accuracy
+architecture we tried didn't win more games.</li>
+<li><b>"+2.3/g" → <span class="bad">−10/g</span>.</b> A best-response RL run looked positive at small N; at
+large N it was ten points/game below baseline.</li>
+<li><b>The no-op that scored exactly 0.000.</b> A "tie" to the decimal — because a deploy bug silently loaded
+the <em>base</em> weights. The A/B was fake; the giveaway was an edge of <em>exactly</em> zero.</li>
+<li><b>+1.78/g that dissolved under replication.</b> Our latest "first thing to beat the incumbent" held at
++1.78/g on one seed family — then, across sibling models, scattered from −11 to +1.7, centered near parity,
+seat-asymmetric. The positives were the lucky tail.</li>
+</ul>
+<p>What stops these from reaching a conclusion is a gate built to be <strong>hard to fool</strong>:</p>
+<ul>
+<li><b>Bias-correction, calibrated to zero.</b> Duplicate self-play (same shuffles, seats rotated) minus a
+matched incumbent-vs-incumbent run on identical walls. Non-negotiable: <b>incumbent-vs-itself must read +0.000/g.</b></li>
+<li><b>A no-op-trap proof every run</b> — distinct weight hash, param count, non-zero behavioral diff. An exact
+0.000 edge is a bug, not a tie.</li>
+<li><b>Two seed families, both must pass</b> — kills the "+3.1 in one family, −2.4 in the other" artifact.</li>
+<li><b>Per-seat reporting</b> — +6 in seat A and −2 in seat B is a coin flip, not a +2 candidate.</li>
+<li><b>Replication over cherry-picking</b> — one winner is a hypothesis; eight siblings consistently winning is
+a finding. Scatter around zero means the winner was noise.</li>
+<li><b>Real games as the gold standard</b> — the local simulator is the filter, never the verdict. Even a
+careful local gate has reversed against the real field.</li>
+</ul>
+
+<h2>Part 2 — Reproducibility</h2>
+<p><b>The eval gap.</b> For weeks we judged changes against <em>proxy</em> opponents we built — and everything
+read "parity," because a strong bot saturates a weak pool and the metric goes blind. The fix wasn't a better
+model; it was an eval that could <em>see</em>: play the real field, read the real logs. <strong>Your result is
+only as trustworthy as the eval that produced it.</strong></p>
+<p><b>The disk wipe.</b> A rented box was lost and took the cooked data with it — and we couldn't reproduce our
+own flagship model, because its recipe lived in a shell script on a machine that no longer existed. The lessons,
+now permanent:</p>
+<ul>
+<li><b>Code in version control, not on the box.</b> Boxes are cattle; the repo is the record.</li>
+<li><b>A model card per artifact</b> — git tracks code, not the <em>(code × data × command × seed) → weights</em>
+mapping. That mapping is what you lose. Each model now has a card: weights hash, architecture, every ordered
+stage with its data hash + full command, and the gate/real-field numbers.</li>
+<li><b>Big artifacts in durable object storage, hash-named</b> — datasets &amp; weights to a hub, sha256-verified,
+so a box death loses nothing.</li>
+<li><b>Automate the stamp</b> — manual discipline fails; a wrapper that auto-writes the manifest doesn't.</li>
+</ul>
+
+<h2>The meta-lesson</h2>
+<p>The headline result is a <strong>negative</strong> one: against supervised variants, several flavors of RL,
+search, distillation, ensembles, defense, capacity, and auxiliary objectives, the incumbent is at its achievable
+ceiling — and the gap to the top step is <strong>variance among near-equal strong players, not a fixable skill
+deficit.</strong> That is only a <em>trustworthy</em> conclusion because of the two halves above. A negative
+result done sloppily is indistinguishable from "we didn't try hard enough." Done with a gate that survives
+replication, an eval that measures the real thing, and a setup you can rebuild from scratch — it's a finding you
+can stand behind. <strong>The methodology was the asset.</strong></p>
+
+<footer>Part of <a href="index.html">Chasing the Ceiling</a> · <a href="https://github.com/SuuTTT/IJCAI-mahjong">code</a></footer>
+</div>
+</body>
+</html>
