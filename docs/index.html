@@ -54,6 +54,7 @@ well-evidenced negative results that became a paper. Start with the <a href="pha
 
 <h2>Read</h2>
 <div class="grid">
+<a class="box" href="blog/not-fooling-yourself.html"><b>How Not to Fool Yourself →</b><br><span>Verification discipline + reproducibility: how we caught ~9 false positives (incl. a +1.78/g that dissolved) and kept the campaign honest.</span></a>
 <a class="box" href="round2_reproduction.html"><b>Round 2: Reproducing the SOTA →</b><br><span>We faithfully reproduced Tjong's fan-backward + transformer and Rouxqdd's DefendPolicy. The mechanisms work; none beats moyu. A credible null.</span></a>
 <a class="box" href="phase1_autopsy.html"><b>Phase-1 Autopsy →</b><br><span>What we built, what died, the 3 lessons, the plan. Start here.</span></a>
 <a class="box" href="campaign_log.html"><b>Campaign Log →</b><br><span>"Chasing the Ceiling" — the day-by-day honest story.</span></a>
@@ -65,6 +66,9 @@ well-evidenced negative results that became a paper. Start with the <a href="pha
 
 <h2>Milestones</h2>
 <div class="tl">
+<div class="ev"><div class="d">2026-06-23</div><div class="t">Reproduced the base; the "beat" was noise</div>
+A fully-converged resbn40 nearly matches moyu, and a +1.78/g "first win" <strong>dissolved under high-N replication</strong> (bases scatter −11→+1.7, seat-asymmetric) — caught by the gate, not shipped. Wrote up the method: <a href="blog/not-fooling-yourself.html"><strong>How Not to Fool Yourself</strong></a>.</div>
+
 <div class="ev"><div class="d">2026-06-07</div><div class="t">The one real win: a −30 bug</div>
 A preempted-CHI desync caused wrong-Hu declarations (−30 each) in Sim-7. Echo-confirmed claims fixed it;
 triple-verified with <code>PHANTOM_HU=0</code> over 39,145 replays. Sim-7 rank: <strong>14/69</strong>.
