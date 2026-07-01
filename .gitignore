@@ -14,3 +14,7 @@ others/
 data/agents2025/
 data/raw/
 train/jax_env/*.npy
+
+# secure handoff (credentials) — never commit
+HANDOFF_MAHJONG_*.md
+*secure*handoff*
