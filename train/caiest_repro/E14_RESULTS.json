@@ -1,0 +1,59 @@
+{
+  "experiment": "E14 FIXED value-guided (post-discard obs rendered; in-dist value net)",
+  "note": "E8 was a silent no-op on discards (request2obs None for self-Play)",
+  "lams": {
+    "0.25": {
+      "n_blocks": 6,
+      "mean": 2.4962,
+      "ci95_lo": 2.4926,
+      "hooked_rate": 0.9505,
+      "override_rate": 0.0069,
+      "blocks": [
+        2.4973,
+        2.4975,
+        2.4973,
+        2.4893,
+        2.497,
+        2.4985
+      ],
+      "verdict": "TIED_NOT_SEPARATED"
+    },
+    "0.5": {
+      "n_blocks": 6,
+      "mean": 2.4955,
+      "ci95_lo": 2.4891,
+      "hooked_rate": 0.9506,
+      "override_rate": 0.012,
+      "blocks": [
+        2.4973,
+        2.49,
+        2.4893,
+        2.4918,
+        2.5005,
+        2.5042
+      ],
+      "verdict": "TIED_NOT_SEPARATED"
+    },
+    "1.0": {
+      "n_blocks": 6,
+      "mean": 2.4978,
+      "ci95_lo": 2.4867,
+      "hooked_rate": 0.951,
+      "override_rate": 0.0234,
+      "blocks": [
+        2.4925,
+        2.4905,
+        2.4922,
+        2.49,
+        2.5063,
+        2.5155
+      ],
+      "verdict": "TIED_NOT_SEPARATED"
+    }
+  },
+  "calibration": {
+    "placement_pts": 2.5,
+    "hooked_rate": 0.0
+  },
+  "integrity": "OK"
+}

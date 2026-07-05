@@ -1,0 +1,63 @@
+{
+  "kd0": {
+    "n_blocks": 6,
+    "mean": 2.5061,
+    "ci95_lo": 2.4854,
+    "margin_lo": -0.0146,
+    "blocks": [
+      2.5187,
+      2.5263,
+      2.473,
+      2.495,
+      2.5187,
+      2.5048
+    ],
+    "verdict": "TIED_NOT_SEPARATED"
+  },
+  "kd1": {
+    "n_blocks": 6,
+    "mean": 2.4971,
+    "ci95_lo": 2.4863,
+    "margin_lo": -0.0137,
+    "blocks": [
+      2.5032,
+      2.5048,
+      2.502,
+      2.4875,
+      2.5045,
+      2.4808
+    ],
+    "verdict": "TIED_NOT_SEPARATED"
+  },
+  "kd2": {
+    "n_blocks": 6,
+    "mean": 2.4959,
+    "ci95_lo": 2.4862,
+    "margin_lo": -0.0138,
+    "blocks": [
+      2.4962,
+      2.5045,
+      2.4955,
+      2.5057,
+      2.4935,
+      2.48
+    ],
+    "verdict": "TIED_NOT_SEPARATED"
+  },
+  "kdens": {
+    "n_blocks": 6,
+    "mean": 2.5024,
+    "ci95_lo": 2.489,
+    "margin_lo": -0.011,
+    "blocks": [
+      2.504,
+      2.501,
+      2.5065,
+      2.5082,
+      2.516,
+      2.4785
+    ],
+    "verdict": "TIED_NOT_SEPARATED"
+  },
+  "integrity": "OK"
+}
