@@ -1,0 +1,17 @@
+{
+ "cand": "full_128x40_s1.pkl",
+ "ref": "cnn_lad_chunjiandu.npz",
+ "metric": "duplicate placement vs distill",
+ "n_blocks": 22,
+ "games_per_block": 2000,
+ "mean": 2.5185,
+ "sd": 0.0186,
+ "se": 0.004,
+ "ci95_lo": 2.5102,
+ "ci95_hi": 2.5267,
+ "ci_method": "block-level t (df=n-1)",
+ "blocks_above_2500": 19,
+ "beats_distill": true,
+ "margin_lower": 0.0102,
+ "verdict": "CI-SEPARATED above 2.500 (+0.0102 lower margin) \u2014 modest real upgrade over distill"
+}

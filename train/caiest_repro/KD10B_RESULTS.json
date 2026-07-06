@@ -1,0 +1,13 @@
+{
+  "candidate": "kd10ensB (main-box trio s38-41 seeds)",
+  "n_blocks": 24,
+  "mean": 2.504,
+  "ci95_lo": 2.4999,
+  "verdict": "TIED_NOT_SEPARATED",
+  "paired_vs_kdens3": {
+    "mean_diff": -0.0017,
+    "ci95_lo_diff": -0.005,
+    "verdict": "NOT_SEPARATED"
+  },
+  "integrity": "OK"
+}

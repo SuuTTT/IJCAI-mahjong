@@ -1,0 +1,196 @@
+{
+  "description": "E2: is the tau=2 claim-suppression PLACEMENT benefit opponent-dependent? Candidate=moyu_bn_128x40; matrix cand_tau{0,2} x ref_tau{0,1,2,3}; 3 wall-seed blocks/cell.",
+  "candidate": "moyu_bn_128x40.pkl",
+  "reference": "moyu_bn_128x40.pkl",
+  "seeds_per_block": 300,
+  "blocks_per_cell": 3,
+  "games_per_cell": "3x300x4",
+  "cells": [
+    {
+      "cand_tau": 0,
+      "ref_tau": 0,
+      "placement_mean": 2.5,
+      "placement_std": 0.0,
+      "placement_blocks": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3356,
+      "ref_claim_rate_kept": 0.3356
+    },
+    {
+      "cand_tau": 0,
+      "ref_tau": 1,
+      "placement_mean": 2.5002,
+      "placement_std": 0.0124,
+      "placement_blocks": [
+        2.5117,
+        2.4871,
+        2.5017
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3338,
+      "ref_claim_rate_kept": 0.3026
+    },
+    {
+      "cand_tau": 0,
+      "ref_tau": 2,
+      "placement_mean": 2.4957,
+      "placement_std": 0.0129,
+      "placement_blocks": [
+        2.5033,
+        2.4808,
+        2.5029
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3323,
+      "ref_claim_rate_kept": 0.2693
+    },
+    {
+      "cand_tau": 0,
+      "ref_tau": 3,
+      "placement_mean": 2.5128,
+      "placement_std": 0.0056,
+      "placement_blocks": [
+        2.5158,
+        2.5063,
+        2.5162
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3322,
+      "ref_claim_rate_kept": 0.234
+    },
+    {
+      "cand_tau": 2,
+      "ref_tau": 0,
+      "placement_mean": 2.4971,
+      "placement_std": 0.0181,
+      "placement_blocks": [
+        2.4829,
+        2.5175,
+        2.4908
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3375,
+      "ref_claim_rate_kept": 0.3375
+    },
+    {
+      "cand_tau": 2,
+      "ref_tau": 1,
+      "placement_mean": 2.5021,
+      "placement_std": 0.008,
+      "placement_blocks": [
+        2.5071,
+        2.5063,
+        2.4929
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3353,
+      "ref_claim_rate_kept": 0.3043
+    },
+    {
+      "cand_tau": 2,
+      "ref_tau": 2,
+      "placement_mean": 2.5,
+      "placement_std": 0.0,
+      "placement_blocks": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3337,
+      "ref_claim_rate_kept": 0.2703
+    },
+    {
+      "cand_tau": 2,
+      "ref_tau": 3,
+      "placement_mean": 2.5115,
+      "placement_std": 0.0124,
+      "placement_blocks": [
+        2.51,
+        2.5246,
+        2.5
+      ],
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_raw": 0.3334,
+      "ref_claim_rate_kept": 0.2348
+    }
+  ],
+  "correction_benefit_by_ref_tau": [
+    {
+      "ref_tau": 0,
+      "placement_ct0": 2.5,
+      "placement_ct2": 2.4971,
+      "correction_benefit": -0.0029,
+      "benefit_std": 0.0181,
+      "ref_claim_rate_kept_ct0": 0.3356
+    },
+    {
+      "ref_tau": 1,
+      "placement_ct0": 2.5002,
+      "placement_ct2": 2.5021,
+      "correction_benefit": 0.0019,
+      "benefit_std": 0.0151,
+      "ref_claim_rate_kept_ct0": 0.3026
+    },
+    {
+      "ref_tau": 2,
+      "placement_ct0": 2.4957,
+      "placement_ct2": 2.5,
+      "correction_benefit": 0.0043,
+      "benefit_std": 0.0129,
+      "ref_claim_rate_kept_ct0": 0.2693
+    },
+    {
+      "ref_tau": 3,
+      "placement_ct0": 2.5128,
+      "placement_ct2": 2.5115,
+      "correction_benefit": -0.0012,
+      "benefit_std": 0.0177,
+      "ref_claim_rate_kept_ct0": 0.234
+    }
+  ]
+}

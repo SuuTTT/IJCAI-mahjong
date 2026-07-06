@@ -1,0 +1,25 @@
+{
+  "cand": [
+    "kd_128x40_s0.pkl",
+    "kd_128x40_s1.pkl",
+    "kd_128x40_s2.pkl"
+  ],
+  "opp": [
+    "fieldclone_kd0.pkl",
+    "fieldclone_kd1.pkl"
+  ],
+  "danger": "danger235.pkl",
+  "margin": 2.0,
+  "enabled": 1,
+  "games_per_arm": 2000,
+  "plc_plain": 2.9295,
+  "plc_danger": 2.8985,
+  "diff": -0.031,
+  "diff_se": 0.0206,
+  "dealins_plain": 0,
+  "dealins_danger": 0,
+  "tie_rate": 0.3228,
+  "changed_rate": 0.1868,
+  "seconds": 466.8,
+  "seed0": 769000
+}

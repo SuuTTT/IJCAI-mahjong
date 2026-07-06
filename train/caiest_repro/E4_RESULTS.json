@@ -1,0 +1,408 @@
+{
+  "experiment": "E4: offline AWR with VERIFIED-GOOD critic vs base imitation policy (duplicate placement)",
+  "critic": {
+    "corr_vplace_realized": 0.8578,
+    "adv_mean": -0.0133,
+    "adv_std": 0.5805,
+    "vplace_mean": 2.5398,
+    "N": 5865816,
+    "note": "in-data corr; held-out critic: 4th-AUC 0.955, place-acc 0.75, score-r 0.67 (value_256x40)"
+  },
+  "base_calib": {
+    "placement_mean": 2.5,
+    "per_block": [
+      2.5,
+      2.5,
+      2.5
+    ],
+    "claim_rate": 0.2929,
+    "teacher_claim": 0.2514
+  },
+  "gate": {
+    "metric": "duplicate-format placement points (4/3/2/1), seat-bias cancelled",
+    "seeds_per_block": 500,
+    "games_per_block": 2000,
+    "n_blocks": 3,
+    "seed0_per_block": [
+      70000,
+      80000,
+      90000
+    ]
+  },
+  "configs": [
+    {
+      "config": "awr_b0_s1",
+      "beta": 0.0,
+      "seed": 1,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4943,
+        2.4798,
+        2.451
+      ],
+      "placement_mean": 2.475,
+      "placement_std": 0.022,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0057,
+        -0.0202,
+        -0.049
+      ],
+      "delta_mean": -0.025,
+      "delta_std": 0.022,
+      "delta_ci95": [
+        -0.0797,
+        0.0298
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.611,
+      "claim_rate_vs_base": 0.3181
+    },
+    {
+      "config": "awr_b0_s2",
+      "beta": 0.0,
+      "seed": 2,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4945,
+        2.475,
+        2.483
+      ],
+      "placement_mean": 2.4842,
+      "placement_std": 0.0098,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0055,
+        -0.025,
+        -0.017
+      ],
+      "delta_mean": -0.0158,
+      "delta_std": 0.0098,
+      "delta_ci95": [
+        -0.0402,
+        0.0085
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5672,
+      "claim_rate_vs_base": 0.2743
+    },
+    {
+      "config": "awr_b0.5_s1",
+      "beta": 0.5,
+      "seed": 1,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4787,
+        2.4707,
+        2.4817
+      ],
+      "placement_mean": 2.477,
+      "placement_std": 0.0057,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0213,
+        -0.0293,
+        -0.0183
+      ],
+      "delta_mean": -0.023,
+      "delta_std": 0.0057,
+      "delta_ci95": [
+        -0.0371,
+        -0.0088
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5704,
+      "claim_rate_vs_base": 0.2775
+    },
+    {
+      "config": "awr_b0.5_s2",
+      "beta": 0.5,
+      "seed": 2,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4895,
+        2.473,
+        2.4615
+      ],
+      "placement_mean": 2.4747,
+      "placement_std": 0.0141,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0105,
+        -0.027,
+        -0.0385
+      ],
+      "delta_mean": -0.0253,
+      "delta_std": 0.0141,
+      "delta_ci95": [
+        -0.0603,
+        0.0096
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5025,
+      "claim_rate_vs_base": 0.2096
+    },
+    {
+      "config": "awr_b1.0_s1",
+      "beta": 1.0,
+      "seed": 1,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.456,
+        2.4638,
+        2.4472
+      ],
+      "placement_mean": 2.4557,
+      "placement_std": 0.0083,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.044,
+        -0.0362,
+        -0.0528
+      ],
+      "delta_mean": -0.0443,
+      "delta_std": 0.0083,
+      "delta_ci95": [
+        -0.065,
+        -0.0237
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5731,
+      "claim_rate_vs_base": 0.2802
+    },
+    {
+      "config": "awr_b1.0_s2",
+      "beta": 1.0,
+      "seed": 2,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4855,
+        2.4777,
+        2.4798
+      ],
+      "placement_mean": 2.481,
+      "placement_std": 0.004,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0145,
+        -0.0223,
+        -0.0202
+      ],
+      "delta_mean": -0.019,
+      "delta_std": 0.004,
+      "delta_ci95": [
+        -0.029,
+        -0.009
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.6419,
+      "claim_rate_vs_base": 0.349
+    },
+    {
+      "config": "awr_b2.0_s1",
+      "beta": 2.0,
+      "seed": 1,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4777,
+        2.4432,
+        2.4512
+      ],
+      "placement_mean": 2.4574,
+      "placement_std": 0.0181,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0223,
+        -0.0568,
+        -0.0488
+      ],
+      "delta_mean": -0.0426,
+      "delta_std": 0.0181,
+      "delta_ci95": [
+        -0.0875,
+        0.0022
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5851,
+      "claim_rate_vs_base": 0.2922
+    },
+    {
+      "config": "awr_b2.0_s2",
+      "beta": 2.0,
+      "seed": 2,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.495,
+        2.4657,
+        2.441
+      ],
+      "placement_mean": 2.4672,
+      "placement_std": 0.027,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.005,
+        -0.0343,
+        -0.059
+      ],
+      "delta_mean": -0.0328,
+      "delta_std": 0.027,
+      "delta_ci95": [
+        -0.0999,
+        0.0344
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5478,
+      "claim_rate_vs_base": 0.2549
+    },
+    {
+      "config": "awr_b5.0_s1",
+      "beta": 5.0,
+      "seed": 1,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4715,
+        2.4682,
+        2.4365
+      ],
+      "placement_mean": 2.4587,
+      "placement_std": 0.0193,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0285,
+        -0.0318,
+        -0.0635
+      ],
+      "delta_mean": -0.0413,
+      "delta_std": 0.0193,
+      "delta_ci95": [
+        -0.0893,
+        0.0067
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5024,
+      "claim_rate_vs_base": 0.2095
+    },
+    {
+      "config": "awr_b5.0_s2",
+      "beta": 5.0,
+      "seed": 2,
+      "blocks": [
+        0,
+        1,
+        2
+      ],
+      "placement_per_block": [
+        2.4695,
+        2.4552,
+        2.4348
+      ],
+      "placement_mean": 2.4532,
+      "placement_std": 0.0174,
+      "calib_per_block": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "calib_mean": 2.5,
+      "delta_per_block": [
+        -0.0305,
+        -0.0448,
+        -0.0652
+      ],
+      "delta_mean": -0.0468,
+      "delta_std": 0.0174,
+      "delta_ci95": [
+        -0.0902,
+        -0.0035
+      ],
+      "beats_base_ci_separated": false,
+      "claim_rate": 0.5455,
+      "claim_rate_vs_base": 0.2526
+    }
+  ],
+  "verdict": {
+    "any_beta_beats_base_ci_separated": false,
+    "summary": "NO beta beats base; retraining fails even with a verified critic \u2014 imitation ceiling is real"
+  }
+}

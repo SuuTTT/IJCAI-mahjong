@@ -1,0 +1,55 @@
+{
+  "experiment": "SEED-ENSEMBLE (deploy mean-softmax rule) vs aug_s0",
+  "ref": "aug_128x40_s0.pkl",
+  "rule": "beat iff 95% block-t CI lower bound > 2.500",
+  "variants": {
+    "ens3": {
+      "n_blocks": 12,
+      "games": 24000,
+      "mean": 2.5024,
+      "sd": 0.013,
+      "ci95_lo": 2.4941,
+      "ci95_hi": 2.5107,
+      "margin_lo": -0.0059,
+      "blocks": [
+        2.5057,
+        2.482,
+        2.4895,
+        2.5303,
+        2.5055,
+        2.5027,
+        2.488,
+        2.4992,
+        2.511,
+        2.4958,
+        2.5147,
+        2.504
+      ],
+      "verdict": "TIED_NOT_SEPARATED"
+    },
+    "ens4": {
+      "n_blocks": 12,
+      "games": 24000,
+      "mean": 2.5071,
+      "sd": 0.0133,
+      "ci95_lo": 2.4986,
+      "ci95_hi": 2.5155,
+      "margin_lo": -0.0014,
+      "blocks": [
+        2.5147,
+        2.4915,
+        2.4992,
+        2.5345,
+        2.5168,
+        2.5045,
+        2.4962,
+        2.5038,
+        2.509,
+        2.4855,
+        2.5185,
+        2.5105
+      ],
+      "verdict": "TIED_NOT_SEPARATED"
+    }
+  }
+}

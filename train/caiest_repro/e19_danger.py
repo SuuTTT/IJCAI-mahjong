@@ -1,5 +1,5 @@
 """
-e13_kd_train.py — KD-from-ensemble ENHANCED-recipe 128x40 BC trainer (deployable size) for the aug/regularization
+e11_train.py — ENHANCED-recipe 128x40 BC trainer (deployable size) for the aug/regularization
 push. Same data + SAME seed-fixed val split as e1_train.py (so val_acc is directly comparable
 to bn128s1's 0.887), but with:
   * augmentation = suit-perm (6, existing) x rank-reflection (2, verified) x dragon-perm (6, verified)
@@ -52,8 +52,7 @@ def main():
     ap.add_argument("--p_drag", type=float, default=0.5)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--valevery", type=int, default=4000)
-    ap.add_argument("--teachers", default="ckpt/aug/aug_128x40_s0.pkl,ckpt/aug/aug_128x40_s1.pkl,ckpt/aug/aug_128x40_s2.pkl,ckpt/aug/aug_128x40_s3.pkl,ckpt/aug/aug_128x40_s4.pkl,ckpt/aug/aug_128x40_s5.pkl")
-    ap.add_argument("--alpha", type=float, default=0.7)
+    ap.add_argument("--init", default="")
     ap.add_argument("--data", default="")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
@@ -61,7 +60,15 @@ def main():
     torch.manual_seed(a.seed); np.random.seed(a.seed)
 
     d = np.load(a.data) if a.data else np.load(os.path.join(DDIR, "cooked_single.npz"))
-    o, m, ac = d["obs"], d["mask"], d["act"].astype(np.int64)
+    if "tile" in d.files:
+        o = d["obs"]; ac = (d["tile"].astype(np.int64) + 2)
+        m = np.ones((len(ac), 235), np.bool_)
+        ylab = d["y"].astype(np.float32)
+    else:
+        o, m, ac = d["obs"], d["mask"], d["act"].astype(np.int64)
+        ylab = np.zeros(len(ac), np.float32)
+    YLAB = torch.tensor(ylab)
+    o = o.reshape(len(o), 38, 4, 9) if o.ndim == 2 else o
     N = len(ac)
     # SAME split as e1_train (rng 12345) -> val_acc comparable to bn128s1
     rng = np.random.RandomState(12345); perm = rng.permutation(N)
@@ -81,14 +88,9 @@ def main():
     D_Fm = [torch.tensor(dragon_aug.fwd_action_perm(q), device=dev, dtype=torch.long) for q in dragon_aug.PERMS_D]
 
     net = ResBNCNN(channels=a.channels, blocks=a.blocks).to(dev)
-    from models_explore import build as _build
-    teachers = []
-    for tp in a.teachers.split(","):
-        t = _build("resbn_fused", channels=128, blocks=40)
-        t.load_state_dict(torch.load(tp, map_location="cpu")); t.eval(); t.to(dev)
-        for p_ in t.parameters(): p_.requires_grad_(False)
-        teachers.append(t)
-    print(f"KD teachers: {len(teachers)} alpha={a.alpha}", flush=True)
+    if a.init:
+        net.load_state_dict(torch.load(a.init, map_location=dev))
+        print("init from", a.init, flush=True)
     print(f"params {sum(p.numel() for p in net.parameters()):,}", flush=True)
     opt = torch.optim.AdamW(net.parameters(), lr=a.lr, weight_decay=a.wd)
 
@@ -114,14 +116,6 @@ def main():
                 ema[k] = v.detach().clone()
 
     ema_net = ResBNCNN(channels=a.channels, blocks=a.blocks).to(dev)
-    from models_explore import build as _build
-    teachers = []
-    for tp in a.teachers.split(","):
-        t = _build("resbn_fused", channels=128, blocks=40)
-        t.load_state_dict(torch.load(tp, map_location="cpu")); t.eval(); t.to(dev)
-        for p_ in t.parameters(): p_.requires_grad_(False)
-        teachers.append(t)
-    print(f"KD teachers: {len(teachers)} alpha={a.alpha}", flush=True)
 
     def fetch(idx):
         idx = np.sort(idx)
@@ -163,17 +157,10 @@ def main():
             ob = ob2; mk = mk[:, D_Am[qi]]; y = D_Fm[qi][y]
         with torch.cuda.amp.autocast():
             logits = net({"is_training": True, "obs": {"observation": ob, "action_mask": mk.float()}})
-            with torch.no_grad():
-                tp_acc = None
-                for t in teachers:
-                    tl = t({"is_training": False, "obs": {"observation": ob, "action_mask": mk.float()}})
-                    tl = tl.float(); tl = torch.where(mk, tl, torch.full_like(tl, -1e30))
-                    p = torch.softmax(tl, 1)
-                    tp_acc = p if tp_acc is None else tp_acc + p
-                tsoft = tp_acc / len(teachers)                       # (B,235) mean softmax over legal
-        logp = torch.nn.functional.log_softmax(torch.where(mk, logits.float(), torch.full_like(logits.float(), -1e30)), 1)
-        kd = -(tsoft * logp).sum(1).mean()                           # CE toward ensemble soft targets
-        loss = a.alpha * kd + (1.0 - a.alpha) * smoothed_loss(logits, mk, y, a.lsm)
+        ybl = YLAB[torch.as_tensor(b)].to(dev)
+        lg_taken = logits.gather(1, y[:, None]).squeeze(1)
+        loss = torch.nn.functional.binary_cross_entropy_with_logits(
+            lg_taken, ybl, pos_weight=torch.tensor(float(os.environ.get("PW","30")), device=dev))
         opt.zero_grad(); scaler.scale(loss).backward(); scaler.step(opt); scaler.update(); sched.step()
         ema_update()
         if s % a.valevery == 0 and s > 0:
@@ -184,11 +171,8 @@ def main():
                 torch.save(ema_net.state_dict(), bn_out, _use_new_zipfile_serialization=False)
             print(f"  step {s}/{a.steps} loss {loss.item():.4f} lr {opt.param_groups[0]['lr']:.2e} "
                   f"emaval {v:.4f} best {best:.4f} ({time.time()-t0:.0f}s)", flush=True)
-    v = eval_ema()
-    if v > best:
-        best = v
-        ema_net.load_state_dict({k: vv.to(dev) for k, vv in ema.items()})
-        torch.save(ema_net.state_dict(), bn_out, _use_new_zipfile_serialization=False)
+    ema_net.load_state_dict({k: vv.to(dev) for k, vv in ema.items()})
+    torch.save(ema_net.state_dict(), bn_out, _use_new_zipfile_serialization=False)
     # fuse the BEST-EMA BN snapshot -> fused pkl for gating/deploy
     bestnet = ResBNCNN(channels=a.channels, blocks=a.blocks)
     bestnet.load_state_dict(torch.load(bn_out, map_location="cpu")); bestnet.eval()

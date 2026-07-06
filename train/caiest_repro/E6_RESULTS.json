@@ -1,0 +1,187 @@
+{
+  "description": "E6: is the tau=2 claim-suppression correction SCORING-FORMAT-DEPENDENT? Candidate=moyu_bn_128x40; cells cand_tau{0,2} x ref_tau{0,2}; per-game single-game metrics vs duplicate placement. >=3 wall-seed blocks/cell.",
+  "candidate": "moyu_bn_128x40.pkl",
+  "reference": "moyu_bn_128x40.pkl",
+  "metric_defs": {
+    "dup_placement": "E1/E2 duplicate metric: 5-avg_rank summed over 24 perms (here per-block mean).",
+    "sg_first_rate": "fraction of individual games candidate ranks 1 (avg-rank<=1.5).",
+    "sg_fourth_rate": "fraction of individual games candidate ranks 4 (avg-rank>=3.5).",
+    "sg_score_mean": "mean raw MCR score per individual game.",
+    "sg_score_std": "std of raw MCR score per individual game (variance proxy).",
+    "sg_mean_placement": "mean single-game avg-rank (calibrates ~2.5 self-play).",
+    "signif": "dup: paired cross-block t (df=blocks-1). sg_score_mean/placement: Welch t on per-game arrays. rates: two-proportion z. variance: F=var(ct0)/var(ct2) (F>1 => tau2 lower variance). directions: lower sg_fourth_rate, lower sg_score_std, higher sg_first_rate = tau2 helps."
+  },
+  "calibration": {
+    "cell": "ct0_rt0 (cand==ref==moyu, tau=0)",
+    "sg_mean_placement": 2.5,
+    "sg_first_rate": 0.2369,
+    "sg_fourth_rate": 0.1469,
+    "sg_score_mean": 0.0,
+    "n_games": 3600,
+    "note": "single-game mean placement should be ~2.5 for self-play calibration"
+  },
+  "cells": [
+    {
+      "cand_tau": 0,
+      "ref_tau": 0,
+      "n_blocks": 3,
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_kept": 0.3356,
+      "dup_placement_mean": 2.5,
+      "dup_placement_std": 0.0,
+      "dup_placement_blocks": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "sg_first_rate": 0.2369,
+      "sg_fourth_rate": 0.1469,
+      "sg_score_mean": 0.0,
+      "sg_score_std": 28.6456,
+      "sg_mean_placement": 2.5
+    },
+    {
+      "cand_tau": 0,
+      "ref_tau": 2,
+      "n_blocks": 3,
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_kept": 0.2693,
+      "dup_placement_mean": 2.4957,
+      "dup_placement_std": 0.0129,
+      "dup_placement_blocks": [
+        2.5033,
+        2.4808,
+        2.5029
+      ],
+      "sg_first_rate": 0.2356,
+      "sg_fourth_rate": 0.1511,
+      "sg_score_mean": 0.0306,
+      "sg_score_std": 28.4979,
+      "sg_mean_placement": 2.5043
+    },
+    {
+      "cand_tau": 2,
+      "ref_tau": 0,
+      "n_blocks": 3,
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_kept": 0.3375,
+      "dup_placement_mean": 2.4971,
+      "dup_placement_std": 0.0181,
+      "dup_placement_blocks": [
+        2.4829,
+        2.5175,
+        2.4908
+      ],
+      "sg_first_rate": 0.2308,
+      "sg_fourth_rate": 0.1444,
+      "sg_score_mean": -0.1786,
+      "sg_score_std": 28.4695,
+      "sg_mean_placement": 2.5029
+    },
+    {
+      "cand_tau": 2,
+      "ref_tau": 2,
+      "n_blocks": 3,
+      "n_games": 3600,
+      "seeds": [
+        70000,
+        80000,
+        90000
+      ],
+      "ref_claim_rate_kept": 0.2703,
+      "dup_placement_mean": 2.5,
+      "dup_placement_std": 0.0,
+      "dup_placement_blocks": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "sg_first_rate": 0.2328,
+      "sg_fourth_rate": 0.1453,
+      "sg_score_mean": 0.0,
+      "sg_score_std": 28.4309,
+      "sg_mean_placement": 2.5
+    }
+  ],
+  "tau_comparisons_by_field": [
+    {
+      "ref_tau": 0,
+      "field": "over-claim (homogeneous)",
+      "ref_claim_rate_kept_ct0": 0.3356,
+      "n_games_per_cell": 3600,
+      "dup_placement_ct0": 2.5,
+      "dup_placement_ct2": 2.4971,
+      "dup_delta": -0.0029,
+      "dup_t": -0.28,
+      "dup_df": 2,
+      "sg_first_rate_ct0": 0.2369,
+      "sg_first_rate_ct2": 0.2308,
+      "sg_first_delta": -0.0061,
+      "sg_first_z": -0.611,
+      "sg_fourth_rate_ct0": 0.1469,
+      "sg_fourth_rate_ct2": 0.1444,
+      "sg_fourth_delta": -0.0025,
+      "sg_fourth_z": -0.301,
+      "sg_score_mean_ct0": 0.0,
+      "sg_score_mean_ct2": -0.1786,
+      "sg_score_mean_delta": -0.1786,
+      "sg_score_mean_t": -0.265,
+      "sg_score_mean_cohend": -0.0063,
+      "sg_score_std_ct0": 28.6456,
+      "sg_score_std_ct2": 28.4695,
+      "sg_score_std_delta": -0.1761,
+      "variance_ratio_F_var0_over_var2": 1.0124,
+      "sg_mean_placement_ct0": 2.5,
+      "sg_mean_placement_ct2": 2.5029,
+      "sg_mean_placement_delta": 0.0029,
+      "sg_mean_placement_t": 0.129
+    },
+    {
+      "ref_tau": 2,
+      "field": "selective (~real top-10)",
+      "ref_claim_rate_kept_ct0": 0.2693,
+      "n_games_per_cell": 3600,
+      "dup_placement_ct0": 2.4957,
+      "dup_placement_ct2": 2.5,
+      "dup_delta": 0.0043,
+      "dup_t": 0.583,
+      "dup_df": 2,
+      "sg_first_rate_ct0": 0.2356,
+      "sg_first_rate_ct2": 0.2328,
+      "sg_first_delta": -0.0028,
+      "sg_first_z": -0.281,
+      "sg_fourth_rate_ct0": 0.1511,
+      "sg_fourth_rate_ct2": 0.1453,
+      "sg_fourth_delta": -0.0058,
+      "sg_fourth_z": -0.693,
+      "sg_score_mean_ct0": 0.0306,
+      "sg_score_mean_ct2": 0.0,
+      "sg_score_mean_delta": -0.0306,
+      "sg_score_mean_t": -0.046,
+      "sg_score_mean_cohend": -0.0011,
+      "sg_score_std_ct0": 28.4979,
+      "sg_score_std_ct2": 28.4309,
+      "sg_score_std_delta": -0.067,
+      "variance_ratio_F_var0_over_var2": 1.0047,
+      "sg_mean_placement_ct0": 2.5043,
+      "sg_mean_placement_ct2": 2.5,
+      "sg_mean_placement_delta": -0.0043,
+      "sg_mean_placement_t": -0.19
+    }
+  ]
+}

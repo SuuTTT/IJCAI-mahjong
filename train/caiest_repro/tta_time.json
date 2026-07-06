@@ -1,0 +1,7 @@
+{
+  "single_ms_per_move": 27.619,
+  "tta3_C3_ms_per_move": 82.378,
+  "tta6_full_ms_per_move": 162.506,
+  "threads": 1,
+  "note": "CPU single-thread, batch-1 per move (Botzone-like). TLE budget ~1000 ms/move."
+}

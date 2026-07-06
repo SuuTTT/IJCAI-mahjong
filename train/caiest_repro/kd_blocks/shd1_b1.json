@@ -1,0 +1,28 @@
+{
+  "cand": [
+    "kd_128x40_s0.pkl",
+    "kd_128x40_s1.pkl",
+    "kd_128x40_s2.pkl"
+  ],
+  "ref": [
+    "kd_128x40_s0.pkl",
+    "kd_128x40_s1.pkl",
+    "kd_128x40_s2.pkl"
+  ],
+  "overlay": {
+    "enabled": 1,
+    "sh_push": 1,
+    "min_turn": 6,
+    "min_melds": 1,
+    "top_k": 8
+  },
+  "games": 2000,
+  "placement_pts": 2.4853,
+  "discard_decisions": 24782,
+  "push_rate": 0.526,
+  "weak_rate": 0.474,
+  "changed_rate": 0.0214,
+  "sh_err": 0,
+  "seconds": 847.8,
+  "seed0": 621000
+}

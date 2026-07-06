@@ -1,0 +1,28 @@
+{
+  "cand": [
+    "kd_128x40_s0.pkl",
+    "kd_128x40_s1.pkl",
+    "kd_128x40_s2.pkl"
+  ],
+  "overlay": {
+    "sh_fold": 2,
+    "sh_dead": 3,
+    "min_turn": 10,
+    "min_melds": 2,
+    "enabled": 1
+  },
+  "games_per_arm": 2000,
+  "plc_plain": 2.5,
+  "plc_fold": 2.4965,
+  "diff": -0.0035,
+  "diff_se": 0.0035,
+  "dealins_plain": 83,
+  "dealins_fold": 79,
+  "folds": 134,
+  "folded_discards": 717,
+  "changed": 432,
+  "claims_suppressed": 30,
+  "discards": 25210,
+  "seconds": 520.2,
+  "seed0": 826000
+}

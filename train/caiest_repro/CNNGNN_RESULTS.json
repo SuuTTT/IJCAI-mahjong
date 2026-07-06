@@ -1,0 +1,50 @@
+{
+  "experiment": "CNN+GNN HYBRID (parallel GNN branch concatenated with CNN 512-vec before head) vs aug_s0",
+  "graph_spec": {
+    "nodes": 34,
+    "node_features": "38-plane per-tile-type feature vector from (38,4,9) obs (counts/ownership)",
+    "edges": "within-suit chi sequence-adjacency r+-1 & r+-2 + honor 7-clique + self-loop (peng/same-tile); sym-normalized",
+    "message_passing_layers": 3,
+    "gnn_hidden": 128,
+    "gnn_emb": 128,
+    "pool": "mean over 34 nodes",
+    "fusion": "concat[cnn_512, gnn_emb128] -> Linear(640,235)"
+  },
+  "reference": "aug_s0 = aug_128x40_s0.pkl; calibrated gate 2.500=tied (aug_s0-vs-aug_s0); BEAT iff placement 95% CI lower bound > 2.500",
+  "gate_blocks_target": 6,
+  "seeds_per_block": 500,
+  "context_standalone_gnn": {
+    "kind": "gnn (REPLACES cnn)",
+    "val_acc": 0.7697,
+    "placement": 2.3053,
+    "verdict": "WORSE (-0.212)"
+  },
+  "seeds": {
+    "s0": {
+      "ckpt": "ckpt/cnngnn/cnngnn_s0.pkl",
+      "trained": true,
+      "val_acc": 0.8825,
+      "n_blocks": 6,
+      "per_move_ms": 26.73,
+      "tle_safe_1000ms": true,
+      "placement_mean": 2.5045,
+      "placement_sd": 0.0088,
+      "ci95_lo": 2.4952,
+      "ci95_hi": 2.5137,
+      "margin_lo": -0.0048,
+      "beats_augs0": false,
+      "worse_than_augs0": false,
+      "verdict": "TIES",
+      "block_placements": [
+        2.5133,
+        2.5005,
+        2.5008,
+        2.491,
+        2.514,
+        2.5072
+      ]
+    }
+  },
+  "params_M": 14.43,
+  "overall_verdict": "HYBRID TIES aug_s0"
+}

@@ -1,0 +1,334 @@
+{
+  "experiment": "E10_risk_seeking_1ply",
+  "base": "cnn_lad_chunjiandu.npz (ResFused 128x40, deployed distill bot)",
+  "value_model": "value_256x40.pkl (ValueMT 256x40; heads V_place, V_4th, V_score)",
+  "objective": "argmax_a [ policy_logit(a) + lam*V_score_after(a) - mu*P4th_after(a) ]  (risk-seeking, push for 1sts)",
+  "inverse_of": "E8 (which minimized V_place; NULL/worse)",
+  "format": "duplicate placement gate (4-seat rotation), calibrated base-vs-base = 2.500",
+  "true_1ply": true,
+  "decisions_hooked": "DISCARD (Play) + CLAIM (Chi/Peng)",
+  "topk": 5,
+  "calibration_lam0": 2.5,
+  "blocks_per_cell": 3,
+  "seeds_per_block": 400,
+  "games_per_block": 1600,
+  "ship_rule": "cell ships iff placement 95% CI entirely > 2.500 (CI-separated better)",
+  "rows": [
+    {
+      "lam": 0.0,
+      "mu": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.5,
+      "placement_std": 0.0,
+      "placement_se": 0.0,
+      "ci95_lo": 2.5,
+      "ci95_hi": 2.5,
+      "vs_base_delta": 0.0,
+      "delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "placement_dist_pct": [
+        23.0,
+        35.46,
+        27.81,
+        13.73
+      ],
+      "first_rate": 23.0,
+      "fourth_rate": 13.73,
+      "sg_win_rate": 0.23,
+      "sg_fourth_rate": 0.1373,
+      "claim_rate": 0.0,
+      "override_rate": 0.0,
+      "block_placements": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "ci_separated_better": null,
+      "ci_separated_worse": null
+    },
+    {
+      "lam": 0.5,
+      "mu": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4988,
+      "placement_std": 0.0027,
+      "placement_se": 0.0016,
+      "ci95_lo": 2.4921,
+      "ci95_hi": 2.5055,
+      "vs_base_delta": -0.0012,
+      "delta_ci95": [
+        -0.0079,
+        0.0055
+      ],
+      "placement_dist_pct": [
+        22.96,
+        35.44,
+        27.85,
+        13.75
+      ],
+      "first_rate": 22.96,
+      "fourth_rate": 13.75,
+      "sg_win_rate": 0.2296,
+      "sg_fourth_rate": 0.1375,
+      "claim_rate": 0.3359,
+      "override_rate": 0.0005,
+      "block_placements": [
+        2.4962,
+        2.5016,
+        2.4987
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false
+    },
+    {
+      "lam": 1.0,
+      "mu": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.5001,
+      "placement_std": 0.0036,
+      "placement_se": 0.0021,
+      "ci95_lo": 2.4912,
+      "ci95_hi": 2.5091,
+      "vs_base_delta": 0.0001,
+      "delta_ci95": [
+        -0.0088,
+        0.0091
+      ],
+      "placement_dist_pct": [
+        23.02,
+        35.44,
+        27.79,
+        13.75
+      ],
+      "first_rate": 23.02,
+      "fourth_rate": 13.75,
+      "sg_win_rate": 0.2302,
+      "sg_fourth_rate": 0.1375,
+      "claim_rate": 0.3362,
+      "override_rate": 0.0009,
+      "block_placements": [
+        2.4966,
+        2.5038,
+        2.5
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false
+    },
+    {
+      "lam": 2.0,
+      "mu": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4979,
+      "placement_std": 0.0071,
+      "placement_se": 0.0041,
+      "ci95_lo": 2.4804,
+      "ci95_hi": 2.5154,
+      "vs_base_delta": -0.0021,
+      "delta_ci95": [
+        -0.0196,
+        0.0154
+      ],
+      "placement_dist_pct": [
+        22.94,
+        35.38,
+        27.92,
+        13.77
+      ],
+      "first_rate": 22.94,
+      "fourth_rate": 13.77,
+      "sg_win_rate": 0.2294,
+      "sg_fourth_rate": 0.1377,
+      "claim_rate": 0.3354,
+      "override_rate": 0.0022,
+      "block_placements": [
+        2.4906,
+        2.4984,
+        2.5047
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false
+    },
+    {
+      "lam": 4.0,
+      "mu": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.498,
+      "placement_std": 0.0047,
+      "placement_se": 0.0027,
+      "ci95_lo": 2.4863,
+      "ci95_hi": 2.5097,
+      "vs_base_delta": -0.002,
+      "delta_ci95": [
+        -0.0137,
+        0.0097
+      ],
+      "placement_dist_pct": [
+        22.85,
+        35.48,
+        28.02,
+        13.65
+      ],
+      "first_rate": 22.85,
+      "fourth_rate": 13.65,
+      "sg_win_rate": 0.2285,
+      "sg_fourth_rate": 0.1365,
+      "claim_rate": 0.3366,
+      "override_rate": 0.0049,
+      "block_placements": [
+        2.4934,
+        2.4978,
+        2.5028
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false
+    },
+    {
+      "lam": 8.0,
+      "mu": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4874,
+      "placement_std": 0.0161,
+      "placement_se": 0.0093,
+      "ci95_lo": 2.4475,
+      "ci95_hi": 2.5273,
+      "vs_base_delta": -0.0126,
+      "delta_ci95": [
+        -0.0525,
+        0.0273
+      ],
+      "placement_dist_pct": [
+        22.25,
+        35.9,
+        28.15,
+        13.71
+      ],
+      "first_rate": 22.25,
+      "fourth_rate": 13.71,
+      "sg_win_rate": 0.2225,
+      "sg_fourth_rate": 0.1371,
+      "claim_rate": 0.3424,
+      "override_rate": 0.0101,
+      "block_placements": [
+        2.4897,
+        2.4703,
+        2.5022
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false
+    },
+    {
+      "lam": 8.0,
+      "mu": 8.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4802,
+      "placement_std": 0.0196,
+      "placement_se": 0.0113,
+      "ci95_lo": 2.4314,
+      "ci95_hi": 2.529,
+      "vs_base_delta": -0.0198,
+      "delta_ci95": [
+        -0.0686,
+        0.029
+      ],
+      "placement_dist_pct": [
+        21.86,
+        36.17,
+        28.21,
+        13.77
+      ],
+      "first_rate": 21.86,
+      "fourth_rate": 13.77,
+      "sg_win_rate": 0.2186,
+      "sg_fourth_rate": 0.1377,
+      "claim_rate": 0.3507,
+      "override_rate": 0.0176,
+      "block_placements": [
+        2.4828,
+        2.4594,
+        2.4984
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false
+    },
+    {
+      "lam": 8.0,
+      "mu": 16.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4667,
+      "placement_std": 0.006,
+      "placement_se": 0.0035,
+      "ci95_lo": 2.4517,
+      "ci95_hi": 2.4817,
+      "vs_base_delta": -0.0333,
+      "delta_ci95": [
+        -0.0483,
+        -0.0183
+      ],
+      "placement_dist_pct": [
+        21.27,
+        36.46,
+        28.17,
+        14.1
+      ],
+      "first_rate": 21.27,
+      "fourth_rate": 14.1,
+      "sg_win_rate": 0.2127,
+      "sg_fourth_rate": 0.141,
+      "claim_rate": 0.3598,
+      "override_rate": 0.0235,
+      "block_placements": [
+        2.4703,
+        2.4597,
+        2.47
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": true
+    },
+    {
+      "lam": 16.0,
+      "mu": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4758,
+      "placement_std": 0.0177,
+      "placement_se": 0.0102,
+      "ci95_lo": 2.4319,
+      "ci95_hi": 2.5198,
+      "vs_base_delta": -0.0242,
+      "delta_ci95": [
+        -0.0681,
+        0.0198
+      ],
+      "placement_dist_pct": [
+        21.69,
+        36.37,
+        27.96,
+        13.98
+      ],
+      "first_rate": 21.69,
+      "fourth_rate": 13.98,
+      "sg_win_rate": 0.2169,
+      "sg_fourth_rate": 0.1398,
+      "claim_rate": 0.3596,
+      "override_rate": 0.0199,
+      "block_placements": [
+        2.4772,
+        2.4575,
+        2.4928
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false
+    }
+  ],
+  "verdict": "NULL: no (lam,mu) cell CI-separated above 2.500. Risk-seeking by the V_score head does NOT convert 2nds->1sts under duplicate scoring; placement is flat-to-worse and first-rate falls as lambda rises. Distill stays; lever space exhausted."
+}

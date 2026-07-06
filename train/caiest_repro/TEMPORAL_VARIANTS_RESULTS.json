@@ -1,0 +1,26 @@
+{
+  "temporal_biggru_s12": {
+    "n_blocks": 12,
+    "mean": 2.4944,
+    "ci95_lo": 2.4868,
+    "verdict": "TIED_NOT_SEPARATED"
+  },
+  "temporal_tf_s13": {
+    "n_blocks": 12,
+    "mean": 2.4718,
+    "ci95_lo": 2.4611,
+    "verdict": "TIED_NOT_SEPARATED"
+  },
+  "temporal_strongaug_s11": {
+    "n_blocks": 12,
+    "mean": 2.4943,
+    "ci95_lo": 2.4868,
+    "verdict": "TIED_NOT_SEPARATED"
+  },
+  "temporal_combo_s14": {
+    "n_blocks": 12,
+    "mean": 2.499,
+    "ci95_lo": 2.4898,
+    "verdict": "TIED_NOT_SEPARATED"
+  }
+}

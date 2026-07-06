@@ -1,0 +1,157 @@
+{
+  "experiment": "RECIPE sweep on deployable 128x40 vs aug_s0 (current best); vary training recipe axes",
+  "reference": "aug_s0 = ckpt/aug/aug_128x40_s0.pkl (128x40); calibrated e11_gate lam=0, 2.500=tied; BEAT iff placement 95% CI lower bound > 2.500",
+  "base_recipe": "e11_train.py --channels 128 --blocks 40 --steps 130000 --lr 3e-4 --wd 1.5e-4 --lsm 0.05 --ema 0.999 --warmup 2000 --bs 1024 --p_suit 0.8 --p_ref 0.5 --p_drag 0.5",
+  "calibration_augs0_vs_augs0": {
+    "tag": "calib",
+    "cand": "aug_128x40_s0.pkl",
+    "ref": "aug_128x40_s0.pkl",
+    "n_blocks": 1,
+    "total_games": 2000,
+    "placement_mean": 2.5,
+    "placement_sd": 0.0,
+    "placement_se": 0.0,
+    "ci95_lo": 2.5,
+    "ci95_hi": 2.5,
+    "margin_lo": 0.0,
+    "first_pct": 23.95,
+    "fourth_pct": 15.05,
+    "gate_seconds": 234.1,
+    "verdict": "TIED_NOT_SEPARATED",
+    "beats_augs0": false,
+    "block_placements": [
+      2.5
+    ]
+  },
+  "n_configs_gated": 3,
+  "configs": {
+    "augrepro3": {
+      "tag": "augrepro3",
+      "cand": "augrepro3.pkl",
+      "ref": "aug_128x40_s0.pkl",
+      "n_blocks": 12,
+      "total_games": 24000,
+      "placement_mean": 2.5013,
+      "placement_sd": 0.0137,
+      "placement_se": 0.0039,
+      "ci95_lo": 2.4926,
+      "ci95_hi": 2.51,
+      "margin_lo": -0.0074,
+      "first_pct": 23.73,
+      "fourth_pct": 14.9,
+      "gate_seconds": 3299.6,
+      "verdict": "TIED_NOT_SEPARATED",
+      "beats_augs0": false,
+      "block_placements": [
+        2.4802,
+        2.5055,
+        2.5242,
+        2.4973,
+        2.4943,
+        2.4987,
+        2.51,
+        2.5002,
+        2.4758,
+        2.5147,
+        2.5103,
+        2.5045
+      ],
+      "recipe_flags": "--seed 3",
+      "val_acc": 0.8823
+    },
+    "augsuit": {
+      "tag": "augsuit",
+      "cand": "augsuit.pkl",
+      "ref": "aug_128x40_s0.pkl",
+      "n_blocks": 12,
+      "total_games": 24000,
+      "placement_mean": 2.4939,
+      "placement_sd": 0.0134,
+      "placement_se": 0.0039,
+      "ci95_lo": 2.4854,
+      "ci95_hi": 2.5024,
+      "margin_lo": -0.0146,
+      "first_pct": 23.35,
+      "fourth_pct": 15.06,
+      "gate_seconds": 3818.6,
+      "verdict": "TIED_NOT_SEPARATED",
+      "beats_augs0": false,
+      "block_placements": [
+        2.4928,
+        2.509,
+        2.4928,
+        2.484,
+        2.4743,
+        2.4878,
+        2.4857,
+        2.4945,
+        2.4865,
+        2.517,
+        2.4863,
+        2.5165
+      ],
+      "recipe_flags": "--p_ref 0 --p_drag 0",
+      "val_acc": 0.8874
+    },
+    "lsm00": {
+      "tag": "lsm00",
+      "cand": "lsm00.pkl",
+      "ref": "aug_128x40_s0.pkl",
+      "n_blocks": 2,
+      "total_games": 4000,
+      "placement_mean": 2.4825,
+      "placement_sd": 0.0173,
+      "placement_se": 0.0122,
+      "ci95_lo": 2.3275,
+      "ci95_hi": 2.6375,
+      "margin_lo": -0.1725,
+      "first_pct": 23.18,
+      "fourth_pct": 15.15,
+      "gate_seconds": 333.5,
+      "verdict": "TIED_NOT_SEPARATED",
+      "beats_augs0": false,
+      "block_placements": [
+        2.4703,
+        2.4947
+      ],
+      "recipe_flags": "--lsm 0.0",
+      "val_acc": 0.8799
+    }
+  },
+  "ranking": [
+    {
+      "tag": "augrepro3",
+      "val_acc": 0.8823,
+      "placement_mean": 2.5013,
+      "ci95": [
+        2.4926,
+        2.51
+      ],
+      "margin_lo": -0.0074,
+      "beats_augs0": false
+    },
+    {
+      "tag": "augsuit",
+      "val_acc": 0.8874,
+      "placement_mean": 2.4939,
+      "ci95": [
+        2.4854,
+        2.5024
+      ],
+      "margin_lo": -0.0146,
+      "beats_augs0": false
+    },
+    {
+      "tag": "lsm00",
+      "val_acc": 0.8799,
+      "placement_mean": 2.4825,
+      "ci95": [
+        2.3275,
+        2.6375
+      ],
+      "margin_lo": -0.1725,
+      "beats_augs0": false
+    }
+  ],
+  "overall_verdict": "NULL: no recipe variant CI-separated above aug_s0 -> aug_s0 confirmed the recipe optimum for the deployable 128x40."
+}

@@ -1,0 +1,475 @@
+{
+  "experiment": "BASENET_GATE: trained base nets vs deployed distill (cnn_lad_chunjiandu.npz)",
+  "ref": "cnn_lad_chunjiandu.npz (ResFused 128x40, deployed distill bot)",
+  "gate": "calibrated duplicate-format placement gate (e8_gate.py lam=0, raw policy); 2.500=tied with distill",
+  "rule": "a net beats distill ONLY if its 95% CI lower bound > 2.500",
+  "seeds_per_block": 300,
+  "games_per_block": 1200,
+  "calibration_distill_vs_distill": 2.5,
+  "calibration_ok": true,
+  "any_candidate_beats_distill": false,
+  "best_base_net": "full_384x40_s0",
+  "best_base_net_gate": 2.5314,
+  "results": [
+    {
+      "label": "calib_distill",
+      "kind": "resbn_fused 128x40",
+      "note": "distill self (calibration)",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5,
+      "gate_std": 0.0,
+      "ci95_halfwidth": 0.0,
+      "ci95_lo": 2.5,
+      "ci95_hi": 2.5,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5,
+          "first_pct": 23.17,
+          "fourth_pct": 14.25,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.5,
+          "first_pct": 22.25,
+          "fourth_pct": 13.5,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.5,
+          "first_pct": 23.42,
+          "fourth_pct": 14.58,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5,
+          "first_pct": 23.0,
+          "fourth_pct": 14.33,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5,
+          "first_pct": 22.33,
+          "fourth_pct": 13.17,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "moyu_bn_128x40",
+      "kind": "resbn 128x40",
+      "note": "moyu BN base (capacity-sweep ref)",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5003,
+      "gate_std": 0.0222,
+      "ci95_halfwidth": 0.0276,
+      "ci95_lo": 2.4727,
+      "ci95_hi": 2.5279,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.4692,
+          "first_pct": 22.58,
+          "fourth_pct": 16.17,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.4904,
+          "first_pct": 23.0,
+          "fourth_pct": 14.75,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.5058,
+          "first_pct": 24.08,
+          "fourth_pct": 15.33,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5292,
+          "first_pct": 24.5,
+          "fourth_pct": 13.58,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5071,
+          "first_pct": 24.08,
+          "fourth_pct": 14.67,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "full_128x40_s0",
+      "kind": "resbn_fused 128x40",
+      "note": "converged 90k base, seed0",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5185,
+      "gate_std": 0.0298,
+      "ci95_halfwidth": 0.037,
+      "ci95_lo": 2.4815,
+      "ci95_hi": 2.5555,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5621,
+          "first_pct": 25.92,
+          "fourth_pct": 13.33,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.4971,
+          "first_pct": 23.67,
+          "fourth_pct": 14.67,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.4912,
+          "first_pct": 23.42,
+          "fourth_pct": 15.08,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5063,
+          "first_pct": 23.67,
+          "fourth_pct": 14.33,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5358,
+          "first_pct": 25.08,
+          "fourth_pct": 13.67,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "full_128x40_s1",
+      "kind": "resbn_fused 128x40",
+      "note": "converged 90k base, seed1",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5219,
+      "gate_std": 0.0259,
+      "ci95_halfwidth": 0.0322,
+      "ci95_lo": 2.4896,
+      "ci95_hi": 2.5541,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5342,
+          "first_pct": 24.83,
+          "fourth_pct": 14.17,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.5046,
+          "first_pct": 23.83,
+          "fourth_pct": 14.42,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.5038,
+          "first_pct": 23.92,
+          "fourth_pct": 15.17,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5621,
+          "first_pct": 25.67,
+          "fourth_pct": 13.08,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5046,
+          "first_pct": 25.0,
+          "fourth_pct": 15.75,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "full_256x40_s0",
+      "kind": "resbn_fused 256x40",
+      "note": "converged 90k base, seed0 (val~0.886)",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5199,
+      "gate_std": 0.0205,
+      "ci95_halfwidth": 0.0255,
+      "ci95_lo": 2.4945,
+      "ci95_hi": 2.5454,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5229,
+          "first_pct": 24.58,
+          "fourth_pct": 14.5,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.5112,
+          "first_pct": 24.08,
+          "fourth_pct": 14.58,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.4896,
+          "first_pct": 22.92,
+          "fourth_pct": 14.75,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5342,
+          "first_pct": 25.33,
+          "fourth_pct": 14.25,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5417,
+          "first_pct": 26.17,
+          "fourth_pct": 14.58,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "full_256x40_s1",
+      "kind": "resbn_fused 256x40",
+      "note": "converged 90k base, seed1 (val~0.898)",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5048,
+      "gate_std": 0.0298,
+      "ci95_halfwidth": 0.037,
+      "ci95_lo": 2.4679,
+      "ci95_hi": 2.5418,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5467,
+          "first_pct": 26.42,
+          "fourth_pct": 15.33,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.4737,
+          "first_pct": 22.42,
+          "fourth_pct": 14.92,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.4992,
+          "first_pct": 23.67,
+          "fourth_pct": 14.75,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5221,
+          "first_pct": 24.58,
+          "fourth_pct": 14.0,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.4825,
+          "first_pct": 23.83,
+          "fourth_pct": 15.75,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "full_384x40_s0",
+      "kind": "resbn_fused 384x40",
+      "note": "converged 90k base, seed0 (val~0.884)",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5314,
+      "gate_std": 0.0273,
+      "ci95_halfwidth": 0.0339,
+      "ci95_lo": 2.4975,
+      "ci95_hi": 2.5654,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5675,
+          "first_pct": 25.83,
+          "fourth_pct": 13.5,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.5217,
+          "first_pct": 24.33,
+          "fourth_pct": 14.33,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.4929,
+          "first_pct": 24.17,
+          "fourth_pct": 16.0,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5417,
+          "first_pct": 25.67,
+          "fourth_pct": 14.08,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5333,
+          "first_pct": 25.42,
+          "fourth_pct": 13.92,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "big192x40_s0_fused",
+      "kind": "resbn_fused 192x40",
+      "note": "historical 'beat moyu' candidate",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5255,
+      "gate_std": 0.0272,
+      "ci95_halfwidth": 0.0338,
+      "ci95_lo": 2.4917,
+      "ci95_hi": 2.5593,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5529,
+          "first_pct": 25.58,
+          "fourth_pct": 14.08,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.5158,
+          "first_pct": 24.42,
+          "fourth_pct": 14.75,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.4833,
+          "first_pct": 22.83,
+          "fourth_pct": 15.42,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5329,
+          "first_pct": 24.92,
+          "fourth_pct": 14.08,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5425,
+          "first_pct": 26.25,
+          "fourth_pct": 14.58,
+          "games": 1200
+        }
+      ]
+    },
+    {
+      "label": "big256x40_s0_fused",
+      "kind": "resbn_fused 256x40",
+      "note": "historical big-256 candidate",
+      "n_blocks": 5,
+      "total_games": 6000,
+      "gate_mean": 2.5196,
+      "gate_std": 0.0238,
+      "ci95_halfwidth": 0.0295,
+      "ci95_lo": 2.4901,
+      "ci95_hi": 2.5491,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 100000,
+          "placement_pts": 2.5217,
+          "first_pct": 24.83,
+          "fourth_pct": 15.33,
+          "games": 1200
+        },
+        {
+          "seed0": 110000,
+          "placement_pts": 2.5283,
+          "first_pct": 24.08,
+          "fourth_pct": 13.25,
+          "games": 1200
+        },
+        {
+          "seed0": 70000,
+          "placement_pts": 2.4925,
+          "first_pct": 23.42,
+          "fourth_pct": 15.17,
+          "games": 1200
+        },
+        {
+          "seed0": 80000,
+          "placement_pts": 2.5533,
+          "first_pct": 25.17,
+          "fourth_pct": 13.0,
+          "games": 1200
+        },
+        {
+          "seed0": 90000,
+          "placement_pts": 2.5021,
+          "first_pct": 24.25,
+          "fourth_pct": 14.92,
+          "games": 1200
+        }
+      ]
+    }
+  ],
+  "ranking": [
+    "full_384x40_s0",
+    "big192x40_s0_fused",
+    "full_128x40_s1",
+    "full_256x40_s0",
+    "big256x40_s0_fused",
+    "full_128x40_s0",
+    "full_256x40_s1",
+    "moyu_bn_128x40"
+  ]
+}

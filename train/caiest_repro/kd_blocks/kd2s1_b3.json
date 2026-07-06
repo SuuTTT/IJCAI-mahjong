@@ -1,0 +1,33 @@
+{
+  "cand": "kd2_128x40_s1.pkl",
+  "ref": "aug_128x40_s0.pkl",
+  "value": "value_256x40.pkl",
+  "lam": 0.0,
+  "topk": 5,
+  "games": 2000,
+  "seeds": 500,
+  "placement_pts": 2.4935,
+  "dist_1234": [
+    467,
+    704,
+    530,
+    299
+  ],
+  "dist_pct": [
+    23.35,
+    35.2,
+    26.5,
+    14.95
+  ],
+  "first_pct": 23.35,
+  "fourth_pct": 14.95,
+  "sg_win_rate": 0.2335,
+  "sg_fourth_rate": 0.1495,
+  "claim_rate": 0.0,
+  "claim_legal_states": 0,
+  "override_rate": 0.0,
+  "cand_decisions": 0,
+  "micro_cand_per_game": -0.173,
+  "seconds": 89.0,
+  "seed0": 473000
+}

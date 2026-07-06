@@ -1,0 +1,60 @@
+{
+  "cand": "moyu_bn_128x40.pkl",
+  "ref": "moyu_bn_128x40.pkl",
+  "knob": "off",
+  "knob_cfg": {
+    "SAFE_DISCARD": 0,
+    "MIN_TURN": 99,
+    "MIN_MELDS": 9,
+    "TOP_K": 0,
+    "FOLD_TURN": 99,
+    "FOLD_SHANTEN": 99
+  },
+  "games": 1600,
+  "seeds": 400,
+  "placement_pts": 2.5,
+  "dist_1234": [
+    383,
+    556,
+    417,
+    244
+  ],
+  "dist_pct": [
+    23.9,
+    34.8,
+    26.1,
+    15.2
+  ],
+  "top_half_pct": 58.7,
+  "first_pct": 23.9,
+  "fourth_pct": 15.2,
+  "micro_cand_per_game": 0.0,
+  "seat_dist_1234": [
+    [
+      104,
+      141,
+      100,
+      55
+    ],
+    [
+      109,
+      139,
+      104,
+      48
+    ],
+    [
+      81,
+      137,
+      112,
+      70
+    ],
+    [
+      89,
+      139,
+      101,
+      71
+    ]
+  ],
+  "seconds": 81.7,
+  "seed0": 70000
+}

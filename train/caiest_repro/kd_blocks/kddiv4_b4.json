@@ -1,0 +1,14 @@
+{
+  "cand": [
+    "kdd_heavyaug.pkl",
+    "kdd_lightaug.pkl",
+    "kdd_purekd.pkl",
+    "kdd_halfkd.pkl"
+  ],
+  "ref": "aug_128x40_s0.pkl",
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer)",
+  "games": 2000,
+  "placement_pts": 2.527,
+  "seconds": 153.2,
+  "seed0": 364000
+}

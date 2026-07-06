@@ -1,0 +1,588 @@
+{
+  "structural_legality": {
+    "n": 20000,
+    "base_chosen_legal_rate": 1.0,
+    "suit_perm_120": {
+      "chosen_legal_rate": 1.0,
+      "tile_mass_conserved": true,
+      "legal_count_preserved": true,
+      "PASS": true
+    },
+    "rank_reflect": {
+      "chosen_legal_rate": 1.0,
+      "tile_mass_conserved": true,
+      "legal_count_preserved": true,
+      "PASS": true
+    },
+    "dragon_perm_102": {
+      "chosen_legal_rate": 1.0,
+      "tile_mass_conserved": true,
+      "legal_count_preserved": true,
+      "PASS": true
+    },
+    "dragon_perm_201": {
+      "chosen_legal_rate": 1.0,
+      "tile_mass_conserved": true,
+      "legal_count_preserved": true,
+      "PASS": true
+    },
+    "suit_identity_noop": true
+  },
+  "fan_invariance": {
+    "suit_perm(120)": {
+      "n": 3000,
+      "fan_preserved": 2991,
+      "fan_changed": 9,
+      "became_invalid_win": 0,
+      "preserve_rate": 0.997,
+      "examples_changed": [
+        {
+          "orig": [
+            "J3",
+            "J3",
+            "B2",
+            "B2",
+            "B2",
+            "B5",
+            "B5",
+            "B5",
+            "W4",
+            "W4",
+            "W4",
+            "W2",
+            "W2",
+            "J3"
+          ],
+          "fan0": 68,
+          "fan1": 75
+        },
+        {
+          "orig": [
+            "J3",
+            "J3",
+            "J3",
+            "W2",
+            "W3",
+            "W3",
+            "W4",
+            "W5",
+            "W5",
+            "W5",
+            "W5",
+            "W3",
+            "W3",
+            "W1"
+          ],
+          "fan0": 18,
+          "fan1": 26
+        },
+        {
+          "orig": [
+            "B5",
+            "B5",
+            "W4",
+            "W4",
+            "W4",
+            "B4",
+            "B5",
+            "B6",
+            "B8",
+            "B8",
+            "B8",
+            "W1",
+            "W1",
+            "B5"
+          ],
+          "fan0": 24,
+          "fan1": 31
+        },
+        {
+          "orig": [
+            "B8",
+            "B8",
+            "B8",
+            "W2",
+            "W3",
+            "W4",
+            "W2",
+            "W3",
+            "W4",
+            "B4",
+            "B5",
+            "B6",
+            "J3",
+            "J3"
+          ],
+          "fan0": 7,
+          "fan1": 14
+        },
+        {
+          "orig": [
+            "J3",
+            "J3",
+            "J3",
+            "B4",
+            "B4",
+            "B4",
+            "W4",
+            "W4",
+            "W4",
+            "B9",
+            "B9",
+            "B9",
+            "B8",
+            "B8"
+          ],
+          "fan0": 71,
+          "fan1": 78
+        }
+      ]
+    },
+    "suit_perm(201)": {
+      "n": 3000,
+      "fan_preserved": 2989,
+      "fan_changed": 11,
+      "became_invalid_win": 0,
+      "preserve_rate": 0.996333,
+      "examples_changed": [
+        {
+          "orig": [
+            "T3",
+            "T4",
+            "T5",
+            "W8",
+            "W8",
+            "T1",
+            "T2",
+            "T3",
+            "T3",
+            "T4",
+            "T5",
+            "W4",
+            "W4",
+            "W8"
+          ],
+          "fan0": 7,
+          "fan1": 14
+        },
+        {
+          "orig": [
+            "W6",
+            "W6",
+            "W4",
+            "W5",
+            "W6",
+            "T5",
+            "T5",
+            "T5",
+            "T3",
+            "T4",
+            "T5",
+            "T1",
+            "T1",
+            "W6"
+          ],
+          "fan0": 12,
+          "fan1": 19
+        },
+        {
+          "orig": [
+            "J3",
+            "J3",
+            "J3",
+            "W9",
+            "W9",
+            "W9",
+            "T3",
+            "T3",
+            "T3",
+            "T4",
+            "T5",
+            "T2",
+            "T2",
+            "T3"
+          ],
+          "fan0": 26,
+          "fan1": 33
+        },
+        {
+          "orig": [
+            "J3",
+            "J3",
+            "W2",
+            "W2",
+            "W2",
+            "T5",
+            "T5",
+            "T5",
+            "T2",
+            "T3",
+            "T4",
+            "T1",
+            "T1",
+            "J3"
+          ],
+          "fan0": 23,
+          "fan1": 30
+        },
+        {
+          "orig": [
+            "T2",
+            "T2",
+            "B2",
+            "B2",
+            "B2",
+            "J3",
+            "J3",
+            "J3",
+            "B1",
+            "B1",
+            "B1",
+            "B4",
+            "B4",
+            "T2"
+          ],
+          "fan0": 78,
+          "fan1": 71
+        }
+      ]
+    },
+    "rank_reflect": {
+      "n": 3000,
+      "fan_preserved": 2995,
+      "fan_changed": 5,
+      "became_invalid_win": 0,
+      "preserve_rate": 0.998333,
+      "examples_changed": [
+        {
+          "orig": [
+            "B5",
+            "B6",
+            "B7",
+            "B6",
+            "B6",
+            "B6",
+            "T1",
+            "T1",
+            "T1",
+            "T8",
+            "T8",
+            "B5",
+            "B5",
+            "T8"
+          ],
+          "fan0": 25,
+          "fan1": 32
+        },
+        {
+          "orig": [
+            "B5",
+            "B5",
+            "B5",
+            "B5",
+            "B6",
+            "B7",
+            "B9",
+            "B9",
+            "T5",
+            "T5",
+            "T5",
+            "T4",
+            "T4",
+            "B9"
+          ],
+          "fan0": 27,
+          "fan1": 34
+        },
+        {
+          "orig": [
+            "T2",
+            "T2",
+            "B2",
+            "B2",
+            "B2",
+            "J3",
+            "J3",
+            "J3",
+            "B1",
+            "B1",
+            "B1",
+            "B4",
+            "B4",
+            "T2"
+          ],
+          "fan0": 78,
+          "fan1": 71
+        },
+        {
+          "orig": [
+            "B3",
+            "B4",
+            "B5",
+            "T9",
+            "T9",
+            "T9",
+            "B2",
+            "B2",
+            "T8",
+            "T8",
+            "T8",
+            "T2",
+            "T2",
+            "B2"
+          ],
+          "fan0": 30,
+          "fan1": 23
+        },
+        {
+          "orig": [
+            "T4",
+            "T4",
+            "T4",
+            "B3",
+            "B4",
+            "B5",
+            "T4",
+            "T6",
+            "B4",
+            "B4",
+            "B4",
+            "B1",
+            "B1",
+            "T5"
+          ],
+          "fan0": 22,
+          "fan1": 15
+        }
+      ]
+    },
+    "dragon_perm(102)": {
+      "n": 3000,
+      "fan_preserved": 3000,
+      "fan_changed": 0,
+      "became_invalid_win": 0,
+      "preserve_rate": 1.0,
+      "examples_changed": []
+    },
+    "dragon_perm(201)": {
+      "n": 3000,
+      "fan_preserved": 2995,
+      "fan_changed": 5,
+      "became_invalid_win": 0,
+      "preserve_rate": 0.998333,
+      "examples_changed": [
+        {
+          "orig": [
+            "T4",
+            "T4",
+            "T4",
+            "B1",
+            "B2",
+            "J2",
+            "J2",
+            "J2",
+            "B3",
+            "B4",
+            "B5",
+            "B3",
+            "B3",
+            "B3"
+          ],
+          "fan0": 11,
+          "fan1": 18
+        },
+        {
+          "orig": [
+            "J2",
+            "J2",
+            "J2",
+            "B2",
+            "B3",
+            "B3",
+            "B4",
+            "B5",
+            "B5",
+            "B5",
+            "B5",
+            "T6",
+            "T6",
+            "B4"
+          ],
+          "fan0": 11,
+          "fan1": 18
+        },
+        {
+          "orig": [
+            "T2",
+            "T2",
+            "B2",
+            "B2",
+            "B2",
+            "J3",
+            "J3",
+            "J3",
+            "B1",
+            "B1",
+            "B1",
+            "B4",
+            "B4",
+            "T2"
+          ],
+          "fan0": 78,
+          "fan1": 71
+        },
+        {
+          "orig": [
+            "B3",
+            "B4",
+            "B5",
+            "T2",
+            "T2",
+            "J2",
+            "J2",
+            "J2",
+            "T4",
+            "T5",
+            "T6",
+            "B2",
+            "B2",
+            "T2"
+          ],
+          "fan0": 9,
+          "fan1": 16
+        },
+        {
+          "orig": [
+            "J2",
+            "J2",
+            "J2",
+            "T5",
+            "T5",
+            "T5",
+            "B5",
+            "B5",
+            "B5",
+            "B3",
+            "B5",
+            "T4",
+            "T4",
+            "B4"
+          ],
+          "fan0": 28,
+          "fan1": 35
+        }
+      ]
+    },
+    "WIND_swap(F1F2)_NEGCTRL": {
+      "n": 3000,
+      "fan_preserved": 2818,
+      "fan_changed": 182,
+      "became_invalid_win": 0,
+      "preserve_rate": 0.939333,
+      "examples_changed": [
+        {
+          "orig": [
+            "B1",
+            "B1",
+            "B1",
+            "T4",
+            "T4",
+            "T4",
+            "B7",
+            "B8",
+            "B9",
+            "F1",
+            "F1",
+            "F1",
+            "T5",
+            "T5"
+          ],
+          "fan0": 24,
+          "fan1": 23
+        },
+        {
+          "orig": [
+            "W8",
+            "W8",
+            "W8",
+            "W2",
+            "W3",
+            "W4",
+            "B9",
+            "B9",
+            "B9",
+            "F2",
+            "F2",
+            "T2",
+            "T2",
+            "F2"
+          ],
+          "fan0": 25,
+          "fan1": 22
+        },
+        {
+          "orig": [
+            "B2",
+            "B2",
+            "B2",
+            "F2",
+            "F2",
+            "B7",
+            "B8",
+            "B9",
+            "W3",
+            "W4",
+            "W5",
+            "W1",
+            "W1",
+            "F2"
+          ],
+          "fan0": 8,
+          "fan1": 9
+        },
+        {
+          "orig": [
+            "B3",
+            "B3",
+            "W9",
+            "W9",
+            "W9",
+            "B7",
+            "B8",
+            "B9",
+            "F1",
+            "F1",
+            "F1",
+            "T7",
+            "T7",
+            "B3"
+          ],
+          "fan0": 22,
+          "fan1": 23
+        },
+        {
+          "orig": [
+            "F1",
+            "F1",
+            "F1",
+            "W2",
+            "W3",
+            "W4",
+            "W7",
+            "W8",
+            "W9",
+            "B3",
+            "B5",
+            "T4",
+            "T4",
+            "B4"
+          ],
+          "fan0": 6,
+          "fan1": 7
+        }
+      ]
+    }
+  },
+  "fan_hands_generated": 3000,
+  "notes": "A transform is a true MCR automorphism iff it preserves total fan on every scoring hand. Suit-perm is the already-deployed baseline; rank-reflect and dragon-perm are judged fan-valid iff their preserve_rate matches suit-perm's (any residual mismatch is the single suit/rank/dragon-asymmetric fan 'Reversible Tiles' \u63a8\u4e0d\u5012, which also affects the deployed suit-perm). The WIND negative control MUST show a lower preserve_rate, proving the test discriminates."
+}

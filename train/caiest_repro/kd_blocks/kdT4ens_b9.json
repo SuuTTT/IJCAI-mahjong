@@ -1,0 +1,14 @@
+{
+  "cand": [
+    "kdt_T2.pkl",
+    "kdt_T4.pkl",
+    "kdt_T2light.pkl",
+    "kdt_T2pure.pkl"
+  ],
+  "ref": "aug_128x40_s0.pkl",
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer)",
+  "games": 2000,
+  "placement_pts": 2.5133,
+  "seconds": 154.2,
+  "seed0": 369000
+}

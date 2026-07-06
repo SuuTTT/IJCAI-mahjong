@@ -1,0 +1,240 @@
+{
+  "experiment": "BN384 high-power confirmatory gate: full_384x40_s0 (resbn_fused 384x40) vs deployed distill cnn_lad_chunjiandu",
+  "gate": "e8_gate.py lam=0 calibrated duplicate-format placement gate; 2.500=tied with distill; rule: CI lower bound > 2.500 to beat",
+  "calibration_check": {
+    "calib": {
+      "prefix": "calib_distill",
+      "n_blocks": 4,
+      "total_games": 16000,
+      "mean": 2.5,
+      "std": 0.0,
+      "ci95_halfwidth": 0.0,
+      "ci95_lo": 2.5,
+      "ci95_hi": 2.5,
+      "beats_distill": false,
+      "blocks": [
+        {
+          "seed0": 400000,
+          "placement_pts": 2.5,
+          "first_pct": 22.95,
+          "fourth_pct": 14.07,
+          "games": 4000,
+          "seeds": 1000
+        },
+        {
+          "seed0": 401000,
+          "placement_pts": 2.5,
+          "first_pct": 22.9,
+          "fourth_pct": 14.28,
+          "games": 4000,
+          "seeds": 1000
+        },
+        {
+          "seed0": 402000,
+          "placement_pts": 2.5,
+          "first_pct": 22.9,
+          "fourth_pct": 14.62,
+          "games": 4000,
+          "seeds": 1000
+        },
+        {
+          "seed0": 403000,
+          "placement_pts": 2.5,
+          "first_pct": 23.5,
+          "fourth_pct": 14.82,
+          "games": 4000,
+          "seeds": 1000
+        }
+      ]
+    },
+    "calib_ok": true
+  },
+  "candidate": {
+    "prefix": "full_384x40_s0",
+    "n_blocks": 12,
+    "total_games": 48000,
+    "mean": 2.5207,
+    "std": 0.0122,
+    "ci95_halfwidth": 0.0077,
+    "ci95_lo": 2.513,
+    "ci95_hi": 2.5285,
+    "beats_distill": true,
+    "blocks": [
+      {
+        "seed0": 300000,
+        "placement_pts": 2.5015,
+        "first_pct": 23.55,
+        "fourth_pct": 14.93,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 301000,
+        "placement_pts": 2.511,
+        "first_pct": 23.93,
+        "fourth_pct": 14.88,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 302000,
+        "placement_pts": 2.523,
+        "first_pct": 24.55,
+        "fourth_pct": 14.68,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 303000,
+        "placement_pts": 2.5253,
+        "first_pct": 24.77,
+        "fourth_pct": 14.43,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 304000,
+        "placement_pts": 2.5184,
+        "first_pct": 23.8,
+        "fourth_pct": 14.25,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 305000,
+        "placement_pts": 2.5371,
+        "first_pct": 24.88,
+        "fourth_pct": 13.43,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 306000,
+        "placement_pts": 2.5256,
+        "first_pct": 24.48,
+        "fourth_pct": 14.2,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 307000,
+        "placement_pts": 2.5213,
+        "first_pct": 24.4,
+        "fourth_pct": 14.7,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 308000,
+        "placement_pts": 2.5351,
+        "first_pct": 25.27,
+        "fourth_pct": 14.22,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 309000,
+        "placement_pts": 2.5303,
+        "first_pct": 24.57,
+        "fourth_pct": 14.0,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 310000,
+        "placement_pts": 2.5227,
+        "first_pct": 24.4,
+        "fourth_pct": 14.05,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 311000,
+        "placement_pts": 2.4975,
+        "first_pct": 23.55,
+        "fourth_pct": 14.75,
+        "games": 4000,
+        "seeds": 1000
+      }
+    ]
+  },
+  "big192_optional": {
+    "prefix": "big192x40_s0_fused",
+    "n_blocks": 8,
+    "total_games": 32000,
+    "mean": 2.5203,
+    "std": 0.0089,
+    "ci95_halfwidth": 0.0075,
+    "ci95_lo": 2.5128,
+    "ci95_hi": 2.5278,
+    "beats_distill": true,
+    "blocks": [
+      {
+        "seed0": 500000,
+        "placement_pts": 2.5304,
+        "first_pct": 25.25,
+        "fourth_pct": 13.82,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 501000,
+        "placement_pts": 2.5137,
+        "first_pct": 24.23,
+        "fourth_pct": 14.78,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 502000,
+        "placement_pts": 2.5231,
+        "first_pct": 24.6,
+        "fourth_pct": 14.28,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 503000,
+        "placement_pts": 2.5245,
+        "first_pct": 25.1,
+        "fourth_pct": 14.97,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 504000,
+        "placement_pts": 2.5125,
+        "first_pct": 24.25,
+        "fourth_pct": 15.03,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 505000,
+        "placement_pts": 2.5301,
+        "first_pct": 24.57,
+        "fourth_pct": 14.35,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 506000,
+        "placement_pts": 2.5053,
+        "first_pct": 23.88,
+        "fourth_pct": 14.93,
+        "games": 4000,
+        "seeds": 1000
+      },
+      {
+        "seed0": 507000,
+        "placement_pts": 2.523,
+        "first_pct": 24.93,
+        "fourth_pct": 15.0,
+        "games": 4000,
+        "seeds": 1000
+      }
+    ]
+  },
+  "verdict_code": "YES_CONFIRMED",
+  "verdict": "full_384x40_s0 CI-SEPARATED above 2.500 -> REAL base-policy upgrade. Deploy full_384x40_s0 (raw policy net) under moyu Botzone account like distill_cs2; value model not needed."
+}

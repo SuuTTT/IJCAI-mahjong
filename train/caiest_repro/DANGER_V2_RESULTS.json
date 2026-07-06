@@ -1,0 +1,8 @@
+{
+  "n_blocks": 12,
+  "mean_diff": -0.0359,
+  "ci95_lo": -0.0461,
+  "dealins_plain": 0,
+  "dealins_danger": 0,
+  "verdict": "NOT_SEPARATED"
+}

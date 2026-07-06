@@ -1,0 +1,100 @@
+{
+  "experiment": "E3 value/reward-model capacity scaling (ValueMT)",
+  "data": "data/cooked_value.npz",
+  "n_total": 5865816,
+  "eval": "held-out 10% fixed split (np.RandomState(0)), seed-independent -> identical across all runs; train/val 0% overlap (asserted in trainer)",
+  "epochs": 8,
+  "lr": 0.001,
+  "bs": 1024,
+  "metrics": {
+    "fourth_auc": "P(this seat finishes 4th/last) ROC-AUC (headline)",
+    "place_acc": "argmax placement 1..4 accuracy (base rate ~0.264)",
+    "score_r": "Pearson r of predicted vs realized deal score"
+  },
+  "results": [
+    {
+      "name": "64x6_s0",
+      "channels": 64,
+      "blocks": 6,
+      "params": 491654,
+      "fourth_auc": 0.805,
+      "place_acc": 0.536,
+      "score_r": 0.4057,
+      "place_mae": 0.7478,
+      "score_mae": 0.3877,
+      "seed": 0,
+      "epochs": 8,
+      "n_eval": 586581
+    },
+    {
+      "name": "128x20_s0",
+      "channels": 128,
+      "blocks": 20,
+      "params": 6002822,
+      "fourth_auc": 0.9035,
+      "place_acc": 0.6297,
+      "score_r": 0.5314,
+      "place_mae": 0.6172,
+      "score_mae": 0.3446,
+      "seed": 0,
+      "epochs": 8,
+      "n_eval": 586581
+    },
+    {
+      "name": "128x40_s0",
+      "channels": 128,
+      "blocks": 40,
+      "params": 11911302,
+      "fourth_auc": 0.9002,
+      "place_acc": 0.6228,
+      "score_r": 0.5153,
+      "place_mae": 0.632,
+      "score_mae": 0.354,
+      "seed": 0,
+      "epochs": 8,
+      "n_eval": 586581
+    },
+    {
+      "name": "192x24_s0",
+      "channels": 192,
+      "blocks": 24,
+      "params": 16084614,
+      "fourth_auc": 0.9382,
+      "place_acc": 0.6906,
+      "score_r": 0.6018,
+      "place_mae": 0.5236,
+      "score_mae": 0.3237,
+      "seed": 0,
+      "epochs": 8,
+      "n_eval": 586581
+    },
+    {
+      "name": "256x40_s0",
+      "channels": 256,
+      "blocks": 40,
+      "params": 47414406,
+      "fourth_auc": 0.9541,
+      "place_acc": 0.7352,
+      "score_r": 0.6545,
+      "place_mae": 0.4497,
+      "score_mae": 0.2817,
+      "seed": 0,
+      "epochs": 8,
+      "n_eval": 586581
+    },
+    {
+      "name": "256x40_s1",
+      "channels": 256,
+      "blocks": 40,
+      "params": 47414406,
+      "fourth_auc": 0.9525,
+      "place_acc": 0.7436,
+      "score_r": 0.6717,
+      "place_mae": 0.4384,
+      "score_mae": 0.2808,
+      "seed": 1,
+      "epochs": 8,
+      "n_eval": 586581
+    }
+  ]
+}

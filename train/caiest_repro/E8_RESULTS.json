@@ -1,0 +1,173 @@
+{
+  "experiment": "E8_value_guided_1ply",
+  "base": "cnn_lad_chunjiandu.npz (ResFused 128x40, deployed bot)",
+  "value_model": "value_256x40.pkl (ValueMT 256x40, held-out 4th-AUC 0.955)",
+  "format": "duplicate placement gate (4-seat rotation), calibrated base-vs-base = 2.500",
+  "true_1ply": true,
+  "decisions_hooked": "DISCARD (Play) + CLAIM (Chi/Peng)",
+  "topk": 5,
+  "calibration_lam0": 2.5,
+  "blocks_per_lam": 3,
+  "seeds_per_block": 400,
+  "games_per_block": 1600,
+  "ship_rule": "lambda ships iff placement 95% CI entirely > 2.500",
+  "rows": [
+    {
+      "lam": 0.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.5,
+      "placement_std": 0.0,
+      "placement_se": 0.0,
+      "ci95_lo": 2.5,
+      "ci95_hi": 2.5,
+      "vs_base_delta": 0.0,
+      "delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "ci_separated_better": null,
+      "ci_separated_worse": null,
+      "claim_rate": 0.0,
+      "win_rate": 0.23,
+      "fourth_rate": 0.1373,
+      "override_rate": 0.0,
+      "block_placements": [
+        2.5,
+        2.5,
+        2.5
+      ]
+    },
+    {
+      "lam": 0.5,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.5011,
+      "placement_std": 0.0029,
+      "placement_se": 0.0017,
+      "ci95_lo": 2.494,
+      "ci95_hi": 2.5083,
+      "vs_base_delta": 0.0011,
+      "delta_ci95": [
+        -0.006,
+        0.0083
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false,
+      "claim_rate": 0.3347,
+      "win_rate": 0.2308,
+      "fourth_rate": 0.1373,
+      "override_rate": 0.0012,
+      "block_placements": [
+        2.4978,
+        2.5028,
+        2.5028
+      ]
+    },
+    {
+      "lam": 1.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4976,
+      "placement_std": 0.0068,
+      "placement_se": 0.0039,
+      "ci95_lo": 2.4807,
+      "ci95_hi": 2.5145,
+      "vs_base_delta": -0.0024,
+      "delta_ci95": [
+        -0.0193,
+        0.0145
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false,
+      "claim_rate": 0.3343,
+      "win_rate": 0.2283,
+      "fourth_rate": 0.1367,
+      "override_rate": 0.0026,
+      "block_placements": [
+        2.4903,
+        2.4987,
+        2.5038
+      ]
+    },
+    {
+      "lam": 2.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4927,
+      "placement_std": 0.0071,
+      "placement_se": 0.0041,
+      "ci95_lo": 2.4751,
+      "ci95_hi": 2.5103,
+      "vs_base_delta": -0.0073,
+      "delta_ci95": [
+        -0.0249,
+        0.0103
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false,
+      "claim_rate": 0.3344,
+      "win_rate": 0.2265,
+      "fourth_rate": 0.1379,
+      "override_rate": 0.0052,
+      "block_placements": [
+        2.4869,
+        2.4906,
+        2.5006
+      ]
+    },
+    {
+      "lam": 4.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.4915,
+      "placement_std": 0.0099,
+      "placement_se": 0.0057,
+      "ci95_lo": 2.467,
+      "ci95_hi": 2.516,
+      "vs_base_delta": -0.0085,
+      "delta_ci95": [
+        -0.033,
+        0.016
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false,
+      "claim_rate": 0.3413,
+      "win_rate": 0.2246,
+      "fourth_rate": 0.1371,
+      "override_rate": 0.0113,
+      "block_placements": [
+        2.4894,
+        2.4828,
+        2.5022
+      ]
+    },
+    {
+      "lam": 8.0,
+      "n_blocks": 3,
+      "games": 4800,
+      "placement_mean": 2.465,
+      "placement_std": 0.0176,
+      "placement_se": 0.0102,
+      "ci95_lo": 2.4213,
+      "ci95_hi": 2.5087,
+      "vs_base_delta": -0.035,
+      "delta_ci95": [
+        -0.0787,
+        0.0087
+      ],
+      "ci_separated_better": false,
+      "ci_separated_worse": false,
+      "claim_rate": 0.3605,
+      "win_rate": 0.2123,
+      "fourth_rate": 0.1419,
+      "override_rate": 0.0225,
+      "block_placements": [
+        2.4706,
+        2.4453,
+        2.4791
+      ]
+    }
+  ],
+  "verdict": "NULL: no lambda CI-separated above 2.500; distill stays"
+}
