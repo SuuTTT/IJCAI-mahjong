@@ -1,0 +1,9 @@
+PIMC / determinized value-search test-time lookahead experiment
+Base=aug_128x40_s0.pkl  Value=value_256x40.pkl (V_place leaf)
+Gate=pimc_gate.py (calibrated duplicate placement, aug_s0-vs-aug_s0=2.500 VERIFIED N=0)
+Rollout=pimc_rollout.py (cheap fan/greedy playout + immediate rong-on-discard deal-in term + V_place leaf)
+Harness=run_pimc.sh (setsid, STOP_SEARCH guard, disk guard, 48 workers)
+Tiers: A(N10/H12 ~475ms), B(N20/H20 ~864ms), C(N40/H30 ~1622ms) -- all << 6000ms budget
+10 blocks x 1200 games/tier. Ship: placement 95%CI_lo > 2.500 AND per_move_ms<=6000.
+Aggregate: pimc_aggregate.py -> SEARCH_RESULTS.json ; make_writeup.py -> SEARCH_WRITEUP.md
+EARLY: tier A block0 (fixed code) placement=2.4517 (search HURTS at small N, margin=0).

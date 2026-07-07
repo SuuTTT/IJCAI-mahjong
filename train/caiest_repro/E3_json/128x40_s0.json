@@ -1,0 +1,15 @@
+{
+  "channels": 128,
+  "blocks": 40,
+  "params": 11911302,
+  "seed": 0,
+  "epochs": 8,
+  "n_eval": 586581,
+  "fourth_auc": 0.9001907839817415,
+  "place_acc": 0.6228381076100317,
+  "place_mae": 0.6320086655904377,
+  "score_r": 0.5153070257518569,
+  "score_mae": 0.3540346920490265,
+  "final_epoch": 8,
+  "ckpt": "value_128x40_s0.pkl"
+}
