@@ -1,0 +1,20 @@
+{
+  "fold": {
+    "n": 167,
+    "plc": 2.557,
+    "plc_se": 0.083,
+    "score": 1.72,
+    "dealin_rate": 0.257,
+    "errors": 0,
+    "unfinished": 0
+  },
+  "plain": {
+    "n": 158,
+    "plc": 2.579,
+    "plc_se": 0.081,
+    "score": 2.32,
+    "dealin_rate": 0.291,
+    "errors": 0,
+    "unfinished": 0
+  }
+}
