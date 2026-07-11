@@ -137,7 +137,7 @@ The one GPU axis the audit never tried: does moyu's CNN UNDER-FIT the champion d
 - **moyu (lean, 0 TLE) is the locked Round-2 submission** until something *passes a
   real-field A/B* (1st-rate up, 4th-rate not up). Nothing has.
 - Deliverables: the negative-result write-up + the 2 blogs + the real-field-eval infra.
-- Housekeeping: change Botzone account passwords (still `REDACTED-PW`); release the
+- Housekeeping: rotate Botzone account passwords; release the
   China-box GPU when AWR finishes.
 
 ### Standing rules (verification discipline — this project fabricated ~8×)

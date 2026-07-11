@@ -86,7 +86,7 @@ the instant the correct account is available.
 ================================================================================
 2026-06-29T07:10:27Z  --  Sim-11 DISPATCH COMPLETE (moyu account, RESOLVED account-aliasing bug)
 ================================================================================
-RESOLUTION: Logged in via FRESH EMAIL LOGIN (POST /login, email redacted-account@example.com) ->
+RESOLUTION: Logged in via FRESH EMAIL LOGIN (POST /login, account email redacted) ->
   session username == "moyu", uid 6a1a779558ebe27b1977016b, owns distill (root 6a28714a237d890575c8f1e7) = YES.
   (Stored cookies_live.json were the WRONG accounts -- not used for create/dispatch.)
 

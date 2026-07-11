@@ -12,7 +12,7 @@ Read the **[Phase-1 Autopsy](phase1_autopsy.html)** first — the lessons below 
 - **Compute:** the eval box (`40664158`) was destroyed. **`40833388` (ssh2.vast.ai:33389, A4000, 128-core,
   cap ~20 cores — shared)** is assigned for next mahjong work. First step on any fresh box: rebuild the C++
   judge (recipe in `CHANGELOG.md` 2026-06-14) and `pip install torch PyMahjongGB optax`.
-- ⚠️ **Rotate the exposed tokens** (HF `REDACTED-TOKEN-FINGERPRINT…`, the GitHub `ghp_…`) before reusing.
+- ⚠️ **Rotate the exposed tokens** (`REDACTED-TOKEN-FINGERPRINT`) before reusing.
 
 ---
 
