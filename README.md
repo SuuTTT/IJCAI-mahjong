@@ -13,6 +13,7 @@ on the ladder to 2nd of 25 in the full-field simulation, then **3rd of 16 in Sta
 > 📝 **The story:** [From 11th to Runner-Up: An Honest Mahjong AI Campaign](https://suuttt.github.io/IJCAI-mahjong/blog/2026-07-10-from-11th-to-runner-up.html)
 > 📊 **The final:** [Anatomy of a Coin-Flip Final: 12,288 Games Analyzed](https://suuttt.github.io/IJCAI-mahjong/blog/2026-07-10-anatomy-of-a-coin-flip-final.html)
 > 🤗 **Models & data:** [HF model repo](https://huggingface.co/Dannibal/ijcai-mahjong-phase1) · [raw games dataset](https://huggingface.co/datasets/Dannibal/ijcai-mahjong-sim8-games)
+> ✅ **MCR engine correctness test set:** [Dannibal/mcr-final2026-testset](https://huggingface.co/datasets/Dannibal/mcr-final2026-testset) — all 12,288 official Final Stage-2 games as replayable test cases + 221 golden edge cases + reference validator; any new MCR judge/engine (e.g. the JAX engine, [developer guide §5.5](docs/PLATFORM_DEVELOPER_GUIDE.md)) must reproduce them exactly.
 
 > **Phase-1 status (2026-06-14, historical):** Submission was `lad_chunjiandu` + the net-PIMC bot `[Claude]aaa`.
 > Simulation-8 result: **27/38** (net +2.39/g). ~18 modeling interventions tried; the only demonstrable

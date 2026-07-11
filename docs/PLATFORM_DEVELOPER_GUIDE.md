@@ -615,12 +615,19 @@ else required.
 Replay all **12,288 IJCAI-2026 Final Stage-2 games** through the new engine and require an
 exact match with the official judge's outcome on every game: each action's legality, every
 claim resolution (priority + preemption), every win/fan decision, and the final four-seat
-score. The oracle corpus is the campaign's `final2_all.jsonl.gz` archive (~44 MB): one record
-per game including the full wall and the judge's per-game RNG seed, so every game is exactly
-re-dealable. It is held by the campaign team (not in this repository) and can be published to
-the project's HuggingFace space on request. It is the same corpus behind
-`docs/blog/2026-07-10-anatomy-of-a-coin-flip-final.md`, whose headline totals — 12,088 wins +
-200 exhaustive draws, zero ERROR endings — double as quick sanity checks for your replay run.
+score. **The oracle corpus is published as a public HuggingFace dataset:**
+**<https://huggingface.co/datasets/Dannibal/mcr-final2026-testset>** — one documented JSON
+record per game (full ordered wall, judge `srand`, the verbatim per-seat request/response
+protocol stream, and an `expected` terminal block), plus a 221-game golden edge-case subset
+(qianggang, AnGang/BuGang, multi-claim priority, 8-fan boundary, known judge-vs-MahjongGB
+replay discrepancies) and `validate_engine.py`, a stdlib reference validator with a
+documented engine-interface stub (`reset(wall, quan, srand)` / `step(responses)`); its
+`--self-test` passes 12,288/12,288 games. The dataset card documents the wall/deal order,
+the PENG/CHI-embedded-discard convention, GANG discrimination, claim priority and score
+arithmetic — read its "four classic replay traps" section before writing the engine. It is
+the same corpus behind `docs/blog/2026-07-10-anatomy-of-a-coin-flip-final.md`, whose
+headline totals — 12,088 wins + 200 exhaustive draws, zero ERROR endings — double as quick
+sanity checks for your replay run.
 
 **Acceptance Suite B — gate equivalence.**
 Run the campaign's calibrated duplicate placement gate **on the JAX engine**: kdens3
