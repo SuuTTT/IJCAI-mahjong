@@ -45,15 +45,25 @@ it became: a forensic study of <strong>why in-house evaluation lies</strong> in 
 </p>
 
 <div class="card">
-<strong>TL;DR.</strong> Our supervised-learning bot ranked ~14/69 (Sim-7) → 27/38 (Sim-8). We threw the whole
-playbook at it — RL, distillation, soups, search, advantage-weighted BC, even cloning the bots that beat us.
-<strong class="bad">Not one robustly beat the SL floor.</strong> The only change that demonstrably won points was a
-<em>bug fix</em>. The lasting deliverable is not a model but a <em>trustworthy way to measure</em> — and a pile of
-well-evidenced negative results that became a paper. Start with the <a href="phase1_autopsy.html">Phase-1 Autopsy</a>.
+<strong>Final result (2026-07-09): <span class="good">2nd of 16</span> in the IJCAI-2026 Chinese-Standard-Mahjong
+competition</strong> — 3rd of 16 in Stage-1 Swiss, then 594 points (0.13 standard errors) behind the champion over
+12,288 duplicate games in Stage 2. One coin flip from the title, and every number is logged.
+Start with <a href="blog/2026-07-10-from-11th-to-runner-up.html">the campaign story</a>.
+</div>
+
+<div class="card">
+<strong>TL;DR.</strong> Our supervised-learning bot hit an <em>imitation ceiling</em>: ~20 CI-gated interventions —
+RL, distillation variants, soups, search, advantage-weighted BC, even cloning the bots that beat us —
+<strong class="bad">tied or lost</strong>. Exactly one lever won, twice-replicated:
+<strong class="good">distill-then-ensemble</strong> (+0.0055 placement, 11th → 2nd). The other lasting deliverable
+is a <em>trustworthy way to measure</em> — calibrated duplicate gates, replication, mechanism-engagement counters —
+and a pile of well-evidenced negative results that became a paper.
 </div>
 
 <h2>Read</h2>
 <div class="grid">
+<a class="box" href="blog/2026-07-10-from-11th-to-runner-up.html"><b>From 11th to Runner-Up →</b><br><span>The campaign story: the imitation ceiling, the one lever that beat it (distill-then-ensemble), the eval discipline that made +0.005 trustworthy, and the final.</span></a>
+<a class="box" href="blog/2026-07-10-anatomy-of-a-coin-flip-final.html"><b>Anatomy of a Coin-Flip Final →</b><br><span>All 12,288 final games analyzed: the statistical tie at the top, the paired-wall decomposition, why the best-placement bot got 3rd, and what a 2027 winner needs.</span></a>
 <a class="box" href="blog/not-fooling-yourself.html"><b>How Not to Fool Yourself →</b><br><span>Verification discipline + reproducibility: how we caught ~9 false positives (incl. a +1.78/g that dissolved) and kept the campaign honest.</span></a>
 <a class="box" href="round2_reproduction.html"><b>Round 2: Reproducing the SOTA →</b><br><span>We faithfully reproduced Tjong's fan-backward + transformer and Rouxqdd's DefendPolicy. The mechanisms work; none beats moyu. A credible null.</span></a>
 <a class="box" href="phase1_autopsy.html"><b>Phase-1 Autopsy →</b><br><span>What we built, what died, the 3 lessons, the plan. Start here.</span></a>
@@ -66,6 +76,17 @@ well-evidenced negative results that became a paper. Start with the <a href="pha
 
 <h2>Milestones</h2>
 <div class="tl">
+<div class="ev"><div class="d">2026-07-09</div><div class="t">FINAL: 2nd of 16</div>
+3rd of 16 in Stage-1 Swiss → four-team Stage 2 → <strong class="good">runner-up</strong>, 594 pts
+(t = 0.13, a statistical coin flip) behind the champion over 12,288 duplicate games. Zero errors in every
+game by every finalist. Full forensics: <a href="blog/2026-07-10-anatomy-of-a-coin-flip-final.html"><strong>Anatomy of a Coin-Flip Final</strong></a>.</div>
+
+<div class="ev"><div class="d">2026-07-02</div><div class="t">Sim-11: 2nd of 25 — the one lever lands</div>
+<strong>Distill-then-ensemble</strong> (+0.0055 placement, twice-replicated at 24 blocks) ships and takes the
+full-field simulation: best win rate (29.7%), zero errors, 11th → 2nd by official rating. Teacher-ensembles tie;
+teacher count N=1–14 is flat — the composite operator is the win. Story:
+<a href="blog/2026-07-10-from-11th-to-runner-up.html"><strong>From 11th to Runner-Up</strong></a>.</div>
+
 <div class="ev"><div class="d">2026-06-23</div><div class="t">Reproduced the base; the "beat" was noise</div>
 A fully-converged resbn40 nearly matches moyu, and a +1.78/g "first win" <strong>dissolved under high-N replication</strong> (bases scatter −11→+1.7, seat-asymmetric) — caught by the gate, not shipped. Wrote up the method: <a href="blog/not-fooling-yourself.html"><strong>How Not to Fool Yourself</strong></a>.</div>
 

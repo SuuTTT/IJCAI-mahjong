@@ -1,0 +1,11 @@
+title: "Chasing the Ceiling — IJCAI-2026 Mahjong"
+description: >-
+  An honest, fully-logged campaign to build a competitive Chinese-Standard-Mahjong AI:
+  the imitation ceiling, the one lever that beat it, and a coin-flip final.
+theme: minima
+markdown: kramdown
+url: "https://suuttt.github.io"
+baseurl: "/IJCAI-mahjong"
+exclude:
+  - Gemfile
+  - Gemfile.lock

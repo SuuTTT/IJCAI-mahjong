@@ -1,15 +1,22 @@
-# IJCAI-2026 Chinese-Standard-Mahjong
+# IJCAI-2026 Chinese-Standard-Mahjong — Runner-Up (2nd of 16)
 
-An honest campaign to build a competitive Chinese-Standard-Mahjong (MCR) bot for the IJCAI-2026 / Botzone
-contest — and, increasingly, a research artifact about **why in-house evaluation lies** in imperfect-
-information games.
+An honest, fully-logged campaign to build a competitive Chinese-Standard-Mahjong (MCR) bot for the
+IJCAI-2026 / Botzone contest. The agent (`moyu`) hit a measured *imitation ceiling* — ~20 CI-gated
+interventions (RL, search, architectures, value guidance, cloning stronger players) tied or lost — until
+one lever won, twice-replicated: **distill-then-ensemble** (+0.0055 placement). That carried it from 11th
+on the ladder to 2nd of 25 in the full-field simulation, then **3rd of 16 in Stage-1 of the final and
+2nd of 16 overall**, finishing 594 points (t = 0.13 — a statistical coin flip) behind the champion over
+12,288 duplicate games, with zero errors. Along the way the project became a research artifact about
+**why in-house evaluation lies** in imperfect-information games, and how to build gates it can't fool.
 
 > 🌐 **Project page:** https://suuttt.github.io/IJCAI-mahjong/ — milestones, autopsy, campaign log, paper.
+> 📝 **The story:** [From 11th to Runner-Up: An Honest Mahjong AI Campaign](https://suuttt.github.io/IJCAI-mahjong/blog/2026-07-10-from-11th-to-runner-up.html)
+> 📊 **The final:** [Anatomy of a Coin-Flip Final: 12,288 Games Analyzed](https://suuttt.github.io/IJCAI-mahjong/blog/2026-07-10-anatomy-of-a-coin-flip-final.html)
 > 🤗 **Models & data:** [HF model repo](https://huggingface.co/Dannibal/ijcai-mahjong-phase1) · [raw games dataset](https://huggingface.co/datasets/Dannibal/ijcai-mahjong-sim8-games)
 
-> **Phase-1 status (2026-06-14):** Submission is `lad_chunjiandu` + the net-PIMC bot `[Claude]aaa`.
+> **Phase-1 status (2026-06-14, historical):** Submission was `lad_chunjiandu` + the net-PIMC bot `[Claude]aaa`.
 > Simulation-8 result: **27/38** (net +2.39/g). ~18 modeling interventions tried; the only demonstrable
-> win across the campaign was a bug fix. See the **[Phase-1 Autopsy](docs/phase1_autopsy.html)** and
+> win at that point was a bug fix. See the **[Phase-1 Autopsy](docs/phase1_autopsy.html)** and
 > **[Findings](docs/FINDINGS_2026-06-14.md)**.
 
 ---
