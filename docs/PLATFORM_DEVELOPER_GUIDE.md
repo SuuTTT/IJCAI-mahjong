@@ -21,6 +21,7 @@ in-repo it is explicitly flagged. Key reference files:
 | Observation / action encoding | `deploy/caiest_cnn/feature.py` (byte-identical to `train/caiest_repro/feature.py`) |
 | Duplicate-format evaluation | `eval/duplicate_eval.py`, `eval/run_match.py`, `eval/run_match_kr.py` |
 | Baseline bots | `eval/sample.cpp` (random), `bot/mahjong_bot.py` (shanten heuristic) |
+| JAX env + native-JAX net forward (§5) | `train/jax_env/` (`resnet_jax.py`, `obs38.py`, `agari_jax.py`, `fan_reward.py`, `train_ppo_ws.py`), `docs/JAX_RL_PROGRESS.md`, `train/jax_throughput_probe.py` |
 | Model provenance | `doc/moyu_MODEL_CARD.md`, `doc/resbn40_MODEL_CARD.md`, `train/caiest_repro/UPLOAD_LOG.md` |
 | Contest result forensics | `docs/blog/2026-07-10-anatomy-of-a-coin-flip-final.md` |
 
@@ -446,7 +447,165 @@ Action space, 235 discrete actions with a legality mask:
 
 ---
 
-## 5. The difficulty ladder
+## 5. JAX-First Integration
+
+If your platform is JAX-first (pgx / JaxMARL-style vectorized engines), you do **not** need the
+NumPy sidecar process of §4 to host kdens3 — the net runs natively in JAX — and this repo
+already contains a partial JAX Mahjong environment you can build on. This section describes
+what exists, how to run kdens3 in-graph, the honest limitations, and a roadmap to a fully
+native JAX MCR engine.
+
+### 5.1 What already exists in this repo (state as committed)
+
+All under `train/jax_env/` unless noted; status doc: `docs/JAX_RL_PROGRESS.md`; the original
+go/no-go throughput probe is `train/jax_throughput_probe.py`.
+
+| Piece | File(s) | State |
+|---|---|---|
+| Vectorized env core (Phase 1) | `train/jax_env/csm_env.py`, `bench.py` | **Done.** State arrays, reset/deal, draw→discard round-robin, obs encoding, fixed action space, `jit`+`vmap` rollout. **Discard-only: no CHI/PENG/GANG claims yet** (`train/jax_env/README.md`, Phase 3 unchecked). |
+| Win detection (Phase 2) | `agari.py` (numpy ref), `agari_jax.py` (GPU), `build_agari_tables.py` | **Done & validated:** numpy ref 100% vs `MahjongGB` on 10k hands; JAX 0 mismatches vs ref on 20k hands; 0 false wins in 131,072 self-play games (`docs/JAX_RL_PROGRESS.md:8-12,41-42`). Batched via precomputed per-group feasibility tables + a small DP. |
+| Terminal fan reward | `fan_reward.py` | **Hybrid:** JAX detects the win per step; Python `MahjongGB` scores exact fan at the (rare) terminals; 8-fan floor + MCR duplicate scoring. Reproduces 50/52 real game finishes (`docs/JAX_RL_PROGRESS.md:13-16`). |
+| Deploy-parity observation | `obs38.py` | JAX-batched 38-plane CAIEST obs, **byte-exact vs `feature.py`** for the discard-only env (meld planes zero there; see §5.3). |
+| Native-JAX net forward | `resnet_jax.py` | **Validated** — see §5.2. |
+| Warm-started self-play PPO | `train_ppo_ws.py` (from-scratch twin: `train_ppo.py`) | Built and runs; full-40-block-net RL measured **compute-infeasible** (~50 min/iter on an A4000, forward-bound — `CHANGELOG.md:33-41`). Useful as integration reference, not as a training recipe. |
+| Throughput | `train/jax_env/README.md`, `bench.py` | Phase-1 env + small conv policy: 424k–1.53M env-steps/s (batch 256–16384, one RTX 3060) ≈ 5.9k–21k full games/s; win-aware random-policy self-play measured 589k games/s at B=65536 on an A4000. |
+
+### 5.2 Running kdens3 natively in JAX
+
+`train/jax_env/resnet_jax.py` is a JAX forward of the exact deploy architecture
+(BN-folded ResNet, stem Conv3×3 → N residual blocks → 512-d foot → 235 logits). It loads the
+**same public `.npz` weight files** the NumPy bot uses and was validated against the NumPy
+deploy net: **argmax agreement 16/16, max logit error ≈0.005** (`CHANGELOG.md:34-35`).
+So the whole champion tier is: load the 3 student `.npz` files (§4.2), run this forward per
+student, mean the masked softmaxes, argmax — batched and jittable, no host round-trip.
+
+```python
+# adapted from train/jax_env/resnet_jax.py + deploy/caiest_cnn/ensemble_infer.py
+import jax, jax.numpy as jnp
+from resnet_jax import load_params, forward_feats     # train/jax_env/resnet_jax.py
+
+def load_student(npz_path):
+    p = load_params(npz_path)          # fp16 npz -> fp32 JAX pytree (same files as §4.2)
+    nb = p.pop('_blocks')              # 40
+    return p, nb
+
+STUDENTS = [load_student(f"kdens_s{i}_fp16.npz") for i in range(3)]
+
+@jax.jit
+def kdens3_act(obs, mask):
+    """obs (B,38,4,9) float32, mask (B,235) bool -> greedy action (B,) int32.
+    Same semantics as ensemble_infer.Ensemble: mean softmax over LEGAL actions, argmax."""
+    m = mask.astype(jnp.float32)
+    acc = jnp.zeros_like(m)
+    for p, nb in STUDENTS:             # 3 students, unrolled at trace time
+        logits, _ = forward_feats(p, obs, nb)
+        logits = jnp.where(m > 0, logits, -1e30)
+        acc = acc + jax.nn.softmax(logits, axis=-1)
+    return jnp.argmax(acc * m, axis=-1)
+```
+
+One `kdens3_act` call scores every table in a vectorized arena at once — this is the natural
+deployment on a pgx-style platform (the per-seat process of §4.5 remains available for
+non-JAX callers). Notes:
+
+- `forward_feats` also returns the 512-d penultimate features (`resnet_jax.py:30-44`) —
+  handy if you later attach a value head, exactly as `train_ppo_ws.py:36-50` does.
+- **Re-verify argmax parity on your hardware** before shipping: GPU TF32 matmuls can perturb
+  logits; the repo's own discipline was 0/1000 argmax flips deploy-vs-trained on real
+  competition states. Run a few hundred states through both the NumPy path
+  (`numpy_resfused.py`) and the JAX path and require zero argmax flips (float32-precision
+  convs, e.g. `jax.default_matmul_precision('float32')`, if you see any).
+- The 16/16 argmax / ~0.005-logit validation on record was performed with the same-family
+  deploy net `cnn_lad_chunjiandu.npz` (identical `.npz` layout and architecture); per-student
+  parity checks for `kdens_s{0,1,2}` are your smoke test, per the previous bullet.
+
+### 5.3 Honest limitations (read before you commit to a design)
+
+**(1) The env is not end-to-end jittable — fan scoring is Python-on-CPU.**
+Win *detection* runs on GPU every step (`agari_jax.py`), but exact fan *scoring* calls the
+Python `MahjongGB` library on the host at terminal states (`fan_reward.py`,
+`train_ppo_ws.py:107-139` `score_terminals` — a per-game Python loop after each rollout batch).
+This is deliberate: fan depends on the max-fan *decomposition* of the hand, which is exactly
+what makes `MahjongFanCalculator` complex; vectorizing all 81 fans in JAX was judged
+impractical and error-prone (`docs/JAX_RL_PROGRESS.md:18-20`). Consequences: `lax.scan`
+rollouts must return terminal hands to the host for scoring (or use a batched
+`jax.pure_callback`), and once your policy net is small the host-side Python scorer, not the
+GPU, is the throughput ceiling. (In-repo measurements cover the full-net case, which was
+GPU-forward-bound; the small-net/CPU-bound regime is expected from the design, not a logged
+measurement — budget for it.)
+
+> **(2) Warning — the `verbose=False` scorer bug. Do not reintroduce it.**
+> `MahjongFanCalculator(..., verbose=False)` returns `(fanCount, fanName)` **2-tuples**;
+> `verbose=True` returns `(fanValue, count, cn, en)` **4-tuples**. Training code here once
+> unpacked 2-tuples as if they were 4-tuples: `sum(fp * c for fp, c, *_ in fans)` bound `c` to
+> the *name string*, `int * str` raised inside a broad `except`, and **every win silently
+> scored fan = 0** — the "RL can't reach 8 fan" null was partly this instrumentation artifact
+> (measured: win8 0.00% buggy → 53.25% fixed, same policy;
+> `docs/FINDINGS_2026-06-14.md:5-45`, `CHANGELOG.md:37-39`). Rules: either call with
+> `verbose=True` and `sum(fanValue * count …)` (`train_ppo_ws.py:126-127`), or with
+> `verbose=False` and `sum(cnt for cnt, _ in result)` — and never let a bare `except` around
+> the scorer default to 0 without a counter/log you monitor.
+
+**(3) Encodings must match the deploy net exactly.**
+The JAX path must feed the same **38×4×9 obs** and **235-action** space as §4.6.
+`obs38.py` is the byte-exact JAX obs encoder, but note it currently covers the
+**discard-only** env: meld ("half-flush") planes 22–37 are always zero there
+(`obs38.py:6-8,17`). Once your engine has claims, encode melds exactly as
+`deploy/caiest_cnn/feature.py` does or the net's inputs are silently off-distribution.
+The trickiest index arithmetic is the **Chi block** (63 actions):
+
+```text
+chi_action = 36 + suit_index('WTB') * 21 + (mid - 2) * 3 + (claimed - mid + 1)
+# suit_index: W=0 T=1 B=2;  mid = middle tile number of the sequence (2..8);
+# claimed = the discarded tile's number; last term is 0/1/2 = claimed is low/mid/high
+```
+
+Canonical implementations: `deploy/caiest_cnn/feature.py:167-171` (mask construction),
+`:289-293` (`action2response`), `:318` (`response2action`). This formula is the classic place
+to introduce an off-by-one (mid vs claimed confusion) — unit-test all 63 Chi actions
+round-trip through `action2response`/`response2action` against those lines before trusting
+any JAX reimplementation. *(A historical Chi-formula bug in a `response2action`
+reimplementation is remembered from the campaign but is not written up in this repo's docs —
+treat the cited `feature.py` lines as the single source of truth.)*
+
+### 5.4 Roadmap: a fully-native JAX MCR engine (pgx-style)
+
+What exists here is a validated foundation (win detection, obs, net forward, hybrid reward),
+not a finished pgx-style game. The staged path we recommend (and partially executed):
+
+- **v0 — what's in `train/jax_env/` today:** jitted discard-only flow + GPU win detection +
+  host-side terminal fan scoring. Good enough for RL experiments; not a full game.
+- **v1 — full game, hybrid scoring:** implement claims (Phase 3, `train/jax_env/README.md:25-26`)
+  branchlessly inside the jitted step:
+  - **Fixed-size state tensors:** wall as a `(136,)` int32 dealt-order permutation with 4
+    per-seat pointers (§1.2 wall convention), hands as `(4,34)` int8 counts (as `csm_env.py`
+    already does), melds as a `(4,4,3)` int array (type, tile, offer) with a count — never
+    Python lists.
+  - **Branchless claim resolution:** compute HU/PENG-GANG/CHI eligibility masks for all four
+    seats simultaneously, apply the §1.3 priority as a vectorized `argmax` over
+    (priority, seat-order) keys, and resolve the post-claim discard as a normal step —
+    the recursive chain of `sim_cnn.py:_resolve_claims` becomes a loop of masked steps.
+  - **Scoring stays hybrid:** keep `MahjongGB` on the host, but batch it — collect terminal
+    states across the whole vmapped batch and score them in one host visit per rollout
+    (what `train_ppo_ws.py` does), or wrap it in a batched `jax.pure_callback` at terminals
+    only. Terminal states are rare (~1 per ~72 steps × only won games), so this costs little
+    until nets get tiny.
+  - Validate exactly the way this repo did: every component gated against `MahjongGB` /
+    `sim_cnn.py` ground truth on 10k+ cases before use (`docs/JAX_RL_PROGRESS.md:7-16`).
+- **v2 — tensorized scoring for the hot path:** implement the ~10 most frequent fans as JAX
+  table lookups/DPs (the `agari_jax.py` precomputed-feasibility-table + small-DP pattern
+  generalizes), use them for in-graph reward, and keep the exact `MahjongGB` callback as a
+  fallback for rare/composite hands **and as the referee for scoring that decides matches** —
+  approximate fans are acceptable for RL shaping, never for official match results.
+
+The throughput prize is real — the Phase-1 measurements above are ~85× the CPU self-play rate
+on one mid-tier GPU (`train/jax_env/README.md:7-17`) — but the fan calculator is the hard
+part, and every shortcut around it in this campaign that went unvalidated produced a false
+conclusion. Gate each stage against the Python ground truth.
+
+---
+
+## 6. The difficulty ladder
 
 | Tier | Bot | Source | Behavior / strength |
 |---|---|---|---|
@@ -462,7 +621,7 @@ singles gate at aug_s0 parity).
 
 ---
 
-## 6. Smoke tests and replay verification
+## 7. Smoke tests and replay verification
 
 Before going live, verify your judge and the bot against each other:
 
@@ -477,7 +636,7 @@ Before going live, verify your judge and the bot against each other:
 4. **Cross-check scoring** against §2.3 on logged wins, and legality with
    `eval/catch_illegal.py` / `eval/oneshot_legality.py`.
 5. **Duplicate harness:** run `eval/duplicate_eval.py`-style wall replays (4 walls × 24 perms)
-   between tiers; the ladder order of §5 must reproduce.
+   between tiers; the ladder order of §6 must reproduce.
 
 > **Warning — do not copy `eval/replay_harness.py` semantics into your judge.** It is a
 > failure-*mining* tool, self-documented as only ~59% faithful, with known holes:
@@ -493,7 +652,7 @@ Before going live, verify your judge and the bot against each other:
 
 ---
 
-## 7. Integration checklist
+## 8. Integration checklist
 
 - [ ] Judge implements §1 rules: 136 tiles, per-seat walls, claim priority HU > PENG/GANG > CHI, recursive claim resolution, all 3 kong types + rob-the-kong, 8-fan minimum via `MahjongGB`, exhaustion draw.
 - [ ] Judge computes `isWallLast` / `is4thTile` honestly (unlike the reference sim).
@@ -503,13 +662,14 @@ Before going live, verify your judge and the bot against each other:
 - [ ] Duplicate-wall match runner: same wall × 24 seat permutations; both rank-point and cumulative-score aggregation.
 - [ ] kdens3 deployed per §4.3 with `numpy_only`; turn-1 debug shows `ensemble:3`.
 - [ ] Resource limits ≥ §4.4 (1 core / 512 MB / 6 s per move).
-- [ ] Easier tiers wired (§5) and the ladder order verified by a duplicate gauntlet.
-- [ ] §6 smoke tests green, incl. bit-exact replay determinism.
+- [ ] Easier tiers wired (§6) and the ladder order verified by a duplicate gauntlet.
+- [ ] JAX-first deployments: per-student argmax parity vs the NumPy path verified (§5.2), scorer called per the §5.3 warning, encodings round-trip-tested against `feature.py`.
+- [ ] §7 smoke tests green, incl. bit-exact replay determinism.
 - [ ] License cleared (below) and weight files' checksums verified against `doc/moyu_MODEL_CARD.md` / HF LFS sha256s.
 
 ---
 
-## 8. License and links
+## 9. License and links
 
 **License:** this repository currently ships **no LICENSE file**. Before embedding the code or
 weights in a third-party platform, ask the maintainer to add one (MIT or Apache-2.0
