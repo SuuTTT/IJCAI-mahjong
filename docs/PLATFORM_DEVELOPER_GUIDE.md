@@ -603,6 +603,41 @@ on one mid-tier GPU (`train/jax_env/README.md:7-17`) — but the fan calculator 
 part, and every shortcut around it in this campaign that went unvalidated produced a false
 conclusion. Gate each stage against the Python ground truth.
 
+### 5.5 Build ownership & acceptance tests
+
+**Ownership.** The platform team implements the native JAX MCR engine inside its own codebase,
+under its own jit/test conventions. The mahjong-campaign side supplies the spec (this guide +
+the reference `Sim`, §2.1), the validated kdens3 JAX forward (§5.2), and the two acceptance
+suites below. **The engine is DONE when both suites pass** — neither before, nor is anything
+else required.
+
+**Acceptance Suite A — replay equivalence vs the official judge.**
+Replay all **12,288 IJCAI-2026 Final Stage-2 games** through the new engine and require an
+exact match with the official judge's outcome on every game: each action's legality, every
+claim resolution (priority + preemption), every win/fan decision, and the final four-seat
+score. The oracle corpus is the campaign's `final2_all.jsonl.gz` archive (~44 MB): one record
+per game including the full wall and the judge's per-game RNG seed, so every game is exactly
+re-dealable. It is held by the campaign team (not in this repository) and can be published to
+the project's HuggingFace space on request. It is the same corpus behind
+`docs/blog/2026-07-10-anatomy-of-a-coin-flip-final.md`, whose headline totals — 12,088 wins +
+200 exhaustive draws, zero ERROR endings — double as quick sanity checks for your replay run.
+
+**Acceptance Suite B — gate equivalence.**
+Run the campaign's calibrated duplicate placement gate **on the JAX engine**: kdens3
+(3-ensemble) vs `aug_s0`, **≥24,000 games** (the campaign's confirming gates used ~24 blocks
+× 2,000 games; `train/caiest_repro/UPLOAD_LOG.md:208-211`). Two requirements:
+
+1. The placement estimate must agree with the CPU reference gate within its 95% CI
+   (reference: kdens3 mean placement 2.5054–2.5057, CI lower bound > 2.500).
+2. **The calibration trap must still hold:** candidate == reference (aug_s0 vs aug_s0) must
+   read **exactly 2.500** (`train/caiest_repro/AUG_WRITEUP.md:3-5`,
+   `train/caiest_repro/ARCH_WRITEUP.md:3`). If the self-vs-self gate drifts off 2.500, the
+   engine or the harness's seating/permutation logic is biased — fix that before reading any
+   other number.
+
+Together, the engine + the 12,288-game oracle corpus + the calibrated gate harness + the
+baseline ladder (§6) are intended for release as an open benchmark suite.
+
 ---
 
 ## 6. The difficulty ladder
