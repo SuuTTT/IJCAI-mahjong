@@ -7,10 +7,11 @@ tags: [mahjong, game-ai, evaluation, distillation, reinforcement-learning, lab-n
 
 > **TL;DR.** Three days after finishing 2nd of 16 in the IJCAI-2026
 > Chinese-Standard-Mahjong final, the project has forked into eleven concurrent
-> tracks. They serve three masters: **papers** (two AAAI-27 submissions, a ToG
-> paper, a JMLR paper), the **2027 competition entry**, and the **platform**
-> (an open engine + benchmark suite). This post explains each track from first
-> principles — no prior context assumed — with its status and what it feeds.
+> tracks, plus a queued pipeline behind them. They serve three masters: **papers**
+> (two AAAI-27 submissions, a ToG paper, a JMLR paper), the **2027 competition
+> entry**, and the **platform** (an open engine + benchmark suite). This post
+> explains each track from first principles — no prior context assumed — now
+> **grouped by the goal it serves**, with its status and what it feeds.
 > The uncomfortable headline: our own flagship in-house result is currently
 > being **corrected downward**, in public, by our own re-measurement.
 
@@ -25,7 +26,75 @@ candidate and reference bots swapped across seats, so luck cancels and only
 decision differences remain. Everything below builds on, stress-tests, or
 extends that setup.
 
+**How to read this.** Tracks keep their original numbers (1–11) so
+cross-references stay stable, but they are grouped under the **goal** each one
+serves: 🏆 **Win IJCAI-2027**, 📄 **Papers**, 🏆📄 **Both**, and 🧩
+**Platform/Infrastructure**. A section at the end lists the **queued** tracks
+that start when the current wave drains.
+
 ---
+
+# 🏆 Win IJCAI-2027
+
+## 5. Corpus-KD (the 2027 base model)
+
+**What it is.** Knowledge distillation — training a student network to match a
+teacher's output distribution — re-run with the 723k-decision **finals corpus**
+(track 3) mixed into the training data, gated head-to-head (paired duplicate
+walls) against kdens3.
+
+**Why it exists.** Every model we have descends from *human* game records; ~20
+gated interventions failed to beat that imitation ceiling. The finalists are
+the first source of demonstrably superhuman-consistency MCR play we can train
+on. The question: **does champion data break the human-data ceiling?**
+
+**Status.** In flight (multi-seed arms: mixed all-4-finalists, top-2-only,
+pure BC on corpus).
+
+**Feeds.** The 2027 competition base model.
+
+## 6. Score-value head
+
+**What it is.** A network trained end-to-end on the finals corpus to predict a
+game's **final score from a mid-game state** — a value function for the metric
+the competition actually ranks (track 4).
+
+**Why it exists.** You cannot do metric-aware search, RL, or risk management
+without an estimate of "what is this position worth in points?". Human-data
+value heads were previously weak; champion games are cleaner supervision.
+
+**Status.** v1 done: correlation with realized final score **r = 0.71 overall,
+0.78 late-game** — strong enough to serve as a critic initialization (track 8)
+and a search evaluator. But that number needs an honest asterisk, below.
+
+**The honest caveat (a correction to how we first described this).** The head
+is trained on **all four finalists' decisions**, and its regression target is
+*the actor's own final score*. That target is confounded by **who plays out the
+rest of the game**: the same mid-game state has a different expected final
+score depending on whether the seat is played to completion by the champion or
+by the 4th-place bot, and the training signal averages over whichever finalist
+happened to be acting. So r = 0.71 is not "the value of the state" in the
+strict RL sense — it is **value-under-average-finalist-play**. Two
+consequences. First, it remains a perfectly good **pretraining
+initialization**: in PPO the critic is refit **on-policy** from the first
+batches, so it converges toward value under *our* policy by construction — the
+confound is resolved exactly where it matters (track 8). Second, a **v2 is
+queued** (see the queued-tracks table) with **bot/skill-conditioning** — tell
+the head *whose* continuation it is predicting — and far more data: the
+official **98k-game human corpus (≈5.1M decision samples)**, our ladder games,
+and the sim collections are all currently **unused** by the value head, which
+trains on the 723k-decision finals corpus alone.
+
+And the standing caveat from this campaign's own history still applies: good
+value *prediction* has repeatedly failed to convert into better *control*, so
+this earns nothing until a gated result says so.
+
+**Feeds.** The 2027 model line — critic initialization for the RL pilot and
+the foundation for metric-aware play.
+
+---
+
+# 📄 Papers
 
 ## 1. Integrity re-gates ("fresh-wall re-gating")
 
@@ -60,6 +129,47 @@ procedure. The full re-gated table is being produced now.
 **Feeds.** Corrections to all four papers — and the evaluation-wall paper
 gains its strongest first-person example: a team that built calibration traps,
 replications, and mechanism counters *still* fooled itself one level up.
+
+## 9. CIFAR-N domain extension
+
+**What it is.** Our core paper claim — **distill-then-ensemble beats
+teacher-ensembling when (and only when) the imitation target is noisy** — was
+established in card games. This track tests it on **real human label noise**:
+CIFAR-10N/100N, image datasets re-annotated by actual crowd workers at
+documented error rates (**~9% / 17% / 40%**). Design: per noise level, train 6
+teachers on the noisy labels; compare **trio-averaged teacher-ensembles**
+against **ensembles of distilled students** (and singles), evaluated on the
+*clean* test set.
+
+**Why it exists.** A threshold-in-noise claim from one domain is an anecdote;
+the same curve on real human noise in a second modality makes it a finding.
+CIFAR-N's noise is *natural* (human disagreement), not synthetic label
+flipping — the exact analogue of imitating imperfect human game records.
+
+**Status.** In flight (CIFAR-10N running, CIFAR-100N added).
+
+**Feeds.** The distill-then-ensemble paper (domain generality) and its journal
+extension.
+
+## 11. The papers
+
+Four in progress. Two **AAAI-27 submissions** (deadline late July): one on
+**distill-then-ensemble** — the operator, its noise-threshold mechanism, and
+now the CIFAR-N extension (track 9); one on **the evaluation wall** — why
+in-house evaluation systematically diverges from field performance, now
+carrying the re-gate correction (track 1) and the ladder A/B (track 2) as
+first-person, prospectively-registered evidence. (Both are under anonymous
+review preparation, so no repository links here.) Plus the **ToG** paper (the
+full campaign failure-taxonomy: how each in-house eval layer inverted ground
+truth) and the **JMLR** paper (the measurement toolkit and its lessons —
+calibrated gates, replication discipline, the no-op-loss and OOD-value-head
+pathologies). Tracks 1–4 are actively rewriting numbers in all four; the honest
+version of this project is the one where the flagship +0.0055 appears with its
+own correction attached.
+
+---
+
+# 🏆📄 Both — competition *and* papers
 
 ## 2. Ladder 3-way A/B
 
@@ -128,42 +238,6 @@ decision now checks both.
 **Feeds.** The 2027 entry (train for the metric that ranks you) and a clean
 paper example of metric mis-specification.
 
-## 5. Corpus-KD (the 2027 base model)
-
-**What it is.** Knowledge distillation — training a student network to match a
-teacher's output distribution — re-run with the 723k-decision **finals corpus**
-(track 3) mixed into the training data, gated head-to-head (paired duplicate
-walls) against kdens3.
-
-**Why it exists.** Every model we have descends from *human* game records; ~20
-gated interventions failed to beat that imitation ceiling. The finalists are
-the first source of demonstrably superhuman-consistency MCR play we can train
-on. The question: **does champion data break the human-data ceiling?**
-
-**Status.** In flight (multi-seed arms: mixed all-4-finalists, top-2-only,
-pure BC on corpus).
-
-**Feeds.** The 2027 competition base model.
-
-## 6. Score-value head
-
-**What it is.** A network trained end-to-end on the finals corpus to predict a
-game's **final score from a mid-game state** — a value function for the metric
-the competition actually ranks (track 4).
-
-**Why it exists.** You cannot do metric-aware search, RL, or risk management
-without an estimate of "what is this position worth in points?". Human-data
-value heads were previously weak; champion games are cleaner supervision.
-
-**Status.** Done: correlation with realized final score **r = 0.71 overall,
-0.78 late-game**. That is strong enough to be a critic (track 8) and a search
-evaluator, with the standing caveat from this campaign's own history: good
-value *prediction* has repeatedly failed to convert into better *control*, so
-it earns nothing until a gated result says so.
-
-**Feeds.** The 2027 model line — critic initialization for the RL pilot and
-the foundation for metric-aware play.
-
 ## 7. JD-v2 (trained-in defense)
 
 **What it is.** Danger-penalized distillation: during student training, add a
@@ -185,7 +259,7 @@ restores the gradient. In flight.
 
 **Feeds.** The 2027 model; also a crisp paper vignette on silent no-op losses.
 
-## 8. RL pilot
+## 8. RL pilot *(2027-lean)*
 
 **What it is.** PPO fine-tuning of the champion-corpus policy where the reward
 is **the final's own metric** (raw duplicate score / 8), with three guardrails:
@@ -213,31 +287,18 @@ see the [engine validation feedback](../ENGINE_VALIDATION_FEEDBACK.html)), so
 the environment is a verified replica of the judge, not a hopeful
 approximation.
 
-**Status.** Launching.
+**Status.** Launching. Filed under *Both* because a null is a paper datapoint
+(the campaign's RL record is already one), but the payoff case is squarely the
+2027 entry.
 
 **Feeds.** The 2027 entry — the only track that could yield a step-change
-rather than a percent.
+rather than a percent. A second, independent seed is requested from the
+platform team — see the
+[Task Board for the Platform Team](../TASKS_FOR_PLATFORM.html).
 
-## 9. CIFAR-N domain extension
+---
 
-**What it is.** Our core paper claim — **distill-then-ensemble beats
-teacher-ensembling when (and only when) the imitation target is noisy** — was
-established in card games. This track tests it on **real human label noise**:
-CIFAR-10N/100N, image datasets re-annotated by actual crowd workers at
-documented error rates (**~9% / 17% / 40%**). Design: per noise level, train 6
-teachers on the noisy labels; compare **trio-averaged teacher-ensembles**
-against **ensembles of distilled students** (and singles), evaluated on the
-*clean* test set.
-
-**Why it exists.** A threshold-in-noise claim from one domain is an anecdote;
-the same curve on real human noise in a second modality makes it a finding.
-CIFAR-N's noise is *natural* (human disagreement), not synthetic label
-flipping — the exact analogue of imitating imperfect human game records.
-
-**Status.** In flight (CIFAR-10N running, CIFAR-100N added).
-
-**Feeds.** The distill-then-ensemble paper (domain generality) and its journal
-extension.
+# 🧩 Platform / Infrastructure
 
 ## 10. MCR test set + platform guide (shipped)
 
@@ -261,21 +322,33 @@ verified **12,288/12,288** the same day. Full story:
 
 **Feeds.** The platform, every future engine, and track 8's soundness.
 
-## 11. The papers
+---
 
-Four in progress. Two **AAAI-27 submissions** (deadline late July): one on
-**distill-then-ensemble** — the operator, its noise-threshold mechanism, and
-now the CIFAR-N extension (track 9); one on **the evaluation wall** — why
-in-house evaluation systematically diverges from field performance, now
-carrying the re-gate correction (track 1) and the ladder A/B (track 2) as
-first-person, prospectively-registered evidence. (Both are under anonymous
-review preparation, so no repository links here.) Plus the **ToG** paper (the
-full campaign failure-taxonomy: how each in-house eval layer inverted ground
-truth) and the **JMLR** paper (the measurement toolkit and its lessons —
-calibrated gates, replication discipline, the no-op-loss and OOD-value-head
-pathologies). Tracks 1–4 are actively rewriting numbers in all four; the honest
-version of this project is the one where the flagship +0.0055 appears with its
-own correction attached.
+# Planned / queued tracks
+
+These are specced but not running; they start when the current wave drains
+(AAAI submissions out, Final2/2027-prep campaign done). Sources:
+the domain-extension plan and this week's reviews. Estimates are honest
+guesses, not commitments.
+
+| Queued track | Goal | Runtime estimate | Notes |
+|---|---|---|---|
+| **E2 — chess BC with rating-stratified noise** | 📄 Papers | ~1–2 weeks incl. harness | Noise knob = Elo band of the imitated players (Lichess dumps at 800–1200 / 1600–2000 / 2400+); eval vs a fixed Stockfish-level ladder, so perfect-info and no eval-wall confound. **CPU prep (PGN downloads, move-encoding, engine ladder) can start anytime.** |
+| **E3 — robomimic robot-manipulation BC** | 📄 Papers | ~2 weeks; needs 1–2 GPUs | Natural noise axis: proficient-human vs multi-human demo sets; success-rate eval per task (lift/can/square), 3 seeds. Bonus: eval-wall → sim2real reframing. |
+| **E4 — non-BC probes** | 📄 Papers | Exploratory, unscheduled | Two probes: RL-policy-distillation (ensemble-of-RL-seeds → distill → student-ens) and an eval-wall position piece for LLM/benchmark populations. |
+| **JOSS software paper + NeurIPS Datasets & Benchmarks package** | 📄🧩 Papers/Platform | D&B target ~May 2027 | Package the verified env + finals corpus + gate harness + baseline bots as one citable benchmark; JOSS for the software, D&B for the dataset/benchmark. |
+| **Competition scouting** | 🏆 Win (other) | Days | Find a NeurIPS-track simulation competition where this campaign's measurement toolkit and BC→KD→RL line transfer; decide whether to enter. |
+| **Value-head v2** | 🏆 Win-2027 | ~2–3 days | Bot/skill-conditioned target + **all** data sources: the official 98k-game corpus (≈5.1M samples), ladder games, sim collections — all currently unused by v1. Fixes the confound documented in track 6. |
+| **JD / corpus follow-ups** | 🏆 Win-2027 | Keyed on pending verdicts | Next moves depend on the JD-v2 (7) and corpus-KD (5) gate outcomes: scale the winner, or write up the null and pivot. |
+
+**Compute and resources.** The current **A4000 box suffices for the RL pilot**
+as specced (batched central inference over N parallel envs — inference, not the
+env, is the bottleneck). We have requested the platform team's **3090** for a
+**parallel RL seed / opponent-pool worker** — the concrete, self-contained
+specs live on the new
+[Task Board for the Platform Team](../TASKS_FOR_PLATFORM.html). Further GPU
+rentals happen only if the pilot shows signal; speculative idle boxes are
+against house policy.
 
 ---
 

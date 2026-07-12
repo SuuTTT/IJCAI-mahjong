@@ -11,6 +11,11 @@ Minecraft / Clash Royale / RedAlert–style games) who want to
 **(B)** ship our IJCAI-2026 runner-up agent (**kdens3**) as the built-in "ultimate" opponent,
 plus easier tiers below it.
 
+> **Looking for what to do right now?** See the
+> **[Task Board for the Platform Team](TASKS_FOR_PLATFORM.html)** — concrete,
+> self-contained requests (merge the `canHu` fix, run a second RL seed on your 3090,
+> optional opponent-pool service), each with artifacts, spec, and report format.
+
 Everything in this guide is grounded in this repository. Where a fact could not be verified
 in-repo it is explicitly flagged. Key reference files:
 
@@ -720,6 +725,8 @@ Botzone protocol conventions have their own upstream licenses/terms — check th
 
 **Links**
 
+- **Task Board for the Platform Team:** [TASKS_FOR_PLATFORM.html](TASKS_FOR_PLATFORM.html) —
+  the current concrete help-requests (canHu merge, second RL seed, opponent pool)
 - Project site & blog: <https://suuttt.github.io/IJCAI-mahjong/> — start with
   [From 11th to Runner-Up](https://suuttt.github.io/IJCAI-mahjong/blog/2026-07-10-from-11th-to-runner-up.html)
   and [Anatomy of a Coin-Flip Final](https://suuttt.github.io/IJCAI-mahjong/blog/2026-07-10-anatomy-of-a-coin-flip-final.html)
