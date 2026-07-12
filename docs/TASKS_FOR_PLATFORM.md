@@ -75,7 +75,7 @@ representable.
 |---|---|---|
 | **Policy init** (SL student, KD seed 0) | HF [`Dannibal/ijcai-mahjong-ckpts-2026`](https://huggingface.co/Dannibal/ijcai-mahjong-ckpts-2026) → `ckpt/kd/kd_128x40_s0.pkl` (torch training ckpt) **or** `deploy/kdens_s0.npz` (fp32 numpy deploy form; fp16-storage twin `deploy/kdens_s0_fp16.npz`) | npz↔torch argmax parity is verified (0 flips / 300 states). Obs/action encoding: Platform Developer Guide §4.6 + `deploy/caiest_cnn/feature.py`. |
 | **Frozen KL reference** | Same file, loaded a second time and frozen | The KL leash target (§2.3). |
-| **Critic init** (e2e score-value head, r = 0.71 vs realized final score) | **Not yet on HF — the campaign team will upload on request.** Open an issue on SuuTTT/IJCAI-mahjong titled "upload value-head ckpt" and it goes to `Dannibal/ijcai-mahjong-ckpts-2026` (planned path `ckpt/value/`). | **Don't block on it:** PPO works with a freshly initialized critic head — it just wastes some early samples. Swap the init in when it lands if you haven't started. |
+**Critic init (value head, r=0.71):** LIVE on HF — [`ckpt/value/value_e2e_ckpt.pt`](https://huggingface.co/Dannibal/ijcai-mahjong-ckpts-2026/resolve/main/ckpt/value/value_e2e_ckpt.pt) (57 MB, torch state_dict: ResBN-128x40 trunk + MLP head 512-256-1, score_scale=30). No request needed.
 
 ### 2.3 Training spec
 
