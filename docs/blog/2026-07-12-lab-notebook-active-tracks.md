@@ -34,6 +34,74 @@ that start when the current wave drains.
 
 ---
 
+# 🔖 Update — 2026-07-14: the 2027 path is now decided
+
+Two days of measurement turned the sprawling "Win-2027" question into a single
+answer. A from-scratch visual explainer of the whole arc lives here:
+**[Beating Our Own Champion](https://claude.ai/code/artifact/9714290e-8440-4448-b01e-9468e25dd555)**.
+The short version:
+
+**The imitation ceiling is confirmed, again.** The source-conditioned base model
+(track 5) — trained on human + finals data with a "which source" input plane —
+beat its unconditioned twin on validation accuracy (+0.0012, clean) but **did not
+beat kdens3 on placement** (2.4928, CI spans the 2.500 tie); conditioning was
+metric-inert. That closes the "imitate harder / imitate smarter" family: more
+behavioral cloning does not exceed the teacher. To win we must *search*.
+
+**Four search experiments, on one placement scale** (2.500 = a tie vs kdens3;
+higher is better; every gate null-calibrated to exactly 2.500):
+
+| Approach | What it does | Placement | Verdict |
+|---|---|---:|---|
+| Offense search (1-ply) | maximize your own resulting hand's value | 2.026 | **lose** — blind to defense |
+| Defense override | avoid the highest deal-in-risk discard | 2.4995 | tie — danger≠placement |
+| Value-aware blend | offense value − λ·deal-in, static | 2.19 | **lose** — no static blend works |
+| **Oracle rollout** | peek at hidden tiles, play to the end | **~3.53** | **win** (upper bound) |
+
+The **deal-in predictor** built for the defense arm is itself a clean result — it
+tells a safe tile from a dangerous one at **AUROC 0.97** (labeled from every
+Ron-causing discard across the 12,288-game finals set) — yet a perfect danger
+detector *still* did not beat the champion. Knowing which tile is dangerous is
+not the same as knowing which tile to play.
+
+**The oracle is the turning point.** Letting search cheat — see the opponents'
+hidden tiles and play each candidate discard to the hand's end — scores **~3.53**,
+confirmed across three independent fresh-wall batches (3.55 / 3.51 / 3.54), by
+changing only **~10% of discards** (the pivotal deal-in-or-win moments). It is
+not deployable (you can't really see hidden tiles), but it proves two things: the
+**headroom is real and large** (a ~3.5 player hides inside kdens3's own move set),
+and the win comes from **multi-step lookahead that sees opponents' responses** —
+exactly what the three static experiments lacked. The value-aware blend was the
+decisive negative: even with the defense term switched off, ranking kdens3's own
+top discards by the value head loses (2.19), so the value head's one-step
+judgement is a *weaker* signal than kdens3's move instinct. No static shortcut
+substitutes for real lookahead.
+
+**Conclusion → build PIMC.** The next 2027 entry is **Perfect-Information Monte
+Carlo search**: since we can't see hidden tiles, *sample* many plausible hidden
+hands consistent with the table, play each imagined world out with kdens3, average
+the outcomes, and play the best discard. It is the deployable form of the oracle,
+and it keeps the lookahead the heuristics couldn't fake. Every asset is in hand —
+the correctness-proven simulator, the value ensemble (leaf evaluation), the
+AUROC-0.97 deal-in model (smarter hidden-hand guesses), batched inference (~600×),
+and — corrected 2026-07-14 — a **~5-second per-decision budget** (earlier notes
+mis-cited the champion's *self-imposed* speed as the limit), which is generous
+enough to build the accurate wide/deep version first and trim to fit later.
+Build is underway; the first honest PIMC gate is the next entry.
+
+**Also settled since 2026-07-12.** The integrity audit closed with every
+dissolved-win candidate at 2.500 ± 0.003 on fresh disjoint blocks. **Paper C was
+withdrawn** — its "payoff curves that cross" effect dissolved under paired
+replication (a seed-block error in our own follow-up experiment; it became a second
+case study in Paper B). And two **new controlled domains** joined the
+cross-domain story: a synthetic coherence×noise grid that reproduces the
+distill-then-ensemble threshold *and* its collapse under incoherence (with an
+honest inverted-U — distillation helps only while a coherent policy stays
+recoverable through the noise), and Othello (perfect-info), directionally
+consistent but underpowered.
+
+---
+
 # 🏆 Win IJCAI-2027
 
 ## 5. Corpus-KD (the 2027 base model)
