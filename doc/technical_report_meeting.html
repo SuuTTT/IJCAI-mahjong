@@ -1,0 +1,430 @@
+<style>
+  :root{
+    --paper:#f0efe8; --ink:#17201a; --felt:#0f231a; --felt-ink:#e9ede3;
+    --seal:#b3242b; --jade:#2f7d5b; --muted:#697066; --line:#d7d9cf;
+    --chip-bg:#e6e8df; --card:#f7f6f0; --amber:#9a6b18;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --measure:69ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --paper:#0e1310; --ink:#e7eae1; --felt:#091510; --felt-ink:#e9ede3;
+      --seal:#e3696d; --jade:#58b98a; --muted:#8b9287; --line:#212a24;
+      --chip-bg:#182019; --card:#141a16; --amber:#d0a24e;
+    }
+  }
+  :root[data-theme="light"]{
+    --paper:#f0efe8; --ink:#17201a; --felt:#0f231a; --felt-ink:#e9ede3;
+    --seal:#b3242b; --jade:#2f7d5b; --muted:#697066; --line:#d7d9cf;
+    --chip-bg:#e6e8df; --card:#f7f6f0; --amber:#9a6b18;
+  }
+  :root[data-theme="dark"]{
+    --paper:#0e1310; --ink:#e7eae1; --felt:#091510; --felt-ink:#e9ede3;
+    --seal:#e3696d; --jade:#58b98a; --muted:#8b9287; --line:#212a24;
+    --chip-bg:#182019; --card:#141a16; --amber:#d0a24e;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.68;
+    -webkit-font-smoothing:antialiased; margin:0;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto; padding:0 24px}
+  h1,h2,h3{font-family:var(--serif); font-weight:600; text-wrap:balance; line-height:1.18}
+  p{margin:0 0 1.05em}
+  a{color:var(--jade)}
+  strong{font-weight:600}
+  .mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--felt); color:var(--felt-ink); padding:76px 0 60px; position:relative; overflow:hidden}
+  .hero::after{content:""; position:absolute; inset:0;
+    background:radial-gradient(1200px 400px at 78% -8%, rgba(89,185,138,.14), transparent 60%);
+    pointer-events:none}
+  .hero .wrap{position:relative}
+  .eyebrow{font-family:var(--mono); font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:#9fc7b1; margin:0 0 22px}
+  .hero h1{font-size:clamp(30px,5.4vw,46px); color:var(--felt-ink); margin:0 0 8px; letter-spacing:-.01em}
+  .hero .sub{font-family:var(--serif); font-style:italic; font-size:clamp(18px,2.6vw,22px);
+    color:#bcd6c6; margin:0 0 40px}
+  .scoreboard{display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.1); border-radius:9px; overflow:hidden}
+  .sb{background:var(--felt); padding:18px 16px}
+  .sb .n{font-family:var(--mono); font-size:26px; font-weight:600; color:var(--felt-ink); font-variant-numeric:tabular-nums; line-height:1}
+  .sb .n .u{font-size:14px; color:#9fc7b1; font-weight:400}
+  .sb .l{font-size:12.5px; color:#9aa79d; margin-top:8px; line-height:1.35}
+  .sb.win .n{color:#e9c96b}
+  .hero .caption{font-size:14px; color:#8fa196; margin:26px 0 0; max-width:60ch}
+  .hero .caption b{color:#cfe0d5; font-weight:600}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:52px 0}
+  section + section{border-top:1px solid var(--line)}
+  .snum{font-family:var(--mono); font-size:13px; color:var(--seal); letter-spacing:.12em; display:block; margin-bottom:10px}
+  h2{font-size:clamp(24px,3.6vw,31px); margin:0 0 6px}
+  .lede{font-size:19px; color:var(--muted); margin:0 0 30px; max-width:64ch}
+  h3{font-size:19px; margin:34px 0 8px}
+
+  /* ---------- KEY STAT INLINE ---------- */
+  .keystat{color:var(--seal); font-family:var(--mono); font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+
+  /* ---------- CARDS ---------- */
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:26px 0}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:20px 20px 18px}
+  .card h4{font-family:var(--serif); font-size:17px; margin:0 0 6px; font-weight:600}
+  .card p{font-size:14.5px; color:var(--muted); margin:0}
+  .card .tag{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--jade); display:block; margin-bottom:9px}
+
+  /* ---------- TIMELINE ---------- */
+  .tl{list-style:none; padding:0; margin:26px 0 0; display:grid; gap:0}
+  .tl li{display:grid; grid-template-columns:104px 1fr; gap:20px; padding:16px 0; border-top:1px solid var(--line)}
+  .tl li:first-child{border-top:0}
+  .tl .rank{font-family:var(--mono); font-weight:600; font-size:15px}
+  .tl .rank .big{font-size:28px; display:block; color:var(--ink); line-height:1}
+  .tl .rank .of{color:var(--muted); font-size:13px}
+  .tl .up{color:var(--jade)}
+  .tl .stage{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:3px}
+  .tl h4{font-family:var(--serif); font-size:17px; margin:0 0 4px; font-weight:600}
+  .tl p{font-size:14.5px; color:var(--muted); margin:0}
+
+  /* ---------- TABLES ---------- */
+  .tblwrap{overflow-x:auto; margin:24px 0; border:1px solid var(--line); border-radius:11px}
+  table{border-collapse:collapse; width:100%; font-size:14.5px}
+  th,td{text-align:left; padding:11px 15px; border-bottom:1px solid var(--line)}
+  thead th{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:600; background:var(--card)}
+  tbody tr:last-child td{border-bottom:0}
+  td.num,th.num{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums}
+  .lever{font-family:var(--mono); font-size:13.5px}
+
+  /* status chips */
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.04em;
+    padding:2px 9px; border-radius:20px; white-space:nowrap}
+  .chip.ship{background:var(--jade); color:#fff}
+  .chip.tie{background:var(--chip-bg); color:var(--muted); border:1px solid var(--line)}
+  .chip.fail{background:color-mix(in srgb, var(--seal) 16%, transparent); color:var(--seal); border:1px solid color-mix(in srgb,var(--seal) 40%,transparent)}
+  .chip.asset{background:color-mix(in srgb, var(--jade) 15%, transparent); color:var(--jade); border:1px solid color-mix(in srgb,var(--jade) 40%,transparent)}
+  :root[data-theme="dark"] .chip.ship, .chip.ship{color:#06110b}
+  @media (prefers-color-scheme:dark){.chip.ship{color:#06110b}}
+
+  .cycle-h{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--seal); margin:34px 0 4px}
+  .cycle-sub{font-size:15px; color:var(--muted); margin:0 0 4px}
+
+  /* ---------- DECOMP ---------- */
+  .decomp td.dir{font-family:var(--mono); font-weight:600; font-size:12px; letter-spacing:.05em}
+  .win-us{color:var(--jade)} .win-them{color:var(--seal)} .eq{color:var(--muted)}
+
+  /* ---------- LESSON LIST ---------- */
+  .lessons{display:grid; gap:2px; margin:26px 0 0}
+  .lesson{padding:20px 0; border-top:1px solid var(--line)}
+  .lesson:first-child{border-top:0}
+  .lesson h3{font-size:18px; margin:0 0 6px; display:flex; gap:12px; align-items:baseline}
+  .lesson h3 .k{font-family:var(--mono); font-size:13px; color:var(--seal); font-weight:600}
+  .lesson p{font-size:15.5px; color:var(--muted); margin:0}
+  .lesson p b{color:var(--ink)}
+
+  /* ---------- DOORS ---------- */
+  .doors{counter-reset:d; display:grid; gap:12px; margin:24px 0 0; padding:0; list-style:none}
+  .doors li{counter-increment:d; display:grid; grid-template-columns:38px 1fr; gap:16px; align-items:start;
+    background:var(--card); border:1px solid var(--line); border-radius:11px; padding:16px 18px}
+  .doors li::before{content:counter(d); font-family:var(--mono); font-size:16px; font-weight:600; color:var(--jade);
+    border:1px solid var(--line); border-radius:8px; width:32px; height:32px; display:grid; place-items:center}
+  .doors h4{font-family:var(--serif); font-size:16.5px; margin:2px 0 4px; font-weight:600}
+  .doors p{font-size:14.5px; color:var(--muted); margin:0}
+
+  /* ---------- CLOSE ---------- */
+  .close{background:var(--felt); color:var(--felt-ink); padding:56px 0}
+  .close .wrap{max-width:64ch}
+  .close p{color:#c4d6ca; font-family:var(--serif); font-size:19px; line-height:1.6}
+  .close p b{color:#fff}
+  .foot{font-family:var(--mono); font-size:12px; color:#7f8f84; margin-top:26px; letter-spacing:.03em}
+
+  .pull{font-family:var(--serif); font-size:21px; line-height:1.5; color:var(--ink);
+    border-left:3px solid var(--seal); padding:4px 0 4px 22px; margin:28px 0}
+
+  @media (max-width:620px){
+    .scoreboard{grid-template-columns:1fr 1fr}
+    .cards{grid-template-columns:1fr}
+    .tl li{grid-template-columns:76px 1fr; gap:14px}
+  }
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">IJCAI-2026 · Chinese Standard Mahjong · Technical Report</p>
+    <h1>A champion-grade imitation bot, and the ceiling it could not break</h1>
+    <p class="sub">Team <strong>moyu</strong> · bot <strong>kdens3</strong> — runner-up, in a statistical tie for first</p>
+
+    <div class="scoreboard">
+      <div class="sb win">
+        <div class="n">2<span class="u">/16</span></div>
+        <div class="l">Final placement<br>(Stage-2 championship)</div>
+      </div>
+      <div class="sb">
+        <div class="n">0.13<span class="u"> t</span></div>
+        <div class="l">Gap to 1st<br>P ≈ 0.56 — a coin flip</div>
+      </div>
+      <div class="sb">
+        <div class="n">12,288</div>
+        <div class="l">Duplicate games<br>512 walls × 24 seatings</div>
+      </div>
+      <div class="sb">
+        <div class="n">0</div>
+        <div class="l">Rule errors / timeouts<br>across all our games</div>
+      </div>
+    </div>
+
+    <p class="caption">We <b>out-defended the eventual champion</b> (deal-in rate 16.93% vs 17.37%) and lost the
+    title only on win-value conversion. Behind that one clean model sits a disciplined graveyard of
+    <b>~32 rigorously-killed levers</b> across two campaign cycles.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <span class="snum">§1 — THE PROBLEM</span>
+    <h2>Value, speed, and hidden hands, under an 8-fan floor</h2>
+    <p class="lede">Chinese Standard Mahjong is 4-player and imperfect-information, with a defining constraint:
+    a hand may only be declared a win if it scores at least eight fan.</p>
+    <p>Most locally-legal hands are simply not winnable, so every decision trades <strong>value</strong>
+    (reaching the 8-fan floor) against <strong>speed and width</strong> (having enough winning tiles to
+    complete before an opponent does) — all under hidden opponent hands and a shrinking wall.</p>
+    <p>The decisive Stage-2 ran the <strong>duplicate format</strong>: each wall is played under all 24 seat
+    permutations and scores summed, so seat and deal luck are engineered out and the ranking reflects
+    <strong>relative strength</strong>. Two format facts shaped the whole race: the per-decision budget is
+    generous (<span class="mono">~5000&nbsp;ms</span>), and the final ranks bots by <strong>cumulative
+    score</strong>, not mean placement — a bot that reliably parks at 2nd is not rewarded like one that
+    occasionally wins big.</p>
+  </section>
+
+  <section>
+    <span class="snum">§2 — OUR SOLUTION</span>
+    <h2>Imitation, then ensemble</h2>
+    <p class="lede">kdens3 is deliberately not a search or RL agent. It is a behavior-cloning policy distilled
+    from strong play, built to reproduce expert decisions reliably, at zero error rate.</p>
+
+    <div class="cards">
+      <div class="card">
+        <span class="tag">Architecture</span>
+        <h4>ResNet-BN, 128 × 40</h4>
+        <p>A residual CNN with batch-norm, 128 channels × 40 blocks, over ~38 feature planes (hand, melds,
+        discards, public state). A legal-move mask means it only ever proposes valid actions.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Training signal</span>
+        <h4>Distillation of top play</h4>
+        <p>Supervised imitation of decisions harvested from strong Botzone players — matching the teacher's
+        action <em>distribution</em>, not merely its argmax.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Deployment</span>
+        <h4>3-net mean-softmax ensemble</h4>
+        <p>Three independently-seeded nets; average the softmax-over-legal-moves, then act. Smoother tails, no
+        single-net blind spots — at ~1000 ms/move, well inside budget.</p>
+      </div>
+      <div class="card">
+        <span class="tag">The real edge</span>
+        <h4>A measurement stack that doesn't lie</h4>
+        <p>Bias-corrected paired-wall gates, null-calibration to exactly 2.500, 586× batched inference, and
+        automated real-field matches vs the actual finalists.</p>
+      </div>
+    </div>
+
+    <h3>Why this design earned a podium</h3>
+    <p><strong>Zero-error reliability.</strong> 0 illegal moves and 0 timeouts across 12,288 games — while many
+    ladder bots suffer 15–21% error-endings, which are fatal in a cumulative-score format.
+    <strong>Champion-level defense</strong>, learned implicitly from experts who avoid dangerous discards, with
+    no bolted-on defense module (we tried several; all hurt). And <strong>low variance by construction</strong>
+    — the format's winner won on consistency, not peak.</p>
+  </section>
+
+  <section>
+    <span class="snum">§3 — HOW MANY ITERATIONS</span>
+    <h2>One model shipped; a large graveyard behind it</h2>
+    <p class="lede">Two full campaign cycles, ~32 distinct levers, nine cross-domain replications. Almost every
+    strength lever returned null or parity against the imitation base. That <em>is</em> the finding.</p>
+
+    <p class="cycle-h">Cycle 1 — the 2026 run</p>
+    <p class="cycle-sub">Can any lever beat the imitation base on strength or defense?</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Lever</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td class="lever">SL / distillation base — <b>kdens3</b></td><td><span class="chip ship">SHIPPED — the winner</span></td></tr>
+          <tr><td class="lever">Architecture diversity (Transformer / attn)</td><td><span class="chip fail">FAIL −57/game</span> fit labels better, played worse</td></tr>
+          <tr><td class="lever">Suphx RL · DMC · Fan-Backward · AWR</td><td><span class="chip tie">PARITY / worse</span> DMC −10.14, AWR −5.7</td></tr>
+          <tr><td class="lever">Self-play league RL (moving anchor)</td><td><span class="chip fail">NULL</span> all eval points ≤ 0</td></tr>
+          <tr><td class="lever">Online PIMC · offline unlimited-compute PIMC</td><td><span class="chip tie">DEAD / PARITY</span> +1.78 &lt; +2.0 floor</td></tr>
+          <tr><td class="lever">Same-arch ensembling</td><td><span class="chip tie">PARITY</span></td></tr>
+          <tr><td class="lever">Deal-in rerank · fold v1 · fold v2</td><td><span class="chip tie">NULL</span> policy already avoids danger</td></tr>
+          <tr><td class="lever">Opponent wait / tenpai predictors</td><td><span class="chip tie">AUC 0.887, no points</span> detects, doesn't convert</td></tr>
+          <tr><td class="lever">Human-knowledge injection (fan · meld)</td><td><span class="chip tie">NULL</span> matches experts 98.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="cycle-h">Cycle 2 — the 2027 investigation</p>
+    <p class="cycle-sub">Is kdens3 actually optimal, or just our local ceiling? We attacked every deployable axis.</p>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>Lever</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td class="lever">Source-conditioned BC · corpus-fraction sweep</td><td><span class="chip tie">NULL</span> val-acc gain doesn't transfer</td></tr>
+          <tr><td class="lever">Trained value head (search leaf, r≈0.71)</td><td><span class="chip asset">ASSET BUILT</span></td></tr>
+          <tr><td class="lever">Oracle 1-ply discard search (perfect info)</td><td><span class="chip asset">3.55 vs 2.50 — the ceiling</span> non-deployable (cheats)</td></tr>
+          <tr><td class="lever">Deal-in model v2 (AUROC 0.884) + override gate</td><td><span class="chip tie">TIE 2.4995</span> more override → worse</td></tr>
+          <tr><td class="lever">Deployable PIMC — every configuration</td><td><span class="chip tie">TIE ≤ 2.49</span> best = 2.4898 @ 1920 games</td></tr>
+          <tr><td class="lever">PIMC + belief-weighted worlds / deeper rollout</td><td><span class="chip fail">HURTS</span> rollout policy is the limiter</td></tr>
+          <tr><td class="lever">Opponent belief model (AUROC 0.765)</td><td><span class="chip asset">ASSET BUILT</span></td></tr>
+          <tr><td class="lever">Wide-explore RL · <b>league self-play RL</b></td><td><span class="chip fail">PLATEAU</span> 0/10 durable crossings</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:22px">The infrastructure is real even where the levers died: a <strong>GPU-batched PIMC
+    engine (96×, bit-for-bit validated)</strong>, an oracle-exact vmappable JAX MCR environment
+    (validated 12,288/12,288), and a 586× batched inference server.</p>
+  </section>
+
+  <section>
+    <span class="snum">§4 — THE COMPETITION STORY</span>
+    <h2>From 11th to a coin-flip final</h2>
+    <p class="lede">Our in-house evaluation insisted the bot was "at the ceiling." Reality ranked us 11th. That
+    contradiction became the most productive thread of the campaign.</p>
+
+    <ul class="tl">
+      <li>
+        <div class="rank"><span class="big">11</span><span class="of">of 16 · Round 1</span></div>
+        <div>
+          <div class="stage">Round 1</div>
+          <h4>Mid-pack — and the eval says otherwise</h4>
+          <p>The in-house gate said "saturated"; the field said 11th. The gap between them is the eval wall (§5).</p>
+        </div>
+      </li>
+      <li>
+        <div class="rank"><span class="big up">3</span><span class="of">of 16 · Stage-1</span></div>
+        <div>
+          <div class="stage">Stage-1 — advance to top-4</div>
+          <h4>A three-way tie behind a consistency machine</h4>
+          <p>2nd–4th within ~5 points. The leader's four sub-scores spanned ~13; everyone else swung 200–400.
+          The lesson was already visible: consistency wins this format.</p>
+        </div>
+      </li>
+      <li>
+        <div class="rank"><span class="big up">2</span><span class="of">of 16 · Final</span></div>
+        <div>
+          <div class="stage">Stage-2 championship</div>
+          <h4>Runner-up, statistically tied for 1st</h4>
+          <p>kong +3923, moyu +3329 over 12,288 games; t = 0.13, P ≈ 0.56. In head-to-head placement we were
+          actually above the champion, 36.53% vs 36.25%.</p>
+        </div>
+      </li>
+    </ul>
+
+    <h3>How the title was decided</h3>
+    <p>The paired-wall decomposition of the champion's <span class="keystat">+0.048</span> points/game edge
+    names exactly where it came from — and where it didn't:</p>
+    <div class="tblwrap">
+      <table class="decomp">
+        <thead><tr><th>Component</th><th>Favors</th><th class="num">Points/game</th></tr></thead>
+        <tbody>
+          <tr><td>Win rate</td><td class="dir eq">EQUAL</td><td class="num">−0.001</td></tr>
+          <tr><td>Win value (self-draw composition)</td><td class="dir win-them">CHAMPION</td><td class="num">+0.078</td></tr>
+          <tr><td>Deal-ins (defense)</td><td class="dir win-us">MOYU</td><td class="num">+0.102</td></tr>
+          <tr><td>Passive bleed</td><td class="dir win-them">CHAMPION</td><td class="num">+0.072</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="pull">We beat the champion on defense and lost on win-value conversion. In a cumulative-score
+    format, that is the whole ballgame — and it names the one marginal lever for a future team.</p>
+  </section>
+
+  <section>
+    <span class="snum">§5 — WHAT WE LEARNED</span>
+    <h2>The lessons, including the ones that cost the most</h2>
+
+    <div class="lessons">
+      <div class="lesson">
+        <h3><span class="k">A</span> The imitation ceiling</h3>
+        <p><b>Imitating expert play caps you at expert level, and in MCR that cap is extraordinarily hard to
+        exceed.</b> Every component we could build — policy, value head, belief, rollout — is itself learned
+        from the same imitation data, so none can exceed the teacher. The oracle reaches 3.55 only by cheating
+        (seeing hidden tiles); that signal survives no deployable approximation. "Deeper rollout hurts" is the
+        tell: the rollout policy is the binding limiter.</p>
+      </div>
+      <div class="lesson">
+        <h3><span class="k">B</span> The evaluation wall</h3>
+        <p>The in-house gate understated real defensive exposure by <b>6–8×</b> because it evaluated against
+        weak proxies on a score-EV metric that cannot price variance-reduction. Treat every in-house number as
+        a hypothesis until confirmed against the real field.</p>
+      </div>
+      <div class="lesson">
+        <h3><span class="k">C</span> Validation accuracy ≠ playing strength</h3>
+        <p>Two chess student-ensembles with <b>identical</b> val-top1 (0.445) had playing strengths of 0.208
+        vs 0.054 — a swing invisible to accuracy. We now gate only on the task metric, with a confidence
+        interval.</p>
+      </div>
+      <div class="lesson">
+        <h3><span class="k">D</span> Verification beats cleverness</h3>
+        <p>Our discipline caught <b>~8 false-positive "improvements"</b> before they became claims: overlapping
+        evaluation blocks manufacturing significance, estimator self-selection faking a positive, and a silent
+        harness no-op that returned exactly 2.500. Blocks must be disjoint; the gate region must be disjoint
+        from the selection region; pairing and disjointness are separate obligations.</p>
+      </div>
+      <div class="lesson">
+        <h3><span class="k">E</span> A good imitation net already does the obvious</h3>
+        <p>The human-knowledge features we tried to inject — fan-awareness, meld defense, wait-width — were
+        <b>already present</b> in the policy (it matched expert danger labels 98.65%). Injecting a feature for
+        behavior the expert already exhibits adds nothing in-distribution.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="snum">§6 — THE DOORS WE COULD NOT OPEN</span>
+    <h2>Where a 2027 team should push</h2>
+    <p class="lede">We exhausted the deployable-imitation space. These are the levers with real upside that we
+    could not walk through within our compute budget — ranked.</p>
+    <ol class="doors">
+      <li><div>
+        <h4>From-scratch superhuman self-play RL, at scale</h4>
+        <p>Our league plateaued, but the plateau is structural (near-optimal SL → tight trust region → weak
+        self-play gradient), not proven fundamental. Highest upside — and the JAX infrastructure is ready.</p>
+      </div></li>
+      <li><div>
+        <h4>A better data source</h4>
+        <p>Everything we have is teacher-capped. Higher-tier human data, or a self-play corpus that provably
+        exceeds the current expert, is the only thing that moves the ceiling itself.</p>
+      </div></li>
+      <li><div>
+        <h4>Win-conversion as an explicit objective</h4>
+        <p>The final names the gap: turn safe 2nds into 1sts via higher-value hand construction. This is a
+        construction problem — build the shape 2–3 shanten earlier — not a discard-overlay or search problem.
+        Both of those fire too late, which is why every overlay was a no-op.</p>
+      </div></li>
+      <li><div>
+        <h4>Accuracy-first PIMC within the 5 s budget</h4>
+        <p>The batched engine is built; every deployable config tied. The 5 s budget permits far more worlds
+        and deeper rollouts than we ran. Honest prior: still a tie — but it is the one search variant left
+        un-maxed.</p>
+      </div></li>
+    </ol>
+  </section>
+
+</div>
+
+<div class="close">
+  <div class="wrap">
+    <p>We built a <b>reliable, champion-grade imitation ensemble</b> and finished second of sixteen in a
+    statistical tie for first — beating the champion on defense, losing only on win-value conversion in a
+    format that rewards it. Behind that one clean model is a disciplined graveyard of ~32 rigorously-killed
+    levers, and the campaign's real deliverable is the pair of hard-won lessons: <b>imitation caps you at the
+    teacher, and in MCR that ceiling survives search, RL, and every static heuristic we could build</b> — and
+    the evaluation you trust is probably lying to you by 6–8× until you measure against the real field.
+    We are proud of the podium; we are prouder of the false positives we caught before they became claims.</p>
+    <p class="foot">Team moyu · bot kdens3 · IJCAI-2026 Chinese Standard Mahjong · runner-up, 2 of 16</p>
+  </div>
+</div>
