@@ -1,0 +1,10 @@
+{
+  "games_ok": 10000,
+  "games_bad": 0,
+  "moves": 698586,
+  "illegal": 0,
+  "shards": 4,
+  "elapsed_s": 37.6,
+  "pgn": "data/band_1600-2000.pgn",
+  "shard_size": 2500
+}

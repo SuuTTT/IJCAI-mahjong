@@ -1,0 +1,7 @@
+{
+  "date": "2026-07-12 18:51 UTC",
+  "recorded": "BEFORE any mixedband model was trained or evaluated",
+  "context": "E2 v3 found the distill-ensemble gap GROWS with source rating (-0.003 / +0.031 / +0.111 low->high bands), refining the theory to: gains require a COHERENT policy observed noisily.",
+  "experiment": "mixedband training set = equal parts by position of 0800-1200 and 2400plus (two different policies in one dataset, total size = pure 2400plus band); 6 teachers (seeds 30-35), 3 KD students (seeds 40-42, alpha 0.7), identical recipe to the pure bands.",
+  "prediction": "gap(mixedband) << gap(2400plus) despite containing the same 2400+ data; operationalized: mean_gap_mixedband < 0.5 * mean_gap_2400plus (v4 pooled convention). Incoherence, not noise, is what kills the distill-ensemble gain."
+}

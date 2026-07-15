@@ -1,0 +1,42 @@
+{
+  "env_version": "boom/v7",
+  "device": "cuda:0",
+  "platform": "gpu",
+  "device_kind": "NVIDIA GeForce RTX 3090",
+  "jax_version": "0.10.2",
+  "commit": "164134646deab67d167ee15b4c0a9c470253ba13",
+  "dirty_worktree": true,
+  "results": [
+    {
+      "batch": 4096,
+      "ticks": 200,
+      "reps": 3,
+      "seconds_best": 0.3049404229968786,
+      "seconds_all": [
+        0.3049404229968786,
+        0.30900579784065485,
+        0.30913354898802936
+      ],
+      "env_steps_per_s": 2686426.3909294354,
+      "matches_per_s_at_900_ticks": 2984.918212143817
+    },
+    {
+      "batch": 16384,
+      "ticks": 200,
+      "reps": 3,
+      "seconds_best": 1.196138981031254,
+      "seconds_all": [
+        1.196138981031254,
+        1.1962492999155074,
+        1.1974682661239058
+      ],
+      "env_steps_per_s": 2739480.990055938,
+      "matches_per_s_at_900_ticks": 3043.86776672882
+    }
+  ],
+  "integrity": {
+    "expected_batches": 2,
+    "actual": 2,
+    "complete": true
+  }
+}

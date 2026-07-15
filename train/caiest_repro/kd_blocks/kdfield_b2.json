@@ -1,0 +1,13 @@
+{
+  "cand": [
+    "kdf_s0.pkl",
+    "kdf_s1.pkl",
+    "kdf_s2.pkl"
+  ],
+  "ref": "aug_128x40_s0.pkl",
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer)",
+  "games": 2000,
+  "placement_pts": 2.4423,
+  "seconds": 74.2,
+  "seed0": 362000
+}

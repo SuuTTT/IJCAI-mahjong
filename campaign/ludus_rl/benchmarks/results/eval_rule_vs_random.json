@@ -1,0 +1,19 @@
+{
+  "a": "rule_v0",
+  "b": "random_v0",
+  "matches": 256,
+  "seat_swapped": true,
+  "a_win_rate": 0.8515625,
+  "b_win_rate": 0.078125,
+  "draw_rate": 0.0703125,
+  "a_win_as_p0": 0.9140625,
+  "a_win_as_p1": 0.7890625,
+  "a_win_ci95_lower": 0.8028238602392018,
+  "commit": "a67e7207d7b3f638ff7cd151d193357ad751af95",
+  "device": "cpu:0",
+  "integrity": {
+    "expected": 256,
+    "actual": 256,
+    "complete": true
+  }
+}

@@ -1,0 +1,147 @@
+{
+ "experiment": "deployable defensive discard policy (per-candidate deal-in, top-K safe divert) vs kdens3",
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "pc": [
+  "ckpt/dealin_pc/dealin_pc_s0.pt",
+  "ckpt/dealin_pc/dealin_pc_s1.pt",
+  "ckpt/dealin_pc/dealin_pc_s2.pt"
+ ],
+ "null_cal": {
+  "shortcut_null": 2.5,
+  "tau1_fullpath": 2.5,
+  "tau1_overrides": 0,
+  "tau1_decisions_evaluated": 9899,
+  "ok": true
+ },
+ "gate": "paired duplicate placement vs kdens3; 4 blocks x 500 seeds x 4 seat-rotations; seed0=9_000_000+block*3000 (disjoint walls); champion null = 2.5000",
+ "cells": [
+  {
+   "name": "tau0.3_K3",
+   "tau": 0.3,
+   "K": 3,
+   "block_means": {
+    "0": 2.477,
+    "1": 2.4808,
+    "2": 2.4657,
+    "3": 2.4623
+   },
+   "mean_placement": 2.471437,
+   "ci95": [
+    2.45737,
+    2.4855
+   ],
+   "ci95_halfwidth": 0.01406,
+   "block_sd": 0.00884,
+   "override_fraction": 0.015,
+   "n_overrides": 1507,
+   "n_discard_decisions": 100196,
+   "verdict": "DEFENSE LOSES to kdens3 (CI<2.5) -- danger prediction != better placement",
+   "seconds": 613.1
+  },
+  {
+   "name": "tau0.5_K3",
+   "tau": 0.5,
+   "K": 3,
+   "block_means": {
+    "0": 2.4983,
+    "1": 2.4977,
+    "2": 2.4977,
+    "3": 2.4922
+   },
+   "mean_placement": 2.4965,
+   "ci95": [
+    2.49198,
+    2.50102
+   ],
+   "ci95_halfwidth": 0.00452,
+   "block_sd": 0.00284,
+   "override_fraction": 0.0021,
+   "n_overrides": 208,
+   "n_discard_decisions": 99557,
+   "verdict": "DEFENSE TIES kdens3 (CI spans 2.5) -- no clear placement gain",
+   "seconds": 617.1
+  },
+  {
+   "name": "tau0.7_K3",
+   "tau": 0.7,
+   "K": 3,
+   "block_means": {
+    "0": 2.5,
+    "1": 2.4992,
+    "2": 2.5008,
+    "3": 2.498
+   },
+   "mean_placement": 2.4995,
+   "ci95": [
+    2.49763,
+    2.50137
+   ],
+   "ci95_halfwidth": 0.00187,
+   "block_sd": 0.00117,
+   "override_fraction": 0.0003,
+   "n_overrides": 30,
+   "n_discard_decisions": 99442,
+   "verdict": "DEFENSE TIES kdens3 (CI spans 2.5) -- no clear placement gain",
+   "seconds": 610.0
+  },
+  {
+   "name": "tau0.0_K3",
+   "tau": 0.0,
+   "K": 3,
+   "block_means": {
+    "0": 2.1585,
+    "1": 2.1365,
+    "2": 2.14,
+    "3": 2.148
+   },
+   "mean_placement": 2.14575,
+   "ci95": [
+    2.13021,
+    2.16129
+   ],
+   "ci95_halfwidth": 0.01554,
+   "block_sd": 0.00977,
+   "override_fraction": 0.5915,
+   "n_overrides": 65117,
+   "n_discard_decisions": 110094,
+   "verdict": "DEFENSE LOSES to kdens3 (CI<2.5) -- danger prediction != better placement",
+   "seconds": 666.7
+  },
+  {
+   "name": "tau0.0_Kall",
+   "tau": 0.0,
+   "K": -1,
+   "block_means": {
+    "0": 2.11,
+    "1": 2.108,
+    "2": 2.1212,
+    "3": 2.1075
+   },
+   "mean_placement": 2.111687,
+   "ci95": [
+    2.1014,
+    2.12197
+   ],
+   "ci95_halfwidth": 0.01029,
+   "block_sd": 0.00647,
+   "override_fraction": 0.7319,
+   "n_overrides": 81027,
+   "n_discard_decisions": 110707,
+   "verdict": "DEFENSE LOSES to kdens3 (CI<2.5) -- danger prediction != better placement",
+   "seconds": 925.2
+  }
+ ],
+ "best_config": {
+  "name": "tau0.7_K3",
+  "mean_placement": 2.4995,
+  "ci95": [
+   2.49763,
+   2.50137
+  ]
+ },
+ "verdict": "NO defensive config beats kdens3 (no CI lower-bound > 2.500). Great deal-in AUROC (0.97) did NOT translate to better placement -- danger prediction != better placement (the campaign's recurring lesson)."
+}

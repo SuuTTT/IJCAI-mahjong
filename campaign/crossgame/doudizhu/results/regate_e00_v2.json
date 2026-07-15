@@ -1,0 +1,37 @@
+{
+  "eps": "0",
+  "nseeds": 3000,
+  "seed0": 10000,
+  "seat": 0,
+  "dev": "cuda",
+  "means": {
+    "seed_trio1": 0.49533,
+    "seed_trio2": 0.49533,
+    "seed_trio3_overlap": 0.495,
+    "distillA": 0.49333
+  },
+  "ens": {
+    "seed_trio1": [
+      "ckpt/teachers/dou_teacher_s0.pkl",
+      "ckpt/teachers/dou_teacher_s1.pkl",
+      "ckpt/teachers/dou_teacher_s2.pkl"
+    ],
+    "seed_trio2": [
+      "ckpt/teachers/dou_teacher_s3.pkl",
+      "ckpt/teachers/dou_teacher_s4.pkl",
+      "ckpt/teachers/dou_teacher_s5.pkl"
+    ],
+    "seed_trio3_overlap": [
+      "ckpt/teachers/dou_teacher_s6.pkl",
+      "ckpt/teachers/dou_teacher_s7.pkl",
+      "ckpt/teachers/dou_teacher_s0.pkl"
+    ],
+    "distillA": [
+      "ckpt/students_det/dou_student_s100.pkl",
+      "ckpt/students_det/dou_student_s101.pkl",
+      "ckpt/students_det/dou_student_s102.pkl"
+    ]
+  },
+  "done": 4,
+  "total": 4
+}

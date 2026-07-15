@@ -1,0 +1,276 @@
+{
+  "experiment": "FINALIST-CORPUS DISTILLATION: 128x40 students, 60k steps, 3 seeds/arm; gates = 3-student deploy ensemble vs KDENS3 ENSEMBLE (kd_128x40_s0/1/2) PAIRED duplicate, 12 blocks x 500 seeds (seed0=500000+b*500), dual metric (placement pts + raw duplicate score). placement 2.500 = parity with kdens3.",
+  "corpus": "final2_cai_corpus.npz (IJCAI Final2, all-4-finalist decisions, cai encoding)",
+  "arms": {
+    "b_mix_all4": {
+      "gate": {
+        "blocks": 12,
+        "games": 24000,
+        "placement": {
+          "mean": 2.5029,
+          "ci": 0.0076,
+          "lo": 2.4953,
+          "hi": 2.5104,
+          "n": 12
+        },
+        "score_diff": {
+          "mean": 0.0716,
+          "ci": 0.2432,
+          "lo": -0.1717,
+          "hi": 0.3148,
+          "n": 12
+        },
+        "cand_score": {
+          "mean": 0.0537,
+          "ci": 0.1824,
+          "lo": -0.1288,
+          "hi": 0.2361,
+          "n": 12
+        },
+        "block_placements": [
+          2.5165,
+          2.5057,
+          2.5,
+          2.5038,
+          2.5038,
+          2.5187,
+          2.5057,
+          2.4907,
+          2.4755,
+          2.5038,
+          2.4952,
+          2.515
+        ],
+        "block_score_diffs": [
+          0.412,
+          0.572,
+          -0.278,
+          -0.0887,
+          -0.166,
+          0.2093,
+          0.0587,
+          -0.4587,
+          -0.5747,
+          0.294,
+          0.4807,
+          0.398
+        ]
+      },
+      "train": [
+        {
+          "arm": "mix_beta0.3_botsall",
+          "seed": 0,
+          "steps": 60000,
+          "best_ema_val": 0.8795,
+          "cooked_val_acc": 0.8795,
+          "corpus_val_acc": 0.9103,
+          "corpus_rows_train": 688097,
+          "seconds": 24046.0
+        },
+        {
+          "arm": "mix_beta0.3_botsall",
+          "seed": 1,
+          "steps": 60000,
+          "best_ema_val": 0.8795,
+          "cooked_val_acc": 0.8795,
+          "corpus_val_acc": 0.9122,
+          "corpus_rows_train": 688097,
+          "seconds": 24290.4
+        },
+        {
+          "arm": "mix_beta0.3_botsall",
+          "seed": 2,
+          "steps": 60000,
+          "best_ema_val": 0.8801,
+          "cooked_val_acc": 0.8801,
+          "corpus_val_acc": 0.9134,
+          "corpus_rows_train": 688097,
+          "seconds": 23994.8
+        }
+      ]
+    },
+    "c_mix_kongmoyu": {
+      "gate": {
+        "blocks": 12,
+        "games": 24000,
+        "placement": {
+          "mean": 2.4929,
+          "ci": 0.008,
+          "lo": 2.4849,
+          "hi": 2.5009,
+          "n": 12
+        },
+        "score_diff": {
+          "mean": -0.2931,
+          "ci": 0.313,
+          "lo": -0.606,
+          "hi": 0.0199,
+          "n": 12
+        },
+        "cand_score": {
+          "mean": -0.2198,
+          "ci": 0.2347,
+          "lo": -0.4545,
+          "hi": 0.0149,
+          "n": 12
+        },
+        "block_placements": [
+          2.5063,
+          2.4855,
+          2.5057,
+          2.475,
+          2.4857,
+          2.4933,
+          2.485,
+          2.4872,
+          2.4765,
+          2.5147,
+          2.5038,
+          2.4962
+        ],
+        "block_score_diffs": [
+          0.1013,
+          -0.3727,
+          -0.16,
+          -0.77,
+          -0.964,
+          -0.3033,
+          -0.3993,
+          -0.7093,
+          -0.7053,
+          0.708,
+          0.3807,
+          -0.3227
+        ]
+      },
+      "train": [
+        {
+          "arm": "mix_beta0.3_bots0,1",
+          "seed": 0,
+          "steps": 60000,
+          "best_ema_val": 0.8724,
+          "cooked_val_acc": 0.8724,
+          "corpus_val_acc": 0.9425,
+          "corpus_rows_train": 342918,
+          "seconds": 23869.9
+        },
+        {
+          "arm": "mix_beta0.3_bots0,1",
+          "seed": 1,
+          "steps": 60000,
+          "best_ema_val": 0.8749,
+          "cooked_val_acc": 0.8749,
+          "corpus_val_acc": 0.9406,
+          "corpus_rows_train": 342918,
+          "seconds": 23943.5
+        },
+        {
+          "arm": "mix_beta0.3_bots0,1",
+          "seed": 2,
+          "steps": 60000,
+          "best_ema_val": 0.873,
+          "cooked_val_acc": 0.873,
+          "corpus_val_acc": 0.9403,
+          "corpus_rows_train": 342918,
+          "seconds": 23706.1
+        }
+      ]
+    },
+    "d_pure_bc": {
+      "gate": {
+        "blocks": 12,
+        "games": 24000,
+        "placement": {
+          "mean": 2.4335,
+          "ci": 0.0149,
+          "lo": 2.4186,
+          "hi": 2.4484,
+          "n": 12
+        },
+        "score_diff": {
+          "mean": -2.7258,
+          "ci": 0.5601,
+          "lo": -3.2858,
+          "hi": -2.1657,
+          "n": 12
+        },
+        "cand_score": {
+          "mean": -2.0443,
+          "ci": 0.4201,
+          "lo": -2.4644,
+          "hi": -1.6243,
+          "n": 12
+        },
+        "block_placements": [
+          2.4617,
+          2.4152,
+          2.4543,
+          2.4225,
+          2.4585,
+          2.4362,
+          2.4468,
+          2.4665,
+          2.423,
+          2.4085,
+          2.41,
+          2.399
+        ],
+        "block_score_diffs": [
+          -1.2633,
+          -3.128,
+          -2.0453,
+          -2.762,
+          -2.38,
+          -2.4847,
+          -2.496,
+          -1.4693,
+          -3.1273,
+          -3.84,
+          -3.7773,
+          -3.936
+        ]
+      },
+      "train": [
+        {
+          "arm": "pure",
+          "seed": 0,
+          "steps": 60000,
+          "best_ema_val": 0.9159,
+          "cooked_val_acc": 0.8055,
+          "corpus_val_acc": 0.9159,
+          "corpus_rows_train": 688097,
+          "seconds": 7577.8
+        },
+        {
+          "arm": "pure",
+          "seed": 1,
+          "steps": 60000,
+          "best_ema_val": 0.9156,
+          "cooked_val_acc": 0.8046,
+          "corpus_val_acc": 0.9156,
+          "corpus_rows_train": 688097,
+          "seconds": 7868.3
+        },
+        {
+          "arm": "pure",
+          "seed": 2,
+          "steps": 60000,
+          "best_ema_val": 0.915,
+          "cooked_val_acc": 0.8027,
+          "corpus_val_acc": 0.915,
+          "corpus_rows_train": 688097,
+          "seconds": 7652.5
+        }
+      ]
+    }
+  },
+  "calibration_kdens3_vs_kdens3": null,
+  "verdicts": {
+    "b_mix_all4": "NULL vs kdens3 (2.5029 +- 0.0076)",
+    "b_mix_all4_score": "score_diff 0.0716 [-0.1717,0.3148] (includes 0)",
+    "c_mix_kongmoyu": "NULL vs kdens3 (2.4929 +- 0.008)",
+    "c_mix_kongmoyu_score": "score_diff -0.2931 [-0.606,0.0199] (includes 0)",
+    "d_pure_bc": "LOSES to kdens3 on placement (2.4335, hi 2.4484)",
+    "d_pure_bc_score": "score_diff -2.7258 [-3.2858,-2.1657] (excludes 0)"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "band": "2400plus",
+  "name": "trioB",
+  "ckpts": [
+    "ckpt/2400plus/teacher_s3.pt",
+    "ckpt/2400plus/teacher_s4.pt",
+    "ckpt/2400plus/teacher_s5.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 171.9,
+  "policy": "2400plus/trioB",
+  "n_games_per_level": 200,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.49,
+      "elo_diff_vs_level": -6.9,
+      "w_d_l": [
+        0,
+        196,
+        4
+      ],
+      "sec": 65.5
+    },
+    "64": {
+      "score": 0.35,
+      "elo_diff_vs_level": -107.5,
+      "w_d_l": [
+        0,
+        140,
+        60
+      ],
+      "sec": 44.3
+    },
+    "256": {
+      "score": 0.1825,
+      "elo_diff_vs_level": -260.5,
+      "w_d_l": [
+        5,
+        63,
+        132
+      ],
+      "sec": 62.0
+    }
+  }
+}

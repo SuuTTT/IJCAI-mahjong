@@ -1,0 +1,190 @@
+{
+  "experiment": "E4_RLDISTILL",
+  "env": "minatar/breakout",
+  "design": "K=6 PPO teachers (independent seeds) -> mixture state buffer -> M=3 students distilled by KL to MEAN teacher action distribution -> compare ensembles",
+  "teacher_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "student_seeds": [
+    10,
+    11,
+    12
+  ],
+  "n_episodes": 5,
+  "eval_seed_range": [
+    20000,
+    20004
+  ],
+  "seed_hygiene": {
+    "teacher_training_env_seeds": "seed*100 .. seed*100+31",
+    "teacher_solo_100ep_eval_seeds": "10000..10099 (results/teacher_sN.json)",
+    "buffer_rollout_env_seeds": "30000+seed*1000 ..",
+    "final_eval_env_seeds": "20000..20004"
+  },
+  "eval_policy": "greedy argmax of mean-softmax, sticky_action_prob=0.1",
+  "teacher_solo_means": {
+    "0": 0.4,
+    "1": 0.4,
+    "2": 0.4,
+    "3": 0.4,
+    "4": 0.4,
+    "5": 0.4
+  },
+  "student_solo_means": {
+    "10": 0.4,
+    "11": 0.4,
+    "12": 0.4
+  },
+  "systems": {
+    "teacher_s0_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "teacher_s1_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "teacher_s2_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "teacher_s3_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "teacher_s4_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "teacher_s5_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "teacher_ensemble_K6": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "teacher_subset_ensemble_K3_s012": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "student_s10_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "student_s11_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "student_s12_solo": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "student_ensemble_M3": {
+      "mean_return": 0.4,
+      "ci95": 0.480099989585503,
+      "returns": [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "verdict": {
+    "hypothesis": "Theory predicts distill-then-ensemble does NOT beat teacher-ensembling when teachers are independently seeded RL agents (incoherent multi-policy target); an honest null is the expected outcome.",
+    "student_ens_vs_teacher_ens_K6": {
+      "delta": 0.0,
+      "ci_separated": false
+    },
+    "student_ens_vs_teacher_subset_K3": {
+      "delta": 0.0,
+      "ci_separated": false
+    },
+    "teacher_ens_K6_vs_mean_teacher_solo": -5.551115123125783e-17,
+    "summary": "student_ensemble_M3=0.40+/-0.48 vs teacher_ensemble_K6=0.40+/-0.48 vs matched-K control teacher_subset_ensemble_K3_s012=0.40+/-0.48. Student ensemble does NOT beat the K=6 teacher ensemble beyond overlapping 95% CIs \u2014 consistent with the theory prediction (incoherent multi-policy target). At matched ensemble size K=3, student ensemble is statistically indistinguishable from the 3-teacher subset ensemble."
+  }
+}

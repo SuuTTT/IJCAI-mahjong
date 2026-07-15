@@ -1,0 +1,51 @@
+{
+ "cpu_single_1thread": {
+  "batch": 1,
+  "iters": 40,
+  "sec": 1.251,
+  "forwards_per_s": 32.0,
+  "ms_per_forward": 31.28
+ },
+ "cpu_batch256_8thread": {
+  "batch": 256,
+  "iters": 4,
+  "sec": 4.314,
+  "forwards_per_s": 237.4,
+  "ms_per_forward": 4.2132
+ },
+ "gpu_batch64": {
+  "batch": 64,
+  "iters": 60,
+  "sec": 0.461,
+  "forwards_per_s": 8338.7,
+  "ms_per_forward": 0.1199
+ },
+ "gpu_batch256": {
+  "batch": 256,
+  "iters": 60,
+  "sec": 0.98,
+  "forwards_per_s": 15668.8,
+  "ms_per_forward": 0.0638
+ },
+ "gpu_batch1024": {
+  "batch": 1024,
+  "iters": 20,
+  "sec": 1.12,
+  "forwards_per_s": 18282.1,
+  "ms_per_forward": 0.0547
+ },
+ "gpu_batch4096": {
+  "batch": 4096,
+  "iters": 20,
+  "sec": 4.366,
+  "forwards_per_s": 18763.9,
+  "ms_per_forward": 0.0533
+ },
+ "projection": {
+  "speedup_gpu_vs_cpu_single": 586.4,
+  "gate_24k_forwards": 11520000,
+  "gate_hours_cpu100proc": 1.0,
+  "gate_hours_1gpu_batched": 0.17,
+  "note": "batched server also serves RL self-play; env cost ~1% of inference (Ludus measurement)"
+ }
+}

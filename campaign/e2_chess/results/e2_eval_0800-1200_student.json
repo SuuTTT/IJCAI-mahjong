@@ -1,0 +1,46 @@
+{
+  "band": "0800-1200",
+  "name": "student",
+  "ckpts": [
+    "ckpt/0800-1200/student_s10.pt",
+    "ckpt/0800-1200/student_s11.pt",
+    "ckpt/0800-1200/student_s12.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 130.7,
+  "policy": "0800-1200/student",
+  "n_games_per_level": 200,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.1275,
+      "elo_diff_vs_level": -334.1,
+      "w_d_l": [
+        0,
+        51,
+        149
+      ],
+      "sec": 40.8
+    },
+    "64": {
+      "score": 0.195,
+      "elo_diff_vs_level": -246.3,
+      "w_d_l": [
+        0,
+        78,
+        122
+      ],
+      "sec": 40.5
+    },
+    "256": {
+      "score": 0.1,
+      "elo_diff_vs_level": -381.7,
+      "w_d_l": [
+        3,
+        34,
+        163
+      ],
+      "sec": 49.2
+    }
+  }
+}

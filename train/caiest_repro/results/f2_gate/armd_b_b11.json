@@ -1,0 +1,21 @@
+{
+  "cand": [
+    "armd_s0.pkl",
+    "armd_s1.pkl",
+    "armd_s2.pkl"
+  ],
+  "ref": [
+    "kd_128x40_s0.pkl",
+    "kd_128x40_s1.pkl",
+    "kd_128x40_s2.pkl"
+  ],
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer); ref same rule if >1",
+  "games": 2000,
+  "placement_pts": 2.4225,
+  "cand_score_mean": -2.0715,
+  "ref_score_mean": 0.6905,
+  "score_diff": -2.762,
+  "games_per_hour": 30101.7,
+  "seconds": 239.2,
+  "seed0": 505500
+}

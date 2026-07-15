@@ -1,0 +1,44 @@
+{
+  "band": "0800-1200",
+  "name": "single",
+  "ckpts": [
+    "ckpt/0800-1200/teacher_s0.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 64.4,
+  "policy": "0800-1200/single",
+  "n_games_per_level": 200,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.005,
+      "elo_diff_vs_level": -919.5,
+      "w_d_l": [
+        0,
+        2,
+        198
+      ],
+      "sec": 19.9
+    },
+    "64": {
+      "score": 0.09,
+      "elo_diff_vs_level": -401.9,
+      "w_d_l": [
+        1,
+        34,
+        165
+      ],
+      "sec": 21.4
+    },
+    "256": {
+      "score": 0.055,
+      "elo_diff_vs_level": -494.0,
+      "w_d_l": [
+        4,
+        14,
+        182
+      ],
+      "sec": 23.0
+    }
+  }
+}

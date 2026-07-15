@@ -1,0 +1,12 @@
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0 --seed 0 --steps 60000 --out ckpt/jd/jd_lam0_s0.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0 --seed 1 --steps 60000 --out ckpt/jd/jd_lam0_s1.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0 --seed 2 --steps 60000 --out ckpt/jd/jd_lam0_s2.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0.1 --seed 0 --steps 60000 --out ckpt/jd/jd_lam0.1_s0.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0.1 --seed 1 --steps 60000 --out ckpt/jd/jd_lam0.1_s1.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0.1 --seed 2 --steps 60000 --out ckpt/jd/jd_lam0.1_s2.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0.3 --seed 0 --steps 60000 --out ckpt/jd/jd_lam0.3_s0.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0.3 --seed 1 --steps 60000 --out ckpt/jd/jd_lam0.3_s1.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 0.3 --seed 2 --steps 60000 --out ckpt/jd/jd_lam0.3_s2.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 1.0 --seed 0 --steps 60000 --out ckpt/jd/jd_lam1.0_s0.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 1.0 --seed 1 --steps 60000 --out ckpt/jd/jd_lam1.0_s1.pkl
+cd /root/caiest_repro && python3 e13_kd_danger.py --lam_danger 1.0 --seed 2 --steps 60000 --out ckpt/jd/jd_lam1.0_s2.pkl

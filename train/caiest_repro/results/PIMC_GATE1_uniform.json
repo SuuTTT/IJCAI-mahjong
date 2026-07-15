@@ -1,0 +1,56 @@
+{
+ "experiment": "PIMC value-cutoff discard search vs kdens3",
+ "null_run": false,
+ "true_state": false,
+ "n_worlds": 20,
+ "k_cutoff": 6,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "vheads": [
+  "results/VALUE_C_60K.pt",
+  "results/VALUE_C_60K_s1.pt",
+  "results/VALUE_C_60K_s3.pt",
+  "results/VALUE_C_60K_s4.pt",
+  "results/VALUE_C_60K_s6.pt"
+ ],
+ "blocks": [
+  0,
+  1
+ ],
+ "seeds_per_block": 8,
+ "seed_ranges": {
+  "0": [
+   9800000,
+   9800008
+  ],
+  "1": [
+   9803000,
+   9803008
+  ]
+ },
+ "n_blocks": 2,
+ "n_seeds": 16,
+ "n_games": 64,
+ "block_means": {
+  "0": 2.7344,
+  "1": 2.5156
+ },
+ "block_mean_placement": 2.625,
+ "block_sd": 0.1547,
+ "ci95": [
+  1.2353,
+  4.0147
+ ],
+ "override_fraction": 0.0582,
+ "n_search_decisions": 773,
+ "n_overrides": 45,
+ "n_worlds_ok": 15460,
+ "n_worlds_rejected": 0,
+ "reject_fraction": 0.0,
+ "verdict": "PIMC-vcut N=20 K=6 TIES (CI spans 2.5)",
+ "seconds": 7382.0,
+ "workers": 22
+}

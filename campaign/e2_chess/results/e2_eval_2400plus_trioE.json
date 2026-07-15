@@ -1,0 +1,46 @@
+{
+  "band": "2400plus",
+  "name": "trioE",
+  "ckpts": [
+    "ckpt/2400plus/teacher_s6.pt",
+    "ckpt/2400plus/teacher_s7.pt",
+    "ckpt/2400plus/teacher_s8.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 284.7,
+  "policy": "2400plus/trioE",
+  "n_games_per_level": 400,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.3113,
+      "elo_diff_vs_level": -138.0,
+      "w_d_l": [
+        0,
+        249,
+        151
+      ],
+      "sec": 85.4
+    },
+    "64": {
+      "score": 0.0163,
+      "elo_diff_vs_level": -712.8,
+      "w_d_l": [
+        1,
+        11,
+        388
+      ],
+      "sec": 76.4
+    },
+    "256": {
+      "score": 0.1537,
+      "elo_diff_vs_level": -296.3,
+      "w_d_l": [
+        5,
+        113,
+        282
+      ],
+      "sec": 122.7
+    }
+  }
+}

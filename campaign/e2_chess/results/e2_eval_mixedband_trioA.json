@@ -1,0 +1,46 @@
+{
+  "band": "mixedband",
+  "name": "trioA",
+  "ckpts": [
+    "ckpt/mixedband/teacher_s30.pt",
+    "ckpt/mixedband/teacher_s31.pt",
+    "ckpt/mixedband/teacher_s32.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 746.7,
+  "policy": "mixedband/trioA",
+  "n_games_per_level": 400,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.4925,
+      "elo_diff_vs_level": -5.2,
+      "w_d_l": [
+        0,
+        394,
+        6
+      ],
+      "sec": 308.9
+    },
+    "64": {
+      "score": 0.135,
+      "elo_diff_vs_level": -322.7,
+      "w_d_l": [
+        0,
+        108,
+        292
+      ],
+      "sec": 201.6
+    },
+    "256": {
+      "score": 0.0875,
+      "elo_diff_vs_level": -407.3,
+      "w_d_l": [
+        3,
+        64,
+        333
+      ],
+      "sec": 235.7
+    }
+  }
+}

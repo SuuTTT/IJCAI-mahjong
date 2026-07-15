@@ -1,0 +1,13 @@
+{
+  "cand": [
+    "a03_s0.pkl",
+    "a03_s1.pkl",
+    "a03_s2.pkl"
+  ],
+  "ref": "aug_128x40_s0.pkl",
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer)",
+  "games": 8000,
+  "placement_pts": 2.498,
+  "seconds": 1258.8,
+  "seed0": 1022000
+}

@@ -1,0 +1,46 @@
+{
+  "band": "2400plus",
+  "name": "student2",
+  "ckpts": [
+    "ckpt/2400plus/student_s20.pt",
+    "ckpt/2400plus/student_s21.pt",
+    "ckpt/2400plus/student_s22.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 737.2,
+  "policy": "2400plus/student2",
+  "n_games_per_level": 400,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.1313,
+      "elo_diff_vs_level": -328.3,
+      "w_d_l": [
+        0,
+        105,
+        295
+      ],
+      "sec": 194.2
+    },
+    "64": {
+      "score": 0.0238,
+      "elo_diff_vs_level": -645.6,
+      "w_d_l": [
+        0,
+        19,
+        381
+      ],
+      "sec": 226.4
+    },
+    "256": {
+      "score": 0.15,
+      "elo_diff_vs_level": -301.3,
+      "w_d_l": [
+        4,
+        112,
+        284
+      ],
+      "sec": 316.3
+    }
+  }
+}

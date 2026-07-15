@@ -1,0 +1,46 @@
+{
+  "band": "mixedband",
+  "name": "mixedband_trioC",
+  "ckpts": [
+    "ckpt/mixedband/teacher_s60.pt",
+    "ckpt/mixedband/teacher_s61.pt",
+    "ckpt/mixedband/teacher_s62.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 265.8,
+  "policy": "mixedband/mixedband_trioC",
+  "n_games_per_level": 200,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.4975,
+      "elo_diff_vs_level": -1.7,
+      "w_d_l": [
+        0,
+        199,
+        1
+      ],
+      "sec": 77.6
+    },
+    "64": {
+      "score": 0.005,
+      "elo_diff_vs_level": -919.5,
+      "w_d_l": [
+        0,
+        2,
+        198
+      ],
+      "sec": 79.5
+    },
+    "256": {
+      "score": 0.1025,
+      "elo_diff_vs_level": -376.9,
+      "w_d_l": [
+        2,
+        37,
+        161
+      ],
+      "sec": 108.5
+    }
+  }
+}

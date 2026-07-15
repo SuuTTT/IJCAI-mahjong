@@ -1,0 +1,37 @@
+{
+  "eps": "0.5",
+  "nseeds": 3000,
+  "seed0": 10000,
+  "seat": 0,
+  "dev": "cuda",
+  "means": {
+    "seed_trio1": 0.38667,
+    "seed_trio2": 0.39067,
+    "distillA": 0.45767,
+    "distillB": 0.45967
+  },
+  "ens": {
+    "seed_trio1": [
+      "ckpt/sweep/e05/tea_s7501.pkl",
+      "ckpt/sweep/e05/tea_s7502.pkl",
+      "ckpt/sweep/e05/tea_s7503.pkl"
+    ],
+    "seed_trio2": [
+      "ckpt/sweep/e05/tea_s7504.pkl",
+      "ckpt/sweep/e05/tea_s7505.pkl",
+      "ckpt/sweep/e05/tea_s7506.pkl"
+    ],
+    "distillA": [
+      "ckpt/sweep/e05/stu_s7511.pkl",
+      "ckpt/sweep/e05/stu_s7512.pkl",
+      "ckpt/sweep/e05/stu_s7513.pkl"
+    ],
+    "distillB": [
+      "ckpt/sweep/e05/stu_s7514.pkl",
+      "ckpt/sweep/e05/stu_s7515.pkl",
+      "ckpt/sweep/e05/stu_s7516.pkl"
+    ]
+  },
+  "done": 4,
+  "total": 4
+}

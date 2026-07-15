@@ -1,0 +1,18 @@
+{
+  "cand": "switcher(T=4, est=e6_est_t4.pt)",
+  "ref": [
+    "kd_128x40_s0.pkl",
+    "kd_128x40_s1.pkl",
+    "kd_128x40_s2.pkl"
+  ],
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer); switcher cand seat",
+  "games": 2000,
+  "placement_pts": 2.5118,
+  "cand_score_mean": 0.3855,
+  "ref_score_mean": -0.1285,
+  "score_diff": 0.514,
+  "switch_rate": 0.2845,
+  "T": 4,
+  "seconds": 159.0,
+  "seed0": 8004000
+}

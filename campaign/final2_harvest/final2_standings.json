@@ -1,0 +1,30 @@
+{
+  "kong": {
+    "games": 12288,
+    "total_score": 3923,
+    "mean_score": 0.3193,
+    "mean_placement": 2.4978,
+    "first_places": 3062
+  },
+  "moyu": {
+    "games": 12288,
+    "total_score": 3329,
+    "mean_score": 0.2709,
+    "mean_placement": 2.4906,
+    "first_places": 3074
+  },
+  "QiuQiuR": {
+    "games": 12288,
+    "total_score": 1877,
+    "mean_score": 0.1528,
+    "mean_placement": 2.48,
+    "first_places": 3099
+  },
+  "player152": {
+    "games": 12288,
+    "total_score": -9129,
+    "mean_score": -0.7429,
+    "mean_placement": 2.5317,
+    "first_places": 2853
+  }
+}

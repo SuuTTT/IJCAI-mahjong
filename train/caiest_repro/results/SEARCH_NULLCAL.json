@@ -1,0 +1,37 @@
+{
+ "experiment": "Stage1 1-ply value-guided discard vs kdens3, paired duplicate placement",
+ "null_value_run": true,
+ "deploy_src": 0,
+ "value_head": "results/VALUE_C_60K.pt",
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "blocks": [
+  0
+ ],
+ "seeds_per_block": 120,
+ "seed_ranges": {
+  "0": [
+   8000000,
+   8000120
+  ]
+ },
+ "n_blocks": 1,
+ "n_games": 120,
+ "block_means": {
+  "0": 2.5
+ },
+ "block_mean_placement": 2.5,
+ "overall_game_mean_placement": 2.5,
+ "block_sd": 0.0,
+ "ci95_halfwidth": 0.0,
+ "ci95": [
+  2.5,
+  2.5
+ ],
+ "verdict": "NULL-CAL OK (== kdens3, 2.5000)",
+ "seconds": 80.4,
+ "workers": 60
+}

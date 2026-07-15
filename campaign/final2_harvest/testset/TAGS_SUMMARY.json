@@ -1,0 +1,3901 @@
+{
+  "n_games": 12288,
+  "n_build_errors": 0,
+  "build_errors": [],
+  "tag_counts_full": {
+    "ron": 8436,
+    "zimo": 3652,
+    "fan8_boundary": 1778,
+    "multi_claim": 1622,
+    "bugang": 1204,
+    "minggang": 939,
+    "angang": 519,
+    "draw": 200,
+    "multi_hu": 140,
+    "gb_fan_diff": 98,
+    "fan_gangshangkaihua": 46,
+    "fan_qiangganghu": 28,
+    "qianggang": 28,
+    "gb_discrepancy": 20,
+    "big_fan": 20,
+    "fan_last_tile_zimo": 9,
+    "fan_last_tile_ron": 4
+  },
+  "n_golden": 221,
+  "tag_counts_golden": {
+    "ron": 109,
+    "zimo": 92,
+    "multi_claim": 57,
+    "bugang": 54,
+    "fan8_boundary": 36,
+    "fan_qiangganghu": 28,
+    "qianggang": 28,
+    "minggang": 25,
+    "angang": 23,
+    "gb_discrepancy": 20,
+    "multi_hu": 20,
+    "gb_fan_diff": 20,
+    "draw": 20,
+    "big_fan": 10,
+    "fan_gangshangkaihua": 8,
+    "fan_last_tile_zimo": 5,
+    "fan_last_tile_ron": 4
+  },
+  "golden_game_ids": [
+    "6a4eba831ba515095a1f1542",
+    "6a4eba831ba515095a1f1547",
+    "6a4eba831ba515095a1f154c",
+    "6a4eba831ba515095a1f1551",
+    "6a4eba831ba515095a1f1556",
+    "6a4eba831ba515095a1f155b",
+    "6a4eba831ba515095a1f1560",
+    "6a4eba831ba515095a1f1565",
+    "6a4eba831ba515095a1f156a",
+    "6a4eba831ba515095a1f156f",
+    "6a4eba831ba515095a1f1574",
+    "6a4eba831ba515095a1f1579",
+    "6a4eba831ba515095a1f157e",
+    "6a4eba831ba515095a1f1583",
+    "6a4eba831ba515095a1f1588",
+    "6a4eba831ba515095a1f158d",
+    "6a4eba831ba515095a1f1592",
+    "6a4eba831ba515095a1f1597",
+    "6a4eba831ba515095a1f159c",
+    "6a4eba831ba515095a1f15a1",
+    "6a4eba831ba515095a1f15a6",
+    "6a4eba831ba515095a1f15ab",
+    "6a4eba831ba515095a1f15b0",
+    "6a4eba831ba515095a1f15b5",
+    "6a4ebc0e1ba515095a1f169c",
+    "6a4ebc0e1ba515095a1f16a1",
+    "6a4ebc0e1ba515095a1f16a6",
+    "6a4ebc0e1ba515095a1f16ab",
+    "6a4ebc0e1ba515095a1f16b0",
+    "6a4ebc0e1ba515095a1f16b5",
+    "6a4ebc0e1ba515095a1f16ba",
+    "6a4ebc0e1ba515095a1f16bf",
+    "6a4ebc0e1ba515095a1f16c4",
+    "6a4ebc0e1ba515095a1f16c9",
+    "6a4ebc0e1ba515095a1f16ce",
+    "6a4ebc0e1ba515095a1f16d3",
+    "6a4ebc0e1ba515095a1f16dd",
+    "6a4ebc0e1ba515095a1f16e7",
+    "6a4ebc0e1ba515095a1f16ec",
+    "6a4ebc0e1ba515095a1f16f1",
+    "6a4ebc0e1ba515095a1f16f6",
+    "6a4ebc0e1ba515095a1f16fb",
+    "6a4ebc0e1ba515095a1f170a",
+    "6a4ebd141ba515095a1f17a1",
+    "6a4ebd141ba515095a1f17b5",
+    "6a4ebd141ba515095a1f17bf",
+    "6a4ebd141ba515095a1f17d3",
+    "6a4ebd141ba515095a1f17e2",
+    "6a4ebd141ba515095a1f17f1",
+    "6a4ebdf21ba515095a1f18ba",
+    "6a4ebdf21ba515095a1f18c9",
+    "6a4ebdf21ba515095a1f18d8",
+    "6a4ebdf21ba515095a1f18e2",
+    "6a4ebdf21ba515095a1f190f",
+    "6a4ebfad1ba515095a1f1a3d",
+    "6a4ebfad1ba515095a1f1a51",
+    "6a4ebfad1ba515095a1f1a56",
+    "6a4ebfad1ba515095a1f1a5b",
+    "6a4ebfad1ba515095a1f1a6a",
+    "6a4ebfad1ba515095a1f1a79",
+    "6a4ebfad1ba515095a1f1a7e",
+    "6a4ebfad1ba515095a1f1a88",
+    "6a4ebfad1ba515095a1f1a97",
+    "6a4ebfad1ba515095a1f1a9c",
+    "6a4ebfad1ba515095a1f1aa1",
+    "6a4ebfad1ba515095a1f1aa6",
+    "6a4ebfad1ba515095a1f1ab0",
+    "6a4ec6371ba515095a1fa052",
+    "6a4ec6371ba515095a1fa066",
+    "6a4eca0a1ba515095a1fa411",
+    "6a4eca0a1ba515095a1fa41b",
+    "6a4eca0a1ba515095a1fa461",
+    "6a4ecb531ba515095a1fa58e",
+    "6a4ecb531ba515095a1fa5a7",
+    "6a4ecf431ba515095a1fa8e0",
+    "6a4ecf431ba515095a1fa8fe",
+    "6a4ecf431ba515095a1fa903",
+    "6a4ecf431ba515095a1fa908",
+    "6a4ecf431ba515095a1fa926",
+    "6a4ecf431ba515095a1fa930",
+    "6a4ed1581ba515095a1fab11",
+    "6a4ed4401ba515095a1fad57",
+    "6a4ed4401ba515095a1fad8e",
+    "6a4ed5e71ba515095a1fae96",
+    "6a4ed5e71ba515095a1faeaf",
+    "6a4ed5e71ba515095a1faecd",
+    "6a4eda7e1ba515095a1fb304",
+    "6a4eda7e1ba515095a1fb30e",
+    "6a4eda7e1ba515095a1fb313",
+    "6a4eda7e1ba515095a1fb318",
+    "6a4eda7e1ba515095a1fb31d",
+    "6a4edf0c1ba515095a1fb6cc",
+    "6a4edf0c1ba515095a1fb6d1",
+    "6a4edf0c1ba515095a1fb6e5",
+    "6a4edf0c1ba515095a1fb6ef",
+    "6a4edf0c1ba515095a1fb703",
+    "6a4edf0c1ba515095a1fb71c",
+    "6a4edf0c1ba515095a1fb721",
+    "6a4ee0a61ba515095a1fb823",
+    "6a4ee0a61ba515095a1fb828",
+    "6a4ee0a61ba515095a1fb82d",
+    "6a4ee0a61ba515095a1fb832",
+    "6a4ee0a61ba515095a1fb837",
+    "6a4ee0a61ba515095a1fb83c",
+    "6a4ee0a61ba515095a1fb84b",
+    "6a4ee0a61ba515095a1fb850",
+    "6a4ee0a61ba515095a1fb855",
+    "6a4ee0a61ba515095a1fb85a",
+    "6a4ee0a61ba515095a1fb85f",
+    "6a4ee0a61ba515095a1fb864",
+    "6a4ee0a61ba515095a1fb86e",
+    "6a4ee0a61ba515095a1fb878",
+    "6a4ee0a61ba515095a1fb887",
+    "6a4ee2651ba515095a1fb96d",
+    "6a4ee2651ba515095a1fb986",
+    "6a4ee53a1ba515095a1fbc51",
+    "6a4ee6bb1ba515095a1fbdd8",
+    "6a4ee6bb1ba515095a1fbddd",
+    "6a4ee6bb1ba515095a1fbde7",
+    "6a4ee6bb1ba515095a1fbdec",
+    "6a4ee6bb1ba515095a1fbdf1",
+    "6a4ee6bb1ba515095a1fbdf6",
+    "6a4ee6bb1ba515095a1fbdfb",
+    "6a4ee6bb1ba515095a1fbe00",
+    "6a4ee6bb1ba515095a1fbe05",
+    "6a4ee6bb1ba515095a1fbe0a",
+    "6a4ee6bb1ba515095a1fbe0f",
+    "6a4ee6bb1ba515095a1fbe19",
+    "6a4ee6bb1ba515095a1fbe1e",
+    "6a4ee6bb1ba515095a1fbe23",
+    "6a4ee6bb1ba515095a1fbe28",
+    "6a4ee6bb1ba515095a1fbe2d",
+    "6a4ee6bb1ba515095a1fbe32",
+    "6a4ee6bb1ba515095a1fbe3c",
+    "6a4ee6bb1ba515095a1fbe41",
+    "6a4eebb21ba515095a1fc2cc",
+    "6a4eed3c1ba515095a1fc3e4",
+    "6a4eed3c1ba515095a1fc434",
+    "6a4eeee71ba515095a1fc577",
+    "6a4eeee71ba515095a1fc5a9",
+    "6a4eeee71ba515095a1fc5b8",
+    "6a4eeee71ba515095a1fc5c7",
+    "6a4eeee71ba515095a1fc5d6",
+    "6a4eeee71ba515095a1fc5db",
+    "6a4ef4621ba515095a1fcb67",
+    "6a4ef7471ba515095a1fce09",
+    "6a4ef8e51ba515095a1fcf59",
+    "6a4eff6d1ba515095a1fd5ca",
+    "6a4f05661ba515095a1fdaf4",
+    "6a4f090c1ba515095a1fdebb",
+    "6a4f090c1ba515095a1fdecf",
+    "6a4f090c1ba515095a1fdede",
+    "6a4f090c1ba515095a1fdeed",
+    "6a4f0d081ba515095a1fe2b3",
+    "6a4f10191ba515095a1fe4ed",
+    "6a4f10191ba515095a1fe4f7",
+    "6a4f10191ba515095a1fe4fc",
+    "6a4f10191ba515095a1fe51a",
+    "6a4f19921ba515095a1fedec",
+    "6a4f19921ba515095a1fee2d",
+    "6a4f19921ba515095a1fee32",
+    "6a4f3aa71ba515095a200f00",
+    "6a4f43701ba515095a201730",
+    "6a4f43701ba515095a20173a",
+    "6a4f4df81ba515095a202173",
+    "6a4f4df81ba515095a202187",
+    "6a4f60d11ba515095a203308",
+    "6a4f675d1ba515095a2038aa",
+    "6a4f675d1ba515095a2038c8",
+    "6a4f6a1b1ba515095a203ad5",
+    "6a4f88f11ba515095a205989",
+    "6a4f99321ba515095a2069c3",
+    "6a4fc0c31ba515095a209167",
+    "6a4fc6ba1ba515095a209745",
+    "6a4fc6ba1ba515095a209754",
+    "6a4fc6ba1ba515095a209763",
+    "6a4fc6ba1ba515095a209772",
+    "6a4fc6ba1ba515095a20979a",
+    "6a4fc6ba1ba515095a2097a4",
+    "6a4fe1d81ba515095a20b1c1",
+    "6a4fe1d81ba515095a20b1df",
+    "6a4fea941ba515095a20b9b5",
+    "6a4feda21ba515095a20bc5f",
+    "6a4ff3661ba515095a20c1f7",
+    "6a4ff7781ba515095a20c5b5",
+    "6a4ff7781ba515095a20c5ba",
+    "6a5000be1ba515095a20cefe",
+    "6a501c2f1ba515095a216931",
+    "6a5022d31ba515095a216f57",
+    "6a50849f1ba515095a21cd39",
+    "6a50849f1ba515095a21cd3e",
+    "6a50849f1ba515095a21cd4d",
+    "6a50849f1ba515095a21cd52",
+    "6a509c871ba515095a21e3d4",
+    "6a509c871ba515095a21e41f",
+    "6a509c871ba515095a21e424",
+    "6a509c871ba515095a21e429",
+    "6a509c871ba515095a21e433",
+    "6a50a7b01ba515095a21eef8",
+    "6a50a7b01ba515095a21ef0c",
+    "6a50a7b01ba515095a21ef16",
+    "6a50a7b01ba515095a21ef2a",
+    "6a50adb21ba515095a21f496",
+    "6a50b0a01ba515095a21f799",
+    "6a50b0a01ba515095a21f7f8",
+    "6a50baed1ba515095a220159",
+    "6a50baed1ba515095a220168",
+    "6a50baed1ba515095a220172",
+    "6a50baed1ba515095a220177",
+    "6a50dd011ba515095a221ebc",
+    "6a50dd011ba515095a221f07",
+    "6a5106691ba515095a22436c",
+    "6a5106691ba515095a22437b",
+    "6a5124251ba515095a225ff7",
+    "6a5124251ba515095a226015",
+    "6a5124251ba515095a22601f",
+    "6a5124251ba515095a226038",
+    "6a5128851ba515095a226423",
+    "6a512a031ba515095a226519",
+    "6a51378c1ba515095a227365",
+    "6a51378c1ba515095a22736a"
+  ],
+  "gb_scan": {
+    "agree": 11970,
+    "cai_replay_below_8fan_gate": 20,
+    "cai_replay_fan_diff": 98,
+    "n/a": 200
+  },
+  "gb_discrepancies": [
+    {
+      "game_id": "6a4ebc0e1ba515095a1f16c4",
+      "fan_total": 11,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 7,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 11
+      }
+    },
+    {
+      "game_id": "6a4ec6371ba515095a1fa052",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "断幺",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe41",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbddd",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe05",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe1e",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbdfb",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbdd8",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe0a",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe32",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe46",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe4b",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbde7",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbdec",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe00",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe0f",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe28",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe19",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe23",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbdf6",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe3c",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbe2d",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4ee6bb1ba515095a1fbdf1",
+      "fan_total": 20,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 16,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "一般高",
+            1,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 20
+      }
+    },
+    {
+      "game_id": "6a4f13f31ba515095a1fe902",
+      "fan_total": 26,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 22,
+        "fans_cai_replay": [
+          [
+            "一色三步高",
+            16,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ],
+          [
+            "边张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 26
+      }
+    },
+    {
+      "game_id": "6a4f13f31ba515095a1fe8e4",
+      "fan_total": 26,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 22,
+        "fans_cai_replay": [
+          [
+            "一色三步高",
+            16,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ],
+          [
+            "边张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 26
+      }
+    },
+    {
+      "game_id": "6a4f13f31ba515095a1fe907",
+      "fan_total": 26,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 22,
+        "fans_cai_replay": [
+          [
+            "一色三步高",
+            16,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ],
+          [
+            "边张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 26
+      }
+    },
+    {
+      "game_id": "6a4f13f31ba515095a1fe8bc",
+      "fan_total": 26,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 22,
+        "fans_cai_replay": [
+          [
+            "一色三步高",
+            16,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ],
+          [
+            "边张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 26
+      }
+    },
+    {
+      "game_id": "6a4f24231ba515095a1ff8d1",
+      "fan_total": 13,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 9,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "老少副",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 13
+      }
+    },
+    {
+      "game_id": "6a4f24231ba515095a1ff8b3",
+      "fan_total": 13,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 9,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "老少副",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 13
+      }
+    },
+    {
+      "game_id": "6a4f367f1ba515095a200b29",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4f367f1ba515095a200b51",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4f367f1ba515095a200b38",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4f367f1ba515095a200b6f",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4f367f1ba515095a200b79",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4f367f1ba515095a200b1f",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4f3aa71ba515095a200f00",
+      "fan_total": 11,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 7,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 11
+      }
+    },
+    {
+      "game_id": "6a4f60d11ba515095a203308",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055e2",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a20559c",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055c9",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055ce",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055c4",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055dd",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055bf",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055ba",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055ab",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055fb",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a205600",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a205597",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f85701ba515095a2055b5",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "五门齐",
+            6,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a4f8e2c1ba515095a205f3a",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4f99321ba515095a2069c3",
+      "fan_total": 11,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 7,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 11
+      }
+    },
+    {
+      "game_id": "6a4fb7291ba515095a20879e",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "七星不靠",
+            24,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a4fc0c31ba515095a20913a",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "暗杠",
+            2,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a4fc0c31ba515095a209144",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "暗杠",
+            2,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a4fc6ba1ba515095a2097a4",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a4fc6ba1ba515095a20979a",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a4fc6ba1ba515095a209754",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a4fc6ba1ba515095a209772",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a4fc6ba1ba515095a209745",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a4fc6ba1ba515095a209763",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a4fc8131ba515095a20986f",
+      "fan_total": 13,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 9,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 13
+      }
+    },
+    {
+      "game_id": "6a4fc8131ba515095a209874",
+      "fan_total": 13,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 9,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 13
+      }
+    },
+    {
+      "game_id": "6a4fc8131ba515095a209865",
+      "fan_total": 13,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 9,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 13
+      }
+    },
+    {
+      "game_id": "6a4fca931ba515095a209b85",
+      "fan_total": 16,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 12,
+        "fans_cai_replay": [
+          [
+            "花龙",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "嵌张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 16
+      }
+    },
+    {
+      "game_id": "6a4fd9781ba515095a20aa71",
+      "fan_total": 28,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 24,
+        "fans_cai_replay": [
+          [
+            "一色三步高",
+            16,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "断幺",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ],
+          [
+            "嵌张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 28
+      }
+    },
+    {
+      "game_id": "6a4fdbaf1ba515095a20aca0",
+      "fan_total": 14,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 10,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "断幺",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 14
+      }
+    },
+    {
+      "game_id": "6a4fdbaf1ba515095a20ac82",
+      "fan_total": 14,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 10,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "断幺",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 14
+      }
+    },
+    {
+      "game_id": "6a4fea941ba515095a20b9b5",
+      "fan_total": 9,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 5,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 9
+      }
+    },
+    {
+      "game_id": "6a4fea941ba515095a20b9d3",
+      "fan_total": 14,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 10,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 14
+      }
+    },
+    {
+      "game_id": "6a4feda21ba515095a20bc5f",
+      "fan_total": 9,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 5,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "老少副",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 9
+      }
+    },
+    {
+      "game_id": "6a4feda21ba515095a20bc96",
+      "fan_total": 14,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 10,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "老少副",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 14
+      }
+    },
+    {
+      "game_id": "6a4ff3661ba515095a20c210",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "断幺",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a50082d1ba515095a20d4fc",
+      "fan_total": 14,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 10,
+        "fans_cai_replay": [
+          [
+            "杠上开花",
+            8,
+            1
+          ],
+          [
+            "明杠",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 14
+      }
+    },
+    {
+      "game_id": "6a501c2f1ba515095a216931",
+      "fan_total": 9,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 5,
+        "fans_cai_replay": [
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 9
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217840",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217863",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217854",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217881",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a21786d",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a21784a",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217836",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217895",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a21783b",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217872",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a502b8d1ba515095a217877",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a5054881ba515095a21a079",
+      "fan_total": 29,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 25,
+        "fans_cai_replay": [
+          [
+            "一色三步高",
+            16,
+            1
+          ],
+          [
+            "混一色",
+            6,
+            1
+          ],
+          [
+            "圈风刻",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 29
+      }
+    },
+    {
+      "game_id": "6a505ec31ba515095a21a950",
+      "fan_total": 13,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 9,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 13
+      }
+    },
+    {
+      "game_id": "6a505ec31ba515095a21a955",
+      "fan_total": 13,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 9,
+        "fans_cai_replay": [
+          [
+            "三色三步高",
+            6,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 13
+      }
+    },
+    {
+      "game_id": "6a5081fd1ba515095a21cace",
+      "fan_total": 14,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 10,
+        "fans_cai_replay": [
+          [
+            "花龙",
+            8,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 14
+      }
+    },
+    {
+      "game_id": "6a50967b1ba515095a21def8",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50967b1ba515095a21de94",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50967b1ba515095a21defd",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50967b1ba515095a21df02",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50967b1ba515095a21dea3",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50967b1ba515095a21dedf",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50aa921ba515095a21f193",
+      "fan_total": 19,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 15,
+        "fans_cai_replay": [
+          [
+            "花龙",
+            8,
+            1
+          ],
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "嵌张",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 19
+      }
+    },
+    {
+      "game_id": "6a50adb21ba515095a21f496",
+      "fan_total": 11,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 7,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "断幺",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 11
+      }
+    },
+    {
+      "game_id": "6a50b0a01ba515095a21f7e4",
+      "fan_total": 19,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 15,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 19
+      }
+    },
+    {
+      "game_id": "6a50b0a01ba515095a21f7d0",
+      "fan_total": 19,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 15,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 19
+      }
+    },
+    {
+      "game_id": "6a50b0a01ba515095a21f7ee",
+      "fan_total": 19,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 15,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 19
+      }
+    },
+    {
+      "game_id": "6a50b0a01ba515095a21f7c6",
+      "fan_total": 19,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 15,
+        "fans_cai_replay": [
+          [
+            "大于五",
+            12,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 19
+      }
+    },
+    {
+      "game_id": "6a50b0a01ba515095a21f799",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a50b0a01ba515095a21f7f8",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "幺九刻",
+            1,
+            1
+          ],
+          [
+            "无字",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a50be5d1ba515095a220460",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "断幺",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "缺一门",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50c5a31ba515095a220a7d",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "混一色",
+            6,
+            1
+          ],
+          [
+            "门风刻",
+            2,
+            1
+          ],
+          [
+            "老少副",
+            1,
+            1
+          ],
+          [
+            "明杠",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a50cf781ba515095a221350",
+      "fan_total": 12,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 8,
+        "fans_cai_replay": [
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "边张",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 12
+      }
+    },
+    {
+      "game_id": "6a50f3fa1ba515095a2231bc",
+      "fan_total": 28,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 24,
+        "fans_cai_replay": [
+          [
+            "小于五",
+            12,
+            1
+          ],
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "四归一",
+            2,
+            1
+          ],
+          [
+            "边张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 28
+      }
+    },
+    {
+      "game_id": "6a50f3fa1ba515095a2231da",
+      "fan_total": 28,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 24,
+        "fans_cai_replay": [
+          [
+            "小于五",
+            12,
+            1
+          ],
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "边张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 28
+      }
+    },
+    {
+      "game_id": "6a5103971ba515095a224079",
+      "fan_total": 16,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 12,
+        "fans_cai_replay": [
+          [
+            "三色三同顺",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "嵌张",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 16
+      }
+    },
+    {
+      "game_id": "6a5106691ba515095a22436c",
+      "fan_total": 9,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 5,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 9
+      }
+    },
+    {
+      "game_id": "6a5106691ba515095a22437b",
+      "fan_total": 9,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 5,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "连六",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 9
+      }
+    },
+    {
+      "game_id": "6a5111de1ba515095a224e93",
+      "fan_total": 15,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 11,
+        "fans_cai_replay": [
+          [
+            "花龙",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 15
+      }
+    },
+    {
+      "game_id": "6a5120b31ba515095a225d27",
+      "fan_total": 22,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 18,
+        "fans_cai_replay": [
+          [
+            "组合龙",
+            12,
+            1
+          ],
+          [
+            "不求人",
+            4,
+            1
+          ],
+          [
+            "箭刻",
+            2,
+            1
+          ]
+        ],
+        "fan_corrected": 22
+      }
+    },
+    {
+      "game_id": "6a51378c1ba515095a22736a",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a51378c1ba515095a227365",
+      "fan_total": 8,
+      "gb": {
+        "status": "cai_replay_below_8fan_gate",
+        "fan_cai_replay": 4,
+        "fans_cai_replay": [
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 8
+      }
+    },
+    {
+      "game_id": "6a51378c1ba515095a227347",
+      "fan_total": 16,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 12,
+        "fans_cai_replay": [
+          [
+            "花龙",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 16
+      }
+    },
+    {
+      "game_id": "6a51378c1ba515095a22730b",
+      "fan_total": 16,
+      "gb": {
+        "status": "cai_replay_fan_diff",
+        "fan_cai_replay": 12,
+        "fans_cai_replay": [
+          [
+            "花龙",
+            8,
+            1
+          ],
+          [
+            "平和",
+            2,
+            1
+          ],
+          [
+            "喜相逢",
+            1,
+            1
+          ],
+          [
+            "自摸",
+            1,
+            1
+          ]
+        ],
+        "fan_corrected": 16
+      }
+    }
+  ],
+  "quan_distribution": {
+    "0": 3072,
+    "1": 3072,
+    "2": 3072,
+    "3": 3072
+  },
+  "request_grammar": {
+    "3 <p> PLAY <tile>": 2056792,
+    "3 <p> DRAW": 1559082,
+    "2 <tile>  (own draw)": 519694,
+    "3 <p> CHI <mid> <follow-up discard>": 129744,
+    "3 <p> PENG <follow-up discard>": 86996,
+    "0 <seat> <quan>  (game start)": 49152,
+    "1 0 0 0 0 <13 tiles>  (deal; four flower counts always 0)": 49152,
+    "3 <p> GANG": 5972,
+    "3 <p> BUGANG <tile>": 5208
+  },
+  "seconds": 28.0
+}

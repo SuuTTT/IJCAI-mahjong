@@ -1,0 +1,56 @@
+{
+  "data": "data/oppdealin/full",
+  "held_out_pairs": 1222066,
+  "held_out_pos": 17208,
+  "base_rate": 0.014081,
+  "val_games": 2500,
+  "val_split_seed": 20260713,
+  "v2_offpolicy": {
+    "ensemble_auroc": 0.8844,
+    "ensemble_prauc": 0.1081,
+    "per_seed": {
+      "dealin_pc_v2_s0.pt": {
+        "auroc": 0.8819,
+        "prauc": 0.1039
+      },
+      "dealin_pc_v2_s1.pt": {
+        "auroc": 0.8816,
+        "prauc": 0.1047
+      },
+      "dealin_pc_v2_s2.pt": {
+        "auroc": 0.8822,
+        "prauc": 0.1044
+      }
+    },
+    "paths": [
+      "ckpt/dealin_pc_v2/dealin_pc_v2_s0.pt",
+      "ckpt/dealin_pc_v2/dealin_pc_v2_s1.pt",
+      "ckpt/dealin_pc_v2/dealin_pc_v2_s2.pt"
+    ]
+  },
+  "onpolicy": {
+    "ensemble_auroc": 0.8082,
+    "ensemble_prauc": 0.0521,
+    "per_seed": {
+      "dealin_pc_s0.pt": {
+        "auroc": 0.7896,
+        "prauc": 0.0459
+      },
+      "dealin_pc_s1.pt": {
+        "auroc": 0.7859,
+        "prauc": 0.0465
+      },
+      "dealin_pc_s2.pt": {
+        "auroc": 0.791,
+        "prauc": 0.0475
+      }
+    },
+    "paths": [
+      "ckpt/dealin_pc/dealin_pc_s0.pt",
+      "ckpt/dealin_pc/dealin_pc_s1.pt",
+      "ckpt/dealin_pc/dealin_pc_s2.pt"
+    ]
+  },
+  "verdict_auroc_gain": 0.0762,
+  "verdict_prauc_gain": 0.056
+}

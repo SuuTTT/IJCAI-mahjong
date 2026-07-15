@@ -1,0 +1,25 @@
+{
+  "mode": "e2e_resbn128x40_value",
+  "seed": 0,
+  "steps": 30000,
+  "n_val": 72529,
+  "score_scale": 30.0,
+  "metrics": {
+    "r_all": 0.7118,
+    "rho_all": 0.655,
+    "r_early": 0.635,
+    "rho_early": 0.5743,
+    "r_mid": 0.7101,
+    "rho_mid": 0.6619,
+    "r_late": 0.7771,
+    "rho_late": 0.7239,
+    "grp_rank_rho_early": 0.5656,
+    "grp_games_early": 1227,
+    "grp_rank_rho_mid": 0.6422,
+    "grp_games_mid": 1216,
+    "grp_rank_rho_late": 0.6852,
+    "grp_games_late": 1228,
+    "val_mse": 0.4745
+  },
+  "seconds": 4053.0
+}

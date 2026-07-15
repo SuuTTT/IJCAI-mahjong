@@ -1,0 +1,15 @@
+{
+  "tag": "N4",
+  "pkls": [
+    "ckpt/students_curve/dou_cstudent_N4_s4040.pkl",
+    "ckpt/students_curve/dou_cstudent_N4_s4041.pkl",
+    "ckpt/students_curve/dou_cstudent_N4_s4042.pkl"
+  ],
+  "K": 3,
+  "seat": 0,
+  "nseeds": 3000,
+  "mean_payoff": 0.465,
+  "ci95": 0.01785,
+  "dev": "cuda",
+  "seconds": 193.6
+}

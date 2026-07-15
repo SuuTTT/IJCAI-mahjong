@@ -1,0 +1,25 @@
+{
+  "eps": "0.2",
+  "nseeds": 3000,
+  "seed0": 10000,
+  "seat": 0,
+  "dev": "cuda",
+  "means": {
+    "seed_trio3": 0.464,
+    "seed_trio4": 0.47933
+  },
+  "ens": {
+    "seed_trio3": [
+      "ckpt/sweep/e02/tea_s7201.pkl",
+      "ckpt/sweep/e02/tea_s7203.pkl",
+      "ckpt/sweep/e02/tea_s7205.pkl"
+    ],
+    "seed_trio4": [
+      "ckpt/sweep/e02/tea_s7202.pkl",
+      "ckpt/sweep/e02/tea_s7204.pkl",
+      "ckpt/sweep/e02/tea_s7206.pkl"
+    ]
+  },
+  "done": 2,
+  "total": 2
+}

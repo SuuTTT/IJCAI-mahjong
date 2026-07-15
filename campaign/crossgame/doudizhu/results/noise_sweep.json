@@ -1,0 +1,47 @@
+{
+  "experiment": "noise_level_epsilon_sweep",
+  "metric": "mean_payoff seat0 vs 2 rule agents",
+  "note": "eps0<-det_gate(2000s); eps0.3<-noisy_gate(2000s); eps0.1/0.2/0.5 fresh(3000s per-game-seeded)",
+  "hypothesis": "distill-then-ensemble gap over seed-ensemble grows with imitation-target noise eps",
+  "by_eps": {
+    "0": {
+      "single": 0.4905,
+      "seed_ens": 0.4935,
+      "distill_ens": 0.492,
+      "gap": -0.0015
+    },
+    "0.1": {
+      "single": 0.48333,
+      "seed_ens": 0.49267,
+      "distill_ens": 0.49033,
+      "gap": -0.00233,
+      "gap_ci95": 0.00519,
+      "distill_ensB": 0.49067,
+      "calibration_delta": 0.0
+    },
+    "0.2": {
+      "single": 0.47867,
+      "seed_ens": 0.404,
+      "distill_ens": 0.48067,
+      "gap": 0.07667,
+      "gap_ci95": 0.01278,
+      "distill_ensB": 0.48367,
+      "calibration_delta": 0.0
+    },
+    "0.3": {
+      "single": 0.4445,
+      "seed_ens": 0.429,
+      "distill_ens": 0.454,
+      "gap": 0.025
+    },
+    "0.5": {
+      "single": 0.46433,
+      "seed_ens": 0.38667,
+      "distill_ens": 0.45767,
+      "gap": 0.071,
+      "gap_ci95": 0.0127,
+      "distill_ensB": 0.45967,
+      "calibration_delta": 0.0
+    }
+  }
+}

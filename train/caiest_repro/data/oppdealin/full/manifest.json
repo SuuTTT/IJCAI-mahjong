@@ -1,0 +1,22 @@
+{
+ "tag": "full",
+ "games": 25000,
+ "decisions": 1252759,
+ "candidate_rows": 12303939,
+ "candidate_pos": 180964,
+ "per_candidate_base_rate": 0.014708,
+ "seed0": 7000000,
+ "seed_range": [
+  7000000,
+  7025000
+ ],
+ "shards": 250,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "seconds": 2735.9,
+ "decisions_per_game": 50.11,
+ "cand_per_decision": 9.82
+}

@@ -1,0 +1,13 @@
+{
+  "tag": "ref",
+  "pkls": [
+    "ckpt/students_noisy/dou_nstudent_s210.pkl"
+  ],
+  "K": 1,
+  "seat": 0,
+  "nseeds": 3000,
+  "mean_payoff": 0.464,
+  "ci95": 0.01785,
+  "dev": "cuda",
+  "seconds": 295.2
+}

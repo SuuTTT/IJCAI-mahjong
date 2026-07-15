@@ -1,0 +1,45 @@
+{
+ "experiment": "deployable defensive discard policy (pc deal-in, top-K safe divert) vs kdens3",
+ "null_run": true,
+ "tau": 0.5,
+ "K": 3,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "pc": [
+  "ckpt/dealin_pc/dealin_pc_s0.pt",
+  "ckpt/dealin_pc/dealin_pc_s1.pt",
+  "ckpt/dealin_pc/dealin_pc_s2.pt"
+ ],
+ "blocks": [
+  0
+ ],
+ "seeds_per_block": 200,
+ "seed_ranges": {
+  "0": [
+   9000000,
+   9000200
+  ]
+ },
+ "n_blocks": 1,
+ "n_seeds": 200,
+ "n_games": 800,
+ "block_means": {
+  "0": 2.5
+ },
+ "block_mean_placement": 2.5,
+ "block_sd": 0.0,
+ "ci95_halfwidth": 0.0,
+ "ci95": [
+  2.5,
+  2.5
+ ],
+ "override_fraction": 0.0,
+ "n_discard_decisions": 0,
+ "n_overrides": 0,
+ "verdict": "NULL-CAL OK (== kdens3, 2.5000, 0 overrides)",
+ "seconds": 79.7,
+ "workers": 60
+}

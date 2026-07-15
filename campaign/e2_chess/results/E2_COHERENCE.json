@@ -1,0 +1,49 @@
+{
+  "experiment": "E2 coherence test: mixedband (equal-position blend of 0800-1200 + 2400plus, ~24.6M positions = pure 2400plus size) vs pure-band gaps",
+  "prediction": "gap(mixedband) << gap(2400plus): distill-ensemble gains require a coherent source policy; an incoherent two-policy blend kills the gain even though it contains the same 2400+ data",
+  "mixedband": {
+    "levels": {
+      "16": {
+        "teacher_trios": {
+          "trioA": 0.4925,
+          "trioB": 0.2487
+        },
+        "teacher_ens_weighted": 0.3706,
+        "student_ens": 0.2475,
+        "gap": -0.1231
+      },
+      "64": {
+        "teacher_trios": {
+          "trioA": 0.135,
+          "trioB": 0.0312
+        },
+        "teacher_ens_weighted": 0.0831,
+        "student_ens": 0.2487,
+        "gap": 0.1656
+      },
+      "256": {
+        "teacher_trios": {
+          "trioA": 0.0875,
+          "trioB": 0.1487
+        },
+        "teacher_ens_weighted": 0.1181,
+        "student_ens": 0.1275,
+        "gap": 0.0094
+      }
+    },
+    "mean_gap": 0.0173
+  },
+  "missing": [],
+  "pure_band_gaps": {
+    "0800-1200": 0.0151,
+    "1600-2000": -0.0375,
+    "2400plus": 0.0138
+  },
+  "pure_band_gaps_source": "E2_GRID_v4.json:gap_by_band_pooled",
+  "gap_mixedband": 0.0173,
+  "gap_2400plus": 0.0138,
+  "gap_0800-1200": 0.0151,
+  "mixed_minus_2400plus": 0.0035,
+  "verdict": "NOT SUPPORTED: mixedband gap +0.0173 vs pure-2400plus +0.0138 \u2014 the blend retains >=half of the pure-band gain",
+  "note_vs_lowband": "mixedband +0.0173 vs pure low-band +0.0151"
+}

@@ -1,0 +1,46 @@
+{
+  "band": "2400plus",
+  "name": "trioA",
+  "ckpts": [
+    "ckpt/2400plus/teacher_s0.pt",
+    "ckpt/2400plus/teacher_s1.pt",
+    "ckpt/2400plus/teacher_s2.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 157.8,
+  "policy": "2400plus/trioA",
+  "n_games_per_level": 200,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.005,
+      "elo_diff_vs_level": -919.5,
+      "w_d_l": [
+        1,
+        0,
+        199
+      ],
+      "sec": 44.1
+    },
+    "64": {
+      "score": 0.2375,
+      "elo_diff_vs_level": -202.6,
+      "w_d_l": [
+        0,
+        95,
+        105
+      ],
+      "sec": 55.6
+    },
+    "256": {
+      "score": 0.1225,
+      "elo_diff_vs_level": -342.0,
+      "w_d_l": [
+        1,
+        47,
+        152
+      ],
+      "sec": 58.0
+    }
+  }
+}

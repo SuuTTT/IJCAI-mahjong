@@ -1,0 +1,29 @@
+{
+  "env_version": "boom/v7",
+  "commit": "164134646deab67d167ee15b4c0a9c470253ba13",
+  "device": "cuda:0",
+  "jax_version": "0.10.2",
+  "stats": {
+    "matches": 10000,
+    "p0_win_rate": 0.007,
+    "p1_win_rate": 0.993,
+    "draw_rate": 0.0,
+    "overtime_rate": 0.4416,
+    "mean_decided_tick": 982.5354,
+    "median_decided_tick": 900.0,
+    "info_only": {
+      "non_degenerate_wins_v1_gate": false,
+      "overtime_below_40pct_v1_gate": false
+    }
+  },
+  "checks": {
+    "zero_illegal": true,
+    "all_matches_terminated": true
+  },
+  "integrity": {
+    "expected": 10000,
+    "actual": 10000,
+    "complete": true,
+    "all_checks_pass": true
+  }
+}

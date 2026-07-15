@@ -1,0 +1,35 @@
+{
+  "a": "ppo_v0",
+  "b": "rule_v0",
+  "submission_hashes": {
+    "ppo_v0": "43130b06d7b622d0",
+    "rule_v0": "builtin@6e2742d791fcac00"
+  },
+  "blocks": 8,
+  "pairs_per_block": 16,
+  "block_means": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "a_pair_score_mean": 1.0,
+  "t_ci95": [
+    1.0,
+    1.0
+  ],
+  "verdict": "SEPARATED",
+  "illegal": 0,
+  "env_version": "boom/v2",
+  "judge_hash": "6e2742d791fcac00",
+  "commit": "8e4a1f3d13871b8564cc4a81ea112c64cee0a5e5",
+  "integrity": {
+    "expected_blocks": 8,
+    "actual": 8,
+    "complete": true
+  }
+}

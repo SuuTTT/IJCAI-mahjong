@@ -1,0 +1,35 @@
+{
+  "games_total": 12288,
+  "games_ok": 12288,
+  "games_fail": 0,
+  "fail_examples": [],
+  "N_new": 723644,
+  "N_old": 2279028,
+  "note": "N_new < N_old expected: old corpus had ~2 ungated-Hu all-Pass claim rows per discard; cai omits forced claims (training convention)",
+  "per_bot_new": [
+    179906,
+    180685,
+    183177,
+    179876
+  ],
+  "per_bot_old": [
+    569841,
+    569723,
+    569739,
+    569725
+  ],
+  "illegal_rows_dropped": 20,
+  "legal_frac": 1.0,
+  "kind_counts": [
+    519674,
+    149785,
+    54185
+  ],
+  "games_compared": 12288,
+  "k02_count_mismatch_games": 20,
+  "k02_act_agreement": 1.0,
+  "k02_rows_compared": 572742,
+  "claim_subset_violation_games": 0,
+  "claim_nonpass_mismatch_games": 28,
+  "seconds": 44.0
+}

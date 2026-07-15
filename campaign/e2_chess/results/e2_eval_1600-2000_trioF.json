@@ -1,0 +1,46 @@
+{
+  "band": "1600-2000",
+  "name": "trioF",
+  "ckpts": [
+    "ckpt/1600-2000/teacher_s9.pt",
+    "ckpt/1600-2000/teacher_s10.pt",
+    "ckpt/1600-2000/teacher_s11.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 289.1,
+  "policy": "1600-2000/trioF",
+  "n_games_per_level": 400,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.0125,
+      "elo_diff_vs_level": -759.1,
+      "w_d_l": [
+        0,
+        10,
+        390
+      ],
+      "sec": 92.7
+    },
+    "64": {
+      "score": 0.0125,
+      "elo_diff_vs_level": -759.1,
+      "w_d_l": [
+        0,
+        10,
+        390
+      ],
+      "sec": 87.1
+    },
+    "256": {
+      "score": 0.1075,
+      "elo_diff_vs_level": -367.7,
+      "w_d_l": [
+        9,
+        68,
+        323
+      ],
+      "sec": 109.2
+    }
+  }
+}

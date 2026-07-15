@@ -1,0 +1,22 @@
+{
+  "regime": "noisy_eps0.3",
+  "seat": 0,
+  "nseeds": 2000,
+  "dev": "cuda",
+  "single_pkl": "ckpt/students_noisy/dou_nstudent_s210.pkl",
+  "teacher_ens": [
+    "ckpt/teachers_noisy/dou_nteacher_s200.pkl",
+    "ckpt/teachers_noisy/dou_nteacher_s201.pkl",
+    "ckpt/teachers_noisy/dou_nteacher_s202.pkl"
+  ],
+  "student_ens": [
+    "ckpt/students_noisy/dou_nstudent_s210.pkl",
+    "ckpt/students_noisy/dou_nstudent_s211.pkl",
+    "ckpt/students_noisy/dou_nstudent_s212.pkl"
+  ],
+  "single_mean_payoff": 0.4445,
+  "teacher_ens3_mean_payoff": 0.429,
+  "student_ens3_mean_payoff": 0.454,
+  "calibration_ref_vs_ref_delta": 0.0,
+  "seconds": 261.3
+}

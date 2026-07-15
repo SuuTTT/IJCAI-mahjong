@@ -1,0 +1,146 @@
+{
+  "generated_utc": "2026-07-12T06:00:03Z",
+  "box": "vast A4000 202.122.49.242:23543",
+  "root": "/root/e2_chess",
+  "data": {
+    "month_stream": {
+      "source": "https://database.lichess.org/standard/lichess_db_standard_rated_2026-06.pgn.zst",
+      "filters": "Rated Classical/Rapid, Termination=Normal, both Elo in band, %clk present, reached move 6",
+      "status": {
+        "bytes_in_decompressed": 103100841984,
+        "games_seen": 44198999,
+        "counts": {
+          "0800-1200": 210000,
+          "1600-2000": 210000,
+          "2400plus": 9176
+        },
+        "quota": 210000,
+        "elapsed_s": 5642.6,
+        "done": true
+      }
+    },
+    "elite_backfill": {
+      "source": "https://database.nikonoel.fr/lichess_elite_YYYY-MM.zip (2025-11 backward)",
+      "filters": "same, minus %clk (elite db strips clocks); blitz dropped; both Elo >= 2400",
+      "status": {
+        "last_month": "2024-10",
+        "kept_total": 210000
+      }
+    },
+    "bands": {
+      "band_0800-1200.pgn": {
+        "games": 210000,
+        "bytes": 459203682
+      },
+      "band_1600-2000.pgn": {
+        "games": 210000,
+        "bytes": 530237491
+      },
+      "band_2400plus.pgn": {
+        "games": 9176,
+        "bytes": 36293903
+      },
+      "band_2400plus_elite.pgn": {
+        "games": 210000,
+        "bytes": 240413160
+      }
+    }
+  },
+  "encode_samples": {
+    "sample_0800-1200": {
+      "games_ok": 10000,
+      "games_bad": 0,
+      "moves": 585198,
+      "illegal": 0,
+      "shards": 4,
+      "elapsed_s": 33.4,
+      "pgn": "data/band_0800-1200.pgn",
+      "shard_size": 2500,
+      "npz_bytes": 12195893
+    },
+    "sample_1600-2000": {
+      "games_ok": 10000,
+      "games_bad": 0,
+      "moves": 698586,
+      "illegal": 0,
+      "shards": 4,
+      "elapsed_s": 37.6,
+      "pgn": "data/band_1600-2000.pgn",
+      "shard_size": 2500,
+      "npz_bytes": 14141864
+    },
+    "sample_2400plus": {
+      "games_ok": 10000,
+      "games_bad": 0,
+      "moves": 1155002,
+      "illegal": 0,
+      "shards": 4,
+      "elapsed_s": 61.9,
+      "pgn": "data/band_2400plus_elite.pgn",
+      "shard_size": 2500,
+      "npz_bytes": 21033493
+    }
+  },
+  "encoding": {
+    "obs": "(18,8,8) uint8: 12 piece planes + stm + 4 castling + ep; absolute orientation",
+    "action": "AlphaZero 4672 = from_sq*73 + move_plane; see src/chess_enc.py",
+    "selftest": "enc_selftest.py: 200 games, all legal moves round-trip, no collisions"
+  },
+  "ladder_smoke": {
+    "policy": "random",
+    "n_games_per_level": 8,
+    "max_plies": 300,
+    "levels": {
+      "1": {
+        "score": 0.0,
+        "elo_diff_vs_level": -1199.8,
+        "w_d_l": [
+          0,
+          0,
+          8
+        ],
+        "sec": 0.2
+      },
+      "64": {
+        "score": 0.0,
+        "elo_diff_vs_level": -1199.8,
+        "w_d_l": [
+          0,
+          0,
+          8
+        ],
+        "sec": 0.3
+      },
+      "1024": {
+        "score": 0.0,
+        "elo_diff_vs_level": -1199.8,
+        "w_d_l": [
+          0,
+          0,
+          8
+        ],
+        "sec": 0.4
+      }
+    }
+  },
+  "throughput": {
+    "shards_loaded": 4,
+    "positions": 698586,
+    "load_s": 2.3,
+    "load_positions_per_s": 303230.0,
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA RTX A4000",
+    "model": "resnet c64 b6",
+    "batch": 1024,
+    "train_iters_per_s": 11.92,
+    "train_positions_per_s": 12211.0,
+    "infer_positions_per_s": 121223.0
+  },
+  "disk": {
+    "total_gb": 75.0,
+    "free_gb": 12.6,
+    "e2_chess_gb": 6.38
+  },
+  "band_2400plus_total_games": 219176,
+  "blockers": []
+}

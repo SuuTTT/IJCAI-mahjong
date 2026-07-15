@@ -1,0 +1,9 @@
+{
+ "cand": "ckpt/cond/cond_s0.pkl,ckpt/cond/cond_s1.pkl,ckpt/cond/cond_s2.pkl",
+ "ref": "ckpt/cond/zero_s0.pkl,ckpt/cond/zero_s1.pkl,ckpt/cond/zero_s2.pkl",
+ "cand_src": 1.0,
+ "seeds": 500,
+ "seed0": 7024000,
+ "placement_pts": 2.4888,
+ "seconds": 313.0
+}

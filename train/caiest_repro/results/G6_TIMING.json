@@ -1,0 +1,54 @@
+{
+ "experiment": "PIMC value-cutoff discard search vs kdens3 (GPU-batched g6)",
+ "engine": "g6_engine lockstep batched",
+ "infer_mode": "gpu",
+ "null_run": false,
+ "true_state": false,
+ "n_worlds": 20,
+ "k_cutoff": 6,
+ "blocks": [
+  0
+ ],
+ "seeds_per_block": 6,
+ "seed_ranges": {
+  "0": [
+   9800000,
+   9800006
+  ]
+ },
+ "n_blocks": 1,
+ "n_seeds": 6,
+ "n_games": 24,
+ "gpus": [
+  0,
+  1,
+  2
+ ],
+ "procs": 18,
+ "block_means": {
+  "0": 2.75
+ },
+ "block_mean_placement": 2.75,
+ "block_sd": 0.0,
+ "ci95": [
+  2.75,
+  2.75
+ ],
+ "override_fraction": 0.0759,
+ "n_search_decisions": 303,
+ "n_overrides": 23,
+ "n_worlds_ok": 6060,
+ "n_worlds_rejected": 0,
+ "reject_fraction": 0.0,
+ "verdict": "PIMC-vcut N=20 K=6 CONFIRMS >2.5 (CI lower 2.7500) -- deployable champion-beater",
+ "seconds": 121.4,
+ "games_per_hour": 711.7,
+ "per_seed": {
+  "0:9800000": 2.5,
+  "0:9800001": 2.5,
+  "0:9800002": 3.5,
+  "0:9800003": 2.375,
+  "0:9800004": 2.875,
+  "0:9800005": 2.75
+ }
+}

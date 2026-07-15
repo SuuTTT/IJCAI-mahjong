@@ -1,0 +1,206 @@
+{
+  "board": "6x6",
+  "teacher_depth": 2,
+  "eps": 0.0,
+  "N_teachers": 6,
+  "M_students": 3,
+  "alpha": 0.7,
+  "kd_temp": 2.0,
+  "channels": 64,
+  "epochs": 18,
+  "lr": 0.002,
+  "bs": 512,
+  "n_states": 100000,
+  "n_corrupt_labels": 0,
+  "n_pairs_per_opponent": 100,
+  "ladder": [
+    1,
+    3,
+    5
+  ],
+  "seed": 2,
+  "teacher_train_acc": [
+    0.7913,
+    0.7935,
+    0.7894,
+    0.7972,
+    0.7957,
+    0.7874
+  ],
+  "student_train_acc": [
+    0.7744,
+    0.7733,
+    0.7742
+  ],
+  "per_opponent": {
+    "teacher_ens": {
+      "D1": {
+        "opp_depth": 1,
+        "winrate": 0.6,
+        "n_games": 200,
+        "points": 120.0,
+        "ci95": [
+          0.5308,
+          0.6654
+        ]
+      },
+      "D3": {
+        "opp_depth": 3,
+        "winrate": 0.195,
+        "n_games": 200,
+        "points": 39.0,
+        "ci95": [
+          0.1461,
+          0.2554
+        ]
+      },
+      "D5": {
+        "opp_depth": 5,
+        "winrate": 0.13,
+        "n_games": 200,
+        "points": 26.0,
+        "ci95": [
+          0.0903,
+          0.1837
+        ]
+      }
+    },
+    "student_ens": {
+      "D1": {
+        "opp_depth": 1,
+        "winrate": 0.565,
+        "n_games": 200,
+        "points": 113.0,
+        "ci95": [
+          0.4957,
+          0.6318
+        ]
+      },
+      "D3": {
+        "opp_depth": 3,
+        "winrate": 0.2425,
+        "n_games": 200,
+        "points": 48.5,
+        "ci95": [
+          0.1883,
+          0.3064
+        ]
+      },
+      "D5": {
+        "opp_depth": 5,
+        "winrate": 0.1175,
+        "n_games": 200,
+        "points": 23.5,
+        "ci95": [
+          0.0799,
+          0.1695
+        ]
+      }
+    },
+    "teacher_single": {
+      "D1": {
+        "opp_depth": 1,
+        "winrate": 0.5475,
+        "n_games": 200,
+        "points": 109.5,
+        "ci95": [
+          0.4783,
+          0.6149
+        ]
+      },
+      "D3": {
+        "opp_depth": 3,
+        "winrate": 0.22,
+        "n_games": 200,
+        "points": 44.0,
+        "ci95": [
+          0.1682,
+          0.2824
+        ]
+      },
+      "D5": {
+        "opp_depth": 5,
+        "winrate": 0.0575,
+        "n_games": 200,
+        "points": 11.5,
+        "ci95": [
+          0.0328,
+          0.0989
+        ]
+      }
+    },
+    "student_single": {
+      "D1": {
+        "opp_depth": 1,
+        "winrate": 0.535,
+        "n_games": 200,
+        "points": 107.0,
+        "ci95": [
+          0.4659,
+          0.6028
+        ]
+      },
+      "D3": {
+        "opp_depth": 3,
+        "winrate": 0.2125,
+        "n_games": 200,
+        "points": 42.5,
+        "ci95": [
+          0.1615,
+          0.2743
+        ]
+      },
+      "D5": {
+        "opp_depth": 5,
+        "winrate": 0.0725,
+        "n_games": 200,
+        "points": 14.5,
+        "ci95": [
+          0.0441,
+          0.1171
+        ]
+      }
+    }
+  },
+  "overall": {
+    "teacher_ens": {
+      "winrate": 0.3083,
+      "ci95": [
+        0.2727,
+        0.3464
+      ],
+      "n_games": 600
+    },
+    "student_ens": {
+      "winrate": 0.3083,
+      "ci95": [
+        0.2727,
+        0.3464
+      ],
+      "n_games": 600
+    },
+    "teacher_single": {
+      "winrate": 0.275,
+      "ci95": [
+        0.2408,
+        0.3121
+      ],
+      "n_games": 600
+    },
+    "student_single": {
+      "winrate": 0.2733,
+      "ci95": [
+        0.2392,
+        0.3104
+      ],
+      "n_games": 600
+    }
+  },
+  "gap_student_ens_minus_teacher_ens": 0.0,
+  "gap_by_opponent": {
+    "D1": -0.035,
+    "D3": 0.0475,
+    "D5": -0.0125
+  },
+  "wall_seconds": 169.9
+}

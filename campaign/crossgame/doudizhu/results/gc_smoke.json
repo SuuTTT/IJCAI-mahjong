@@ -1,0 +1,15 @@
+{
+  "tag": "smoke",
+  "pkls": [
+    "ckpt/smoke.pkl"
+  ],
+  "K": 1,
+  "seat": 0,
+  "nseeds": 30,
+  "mean_payoff": 0.63333,
+  "ci95": 0.17539,
+  "dev": "cpu",
+  "seconds": 5.8,
+  "ref_mean_payoff": 0.63333,
+  "ref_ci95": 0.17539
+}

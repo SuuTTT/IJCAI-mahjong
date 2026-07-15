@@ -1,0 +1,440 @@
+{
+ "meta": {
+  "sweep": "belief x leaf x K x N",
+  "blocks": 6,
+  "seeds_per_block": 12,
+  "gpus": [
+   0,
+   1,
+   2
+  ],
+  "procs": 40,
+  "kdens3_baseline": 2.5,
+  "started": "15:43:23"
+ },
+ "n_cells_done": 9,
+ "cells": [
+  {
+   "belief": false,
+   "leaf": "score",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.4844,
+   "block_sd": 0.1509,
+   "ci95": [
+    2.326,
+    2.6428
+   ],
+   "ci_lower": 2.326,
+   "clears_2p5": false,
+   "override_fraction": 0.0424,
+   "reject_fraction": 0.0,
+   "n_decisions": 3558,
+   "seconds": 473.3,
+   "games_per_hour": 2190.7
+  },
+  {
+   "belief": false,
+   "leaf": "placement",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 1.9861,
+   "block_sd": 0.0483,
+   "ci95": [
+    1.9355,
+    2.0368
+   ],
+   "ci_lower": 1.9355,
+   "clears_2p5": false,
+   "override_fraction": 0.9089,
+   "reject_fraction": 0.0,
+   "n_decisions": 3753,
+   "seconds": 649.6,
+   "games_per_hour": 1596.1
+  },
+  {
+   "belief": true,
+   "leaf": "score",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.3872,
+   "block_sd": 0.0689,
+   "ci95": [
+    2.3148,
+    2.4595
+   ],
+   "ci_lower": 2.3148,
+   "clears_2p5": false,
+   "override_fraction": 0.0922,
+   "reject_fraction": 0.0,
+   "n_decisions": 3590,
+   "seconds": 534.9,
+   "games_per_hour": 1938.2
+  },
+  {
+   "belief": true,
+   "leaf": "placement",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 1.9375,
+   "block_sd": 0.0799,
+   "ci95": [
+    1.8537,
+    2.0213
+   ],
+   "ci_lower": 1.8537,
+   "clears_2p5": false,
+   "override_fraction": 0.9141,
+   "reject_fraction": 0.0,
+   "n_decisions": 3700,
+   "seconds": 643.6,
+   "games_per_hour": 1611.0
+  },
+  {
+   "belief": false,
+   "leaf": "score",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.3507,
+   "block_sd": 0.1212,
+   "ci95": [
+    2.2234,
+    2.4779
+   ],
+   "ci_lower": 2.2234,
+   "clears_2p5": false,
+   "override_fraction": 0.1841,
+   "reject_fraction": 0.0,
+   "n_decisions": 3705,
+   "seconds": 928.4,
+   "games_per_hour": 1116.7
+  },
+  {
+   "belief": false,
+   "leaf": "placement",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 1.9809,
+   "block_sd": 0.0827,
+   "ci95": [
+    1.8941,
+    2.0677
+   ],
+   "ci_lower": 1.8941,
+   "clears_2p5": false,
+   "override_fraction": 0.8986,
+   "reject_fraction": 0.0,
+   "n_decisions": 3660,
+   "seconds": 1082.3,
+   "games_per_hour": 958.0
+  },
+  {
+   "belief": true,
+   "leaf": "score",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.2865,
+   "block_sd": 0.0776,
+   "ci95": [
+    2.205,
+    2.3679
+   ],
+   "ci_lower": 2.205,
+   "clears_2p5": false,
+   "override_fraction": 0.2741,
+   "reject_fraction": 0.0,
+   "n_decisions": 3644,
+   "seconds": 994.5,
+   "games_per_hour": 1042.6
+  },
+  {
+   "belief": true,
+   "leaf": "placement",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.0556,
+   "block_sd": 0.0954,
+   "ci95": [
+    1.9554,
+    2.1557
+   ],
+   "ci_lower": 1.9554,
+   "clears_2p5": false,
+   "override_fraction": 0.8833,
+   "reject_fraction": 0.0,
+   "n_decisions": 3684,
+   "seconds": 1168.0,
+   "games_per_hour": 887.7
+  },
+  {
+   "belief": false,
+   "leaf": "score",
+   "K": 6,
+   "N": 50,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.5174,
+   "block_sd": 0.079,
+   "ci95": [
+    2.4345,
+    2.6002
+   ],
+   "ci_lower": 2.4345,
+   "clears_2p5": false,
+   "override_fraction": 0.0621,
+   "reject_fraction": 0.0,
+   "n_decisions": 3542,
+   "seconds": 1093.0,
+   "games_per_hour": 948.6
+  }
+ ],
+ "ranked": [
+  {
+   "belief": false,
+   "leaf": "score",
+   "K": 6,
+   "N": 50,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.5174,
+   "block_sd": 0.079,
+   "ci95": [
+    2.4345,
+    2.6002
+   ],
+   "ci_lower": 2.4345,
+   "clears_2p5": false,
+   "override_fraction": 0.0621,
+   "reject_fraction": 0.0,
+   "n_decisions": 3542,
+   "seconds": 1093.0,
+   "games_per_hour": 948.6
+  },
+  {
+   "belief": false,
+   "leaf": "score",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.4844,
+   "block_sd": 0.1509,
+   "ci95": [
+    2.326,
+    2.6428
+   ],
+   "ci_lower": 2.326,
+   "clears_2p5": false,
+   "override_fraction": 0.0424,
+   "reject_fraction": 0.0,
+   "n_decisions": 3558,
+   "seconds": 473.3,
+   "games_per_hour": 2190.7
+  },
+  {
+   "belief": true,
+   "leaf": "score",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.3872,
+   "block_sd": 0.0689,
+   "ci95": [
+    2.3148,
+    2.4595
+   ],
+   "ci_lower": 2.3148,
+   "clears_2p5": false,
+   "override_fraction": 0.0922,
+   "reject_fraction": 0.0,
+   "n_decisions": 3590,
+   "seconds": 534.9,
+   "games_per_hour": 1938.2
+  },
+  {
+   "belief": false,
+   "leaf": "score",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.3507,
+   "block_sd": 0.1212,
+   "ci95": [
+    2.2234,
+    2.4779
+   ],
+   "ci_lower": 2.2234,
+   "clears_2p5": false,
+   "override_fraction": 0.1841,
+   "reject_fraction": 0.0,
+   "n_decisions": 3705,
+   "seconds": 928.4,
+   "games_per_hour": 1116.7
+  },
+  {
+   "belief": true,
+   "leaf": "score",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.2865,
+   "block_sd": 0.0776,
+   "ci95": [
+    2.205,
+    2.3679
+   ],
+   "ci_lower": 2.205,
+   "clears_2p5": false,
+   "override_fraction": 0.2741,
+   "reject_fraction": 0.0,
+   "n_decisions": 3644,
+   "seconds": 994.5,
+   "games_per_hour": 1042.6
+  },
+  {
+   "belief": true,
+   "leaf": "placement",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 2.0556,
+   "block_sd": 0.0954,
+   "ci95": [
+    1.9554,
+    2.1557
+   ],
+   "ci_lower": 1.9554,
+   "clears_2p5": false,
+   "override_fraction": 0.8833,
+   "reject_fraction": 0.0,
+   "n_decisions": 3684,
+   "seconds": 1168.0,
+   "games_per_hour": 887.7
+  },
+  {
+   "belief": false,
+   "leaf": "placement",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 1.9861,
+   "block_sd": 0.0483,
+   "ci95": [
+    1.9355,
+    2.0368
+   ],
+   "ci_lower": 1.9355,
+   "clears_2p5": false,
+   "override_fraction": 0.9089,
+   "reject_fraction": 0.0,
+   "n_decisions": 3753,
+   "seconds": 649.6,
+   "games_per_hour": 1596.1
+  },
+  {
+   "belief": false,
+   "leaf": "placement",
+   "K": 12,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 1.9809,
+   "block_sd": 0.0827,
+   "ci95": [
+    1.8941,
+    2.0677
+   ],
+   "ci_lower": 1.8941,
+   "clears_2p5": false,
+   "override_fraction": 0.8986,
+   "reject_fraction": 0.0,
+   "n_decisions": 3660,
+   "seconds": 1082.3,
+   "games_per_hour": 958.0
+  },
+  {
+   "belief": true,
+   "leaf": "placement",
+   "K": 6,
+   "N": 20,
+   "blocks": 6,
+   "seeds_per_block": 12,
+   "n_games": 288,
+   "block_mean_placement": 1.9375,
+   "block_sd": 0.0799,
+   "ci95": [
+    1.8537,
+    2.0213
+   ],
+   "ci_lower": 1.8537,
+   "clears_2p5": false,
+   "override_fraction": 0.9141,
+   "reject_fraction": 0.0,
+   "n_decisions": 3700,
+   "seconds": 643.6,
+   "games_per_hour": 1611.0
+  }
+ ],
+ "best": {
+  "belief": false,
+  "leaf": "score",
+  "K": 6,
+  "N": 50,
+  "blocks": 6,
+  "seeds_per_block": 12,
+  "n_games": 288,
+  "block_mean_placement": 2.5174,
+  "block_sd": 0.079,
+  "ci95": [
+   2.4345,
+   2.6002
+  ],
+  "ci_lower": 2.4345,
+  "clears_2p5": false,
+  "override_fraction": 0.0621,
+  "reject_fraction": 0.0,
+  "n_decisions": 3542,
+  "seconds": 1093.0,
+  "games_per_hour": 948.6
+ },
+ "any_clears_2p5": false,
+ "note": "Full belief x leaf x K grid at N=20 (8 cells) + N=50 baseline. Every upgrade (belief-weighted determinization, placement-head leaf, deeper K=12) DEGRADES placement vs the plain uniform+score+K6 baseline. N=50 (more worlds) is the only lever that helps: baseline 2.48 (N=20) -> 2.52 (N=50). No moderate cell's CI lower bound clears 2.5."
+}

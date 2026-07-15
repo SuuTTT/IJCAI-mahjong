@@ -1,0 +1,348 @@
+{
+  "experiment": "JD-v2: state-centered danger penalty pen=E[p*(danger-mean_legal danger)]; 128x40, 60k steps, 2 seeds/lambda; control = existing jd_lam0 (v1 lam=0, same trainer lineage) restricted to s0,s1 for ensemble-size parity. Gate = 2-student ensemble vs aug_128x40_s0, 8 blocks x 500 seeds (seed0=300000+b*500, SAME walls as the v1 JD gate), dual metric; deal-in = 6x250 paired games (seeds 900000+e*100000+g, same as v1).",
+  "danger_std": {
+    "n_states": 10000,
+    "danger": "ckpt/danger/danger4.bn.pkl",
+    "std_all34": {
+      "mean": 0.00944,
+      "median": 0.00889,
+      "p10": 0.00748,
+      "p90": 0.01104
+    },
+    "std_legal": {
+      "mean": 0.00859,
+      "median": 0.00817,
+      "p10": 0.00542,
+      "p90": 0.01157
+    },
+    "range_legal_mean": 0.02834,
+    "mean_danger_legal": 0.31786,
+    "between_state_std_of_mean": 0.00576,
+    "note": "v1 penalty gradient ~ within-state spread (std_legal); constant component = mean_danger_legal (removed in v2)"
+  },
+  "per_lambda": {
+    "0": {
+      "gate": {
+        "blocks": 8,
+        "games": 16000,
+        "placement": {
+          "mean": 2.4994,
+          "ci": 0.0167,
+          "lo": 2.4827,
+          "hi": 2.5161,
+          "n": 8
+        },
+        "score_diff": {
+          "mean": 0.0546,
+          "ci": 0.4656,
+          "lo": -0.411,
+          "hi": 0.5202,
+          "n": 8
+        },
+        "cand_score": {
+          "mean": 0.0409,
+          "ci": 0.3492,
+          "lo": -0.3083,
+          "hi": 0.3902,
+          "n": 8
+        },
+        "block_placements": [
+          2.5032,
+          2.4998,
+          2.5362,
+          2.486,
+          2.469,
+          2.4865,
+          2.5035,
+          2.511
+        ],
+        "block_score_diffs": [
+          0.1793,
+          -0.0593,
+          1.19,
+          -0.268,
+          -0.5813,
+          -0.4513,
+          0.076,
+          0.3513
+        ]
+      },
+      "dealin": {
+        "n": 1500,
+        "deal_in_rate": 0.1427,
+        "ci95": 0.0177,
+        "lo": 0.125,
+        "hi": 0.1604,
+        "win_rate": 0.2433
+      },
+      "train": [
+        {
+          "lam_danger": 0.0,
+          "seed": 0,
+          "steps": 60000,
+          "best_ema_val": 0.8841,
+          "val_chosen_danger": 0.3193,
+          "pen_train_ema": 0.2503,
+          "seconds": 22841.7
+        },
+        {
+          "lam_danger": 0.0,
+          "seed": 1,
+          "steps": 60000,
+          "best_ema_val": 0.8832,
+          "val_chosen_danger": 0.3193,
+          "pen_train_ema": 0.2502,
+          "seconds": 22554.6
+        }
+      ]
+    },
+    "0.3": {
+      "gate": {
+        "blocks": 8,
+        "games": 16000,
+        "placement": {
+          "mean": 2.5035,
+          "ci": 0.0148,
+          "lo": 2.4887,
+          "hi": 2.5184,
+          "n": 8
+        },
+        "score_diff": {
+          "mean": 0.2313,
+          "ci": 0.4536,
+          "lo": -0.2223,
+          "hi": 0.685,
+          "n": 8
+        },
+        "cand_score": {
+          "mean": 0.1735,
+          "ci": 0.3402,
+          "lo": -0.1667,
+          "hi": 0.5137,
+          "n": 8
+        },
+        "block_placements": [
+          2.5027,
+          2.5015,
+          2.5278,
+          2.4897,
+          2.4697,
+          2.5133,
+          2.5075,
+          2.5162
+        ],
+        "block_score_diffs": [
+          -0.0467,
+          0.2547,
+          0.8833,
+          -0.54,
+          -0.4747,
+          0.5427,
+          0.4267,
+          0.8047
+        ]
+      },
+      "dealin": {
+        "n": 1500,
+        "deal_in_rate": 0.1433,
+        "ci95": 0.0177,
+        "lo": 0.1256,
+        "hi": 0.1611,
+        "win_rate": 0.2453
+      },
+      "train": [
+        {
+          "variant": "v2_state_centered",
+          "lam_danger": 0.3,
+          "seed": 0,
+          "steps": 60000,
+          "best_ema_val": 0.8838,
+          "val_chosen_danger": 0.3193,
+          "pen_v2_train_ema": 0.0009,
+          "pen_v1_train_ema": 0.2503,
+          "danger_std_legal_ema": 0.0068,
+          "seconds": 23175.6
+        },
+        {
+          "variant": "v2_state_centered",
+          "lam_danger": 0.3,
+          "seed": 1,
+          "steps": 60000,
+          "best_ema_val": 0.8829,
+          "val_chosen_danger": 0.3193,
+          "pen_v2_train_ema": 0.0009,
+          "pen_v1_train_ema": 0.2502,
+          "danger_std_legal_ema": 0.0068,
+          "seconds": 23801.1
+        }
+      ]
+    },
+    "1.0": {
+      "gate": {
+        "blocks": 8,
+        "games": 16000,
+        "placement": {
+          "mean": 2.4991,
+          "ci": 0.0167,
+          "lo": 2.4824,
+          "hi": 2.5158,
+          "n": 8
+        },
+        "score_diff": {
+          "mean": 0.027,
+          "ci": 0.4376,
+          "lo": -0.4106,
+          "hi": 0.4646,
+          "n": 8
+        },
+        "cand_score": {
+          "mean": 0.0203,
+          "ci": 0.3282,
+          "lo": -0.3079,
+          "hi": 0.3484,
+          "n": 8
+        },
+        "block_placements": [
+          2.5025,
+          2.4853,
+          2.5393,
+          2.4983,
+          2.4697,
+          2.505,
+          2.4907,
+          2.502
+        ],
+        "block_score_diffs": [
+          0.2707,
+          -0.4547,
+          1.138,
+          -0.0393,
+          -0.4807,
+          0.1833,
+          -0.224,
+          -0.1773
+        ]
+      },
+      "dealin": {
+        "n": 1500,
+        "deal_in_rate": 0.148,
+        "ci95": 0.018,
+        "lo": 0.13,
+        "hi": 0.166,
+        "win_rate": 0.25
+      },
+      "train": [
+        {
+          "variant": "v2_state_centered",
+          "lam_danger": 1.0,
+          "seed": 0,
+          "steps": 60000,
+          "best_ema_val": 0.8829,
+          "val_chosen_danger": 0.3193,
+          "pen_v2_train_ema": 0.0009,
+          "pen_v1_train_ema": 0.2503,
+          "danger_std_legal_ema": 0.0068,
+          "seconds": 23174.4
+        },
+        {
+          "variant": "v2_state_centered",
+          "lam_danger": 1.0,
+          "seed": 1,
+          "steps": 60000,
+          "best_ema_val": 0.8826,
+          "val_chosen_danger": 0.3193,
+          "pen_v2_train_ema": 0.0009,
+          "pen_v1_train_ema": 0.2502,
+          "danger_std_legal_ema": 0.0068,
+          "seconds": 23154.7
+        }
+      ]
+    },
+    "3.0": {
+      "gate": {
+        "blocks": 8,
+        "games": 16000,
+        "placement": {
+          "mean": 2.501,
+          "ci": 0.0124,
+          "lo": 2.4886,
+          "hi": 2.5133,
+          "n": 8
+        },
+        "score_diff": {
+          "mean": 0.0877,
+          "ci": 0.3959,
+          "lo": -0.3082,
+          "hi": 0.4835,
+          "n": 8
+        },
+        "cand_score": {
+          "mean": 0.0657,
+          "ci": 0.2969,
+          "lo": -0.2311,
+          "hi": 0.3626,
+          "n": 8
+        },
+        "block_placements": [
+          2.5063,
+          2.4895,
+          2.521,
+          2.4893,
+          2.4758,
+          2.5122,
+          2.5063,
+          2.5075
+        ],
+        "block_score_diffs": [
+          0.242,
+          -0.5807,
+          0.6833,
+          -0.3947,
+          -0.3707,
+          0.4733,
+          0.466,
+          0.1827
+        ]
+      },
+      "dealin": {
+        "n": 1500,
+        "deal_in_rate": 0.1493,
+        "ci95": 0.018,
+        "lo": 0.1313,
+        "hi": 0.1674,
+        "win_rate": 0.2433
+      },
+      "train": [
+        {
+          "variant": "v2_state_centered",
+          "lam_danger": 3.0,
+          "seed": 0,
+          "steps": 60000,
+          "best_ema_val": 0.8829,
+          "val_chosen_danger": 0.3192,
+          "pen_v2_train_ema": 0.0009,
+          "pen_v1_train_ema": 0.2503,
+          "danger_std_legal_ema": 0.0068,
+          "seconds": 23274.1
+        },
+        {
+          "variant": "v2_state_centered",
+          "lam_danger": 3.0,
+          "seed": 1,
+          "steps": 60000,
+          "best_ema_val": 0.8832,
+          "val_chosen_danger": 0.3192,
+          "pen_v2_train_ema": 0.0009,
+          "pen_v1_train_ema": 0.2502,
+          "danger_std_legal_ema": 0.0068,
+          "seconds": 23489.2
+        }
+      ]
+    }
+  },
+  "verdicts": {
+    "0.3": "deal-in 0.1433 vs lam0 0.1427 (delta +0.0006); placement 2.5035 vs lam0 2.4994 (delta +0.0041)",
+    "1.0": "deal-in 0.148 vs lam0 0.1427 (delta +0.0053); placement 2.4991 vs lam0 2.4994 (delta -0.0003)",
+    "3.0": "deal-in 0.1493 vs lam0 0.1427 (delta +0.0066); placement 2.501 vs lam0 2.4994 (delta +0.0016)"
+  }
+}

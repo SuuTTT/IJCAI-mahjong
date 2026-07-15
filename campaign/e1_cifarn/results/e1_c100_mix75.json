@@ -1,0 +1,37 @@
+{
+  "noise": "mix75",
+  "dataset": "c100",
+  "n_classes": 100,
+  "label_source": "cifar100n",
+  "measured_noise_rate": 0.30066,
+  "epochs": 60,
+  "n_train": 50000,
+  "recipe": "ResNet18-CIFAR, SGD lr0.1 mom0.9 wd5e-4 cosine, bs128, AMP, pad4crop+hflip; KD: alpha*softCE(6-teacher mean softmax) + (1-alpha)*CE(noisy,ls=0.1), alpha=0.7",
+  "teacher_accs": [
+    0.583299994468689,
+    0.5910999774932861,
+    0.5952999591827393,
+    0.5873000025749207,
+    0.593999981880188,
+    0.5879999995231628
+  ],
+  "single_teacher": 0.5898333191871643,
+  "single_teacher_std": 0.004109191729696719,
+  "trio_accs": [
+    0.6383000016212463,
+    0.6389999985694885
+  ],
+  "teacher_ens3": 0.6386500000953674,
+  "teacher_ens3_spread": 0.0006999969482421875,
+  "teacher_ens6": 0.6577999591827393,
+  "student_accs": [
+    0.602899968624115,
+    0.6013000011444092,
+    0.6011999845504761
+  ],
+  "single_student": 0.6017999847730001,
+  "single_student_std": 0.0007788770481921112,
+  "student_ens3": 0.6491000056266785,
+  "gap_student_ens3_minus_teacher_ens3": 0.010450005531311035,
+  "wall_hours": 2.3217595512999427
+}

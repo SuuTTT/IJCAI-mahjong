@@ -1,0 +1,46 @@
+{
+  "band": "1600-2000",
+  "name": "trioA",
+  "ckpts": [
+    "ckpt/1600-2000/teacher_s0.pt",
+    "ckpt/1600-2000/teacher_s1.pt",
+    "ckpt/1600-2000/teacher_s2.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 132.0,
+  "policy": "1600-2000/trioA",
+  "n_games_per_level": 200,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.2475,
+      "elo_diff_vs_level": -193.2,
+      "w_d_l": [
+        0,
+        99,
+        101
+      ],
+      "sec": 39.4
+    },
+    "64": {
+      "score": 0.02,
+      "elo_diff_vs_level": -676.1,
+      "w_d_l": [
+        0,
+        8,
+        192
+      ],
+      "sec": 38.8
+    },
+    "256": {
+      "score": 0.1,
+      "elo_diff_vs_level": -381.7,
+      "w_d_l": [
+        3,
+        34,
+        163
+      ],
+      "sec": 53.6
+    }
+  }
+}

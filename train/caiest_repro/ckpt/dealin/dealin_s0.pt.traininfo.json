@@ -1,0 +1,80 @@
+{
+  "seed": 0,
+  "arch": "DealInFused",
+  "channels": 128,
+  "blocks": 40,
+  "steps": 50000,
+  "bs": 512,
+  "lr": 0.001,
+  "loss": "BCE_unweighted",
+  "label": "per-discard ron-causing (act in [2,36))",
+  "corpus": "/root/final2_harvest/final2_cai_corpus.npz",
+  "games": {
+    "ron": 8436,
+    "zimo": 3652,
+    "draw": 200,
+    "games": 12288
+  },
+  "pos_rate": 0.014842105098068714,
+  "n_train": 510954,
+  "n_val": 57429,
+  "val_frac": 0.1,
+  "val_split_seed": 20260713,
+  "train_sample_seed": 1000,
+  "val_auroc": 0.9513,
+  "val_prauc": 0.6846,
+  "val_base_rate": 0.0148,
+  "calibration_deciles": [
+    {
+      "pred": 0.0,
+      "actual": 0.0,
+      "n": 5743
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.001045,
+      "n": 5743
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.000871,
+      "n": 5743
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.001741,
+      "n": 5743
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.001393,
+      "n": 5743
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.001567,
+      "n": 5743
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.001219,
+      "n": 5743
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.003657,
+      "n": 5743
+    },
+    {
+      "pred": 2e-06,
+      "actual": 0.006443,
+      "n": 5743
+    },
+    {
+      "pred": 0.136053,
+      "actual": 0.12992,
+      "n": 5742
+    }
+  ],
+  "elapsed_s": 6691.3
+}

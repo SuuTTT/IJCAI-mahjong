@@ -1,0 +1,49 @@
+{
+  "design": "e12 duplicate gate, cand=switcher(T from estimator) ref=kdens3; 12 blocks x 2000 games, fresh seeds 8000000+",
+  "blocks": 12,
+  "games": 24000,
+  "placement_blocks": [
+    2.5065,
+    2.4975,
+    2.4922,
+    2.5017,
+    2.5085,
+    2.4933,
+    2.4952,
+    2.4945,
+    2.4992,
+    2.5013,
+    2.5118,
+    2.4973
+  ],
+  "placement_mean": 2.4999,
+  "placement_se": 0.0018,
+  "placement_ci95": [
+    2.4964,
+    2.5035
+  ],
+  "score_diff_blocks": [
+    0.242,
+    0.0447,
+    -0.1107,
+    0.1273,
+    0.4547,
+    -0.3247,
+    -0.324,
+    -0.2693,
+    -0.0547,
+    0.2207,
+    0.514,
+    -0.0153
+  ],
+  "score_diff_mean": 0.0421,
+  "score_diff_se": 0.0814,
+  "score_diff_ci95": [
+    -0.1174,
+    0.2015
+  ],
+  "switch_rate_mean": 0.2842,
+  "no_regression": true,
+  "T": 4,
+  "finished": "2026-07-12 17:48:09"
+}

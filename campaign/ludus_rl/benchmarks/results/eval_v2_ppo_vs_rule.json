@@ -1,0 +1,27 @@
+{
+  "a": "ppo(params_latest.msgpack)",
+  "b": "rule_v0",
+  "matches": 1024,
+  "seat_swapped": true,
+  "a_win_rate": 0.9912109375,
+  "b_win_rate": 0.001953125,
+  "draw_rate": 0.0068359375,
+  "a_win_as_p0": 1.0,
+  "a_win_as_p1": 0.982421875,
+  "a_win_ci95_lower": 0.9833807384309262,
+  "illegal_actions": 0,
+  "self_test": {
+    "agent": "ppo(params_latest.msgpack)",
+    "matches": 128,
+    "deterministic_repeat": true,
+    "p0_win_rate": 0.3125,
+    "illegal": 0
+  },
+  "commit": "8e4a1f3d13871b8564cc4a81ea112c64cee0a5e5",
+  "device": "cuda:0",
+  "integrity": {
+    "expected": 1024,
+    "actual": 1024,
+    "complete": true
+  }
+}

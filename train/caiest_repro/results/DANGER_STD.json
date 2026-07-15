@@ -1,0 +1,20 @@
+{
+  "n_states": 10000,
+  "danger": "ckpt/danger/danger4.bn.pkl",
+  "std_all34": {
+    "mean": 0.00944,
+    "median": 0.00889,
+    "p10": 0.00748,
+    "p90": 0.01104
+  },
+  "std_legal": {
+    "mean": 0.00859,
+    "median": 0.00817,
+    "p10": 0.00542,
+    "p90": 0.01157
+  },
+  "range_legal_mean": 0.02834,
+  "mean_danger_legal": 0.31786,
+  "between_state_std_of_mean": 0.00576,
+  "note": "v1 penalty gradient ~ within-state spread (std_legal); constant component = mean_danger_legal (removed in v2)"
+}

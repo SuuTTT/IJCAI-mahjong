@@ -1,0 +1,32 @@
+{
+  "002": {
+    "n": 8,
+    "placement": 2.4535,
+    "ci_lo": 2.4399,
+    "beats": false
+  },
+  "005": {
+    "n": 8,
+    "placement": 2.4873,
+    "ci_lo": 2.4806,
+    "beats": false
+  },
+  "010": {
+    "n": 8,
+    "placement": 2.4914,
+    "ci_lo": 2.4817,
+    "beats": false
+  },
+  "025": {
+    "n": 8,
+    "placement": 2.4947,
+    "ci_lo": 2.4855,
+    "beats": false
+  },
+  "050": {
+    "n": 8,
+    "placement": 2.497,
+    "ci_lo": 2.4885,
+    "beats": false
+  }
+}

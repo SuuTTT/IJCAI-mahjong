@@ -1,0 +1,22 @@
+{
+  "regime": "smoketest",
+  "seat": 0,
+  "nseeds": 20,
+  "dev": "cpu",
+  "single_pkl": "ckpt/smoke.pkl",
+  "teacher_ens": [
+    "ckpt/smoke.pkl",
+    "ckpt/smoke.pkl",
+    "ckpt/smoke.pkl"
+  ],
+  "student_ens": [
+    "ckpt/smoke.pkl",
+    "ckpt/smoke.pkl",
+    "ckpt/smoke.pkl"
+  ],
+  "single_mean_payoff": 0.25,
+  "teacher_ens3_mean_payoff": 0.25,
+  "student_ens3_mean_payoff": 0.25,
+  "calibration_ref_vs_ref_delta": 0.0,
+  "seconds": 17.7
+}

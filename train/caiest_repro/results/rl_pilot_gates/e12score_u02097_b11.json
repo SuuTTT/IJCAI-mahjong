@@ -1,0 +1,17 @@
+{
+  "cand": [
+    "rl_pilot_u02097.pkl"
+  ],
+  "ref": [
+    "kd_128x40_s0.pkl"
+  ],
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer); ref same rule if >1",
+  "games": 2000,
+  "placement_pts": 2.4552,
+  "cand_score_mean": -1.101,
+  "ref_score_mean": 0.367,
+  "score_diff": -1.468,
+  "games_per_hour": 54645.7,
+  "seconds": 131.8,
+  "seed0": 1105500
+}

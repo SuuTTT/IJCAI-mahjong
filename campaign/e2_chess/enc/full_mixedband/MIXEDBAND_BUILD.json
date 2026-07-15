@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-12 18:51 UTC",
+  "design": "mixedband = incoherent two-policy blend: ALL 84 shards of full_0800-1200 + first 42 shards of full_2400plus. Equal parts BY POSITION (~12.3M each), total ~24.6M positions = same size as the pure 2400plus band (24.65M) whose gap (+0.111) is the comparison target.",
+  "lo_shards": 84,
+  "hi_shards": 42,
+  "lo_positions": 12288232,
+  "hi_positions": 12314363,
+  "lo_games": 209741,
+  "hi_games": 105000,
+  "total_positions": 24602595,
+  "total_games": 314741,
+  "hi_position_fraction": 0.5005
+}

@@ -1,0 +1,68 @@
+{
+ "experiment": "Stage1 1-ply value-guided discard vs kdens3, paired duplicate placement",
+ "null_value_run": false,
+ "deploy_src": 0,
+ "value_head": "results/VALUE_C_60K.pt",
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "blocks": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "seeds_per_block": 500,
+ "seed_ranges": {
+  "0": [
+   8000000,
+   8000500
+  ],
+  "1": [
+   8003000,
+   8003500
+  ],
+  "2": [
+   8006000,
+   8006500
+  ],
+  "3": [
+   8009000,
+   8009500
+  ]
+ },
+ "n_blocks": 4,
+ "n_games": 2000,
+ "block_means": {
+  "0": 2.0257,
+  "1": 2.041,
+  "2": 2.0208,
+  "3": 2.0155
+ },
+ "block_mean_placement": 2.0257,
+ "overall_game_mean_placement": 2.0257,
+ "block_sd": 0.011,
+ "ci95_halfwidth": 0.0175,
+ "ci95": [
+  2.0083,
+  2.0432
+ ],
+ "verdict": "LOSES to kdens3 (95% CI below 2.500)",
+ "seconds": 892.6,
+ "workers": 48,
+ "null_value_calibration": {
+  "placement": 2.5,
+  "expected": 2.5,
+  "exact_match": true,
+  "seeds": {
+   "0": [
+    8000000,
+    8000120
+   ]
+  },
+  "n_games": 120,
+  "note": "value head replaced by constant -> search reproduces kdens3 EXACTLY -> 2.5000 (zero variance). Proves the harness only diverges on value-guided discards."
+ }
+}

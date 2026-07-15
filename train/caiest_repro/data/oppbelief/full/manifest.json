@@ -1,0 +1,18 @@
+{
+ "tag": "full",
+ "games": 30000,
+ "samples": 1507120,
+ "seed0": 5100000,
+ "seed_range": [
+  5100000,
+  5130000
+ ],
+ "shards": 750,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "seconds": 2815.5,
+ "per_game_samples": 50.24
+}

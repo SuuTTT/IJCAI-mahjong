@@ -1,0 +1,15 @@
+{
+  "tag": "N2",
+  "pkls": [
+    "ckpt/students_curve/dou_cstudent_N2_s4020.pkl",
+    "ckpt/students_curve/dou_cstudent_N2_s4021.pkl",
+    "ckpt/students_curve/dou_cstudent_N2_s4022.pkl"
+  ],
+  "K": 3,
+  "seat": 0,
+  "nseeds": 3000,
+  "mean_payoff": 0.46733,
+  "ci95": 0.01786,
+  "dev": "cuda",
+  "seconds": 181.2
+}

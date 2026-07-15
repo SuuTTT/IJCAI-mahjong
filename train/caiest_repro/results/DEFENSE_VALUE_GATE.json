@@ -1,0 +1,142 @@
+{
+ "experiment": "value-aware action-value defense A=V-lam*P_dealin*L vs kdens3",
+ "formula": "A(T) = mean_5_valueheads(V post-discard, src=0) - lambda * mean_3_pc(P_dealin) * L",
+ "L_dealin": 0.6834,
+ "SC": 30.0,
+ "avg_fan": 12.5,
+ "deploy_src": 0,
+ "value_heads": [
+  "results/VALUE_C_60K.pt",
+  "results/VALUE_C_60K_s1.pt",
+  "results/VALUE_C_60K_s3.pt",
+  "results/VALUE_C_60K_s4.pt",
+  "results/VALUE_C_60K_s6.pt"
+ ],
+ "pc": [
+  "ckpt/dealin_pc/dealin_pc_s0.pt",
+  "ckpt/dealin_pc/dealin_pc_s1.pt",
+  "ckpt/dealin_pc/dealin_pc_s2.pt"
+ ],
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "null_cal": {
+  "block_mean": 2.5,
+  "overrides": 0,
+  "decisions_evaluated": 10307,
+  "ok": true
+ },
+ "reference": {
+  "kdens3_null": 2.5,
+  "stage1_offense_valuemax_fulllegal": 2.026,
+  "naive_defense_override_best": 2.4995,
+  "oracle_jointEV_rollout": 3.55
+ },
+ "gate": "paired duplicate placement vs kdens3; 4 blocks x 500 seeds x 4 rotations; seed0=9_500_000+block*3000 (disjoint walls); champion null=2.5000",
+ "cells": [
+  {
+   "name": "lam0_K3",
+   "lam": 0.0,
+   "K": 3,
+   "block_means": {
+    "0": 2.1715,
+    "1": 2.2037,
+    "2": 2.1772,
+    "3": 2.2022
+   },
+   "mean_placement": 2.188687,
+   "ci95": [
+    2.16211,
+    2.21526
+   ],
+   "ci95_halfwidth": 0.02658,
+   "block_sd": 0.0167,
+   "override_fraction": 0.579,
+   "n_overrides": 61816,
+   "n_discard_decisions": 106770,
+   "verdict": "LOSES to kdens3 (CI<2.5)",
+   "seconds": 1144.9
+  },
+  {
+   "name": "lam0.5_K3",
+   "lam": 0.5,
+   "K": 3,
+   "block_means": {
+    "0": 2.1765,
+    "1": 2.2155,
+    "2": 2.1862,
+    "3": 2.199
+   },
+   "mean_placement": 2.194312,
+   "ci95": [
+    2.16748,
+    2.22114
+   ],
+   "ci95_halfwidth": 0.02683,
+   "block_sd": 0.01686,
+   "override_fraction": 0.5761,
+   "n_overrides": 61541,
+   "n_discard_decisions": 106817,
+   "verdict": "LOSES to kdens3 (CI<2.5)",
+   "seconds": 1493.9
+  },
+  {
+   "name": "lam4_K3",
+   "lam": 4.0,
+   "K": 3,
+   "block_means": {
+    "0": 2.1843,
+    "1": 2.21,
+    "2": 2.1835,
+    "3": 2.2043
+   },
+   "mean_placement": 2.1955,
+   "ci95": [
+    2.17381,
+    2.21719
+   ],
+   "ci95_halfwidth": 0.02169,
+   "block_sd": 0.01363,
+   "override_fraction": 0.5755,
+   "n_overrides": 61611,
+   "n_discard_decisions": 107053,
+   "verdict": "LOSES to kdens3 (CI<2.5)",
+   "seconds": 1517.2
+  },
+  {
+   "name": "lam0_Kall",
+   "lam": 0.0,
+   "K": -1,
+   "block_means": {
+    "0": 2.0445,
+    "1": 2.0375,
+    "2": 2.0168,
+    "3": 2.057
+   },
+   "mean_placement": 2.038938,
+   "ci95": [
+    2.01213,
+    2.06574
+   ],
+   "ci95_halfwidth": 0.0268,
+   "block_sd": 0.01685,
+   "override_fraction": 0.8026,
+   "n_overrides": 86527,
+   "n_discard_decisions": 107808,
+   "verdict": "LOSES to kdens3 (CI<2.5)",
+   "seconds": 1528.9
+  }
+ ],
+ "best_config": {
+  "name": "lam4_K3",
+  "mean_placement": 2.1955,
+  "ci95": [
+   2.17381,
+   2.21719
+  ]
+ },
+ "verdict": "NO lambda/K config beats kdens3 (no CI lower-bound > 2.500). The static 1-ply joint action-value (offense value - lambda*P_dealin*L) cannot capture the oracle rollout's 3.55 -> the win needs true LOOKAHEAD / PIMC, not a static heuristic. Build PIMC.",
+ "conclusion": "NEED-PIMC (static 1-ply joint eval insufficient)"
+}

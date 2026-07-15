@@ -1,0 +1,146 @@
+{
+  "design": "CNN obs(38,4,9)->3-class field type at seat-0 discard-turn snapshots; split by game seed (seed%5==0 test); class-weighted CE",
+  "classes": [
+    "weak",
+    "mixed",
+    "strongchamp"
+  ],
+  "data": "/root/caiest_repro/data/e6_est_snaps.npz",
+  "device": "cuda:0",
+  "epochs": 15,
+  "turns": {
+    "4": {
+      "n_train": 7984,
+      "n_test": 1997,
+      "train_class_counts": [
+        1995,
+        1998,
+        3991
+      ],
+      "acc": 0.3786,
+      "balanced_acc": 0.3435,
+      "recalls": {
+        "weak": 0.298,
+        "mixed": 0.248,
+        "strongchamp": 0.4845
+      },
+      "weak_precision": 0.267,
+      "confusion_rows_true_cols_pred": [
+        [
+          149,
+          128,
+          223
+        ],
+        [
+          147,
+          124,
+          229
+        ],
+        [
+          262,
+          252,
+          483
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.298,
+        "mixed": 0.294,
+        "strong": 0.24,
+        "champion": 0.2857
+      },
+      "seconds": 7.0,
+      "ckpt": "/root/caiest_repro/ckpt/e6/e6_est_t4.pt"
+    },
+    "8": {
+      "n_train": 7404,
+      "n_test": 1836,
+      "train_class_counts": [
+        1874,
+        1851,
+        3679
+      ],
+      "acc": 0.4031,
+      "balanced_acc": 0.3519,
+      "recalls": {
+        "weak": 0.2804,
+        "mixed": 0.2174,
+        "strongchamp": 0.5579
+      },
+      "weak_precision": 0.2854,
+      "confusion_rows_true_cols_pred": [
+        [
+          129,
+          92,
+          239
+        ],
+        [
+          121,
+          100,
+          239
+        ],
+        [
+          202,
+          203,
+          511
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.2804,
+        "mixed": 0.263,
+        "strong": 0.2115,
+        "champion": 0.2294
+      },
+      "seconds": 4.3,
+      "ckpt": "/root/caiest_repro/ckpt/e6/e6_est_t8.pt"
+    },
+    "12": {
+      "n_train": 5006,
+      "n_test": 1247,
+      "train_class_counts": [
+        1327,
+        1273,
+        2406
+      ],
+      "acc": 0.3889,
+      "balanced_acc": 0.3579,
+      "recalls": {
+        "weak": 0.2894,
+        "mixed": 0.2918,
+        "strongchamp": 0.4926
+      },
+      "weak_precision": 0.2848,
+      "confusion_rows_true_cols_pred": [
+        [
+          90,
+          65,
+          156
+        ],
+        [
+          68,
+          96,
+          165
+        ],
+        [
+          158,
+          150,
+          299
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.2894,
+        "mixed": 0.2067,
+        "strong": 0.241,
+        "champion": 0.28
+      },
+      "seconds": 3.0,
+      "ckpt": "/root/caiest_repro/ckpt/e6/e6_est_t12.pt"
+    }
+  },
+  "chosen_T": 4,
+  "chosen_rule": "smallest turn with balanced_acc >= max-0.02",
+  "balanced_acc_by_turn": {
+    "4": 0.3435,
+    "8": 0.3519,
+    "12": 0.3579
+  }
+}

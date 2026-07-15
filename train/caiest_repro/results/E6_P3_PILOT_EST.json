@@ -1,0 +1,115 @@
+{
+  "design": "HistGB on cumulative per-hand outcome features after h hands -> 3-class field; split by match (idx%5==0 test); balanced sample weights; kdens3 seat-0 (pre-switch dist)",
+  "data": "/root/caiest_repro/data/e6_match_pilot.npz",
+  "classes": [
+    "weak",
+    "mixed",
+    "strongchamp"
+  ],
+  "feat_names": [
+    "draw",
+    "w_s0",
+    "w_s1",
+    "w_s2",
+    "w_s3",
+    "zimo",
+    "ron",
+    "s0_dealin",
+    "fan",
+    "plays",
+    "chi_o1",
+    "peng_o1",
+    "gang_o1",
+    "chi_o2",
+    "peng_o2",
+    "gang_o2",
+    "chi_o3",
+    "peng_o3",
+    "gang_o3",
+    "s0_score"
+  ],
+  "n_matches_per_field": 300,
+  "hands_per_match": 8,
+  "by_h": {
+    "1": {
+      "n_train": 960,
+      "n_test": 240,
+      "bal_acc": 0.4556,
+      "acc": 0.4375,
+      "recalls": {
+        "weak": 0.6,
+        "mixed": 0.3833,
+        "strongchamp": 0.3833
+      },
+      "weak_precision": 0.4444,
+      "confusion_rows_true_cols_pred": [
+        [
+          36,
+          10,
+          14
+        ],
+        [
+          18,
+          23,
+          19
+        ],
+        [
+          27,
+          47,
+          46
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.6,
+        "mixed": 0.3,
+        "strong": 0.2833,
+        "champion": 0.1667
+      },
+      "n_iter": 12,
+      "seconds": 191.6,
+      "ckpt": "ckpt/e6_pilot/e6_match_est_h1.pkl"
+    },
+    "2": {
+      "n_train": 960,
+      "n_test": 240,
+      "bal_acc": 0.4222,
+      "acc": 0.45,
+      "recalls": {
+        "weak": 0.4667,
+        "mixed": 0.2667,
+        "strongchamp": 0.5333
+      },
+      "weak_precision": 0.3457,
+      "confusion_rows_true_cols_pred": [
+        [
+          28,
+          12,
+          20
+        ],
+        [
+          20,
+          16,
+          24
+        ],
+        [
+          33,
+          23,
+          64
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.4667,
+        "mixed": 0.3333,
+        "strong": 0.2667,
+        "champion": 0.2833
+      },
+      "n_iter": 18,
+      "seconds": 593.8,
+      "ckpt": "ckpt/e6_pilot/e6_match_est_h2.pkl"
+    }
+  },
+  "bal_acc_by_h": {
+    "1": 0.4556,
+    "2": 0.4222
+  }
+}

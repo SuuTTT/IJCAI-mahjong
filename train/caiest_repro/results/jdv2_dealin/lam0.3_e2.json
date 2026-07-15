@@ -1,0 +1,14 @@
+{
+  "cand": [
+    "jdv2_lam0.3_s0.pkl",
+    "jdv2_lam0.3_s1.pkl"
+  ],
+  "evalseed": 2,
+  "ngames": 250,
+  "dealins": 40,
+  "wins": 47,
+  "deal_in_rate": 0.16,
+  "win_rate": 0.188,
+  "mean_score": -2.732,
+  "seconds": 503.3
+}

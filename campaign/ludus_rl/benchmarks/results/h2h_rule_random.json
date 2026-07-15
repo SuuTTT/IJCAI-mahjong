@@ -1,0 +1,35 @@
+{
+  "a": "rule_v0",
+  "b": "random_v0",
+  "submission_hashes": {
+    "rule_v0": "builtin@6e2742d791fcac00",
+    "random_v0": "builtin@6e2742d791fcac00"
+  },
+  "blocks": 8,
+  "pairs_per_block": 16,
+  "block_means": [
+    0.4844,
+    0.4375,
+    0.5,
+    0.4375,
+    0.5,
+    0.3906,
+    0.5156,
+    0.5156
+  ],
+  "a_pair_score_mean": 0.4727,
+  "t_ci95": [
+    0.4346,
+    0.5107
+  ],
+  "verdict": "TIE",
+  "illegal": 0,
+  "env_version": "boom/v2",
+  "judge_hash": "6e2742d791fcac00",
+  "commit": "8e4a1f3d13871b8564cc4a81ea112c64cee0a5e5",
+  "integrity": {
+    "expected_blocks": 8,
+    "actual": 8,
+    "complete": true
+  }
+}

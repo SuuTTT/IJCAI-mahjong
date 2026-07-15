@@ -1,0 +1,19 @@
+# RL Sweep Status (F3 attack on the kdens3 SL-anchor ceiling)
+
+Updated: 2026-07-15 05:24:10
+
+Strength metric = seat0 (current policy) win_rate vs seats1-3 = FROZEN kdens3 anchor.
+Baseline = each run's update-0 win_rate (~0.163, anchor-vs-anchor, greedy eval). verdict compares last vs that per-run baseline.
+
+| config | upd | win_rate | best_wr | mean_score | KL | verdict |
+|---|---|---|---|---|---|---|
+| g0_control_kl05 | 206 | 0.155 | 0.181 | 0.135 | 0.023 | ~anchor |
+| g1_kl15 | 275 | 0.178 | 0.189 | 2.267 | 0.062 | ~anchor |
+| g2_kl30 | 275 | 0.199 | 0.199 | 2.94 | 0.127 | BEATS(+0.036) |
+| g3_kl30_ent01 | 242 | 0.151 | 0.181 | -0.255 | 0.123 | ~anchor |
+| g4_kl30_ent03_escape | 281 | 0.154 | 0.183 | 0.448 | 0.125 | ~anchor |
+| g5_kl50_ent05_noleash | 278 | 0.16 | 0.19 | 0.058 | 0.23 | ~anchor |
+| g6_kl15_ent01_s2 | 284 | 0.15 | 0.188 | -0.575 | 0.061 | ~anchor |
+| g7_kl30_ent03_s2 | 281 | 0.16 | 0.186 | 0.417 | 0.11 | ~anchor |
+
+Raw per-config JSONL: g*_*/seed*_jax_results.jsonl (win_rate, mean_score, dealin_rate, KL, env_steps).

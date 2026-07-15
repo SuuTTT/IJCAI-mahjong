@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "design": "switcher seat0 (kdens3 -> estimator at discard-turn T -> aug_s0 iff pred=weak) vs Phase-1 fields; same seeds as Phase-1 kdens3 cells",
+    "T": 4,
+    "estimator": "/root/caiest_repro/ckpt/e6/e6_est_t4.pt",
+    "ngames_per_field": 2000,
+    "seed0": 7000000,
+    "started": "2026-07-12 17:01:36"
+  },
+  "cells": {
+    "weak": {
+      "field": "weak",
+      "n": 2000,
+      "seed0": 7000000,
+      "rank": {
+        "mean": 2.3918,
+        "se": 0.0219,
+        "ci95": [
+          2.3489,
+          2.4346
+        ],
+        "n": 2000
+      },
+      "score": {
+        "mean": 3.2365,
+        "se": 0.6625,
+        "ci95": [
+          1.9379,
+          4.5351
+        ],
+        "n": 2000
+      },
+      "dealin_rate": 0.131,
+      "win_rate": 0.2755,
+      "draw_rate": 0.093,
+      "switch_rate": 0.2985,
+      "pred_dist": {
+        "weak": 0.2985,
+        "mixed": 0.2235,
+        "strongchamp": 0.4775
+      },
+      "no_pred_rate": 0.0005,
+      "seconds": 267.5
+    },
+    "mixed": {
+      "field": "mixed",
+      "n": 2000,
+      "seed0": 7100000,
+      "rank": {
+        "mean": 2.3835,
+        "se": 0.022,
+        "ci95": [
+          2.3404,
+          2.4266
+        ],
+        "n": 2000
+      },
+      "score": {
+        "mean": 3.3285,
+        "se": 0.6785,
+        "ci95": [
+          1.9986,
+          4.6584
+        ],
+        "n": 2000
+      },
+      "dealin_rate": 0.126,
+      "win_rate": 0.2835,
+      "draw_rate": 0.08,
+      "switch_rate": 0.2785,
+      "pred_dist": {
+        "weak": 0.2785,
+        "mixed": 0.258,
+        "strongchamp": 0.4625
+      },
+      "no_pred_rate": 0.001,
+      "seconds": 247.8
+    },
+    "strong": {
+      "field": "strong",
+      "n": 2000,
+      "seed0": 7200000,
+      "rank": {
+        "mean": 2.4525,
+        "se": 0.0219,
+        "ci95": [
+          2.4095,
+          2.4955
+        ],
+        "n": 2000
+      },
+      "score": {
+        "mean": 1.3275,
+        "se": 0.667,
+        "ci95": [
+          0.0201,
+          2.6349
+        ],
+        "n": 2000
+      },
+      "dealin_rate": 0.142,
+      "win_rate": 0.2585,
+      "draw_rate": 0.0505,
+      "switch_rate": 0.2885,
+      "pred_dist": {
+        "weak": 0.2885,
+        "mixed": 0.2225,
+        "strongchamp": 0.487
+      },
+      "no_pred_rate": 0.002,
+      "seconds": 158.4
+    },
+    "champion": {
+      "field": "champion",
+      "n": 2000,
+      "seed0": 7300000,
+      "rank": {
+        "mean": 2.4217,
+        "se": 0.0221,
+        "ci95": [
+          2.3784,
+          2.4651
+        ],
+        "n": 2000
+      },
+      "score": {
+        "mean": 2.407,
+        "se": 0.6862,
+        "ci95": [
+          1.0621,
+          3.7519
+        ],
+        "n": 2000
+      },
+      "dealin_rate": 0.1365,
+      "win_rate": 0.2725,
+      "draw_rate": 0.0485,
+      "switch_rate": 0.283,
+      "pred_dist": {
+        "weak": 0.283,
+        "mixed": 0.2295,
+        "strongchamp": 0.484
+      },
+      "no_pred_rate": 0.0035,
+      "seconds": 154.0
+    }
+  },
+  "envelope": {
+    "per_field": {
+      "weak": {
+        "best_base": "aug_s0",
+        "vs": {
+          "kdens3": {
+            "base_mean": 3.1825,
+            "diff": 0.054,
+            "ci95": [
+              -1.7829,
+              1.8909
+            ],
+            "significant": false
+          },
+          "aug_s0": {
+            "base_mean": 5.7425,
+            "diff": -2.506,
+            "ci95": [
+              -4.401,
+              -0.611
+            ],
+            "significant": true
+          }
+        },
+        "on_envelope": false
+      },
+      "mixed": {
+        "best_base": "aug_s0",
+        "vs": {
+          "kdens3": {
+            "base_mean": 3.3365,
+            "diff": -0.008,
+            "ci95": [
+              -1.8854,
+              1.8694
+            ],
+            "significant": false
+          },
+          "aug_s0": {
+            "base_mean": 3.424,
+            "diff": -0.0955,
+            "ci95": [
+              -1.974,
+              1.783
+            ],
+            "significant": false
+          }
+        },
+        "on_envelope": true
+      },
+      "strong": {
+        "best_base": "aug_s0",
+        "vs": {
+          "kdens3": {
+            "base_mean": 1.2645,
+            "diff": 0.063,
+            "ci95": [
+              -1.7821,
+              1.9081
+            ],
+            "significant": false
+          },
+          "aug_s0": {
+            "base_mean": 1.406,
+            "diff": -0.0785,
+            "ci95": [
+              -1.9369,
+              1.7799
+            ],
+            "significant": false
+          }
+        },
+        "on_envelope": true
+      },
+      "champion": {
+        "best_base": "kdens3",
+        "vs": {
+          "kdens3": {
+            "base_mean": 2.3195,
+            "diff": 0.0875,
+            "ci95": [
+              -1.813,
+              1.988
+            ],
+            "significant": false
+          },
+          "aug_s0": {
+            "base_mean": 0.4235,
+            "diff": 1.9835,
+            "ci95": [
+              0.1254,
+              3.8416
+            ],
+            "significant": true
+          }
+        },
+        "on_envelope": true
+      }
+    },
+    "on_upper_envelope": false,
+    "beats_kdens3_on_weak": {
+      "base_mean": 3.1825,
+      "diff": 0.054,
+      "ci95": [
+        -1.7829,
+        1.8909
+      ],
+      "significant": false
+    },
+    "matches_kdens3_on_champion": {
+      "base_mean": 2.3195,
+      "diff": 0.0875,
+      "ci95": [
+        -1.813,
+        1.988
+      ],
+      "significant": false
+    }
+  },
+  "done": 4,
+  "total": 4,
+  "finished": "2026-07-12 17:15:23"
+}

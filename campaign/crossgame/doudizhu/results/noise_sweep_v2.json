@@ -1,0 +1,136 @@
+{
+  "experiment": "noise_level_epsilon_sweep_v2_trio_averaged",
+  "audit_fix": "C2: v1 seed-ensemble used a SINGLE trio per eps; trio-to-trio variance is comparable to the claimed effect. v2 averages over disjoint trios and reports spread. All ensembles per eps gated on ONE fixed per-game-seeded 3000-seed set (seeds 10000-12999, seat 0 vs 2 DouDizhuRuleAgentV1, paired).",
+  "metric": "mean_payoff seat0 vs 2 rule agents",
+  "seed_ens_mean_def": "mean payoff of trio-averaged per-game payoffs over disjoint trios (overlapping trio3 shown in seed_ens_trios/spread but excluded from mean)",
+  "by_eps": {
+    "0": {
+      "seed_ens_trios": {
+        "seed_trio1": 0.49533,
+        "seed_trio2": 0.49533,
+        "seed_trio3_overlap": 0.495
+      },
+      "seed_ens_mean": 0.49533,
+      "seed_ens_spread": 0.00033,
+      "n_disjoint_trios": 2,
+      "distill_ens": {
+        "distillA": 0.49333
+      },
+      "distill_mean": 0.49333,
+      "gap_mean": -0.002,
+      "gap_ci95_paired": 0.00381,
+      "gap_range": [
+        -0.002,
+        -0.002
+      ],
+      "pairwise_gaps_distill_x_disjoint_trio": [
+        -0.002,
+        -0.002
+      ],
+      "protocol_note": "8-teacher pool (dou_data.npz, det); distill students s100-102 distilled from ALL 8 teachers; original det_gate used 2000 seeds@10000 via dou_gate.play - re-gated here on the standard 3000-seed play_perseed protocol. Only ONE distill trio exists. trio3 overlaps trio1 (reuses teacher s0)."
+    },
+    "0.1": {
+      "seed_ens_trios": {
+        "seed_trio1": 0.49267,
+        "seed_trio2": 0.495
+      },
+      "seed_ens_mean": 0.49383,
+      "seed_ens_spread": 0.00233,
+      "n_disjoint_trios": 2,
+      "distill_ens": {
+        "distillA": 0.49033,
+        "distillB": 0.49067
+      },
+      "distill_mean": 0.4905,
+      "gap_mean": -0.00333,
+      "gap_ci95_paired": 0.00392,
+      "gap_range": [
+        -0.00467,
+        -0.002
+      ],
+      "pairwise_gaps_distill_x_disjoint_trio": [
+        -0.00233,
+        -0.00467,
+        -0.002,
+        -0.00433
+      ]
+    },
+    "0.2": {
+      "seed_ens_trios": {
+        "seed_trio1": 0.404,
+        "seed_trio2": 0.48867
+      },
+      "seed_ens_mean": 0.44633,
+      "seed_ens_spread": 0.08467,
+      "n_disjoint_trios": 2,
+      "distill_ens": {
+        "distillA": 0.48067,
+        "distillB": 0.48367
+      },
+      "distill_mean": 0.48217,
+      "gap_mean": 0.03583,
+      "gap_ci95_paired": 0.00714,
+      "gap_range": [
+        -0.008,
+        0.07967
+      ],
+      "pairwise_gaps_distill_x_disjoint_trio": [
+        0.07667,
+        -0.008,
+        0.07967,
+        -0.005
+      ]
+    },
+    "0.3": {
+      "seed_ens_trios": {
+        "seed_trio1": 0.432,
+        "seed_trio2": 0.419,
+        "seed_trio3_overlap": 0.40267
+      },
+      "seed_ens_mean": 0.4255,
+      "seed_ens_spread": 0.02933,
+      "n_disjoint_trios": 2,
+      "distill_ens": {
+        "distillA": 0.45367
+      },
+      "distill_mean": 0.45367,
+      "gap_mean": 0.02817,
+      "gap_ci95_paired": 0.01061,
+      "gap_range": [
+        0.02167,
+        0.03467
+      ],
+      "pairwise_gaps_distill_x_disjoint_trio": [
+        0.02167,
+        0.03467
+      ],
+      "protocol_note": "8-teacher pool (dou_data_noisy.npz); distill students s210-212 distilled from ALL 8 teachers; original noisy_gate used 2000 seeds@10000 via dou_gate.play - re-gated here on the standard 3000-seed play_perseed protocol. Only ONE distill trio exists. trio3 overlaps trio1 (reuses teacher s200)."
+    },
+    "0.5": {
+      "seed_ens_trios": {
+        "seed_trio1": 0.38667,
+        "seed_trio2": 0.39067
+      },
+      "seed_ens_mean": 0.38867,
+      "seed_ens_spread": 0.004,
+      "n_disjoint_trios": 2,
+      "distill_ens": {
+        "distillA": 0.45767,
+        "distillB": 0.45967
+      },
+      "distill_mean": 0.45867,
+      "gap_mean": 0.07,
+      "gap_ci95_paired": 0.01097,
+      "gap_range": [
+        0.067,
+        0.073
+      ],
+      "pairwise_gaps_distill_x_disjoint_trio": [
+        0.071,
+        0.067,
+        0.073,
+        0.069
+      ]
+    }
+  }
+}

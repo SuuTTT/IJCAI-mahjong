@@ -1,0 +1,63 @@
+{
+ "experiment": "deployable defensive discard policy (pc deal-in, top-K safe divert) vs kdens3",
+ "null_run": false,
+ "tau": 0.7,
+ "K": 3,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "pc": [
+  "ckpt/dealin_pc/dealin_pc_s0.pt",
+  "ckpt/dealin_pc/dealin_pc_s1.pt",
+  "ckpt/dealin_pc/dealin_pc_s2.pt"
+ ],
+ "blocks": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "seeds_per_block": 500,
+ "seed_ranges": {
+  "0": [
+   9000000,
+   9000500
+  ],
+  "1": [
+   9003000,
+   9003500
+  ],
+  "2": [
+   9006000,
+   9006500
+  ],
+  "3": [
+   9009000,
+   9009500
+  ]
+ },
+ "n_blocks": 4,
+ "n_seeds": 2000,
+ "n_games": 8000,
+ "block_means": {
+  "0": 2.5,
+  "1": 2.4992,
+  "2": 2.5008,
+  "3": 2.498
+ },
+ "block_mean_placement": 2.4995,
+ "block_sd": 0.00117,
+ "ci95_halfwidth": 0.00187,
+ "ci95": [
+  2.49763,
+  2.50137
+ ],
+ "override_fraction": 0.0003,
+ "n_discard_decisions": 99442,
+ "n_overrides": 30,
+ "verdict": "DEFENSE TIES kdens3 (CI spans 2.5) -- no clear placement gain",
+ "seconds": 610.0,
+ "workers": 120
+}

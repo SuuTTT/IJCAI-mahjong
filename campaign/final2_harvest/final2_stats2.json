@@ -1,0 +1,89 @@
+{
+  "wall_level": {
+    "kong_vs_moyu": {
+      "mean_per_wall": 1.16,
+      "se": 8.744,
+      "t": 0.133,
+      "total": 594.0,
+      "boot_P_a_wins": 0.5568
+    },
+    "kong_vs_player152": {
+      "mean_per_wall": 25.492,
+      "se": 10.107,
+      "t": 2.522,
+      "total": 13052.0,
+      "boot_P_a_wins": 0.9942
+    },
+    "moyu_vs_player152": {
+      "mean_per_wall": 24.332,
+      "se": 9.183,
+      "t": 2.65,
+      "total": 12458.0,
+      "boot_P_a_wins": 0.9955
+    },
+    "QiuQiuR_vs_kong": {
+      "mean_per_wall": -3.996,
+      "se": 11.072,
+      "t": -0.361,
+      "total": -2046.0,
+      "boot_P_a_wins": 0.3625
+    },
+    "QiuQiuR_vs_moyu": {
+      "mean_per_wall": -2.836,
+      "se": 10.177,
+      "t": -0.279,
+      "total": -1452.0,
+      "boot_P_a_wins": 0.3886
+    },
+    "QiuQiuR_vs_player152": {
+      "mean_per_wall": 21.496,
+      "se": 10.766,
+      "t": 1.997,
+      "total": 11006.0,
+      "boot_P_a_wins": 0.9762
+    }
+  },
+  "kong_moyu_cells": {
+    "d_score": 0.04834,
+    "d_winrate": -0.00098,
+    "d_winpts": 0.07837,
+    "d_dealin_rate": 0.00448,
+    "d_dealin_pay": -0.10189,
+    "d_other_pay": 0.07186,
+    "cells": 2048,
+    "fan_both_win_kong": 12.481,
+    "fan_both_win_moyu": 12.61,
+    "cells_both_won": 835
+  },
+  "mean_win_size": {
+    "QiuQiuR": 43.831,
+    "player152": 44.858,
+    "kong": 44.966,
+    "moyu": 44.477
+  },
+  "draw_rate": 0.01628,
+  "zimo_win_size": {
+    "kong": 65.63,
+    "player152": 63.53,
+    "moyu": 64.94,
+    "QiuQiuR": 62.32
+  },
+  "ron_win_size": {
+    "QiuQiuR": 35.83,
+    "player152": 36.42,
+    "kong": 36.01,
+    "moyu": 35.98
+  },
+  "zimo_n": {
+    "kong": 926,
+    "player152": 888,
+    "moyu": 902,
+    "QiuQiuR": 936
+  },
+  "ron_n": {
+    "QiuQiuR": 2163,
+    "player152": 1965,
+    "kong": 2136,
+    "moyu": 2172
+  }
+}

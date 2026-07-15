@@ -1,0 +1,55 @@
+{
+  "band": "mixedband",
+  "name": "mb_teacher_ens12",
+  "ckpts": [
+    "ckpt/mixedband/teacher_s30.pt",
+    "ckpt/mixedband/teacher_s31.pt",
+    "ckpt/mixedband/teacher_s32.pt",
+    "ckpt/mixedband/teacher_s33.pt",
+    "ckpt/mixedband/teacher_s34.pt",
+    "ckpt/mixedband/teacher_s35.pt",
+    "ckpt/mixedband/teacher_s60.pt",
+    "ckpt/mixedband/teacher_s61.pt",
+    "ckpt/mixedband/teacher_s62.pt",
+    "ckpt/mixedband/teacher_s63.pt",
+    "ckpt/mixedband/teacher_s64.pt",
+    "ckpt/mixedband/teacher_s65.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 1589.4,
+  "policy": "mixedband/mb_teacher_ens12",
+  "n_games_per_level": 600,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.0033,
+      "elo_diff_vs_level": -990.3,
+      "w_d_l": [
+        0,
+        4,
+        596
+      ],
+      "sec": 701.9
+    },
+    "64": {
+      "score": 0.0492,
+      "elo_diff_vs_level": -514.6,
+      "w_d_l": [
+        10,
+        39,
+        551
+      ],
+      "sec": 390.5
+    },
+    "256": {
+      "score": 0.1158,
+      "elo_diff_vs_level": -353.1,
+      "w_d_l": [
+        13,
+        113,
+        474
+      ],
+      "sec": 496.7
+    }
+  }
+}

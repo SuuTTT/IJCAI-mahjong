@@ -1,0 +1,47 @@
+{
+ "experiment": "oracle-rollout 1-ply discard search (true-state, kdens3 continuation) vs kdens3",
+ "oracle_note": "uses TRUE hidden state in rollouts = non-deployable upper bound / ceiling",
+ "null_run": false,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "blocks": [
+  101,
+  102
+ ],
+ "seeds_per_block": 60,
+ "seed_ranges": {
+  "101": [
+   8803000,
+   8803060
+  ],
+  "102": [
+   8806000,
+   8806060
+  ]
+ },
+ "n_blocks": 2,
+ "n_seeds": 120,
+ "n_games": 480,
+ "block_means": {
+  "101": 3.5083,
+  "102": 3.5417
+ },
+ "block_mean_placement": 3.525,
+ "block_sd": 0.0236,
+ "ci95_halfwidth": 0.2118,
+ "ci95": [
+  3.3132,
+  3.7368
+ ],
+ "override_fraction": 0.0996,
+ "n_search_decisions": 6304,
+ "n_overrides": 628,
+ "n_skipped_gt_maxlegal": 0,
+ "mean_rollout_depth": 40.3,
+ "verdict": "ORACLE ROLLOUT BEATS kdens3 (CI>2.5) -> discard-search has headroom; build deployable PIMC next",
+ "seconds": 5183.8,
+ "workers": 70
+}

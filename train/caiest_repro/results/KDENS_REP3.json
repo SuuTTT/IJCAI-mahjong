@@ -1,0 +1,7 @@
+{
+ "n_blocks": 24,
+ "games": 48000,
+ "mean": 2.4995,
+ "ci_lo": 2.4971,
+ "beats": false
+}

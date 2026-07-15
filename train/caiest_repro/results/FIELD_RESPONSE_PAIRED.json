@@ -1,0 +1,547 @@
+{
+ "meta": {
+  "design": "PAIRED: per field, identical seed list for every policy; diffs are per-seed paired (same walls)",
+  "ngames_per_cell": 2000,
+  "seed0": 9000000,
+  "started": "2026-07-13 01:07:55"
+ },
+ "cells": {
+  "kdens3|weak": {
+   "policy": "kdens3",
+   "field": "weak",
+   "n": 2000,
+   "seed0": 9000000,
+   "rank": {
+    "mean": 2.3712,
+    "se": 0.0222,
+    "ci95": [
+     2.3278,
+     2.4147
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 3.9025,
+    "se": 0.6799,
+    "ci95": [
+     2.5698,
+     5.2352
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.13,
+   "win_rate": 0.2895,
+   "seconds": 120.5
+  },
+  "aug_s0|weak": {
+   "policy": "aug_s0",
+   "field": "weak",
+   "n": 2000,
+   "seed0": 9000000,
+   "rank": {
+    "mean": 2.3883,
+    "se": 0.0222,
+    "ci95": [
+     2.3448,
+     2.4317
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 3.4615,
+    "se": 0.6761,
+    "ci95": [
+     2.1363,
+     4.7867
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.134,
+   "win_rate": 0.283,
+   "seconds": 85.3
+  },
+  "f2mix|weak": {
+   "policy": "f2mix",
+   "field": "weak",
+   "n": 2000,
+   "seed0": 9000000,
+   "rank": {
+    "mean": 2.3683,
+    "se": 0.0219,
+    "ci95": [
+     2.3252,
+     2.4113
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 3.8525,
+    "se": 0.6731,
+    "ci95": [
+     2.5333,
+     5.1717
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.126,
+   "win_rate": 0.2855,
+   "seconds": 124.9
+  },
+  "kdens3|mixed": {
+   "policy": "kdens3",
+   "field": "mixed",
+   "n": 2000,
+   "seed0": 9100000,
+   "rank": {
+    "mean": 2.38,
+    "se": 0.0224,
+    "ci95": [
+     2.3361,
+     2.4239
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 4.1535,
+    "se": 0.7073,
+    "ci95": [
+     2.7672,
+     5.5398
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.134,
+   "win_rate": 0.2925,
+   "seconds": 120.2
+  },
+  "aug_s0|mixed": {
+   "policy": "aug_s0",
+   "field": "mixed",
+   "n": 2000,
+   "seed0": 9100000,
+   "rank": {
+    "mean": 2.393,
+    "se": 0.0222,
+    "ci95": [
+     2.3495,
+     2.4365
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 3.518,
+    "se": 0.6922,
+    "ci95": [
+     2.1613,
+     4.8747
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.133,
+   "win_rate": 0.2835,
+   "seconds": 80.0
+  },
+  "f2mix|mixed": {
+   "policy": "f2mix",
+   "field": "mixed",
+   "n": 2000,
+   "seed0": 9100000,
+   "rank": {
+    "mean": 2.3967,
+    "se": 0.0221,
+    "ci95": [
+     2.3534,
+     2.4401
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 3.1315,
+    "se": 0.6873,
+    "ci95": [
+     1.7844,
+     4.4786
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.1315,
+   "win_rate": 0.2805,
+   "seconds": 117.4
+  },
+  "kdens3|strong": {
+   "policy": "kdens3",
+   "field": "strong",
+   "n": 2000,
+   "seed0": 9200000,
+   "rank": {
+    "mean": 2.4607,
+    "se": 0.0222,
+    "ci95": [
+     2.4172,
+     2.5043
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 1.399,
+    "se": 0.6558,
+    "ci95": [
+     0.1136,
+     2.6844
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.1525,
+   "win_rate": 0.2605,
+   "seconds": 114.7
+  },
+  "aug_s0|strong": {
+   "policy": "aug_s0",
+   "field": "strong",
+   "n": 2000,
+   "seed0": 9200000,
+   "rank": {
+    "mean": 2.4688,
+    "se": 0.022,
+    "ci95": [
+     2.4256,
+     2.5119
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 0.9035,
+    "se": 0.6543,
+    "ci95": [
+     -0.379,
+     2.186
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.1495,
+   "win_rate": 0.253,
+   "seconds": 76.1
+  },
+  "f2mix|strong": {
+   "policy": "f2mix",
+   "field": "strong",
+   "n": 2000,
+   "seed0": 9200000,
+   "rank": {
+    "mean": 2.465,
+    "se": 0.0221,
+    "ci95": [
+     2.4216,
+     2.5084
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 1.0445,
+    "se": 0.6475,
+    "ci95": [
+     -0.2246,
+     2.3136
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.152,
+   "win_rate": 0.257,
+   "seconds": 117.3
+  },
+  "kdens3|champion": {
+   "policy": "kdens3",
+   "field": "champion",
+   "n": 2000,
+   "seed0": 9300000,
+   "rank": {
+    "mean": 2.475,
+    "se": 0.0219,
+    "ci95": [
+     2.4321,
+     2.5179
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 0.689,
+    "se": 0.6554,
+    "ci95": [
+     -0.5957,
+     1.9737
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.1475,
+   "win_rate": 0.2505,
+   "seconds": 117.2
+  },
+  "aug_s0|champion": {
+   "policy": "aug_s0",
+   "field": "champion",
+   "n": 2000,
+   "seed0": 9300000,
+   "rank": {
+    "mean": 2.4685,
+    "se": 0.022,
+    "ci95": [
+     2.4253,
+     2.5117
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 1.0795,
+    "se": 0.6581,
+    "ci95": [
+     -0.2104,
+     2.3694
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.1505,
+   "win_rate": 0.254,
+   "seconds": 76.7
+  },
+  "f2mix|champion": {
+   "policy": "f2mix",
+   "field": "champion",
+   "n": 2000,
+   "seed0": 9300000,
+   "rank": {
+    "mean": 2.4995,
+    "se": 0.0219,
+    "ci95": [
+     2.4566,
+     2.5424
+    ],
+    "n": 2000
+   },
+   "score": {
+    "mean": 0.278,
+    "se": 0.6521,
+    "ci95": [
+     -1.0002,
+     1.5562
+    ],
+    "n": 2000
+   },
+   "dealin_rate": 0.1545,
+   "win_rate": 0.2415,
+   "seconds": 114.5
+  }
+ },
+ "paired_diffs": {
+  "kdens3 vs aug_s0": {
+   "rank": {
+    "weak": {
+     "diff": -0.017,
+     "ci95": [
+      -0.0437,
+      0.0097
+     ],
+     "significant": false
+    },
+    "mixed": {
+     "diff": -0.013,
+     "ci95": [
+      -0.0396,
+      0.0136
+     ],
+     "significant": false
+    },
+    "strong": {
+     "diff": -0.008,
+     "ci95": [
+      -0.0341,
+      0.0181
+     ],
+     "significant": false
+    },
+    "champion": {
+     "diff": 0.0065,
+     "ci95": [
+      -0.0202,
+      0.0332
+     ],
+     "significant": false
+    }
+   },
+   "score": {
+    "weak": {
+     "diff": 0.441,
+     "ci95": [
+      -0.3242,
+      1.2062
+     ],
+     "significant": false
+    },
+    "mixed": {
+     "diff": 0.6355,
+     "ci95": [
+      -0.1927,
+      1.4637
+     ],
+     "significant": false
+    },
+    "strong": {
+     "diff": 0.4955,
+     "ci95": [
+      -0.2838,
+      1.2748
+     ],
+     "significant": false
+    },
+    "champion": {
+     "diff": -0.3905,
+     "ci95": [
+      -1.1176,
+      0.3366
+     ],
+     "significant": false
+    }
+   }
+  },
+  "kdens3 vs f2mix": {
+   "rank": {
+    "weak": {
+     "diff": 0.003,
+     "ci95": [
+      -0.0204,
+      0.0264
+     ],
+     "significant": false
+    },
+    "mixed": {
+     "diff": -0.0168,
+     "ci95": [
+      -0.0413,
+      0.0078
+     ],
+     "significant": false
+    },
+    "strong": {
+     "diff": -0.0043,
+     "ci95": [
+      -0.0288,
+      0.0203
+     ],
+     "significant": false
+    },
+    "champion": {
+     "diff": -0.0245,
+     "ci95": [
+      -0.048,
+      -0.001
+     ],
+     "significant": true
+    }
+   },
+   "score": {
+    "weak": {
+     "diff": 0.05,
+     "ci95": [
+      -0.6579,
+      0.7579
+     ],
+     "significant": false
+    },
+    "mixed": {
+     "diff": 1.022,
+     "ci95": [
+      0.3097,
+      1.7343
+     ],
+     "significant": true
+    },
+    "strong": {
+     "diff": 0.3545,
+     "ci95": [
+      -0.3776,
+      1.0866
+     ],
+     "significant": false
+    },
+    "champion": {
+     "diff": 0.411,
+     "ci95": [
+      -0.2496,
+      1.0716
+     ],
+     "significant": false
+    }
+   }
+  },
+  "aug_s0 vs f2mix": {
+   "rank": {
+    "weak": {
+     "diff": 0.02,
+     "ci95": [
+      -0.0096,
+      0.0496
+     ],
+     "significant": false
+    },
+    "mixed": {
+     "diff": -0.0037,
+     "ci95": [
+      -0.0327,
+      0.0252
+     ],
+     "significant": false
+    },
+    "strong": {
+     "diff": 0.0037,
+     "ci95": [
+      -0.0248,
+      0.0323
+     ],
+     "significant": false
+    },
+    "champion": {
+     "diff": -0.031,
+     "ci95": [
+      -0.0584,
+      -0.0036
+     ],
+     "significant": true
+    }
+   },
+   "score": {
+    "weak": {
+     "diff": -0.391,
+     "ci95": [
+      -1.2448,
+      0.4628
+     ],
+     "significant": false
+    },
+    "mixed": {
+     "diff": 0.3865,
+     "ci95": [
+      -0.4777,
+      1.2507
+     ],
+     "significant": false
+    },
+    "strong": {
+     "diff": -0.141,
+     "ci95": [
+      -1.0168,
+      0.7348
+     ],
+     "significant": false
+    },
+    "champion": {
+     "diff": 0.8015,
+     "ci95": [
+      0.0466,
+      1.5564
+     ],
+     "significant": true
+    }
+   }
+  }
+ },
+ "done": true
+}

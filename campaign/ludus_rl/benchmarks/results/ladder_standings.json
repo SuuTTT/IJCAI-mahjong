@@ -1,0 +1,57 @@
+{
+  "standings": [
+    {
+      "agent": "rule_v0",
+      "mu": 30.246,
+      "sigma": 1.804,
+      "ci_low": 26.637,
+      "ci_high": 33.855,
+      "pairs": 288,
+      "mean_pair_score": 0.7101,
+      "illegal_in_blocks": 0,
+      "separated_from_next": false
+    },
+    {
+      "agent": "ppo_v0",
+      "mu": 29.423,
+      "sigma": 1.75,
+      "ci_low": 25.924,
+      "ci_high": 32.922,
+      "pairs": 288,
+      "mean_pair_score": 0.6641,
+      "illegal_in_blocks": 0,
+      "separated_from_next": false
+    },
+    {
+      "agent": "ppo_weak_v0",
+      "mu": 26.241,
+      "sigma": 1.767,
+      "ci_low": 22.708,
+      "ci_high": 29.774,
+      "pairs": 288,
+      "mean_pair_score": 0.4939,
+      "illegal_in_blocks": 0,
+      "separated_from_next": true
+    },
+    {
+      "agent": "random_v0",
+      "mu": 16.769,
+      "sigma": 2.193,
+      "ci_low": 12.383,
+      "ci_high": 21.155,
+      "pairs": 288,
+      "mean_pair_score": 0.1319,
+      "illegal_in_blocks": 0
+    }
+  ],
+  "frozen": false,
+  "env_version": "boom/v5",
+  "judge_hash": "99638e5287f3d5c0",
+  "commit": "84a8e4c607c39f5ff883143e6c2284fdcf12fc1a",
+  "integrity": {
+    "match_blocks": 36,
+    "entrants": 4,
+    "complete": true
+  },
+  "t": 1783088545.185931
+}

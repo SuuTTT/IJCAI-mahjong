@@ -1,0 +1,22 @@
+{
+  "regime": "deterministic",
+  "seat": 0,
+  "nseeds": 2000,
+  "dev": "cuda",
+  "single_pkl": "ckpt/students_det/dou_student_s100.pkl",
+  "teacher_ens": [
+    "ckpt/teachers/dou_teacher_s0.pkl",
+    "ckpt/teachers/dou_teacher_s1.pkl",
+    "ckpt/teachers/dou_teacher_s2.pkl"
+  ],
+  "student_ens": [
+    "ckpt/students_det/dou_student_s100.pkl",
+    "ckpt/students_det/dou_student_s101.pkl",
+    "ckpt/students_det/dou_student_s102.pkl"
+  ],
+  "single_mean_payoff": 0.4905,
+  "teacher_ens3_mean_payoff": 0.4935,
+  "student_ens3_mean_payoff": 0.492,
+  "calibration_ref_vs_ref_delta": 0.0,
+  "seconds": 1234.7
+}

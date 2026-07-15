@@ -1,0 +1,27 @@
+{
+  "a": "rule_v0",
+  "b": "random_v0",
+  "matches": 1024,
+  "seat_swapped": true,
+  "a_win_rate": 0.4599609375,
+  "b_win_rate": 0.494140625,
+  "draw_rate": 0.0458984375,
+  "a_win_as_p0": 0.916015625,
+  "a_win_as_p1": 0.00390625,
+  "a_win_ci95_lower": 0.42964066777286214,
+  "illegal_actions": 0,
+  "self_test": {
+    "agent": "rule_v0",
+    "matches": 128,
+    "deterministic_repeat": true,
+    "p0_win_rate": 0.953125,
+    "illegal": 0
+  },
+  "commit": "8e4a1f3d13871b8564cc4a81ea112c64cee0a5e5",
+  "device": "cuda:0",
+  "integrity": {
+    "expected": 1024,
+    "actual": 1024,
+    "complete": true
+  }
+}

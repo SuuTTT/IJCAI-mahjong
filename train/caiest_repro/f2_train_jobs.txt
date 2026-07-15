@@ -1,0 +1,17 @@
+cd /root/caiest_repro && python3 f2_value_head.py --mode frozen --out results/value_frozen.json > logs/f2_value_frozen.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --pure --seed 0 --steps 60000 --out ckpt/f2/armd_s0.pkl > logs/f2_armd_s0.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --pure --seed 1 --steps 60000 --out ckpt/f2/armd_s1.pkl > logs/f2_armd_s1.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --pure --seed 2 --steps 60000 --out ckpt/f2/armd_s2.pkl > logs/f2_armd_s2.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --beta 0.3 --seed 0 --steps 60000 --out ckpt/f2/armb_s0.pkl > logs/f2_armb_s0.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --beta 0.3 --seed 1 --steps 60000 --out ckpt/f2/armb_s1.pkl > logs/f2_armb_s1.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --beta 0.3 --seed 2 --steps 60000 --out ckpt/f2/armb_s2.pkl > logs/f2_armb_s2.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --beta 0.3 --bots 0,1 --seed 0 --steps 60000 --out ckpt/f2/armc_s0.pkl > logs/f2_armc_s0.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --beta 0.3 --bots 0,1 --seed 1 --steps 60000 --out ckpt/f2/armc_s1.pkl > logs/f2_armc_s1.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_corpus.py --beta 0.3 --bots 0,1 --seed 2 --steps 60000 --out ckpt/f2/armc_s2.pkl > logs/f2_armc_s2.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_danger_v2.py --lam_danger 0.3 --seed 0 --steps 60000 --out ckpt/jdv2/jdv2_lam0.3_s0.pkl > logs/jdv2_l0.3_s0.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_danger_v2.py --lam_danger 0.3 --seed 1 --steps 60000 --out ckpt/jdv2/jdv2_lam0.3_s1.pkl > logs/jdv2_l0.3_s1.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_danger_v2.py --lam_danger 1.0 --seed 0 --steps 60000 --out ckpt/jdv2/jdv2_lam1.0_s0.pkl > logs/jdv2_l1.0_s0.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_danger_v2.py --lam_danger 1.0 --seed 1 --steps 60000 --out ckpt/jdv2/jdv2_lam1.0_s1.pkl > logs/jdv2_l1.0_s1.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_danger_v2.py --lam_danger 3.0 --seed 0 --steps 60000 --out ckpt/jdv2/jdv2_lam3.0_s0.pkl > logs/jdv2_l3.0_s0.log 2>&1
+cd /root/caiest_repro && python3 e13_kd_danger_v2.py --lam_danger 3.0 --seed 1 --steps 60000 --out ckpt/jdv2/jdv2_lam3.0_s1.pkl > logs/jdv2_l3.0_s1.log 2>&1
+cd /root/caiest_repro && python3 f2_value_head.py --mode e2e --out results/value_e2e.json > logs/f2_value_e2e.log 2>&1

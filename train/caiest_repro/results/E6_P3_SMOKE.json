@@ -1,0 +1,1066 @@
+{
+  "meta": {
+    "design": "E6-P3 cross-hand field estimation + match switching",
+    "evaldata": "/root/caiest_repro/data/e6_p3_smoke_eval.npz",
+    "n_matches_per_field": 8,
+    "hands_per_match": 8,
+    "eval_seed0": 91000000,
+    "switcher": {
+      "rule": "sticky: hand0 kd; after hand h (while unswitched, so features are all-kd-played = estimator training dist) predict with model_h on cumulative features of hands 1..h; first pred==weak -> aug_s0 for all remaining hands",
+      "oracle_rule": "hand0 kd; hands 1+ aug iff true field==weak",
+      "oracle_best": "hand0 kd; hands 1+ Phase-1 best fixed policy (aug on ['weak', 'mixed', 'strong'], kd on champion)"
+    },
+    "finished": "2026-07-12 18:38:53"
+  },
+  "estimator": {
+    "design": "HistGB on cumulative per-hand outcome features after h hands -> 3-class field; split by match (idx%5==0 test); balanced sample weights; kdens3 seat-0 (pre-switch dist)",
+    "data": "/root/caiest_repro/data/e6_p3_smoke.npz",
+    "classes": [
+      "weak",
+      "mixed",
+      "strongchamp"
+    ],
+    "feat_names": [
+      "draw",
+      "w_s0",
+      "w_s1",
+      "w_s2",
+      "w_s3",
+      "zimo",
+      "ron",
+      "s0_dealin",
+      "fan",
+      "plays",
+      "chi_o1",
+      "peng_o1",
+      "gang_o1",
+      "chi_o2",
+      "peng_o2",
+      "gang_o2",
+      "chi_o3",
+      "peng_o3",
+      "gang_o3",
+      "s0_score"
+    ],
+    "n_matches_per_field": 16,
+    "hands_per_match": 8,
+    "by_h": {
+      "1": {
+        "n_train": 48,
+        "n_test": 16,
+        "bal_acc": 0.3333,
+        "acc": 0.375,
+        "recalls": {
+          "weak": 0.0,
+          "mixed": 0.5,
+          "strongchamp": 0.5
+        },
+        "weak_precision": 0.0,
+        "confusion_rows_true_cols_pred": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            4,
+            4
+          ]
+        ],
+        "pred_weak_rate_by_true_field": {
+          "weak": 0.0,
+          "mixed": 0.0,
+          "strong": 0.0,
+          "champion": 0.0
+        },
+        "n_iter": 20,
+        "seconds": 0.1,
+        "ckpt": "ckpt/e6_smoke/e6_match_est_h1.pkl"
+      },
+      "2": {
+        "n_train": 48,
+        "n_test": 16,
+        "bal_acc": 0.25,
+        "acc": 0.3125,
+        "recalls": {
+          "weak": 0.0,
+          "mixed": 0.25,
+          "strongchamp": 0.5
+        },
+        "weak_precision": 0.0,
+        "confusion_rows_true_cols_pred": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            4,
+            0,
+            4
+          ]
+        ],
+        "pred_weak_rate_by_true_field": {
+          "weak": 0.0,
+          "mixed": 0.25,
+          "strong": 0.75,
+          "champion": 0.25
+        },
+        "n_iter": 307,
+        "seconds": 2.8,
+        "ckpt": "ckpt/e6_smoke/e6_match_est_h2.pkl"
+      },
+      "3": {
+        "n_train": 48,
+        "n_test": 16,
+        "bal_acc": 0.3333,
+        "acc": 0.25,
+        "recalls": {
+          "weak": 0.75,
+          "mixed": 0.25,
+          "strongchamp": 0.0
+        },
+        "weak_precision": 0.25,
+        "confusion_rows_true_cols_pred": [
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            6,
+            2,
+            0
+          ]
+        ],
+        "pred_weak_rate_by_true_field": {
+          "weak": 0.75,
+          "mixed": 0.75,
+          "strong": 0.75,
+          "champion": 0.75
+        },
+        "n_iter": 10,
+        "seconds": 0.2,
+        "ckpt": "ckpt/e6_smoke/e6_match_est_h3.pkl"
+      },
+      "4": {
+        "n_train": 48,
+        "n_test": 16,
+        "bal_acc": 0.375,
+        "acc": 0.3125,
+        "recalls": {
+          "weak": 0.5,
+          "mixed": 0.5,
+          "strongchamp": 0.125
+        },
+        "weak_precision": 0.25,
+        "confusion_rows_true_cols_pred": [
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            4,
+            3,
+            1
+          ]
+        ],
+        "pred_weak_rate_by_true_field": {
+          "weak": 0.5,
+          "mixed": 0.5,
+          "strong": 0.75,
+          "champion": 0.25
+        },
+        "n_iter": 10,
+        "seconds": 0.2,
+        "ckpt": "ckpt/e6_smoke/e6_match_est_h4.pkl"
+      },
+      "5": {
+        "n_train": 48,
+        "n_test": 16,
+        "bal_acc": 0.3333,
+        "acc": 0.3125,
+        "recalls": {
+          "weak": 0.5,
+          "mixed": 0.25,
+          "strongchamp": 0.25
+        },
+        "weak_precision": 0.25,
+        "confusion_rows_true_cols_pred": [
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            5,
+            1,
+            2
+          ]
+        ],
+        "pred_weak_rate_by_true_field": {
+          "weak": 0.5,
+          "mixed": 0.25,
+          "strong": 0.5,
+          "champion": 0.75
+        },
+        "n_iter": 10,
+        "seconds": 0.2,
+        "ckpt": "ckpt/e6_smoke/e6_match_est_h5.pkl"
+      },
+      "6": {
+        "n_train": 48,
+        "n_test": 16,
+        "bal_acc": 0.3333,
+        "acc": 0.25,
+        "recalls": {
+          "weak": 0.75,
+          "mixed": 0.25,
+          "strongchamp": 0.0
+        },
+        "weak_precision": 0.2727,
+        "confusion_rows_true_cols_pred": [
+          [
+            3,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            7,
+            1,
+            0
+          ]
+        ],
+        "pred_weak_rate_by_true_field": {
+          "weak": 0.75,
+          "mixed": 0.25,
+          "strong": 0.75,
+          "champion": 1.0
+        },
+        "n_iter": 13,
+        "seconds": 0.7,
+        "ckpt": "ckpt/e6_smoke/e6_match_est_h6.pkl"
+      },
+      "7": {
+        "n_train": 48,
+        "n_test": 16,
+        "bal_acc": 0.4583,
+        "acc": 0.375,
+        "recalls": {
+          "weak": 0.75,
+          "mixed": 0.5,
+          "strongchamp": 0.125
+        },
+        "weak_precision": 0.2727,
+        "confusion_rows_true_cols_pred": [
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            7,
+            0,
+            1
+          ]
+        ],
+        "pred_weak_rate_by_true_field": {
+          "weak": 0.75,
+          "mixed": 0.25,
+          "strong": 0.75,
+          "champion": 1.0
+        },
+        "n_iter": 400,
+        "seconds": 7.9,
+        "ckpt": "ckpt/e6_smoke/e6_match_est_h7.pkl"
+      }
+    },
+    "bal_acc_by_h": {
+      "1": 0.3333,
+      "2": 0.25,
+      "3": 0.3333,
+      "4": 0.375,
+      "5": 0.3333,
+      "6": 0.3333,
+      "7": 0.4583
+    }
+  },
+  "switcher_table": {
+    "weak": {
+      "always_kd": {
+        "total_score": {
+          "mean": 12.25,
+          "se": 30.3196,
+          "ci95": [
+            -47.1764,
+            71.6764
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.5625,
+          "se": 0.4575,
+          "ci95": [
+            1.6659,
+            3.4591
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.4844,
+        "hand_win_rate": 0.2656,
+        "hand_dealin_rate": 0.1875
+      },
+      "always_aug": {
+        "total_score": {
+          "mean": -10.625,
+          "se": 28.8407,
+          "ci95": [
+            -67.1527,
+            45.9027
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.5,
+          "se": 0.378,
+          "ci95": [
+            1.7592,
+            3.2408
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5469,
+        "hand_win_rate": 0.2188,
+        "hand_dealin_rate": 0.1719
+      },
+      "oracle_rule": {
+        "total_score": {
+          "mean": -15.25,
+          "se": 30.1151,
+          "ci95": [
+            -74.2756,
+            43.7756
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.5,
+          "se": 0.4629,
+          "ci95": [
+            1.5927,
+            3.4073
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5703,
+        "hand_win_rate": 0.2031,
+        "hand_dealin_rate": 0.1719
+      },
+      "oracle_best": {
+        "total_score": {
+          "mean": -15.25,
+          "se": 30.1151,
+          "ci95": [
+            -74.2756,
+            43.7756
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.5,
+          "se": 0.4629,
+          "ci95": [
+            1.5927,
+            3.4073
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5703,
+        "hand_win_rate": 0.2031,
+        "hand_dealin_rate": 0.1719
+      },
+      "switcher": {
+        "total_score": {
+          "mean": -9.375,
+          "se": 31.9977,
+          "ci95": [
+            -72.0906,
+            53.3406
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.375,
+          "se": 0.4605,
+          "ci95": [
+            1.4724,
+            3.2776
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5234,
+        "hand_win_rate": 0.2188,
+        "hand_dealin_rate": 0.1562,
+        "switch_frac": 0.875,
+        "mean_switch_hand": 2.8571,
+        "switch_hand_hist": {
+          "1": 0,
+          "2": 1,
+          "3": 6,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "pred_dist_h1": {
+          "weak": 0.0,
+          "mixed": 0.5,
+          "strongchamp": 0.5
+        }
+      },
+      "paired_diffs_total_score": {
+        "switcher_vs_always_kd": {
+          "mean": -21.625,
+          "se": 20.168,
+          "ci95": [
+            -61.1543,
+            17.9043
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_always_aug": {
+          "mean": 1.25,
+          "se": 15.5181,
+          "ci95": [
+            -29.1655,
+            31.6655
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_oracle_rule": {
+          "mean": 5.875,
+          "se": 19.9342,
+          "ci95": [
+            -33.1961,
+            44.9461
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "oracle_rule_vs_always_kd": {
+          "mean": -27.5,
+          "se": 28.2204,
+          "ci95": [
+            -82.812,
+            27.812
+          ],
+          "n": 8,
+          "significant": false
+        }
+      },
+      "seconds": 0.0
+    },
+    "mixed": {
+      "always_kd": {
+        "total_score": {
+          "mean": 49.625,
+          "se": 23.7539,
+          "ci95": [
+            3.0674,
+            96.1826
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 1.625,
+          "se": 0.3239,
+          "ci95": [
+            0.9902,
+            2.2598
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.2891,
+        "hand_win_rate": 0.3438,
+        "hand_dealin_rate": 0.125
+      },
+      "always_aug": {
+        "total_score": {
+          "mean": 48.5,
+          "se": 22.3183,
+          "ci95": [
+            4.7561,
+            92.2439
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 1.625,
+          "se": 0.3239,
+          "ci95": [
+            0.9902,
+            2.2598
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.3438,
+        "hand_win_rate": 0.3281,
+        "hand_dealin_rate": 0.1562
+      },
+      "oracle_rule": {
+        "total_score": {
+          "mean": 49.625,
+          "se": 23.7539,
+          "ci95": [
+            3.0674,
+            96.1826
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 1.625,
+          "se": 0.3239,
+          "ci95": [
+            0.9902,
+            2.2598
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.2891,
+        "hand_win_rate": 0.3438,
+        "hand_dealin_rate": 0.125
+      },
+      "oracle_best": {
+        "total_score": {
+          "mean": 48.5,
+          "se": 22.3183,
+          "ci95": [
+            4.7561,
+            92.2439
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 1.625,
+          "se": 0.3239,
+          "ci95": [
+            0.9902,
+            2.2598
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.3438,
+        "hand_win_rate": 0.3281,
+        "hand_dealin_rate": 0.1562
+      },
+      "switcher": {
+        "total_score": {
+          "mean": 45.5,
+          "se": 22.0624,
+          "ci95": [
+            2.2577,
+            88.7423
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 1.75,
+          "se": 0.3134,
+          "ci95": [
+            1.1358,
+            2.3642
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.3672,
+        "hand_win_rate": 0.3281,
+        "hand_dealin_rate": 0.1719,
+        "switch_frac": 1.0,
+        "mean_switch_hand": 4.0,
+        "switch_hand_hist": {
+          "1": 0,
+          "2": 1,
+          "3": 4,
+          "4": 0,
+          "5": 0,
+          "6": 3,
+          "7": 0
+        },
+        "pred_dist_h1": {
+          "weak": 0.0,
+          "mixed": 0.375,
+          "strongchamp": 0.625
+        }
+      },
+      "paired_diffs_total_score": {
+        "switcher_vs_always_kd": {
+          "mean": -4.125,
+          "se": 6.4377,
+          "ci95": [
+            -16.7429,
+            8.4929
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_always_aug": {
+          "mean": -3.0,
+          "se": 5.757,
+          "ci95": [
+            -14.2837,
+            8.2837
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_oracle_rule": {
+          "mean": -4.125,
+          "se": 6.4377,
+          "ci95": [
+            -16.7429,
+            8.4929
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "oracle_rule_vs_always_kd": {
+          "mean": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 8,
+          "significant": false
+        }
+      },
+      "seconds": 0.0
+    },
+    "strong": {
+      "always_kd": {
+        "total_score": {
+          "mean": 4.375,
+          "se": 34.5925,
+          "ci95": [
+            -63.4263,
+            72.1763
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.5,
+          "se": 0.5,
+          "ci95": [
+            1.52,
+            3.48
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.4219,
+        "hand_win_rate": 0.2812,
+        "hand_dealin_rate": 0.1562
+      },
+      "always_aug": {
+        "total_score": {
+          "mean": 5.875,
+          "se": 32.7885,
+          "ci95": [
+            -58.3905,
+            70.1405
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.375,
+          "se": 0.4605,
+          "ci95": [
+            1.4724,
+            3.2776
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.4688,
+        "hand_win_rate": 0.2656,
+        "hand_dealin_rate": 0.1875
+      },
+      "oracle_rule": {
+        "total_score": {
+          "mean": 4.375,
+          "se": 34.5925,
+          "ci95": [
+            -63.4263,
+            72.1763
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.5,
+          "se": 0.5,
+          "ci95": [
+            1.52,
+            3.48
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.4219,
+        "hand_win_rate": 0.2812,
+        "hand_dealin_rate": 0.1562
+      },
+      "oracle_best": {
+        "total_score": {
+          "mean": 0.25,
+          "se": 34.1241,
+          "ci95": [
+            -66.6333,
+            67.1333
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.5,
+          "se": 0.5,
+          "ci95": [
+            1.52,
+            3.48
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5,
+        "hand_win_rate": 0.2656,
+        "hand_dealin_rate": 0.2031
+      },
+      "switcher": {
+        "total_score": {
+          "mean": 10.25,
+          "se": 33.4759,
+          "ci95": [
+            -55.3627,
+            75.8627
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.25,
+          "se": 0.4532,
+          "ci95": [
+            1.3618,
+            3.1382
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.4375,
+        "hand_win_rate": 0.2969,
+        "hand_dealin_rate": 0.1875,
+        "switch_frac": 1.0,
+        "mean_switch_hand": 3.5,
+        "switch_hand_hist": {
+          "1": 0,
+          "2": 2,
+          "3": 4,
+          "4": 0,
+          "5": 0,
+          "6": 2,
+          "7": 0
+        },
+        "pred_dist_h1": {
+          "weak": 0.0,
+          "mixed": 0.625,
+          "strongchamp": 0.375
+        }
+      },
+      "paired_diffs_total_score": {
+        "switcher_vs_always_kd": {
+          "mean": 5.875,
+          "se": 7.7331,
+          "ci95": [
+            -9.2819,
+            21.0319
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_always_aug": {
+          "mean": 4.375,
+          "se": 9.2735,
+          "ci95": [
+            -13.8011,
+            22.5511
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_oracle_rule": {
+          "mean": 5.875,
+          "se": 7.7331,
+          "ci95": [
+            -9.2819,
+            21.0319
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "oracle_rule_vs_always_kd": {
+          "mean": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 8,
+          "significant": false
+        }
+      },
+      "seconds": 0.0
+    },
+    "champion": {
+      "always_kd": {
+        "total_score": {
+          "mean": -21.625,
+          "se": 22.6802,
+          "ci95": [
+            -66.0782,
+            22.8282
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.75,
+          "se": 0.4119,
+          "ci95": [
+            1.9427,
+            3.5573
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5859,
+        "hand_win_rate": 0.2344,
+        "hand_dealin_rate": 0.2188
+      },
+      "always_aug": {
+        "total_score": {
+          "mean": -16.0,
+          "se": 20.0642,
+          "ci95": [
+            -55.3258,
+            23.3258
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.625,
+          "se": 0.2631,
+          "ci95": [
+            2.1094,
+            3.1406
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5391,
+        "hand_win_rate": 0.25,
+        "hand_dealin_rate": 0.1875
+      },
+      "oracle_rule": {
+        "total_score": {
+          "mean": -21.625,
+          "se": 22.6802,
+          "ci95": [
+            -66.0782,
+            22.8282
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.75,
+          "se": 0.4119,
+          "ci95": [
+            1.9427,
+            3.5573
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5859,
+        "hand_win_rate": 0.2344,
+        "hand_dealin_rate": 0.2188
+      },
+      "oracle_best": {
+        "total_score": {
+          "mean": -21.625,
+          "se": 22.6802,
+          "ci95": [
+            -66.0782,
+            22.8282
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 2.75,
+          "se": 0.4119,
+          "ci95": [
+            1.9427,
+            3.5573
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.5859,
+        "hand_win_rate": 0.2344,
+        "hand_dealin_rate": 0.2188
+      },
+      "switcher": {
+        "total_score": {
+          "mean": -30.75,
+          "se": 19.7518,
+          "ci95": [
+            -69.4635,
+            7.9635
+          ],
+          "n": 8
+        },
+        "match_rank": {
+          "mean": 3.0,
+          "se": 0.3273,
+          "ci95": [
+            2.3584,
+            3.6416
+          ],
+          "n": 8
+        },
+        "hand_rank_mean": 2.6016,
+        "hand_win_rate": 0.2188,
+        "hand_dealin_rate": 0.2031,
+        "switch_frac": 0.75,
+        "mean_switch_hand": 4.1667,
+        "switch_hand_hist": {
+          "1": 0,
+          "2": 1,
+          "3": 2,
+          "4": 0,
+          "5": 1,
+          "6": 2,
+          "7": 0
+        },
+        "pred_dist_h1": {
+          "weak": 0.0,
+          "mixed": 0.375,
+          "strongchamp": 0.625
+        }
+      },
+      "paired_diffs_total_score": {
+        "switcher_vs_always_kd": {
+          "mean": -9.125,
+          "se": 7.918,
+          "ci95": [
+            -24.6442,
+            6.3942
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_always_aug": {
+          "mean": -14.75,
+          "se": 9.7884,
+          "ci95": [
+            -33.9352,
+            4.4352
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "switcher_vs_oracle_rule": {
+          "mean": -9.125,
+          "se": 7.918,
+          "ci95": [
+            -24.6442,
+            6.3942
+          ],
+          "n": 8,
+          "significant": false
+        },
+        "oracle_rule_vs_always_kd": {
+          "mean": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 8,
+          "significant": false
+        }
+      },
+      "seconds": 0.0
+    }
+  },
+  "verdict": {
+    "weak_oracle_gap_paired": -27.5,
+    "weak_switcher_gain_paired": -21.625,
+    "weak_gap_capture_frac": null,
+    "weak_gain_significant": false,
+    "matches_kdens3_elsewhere": {
+      "mixed": {
+        "diff": -4.125,
+        "ci95": [
+          -16.7429,
+          8.4929
+        ],
+        "significantly_worse": false
+      },
+      "strong": {
+        "diff": 5.875,
+        "ci95": [
+          -9.2819,
+          21.0319
+        ],
+        "significantly_worse": false
+      },
+      "champion": {
+        "diff": -9.125,
+        "ci95": [
+          -24.6442,
+          6.3942
+        ],
+        "significantly_worse": false
+      }
+    },
+    "captures_most_oracle_gap_weak": false,
+    "no_significant_loss_elsewhere": true,
+    "overall": false
+  }
+}

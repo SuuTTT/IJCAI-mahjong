@@ -1,0 +1,734 @@
+{
+  "campaign": "VALUE-HEAD V2 (more data + source conditioning) vs v1 value_e2e",
+  "protocol": "identical to v1: by-game split rng777/10%, SC=30, 30k steps e2e 128x40, r/rho overall+stage + GRP within-game rank-rho; official held-out evaluated for all variants (cross-domain for a)",
+  "variants": {
+    "a": "v1-repro final2-only",
+    "b": "final2+official 50/50, no cond",
+    "c": "final2+official 50/50 + source embedding (bot 0-3, official=4)"
+  },
+  "v1": {
+    "mode": "e2e_resbn128x40_value",
+    "seed": 0,
+    "steps": 30000,
+    "n_val": 72529,
+    "score_scale": 30.0,
+    "metrics": {
+      "r_all": 0.7118,
+      "rho_all": 0.655,
+      "r_early": 0.635,
+      "rho_early": 0.5743,
+      "r_mid": 0.7101,
+      "rho_mid": 0.6619,
+      "r_late": 0.7771,
+      "rho_late": 0.7239,
+      "grp_rank_rho_early": 0.5656,
+      "grp_games_early": 1227,
+      "grp_rank_rho_mid": 0.6422,
+      "grp_games_mid": 1216,
+      "grp_rank_rho_late": 0.6852,
+      "grp_games_late": 1228,
+      "val_mse": 0.4745
+    },
+    "seconds": 2828.2
+  },
+  "table": {
+    "a": {
+      "n_seeds": 2,
+      "seeds": [
+        0,
+        1
+      ],
+      "final2": {
+        "r_all": 0.7123,
+        "r_all_per_seed": [
+          0.7118,
+          0.7127
+        ],
+        "rho_all": 0.6542,
+        "rho_all_per_seed": [
+          0.655,
+          0.6534
+        ],
+        "r_early": 0.6361,
+        "r_early_per_seed": [
+          0.635,
+          0.6372
+        ],
+        "r_mid": 0.7097,
+        "r_mid_per_seed": [
+          0.7101,
+          0.7094
+        ],
+        "r_late": 0.7778,
+        "r_late_per_seed": [
+          0.7771,
+          0.7786
+        ],
+        "rho_early": 0.5739,
+        "rho_early_per_seed": [
+          0.5743,
+          0.5736
+        ],
+        "rho_mid": 0.6591,
+        "rho_mid_per_seed": [
+          0.6619,
+          0.6563
+        ],
+        "rho_late": 0.7245,
+        "rho_late_per_seed": [
+          0.7239,
+          0.7251
+        ],
+        "grp_rank_rho_early": 0.5659,
+        "grp_rank_rho_early_per_seed": [
+          0.5656,
+          0.5663
+        ],
+        "grp_rank_rho_mid": 0.6396,
+        "grp_rank_rho_mid_per_seed": [
+          0.6422,
+          0.6369
+        ],
+        "grp_rank_rho_late": 0.6906,
+        "grp_rank_rho_late_per_seed": [
+          0.6852,
+          0.6961
+        ],
+        "val_mse": 0.4749,
+        "val_mse_per_seed": [
+          0.4745,
+          0.4754
+        ]
+      },
+      "official": {
+        "r_all": 0.0404,
+        "r_all_per_seed": [
+          0.0433,
+          0.0375
+        ],
+        "rho_all": 0.0263,
+        "rho_all_per_seed": [
+          0.0297,
+          0.0228
+        ],
+        "r_early": 0.0347,
+        "r_early_per_seed": [
+          0.0342,
+          0.0352
+        ],
+        "r_mid": 0.0425,
+        "r_mid_per_seed": [
+          0.0464,
+          0.0385
+        ],
+        "r_late": 0.0435,
+        "r_late_per_seed": [
+          0.0482,
+          0.0389
+        ],
+        "rho_early": 0.0204,
+        "rho_early_per_seed": [
+          0.0212,
+          0.0195
+        ],
+        "rho_mid": 0.025,
+        "rho_mid_per_seed": [
+          0.0284,
+          0.0216
+        ],
+        "rho_late": 0.0318,
+        "rho_late_per_seed": [
+          0.0374,
+          0.0261
+        ],
+        "grp_rank_rho_early": 0.0464,
+        "grp_rank_rho_early_per_seed": [
+          0.0406,
+          0.0522
+        ],
+        "grp_rank_rho_mid": 0.0504,
+        "grp_rank_rho_mid_per_seed": [
+          0.049,
+          0.0518
+        ],
+        "grp_rank_rho_late": 0.049,
+        "grp_rank_rho_late_per_seed": [
+          0.0541,
+          0.0438
+        ],
+        "val_mse": 1.1321,
+        "val_mse_per_seed": [
+          1.1307,
+          1.1336
+        ]
+      }
+    },
+    "b": {
+      "n_seeds": 2,
+      "seeds": [
+        0,
+        1
+      ],
+      "final2": {
+        "r_all": 0.3566,
+        "r_all_per_seed": [
+          0.7132,
+          0.0
+        ],
+        "rho_all": 0.309,
+        "rho_all_per_seed": [
+          0.618,
+          0.0
+        ],
+        "r_early": 0.3198,
+        "r_early_per_seed": [
+          0.6396,
+          0.0
+        ],
+        "r_mid": 0.3553,
+        "r_mid_per_seed": [
+          0.7105,
+          0.0
+        ],
+        "r_late": 0.3887,
+        "r_late_per_seed": [
+          0.7775,
+          0.0
+        ],
+        "rho_early": 0.2765,
+        "rho_early_per_seed": [
+          0.553,
+          0.0
+        ],
+        "rho_mid": 0.311,
+        "rho_mid_per_seed": [
+          0.622,
+          0.0
+        ],
+        "rho_late": 0.3393,
+        "rho_late_per_seed": [
+          0.6786,
+          0.0
+        ],
+        "grp_rank_rho_early": 0.2715,
+        "grp_rank_rho_early_per_seed": [
+          0.543,
+          0.0
+        ],
+        "grp_rank_rho_mid": 0.3034,
+        "grp_rank_rho_mid_per_seed": [
+          0.6068,
+          0.0
+        ],
+        "grp_rank_rho_late": 0.3265,
+        "grp_rank_rho_late_per_seed": [
+          0.6529,
+          0.0
+        ],
+        "val_mse": 0.6935,
+        "val_mse_per_seed": [
+          0.4664,
+          0.9207
+        ]
+      },
+      "official": {
+        "r_all": 0.0669,
+        "r_all_per_seed": [
+          0.1337,
+          0.0
+        ],
+        "rho_all": 0.0478,
+        "rho_all_per_seed": [
+          0.0956,
+          0.0
+        ],
+        "r_early": 0.0443,
+        "r_early_per_seed": [
+          0.0886,
+          0.0
+        ],
+        "r_mid": 0.06,
+        "r_mid_per_seed": [
+          0.1201,
+          0.0
+        ],
+        "r_late": 0.0882,
+        "r_late_per_seed": [
+          0.1764,
+          0.0
+        ],
+        "rho_early": 0.029,
+        "rho_early_per_seed": [
+          0.0579,
+          0.0
+        ],
+        "rho_mid": 0.0423,
+        "rho_mid_per_seed": [
+          0.0845,
+          0.0
+        ],
+        "rho_late": 0.0664,
+        "rho_late_per_seed": [
+          0.1327,
+          0.0
+        ],
+        "grp_rank_rho_early": 0.0543,
+        "grp_rank_rho_early_per_seed": [
+          0.1086,
+          0.0
+        ],
+        "grp_rank_rho_mid": 0.0707,
+        "grp_rank_rho_mid_per_seed": [
+          0.1415,
+          0.0
+        ],
+        "grp_rank_rho_late": 0.1011,
+        "grp_rank_rho_late_per_seed": [
+          0.2021,
+          0.0
+        ],
+        "val_mse": 0.9155,
+        "val_mse_per_seed": [
+          0.9648,
+          0.8662
+        ]
+      }
+    },
+    "c": {
+      "n_seeds": 2,
+      "seeds": [
+        0,
+        1
+      ],
+      "final2": {
+        "r_all": 0.7114,
+        "r_all_per_seed": [
+          0.715,
+          0.7078
+        ],
+        "rho_all": 0.6143,
+        "rho_all_per_seed": [
+          0.6162,
+          0.6125
+        ],
+        "r_early": 0.6396,
+        "r_early_per_seed": [
+          0.6424,
+          0.6368
+        ],
+        "r_mid": 0.709,
+        "r_mid_per_seed": [
+          0.7129,
+          0.7051
+        ],
+        "r_late": 0.7742,
+        "r_late_per_seed": [
+          0.7781,
+          0.7702
+        ],
+        "rho_early": 0.5507,
+        "rho_early_per_seed": [
+          0.5509,
+          0.5506
+        ],
+        "rho_mid": 0.62,
+        "rho_mid_per_seed": [
+          0.6216,
+          0.6185
+        ],
+        "rho_late": 0.6741,
+        "rho_late_per_seed": [
+          0.6773,
+          0.6709
+        ],
+        "grp_rank_rho_early": 0.5407,
+        "grp_rank_rho_early_per_seed": [
+          0.5382,
+          0.5431
+        ],
+        "grp_rank_rho_mid": 0.6164,
+        "grp_rank_rho_mid_per_seed": [
+          0.6184,
+          0.6144
+        ],
+        "grp_rank_rho_late": 0.6509,
+        "grp_rank_rho_late_per_seed": [
+          0.6482,
+          0.6536
+        ],
+        "val_mse": 0.4709,
+        "val_mse_per_seed": [
+          0.4661,
+          0.4758
+        ]
+      },
+      "official": {
+        "r_all": 0.1406,
+        "r_all_per_seed": [
+          0.1368,
+          0.1443
+        ],
+        "rho_all": 0.1052,
+        "rho_all_per_seed": [
+          0.1035,
+          0.1069
+        ],
+        "r_early": 0.09,
+        "r_early_per_seed": [
+          0.0911,
+          0.0889
+        ],
+        "r_mid": 0.1242,
+        "r_mid_per_seed": [
+          0.1199,
+          0.1286
+        ],
+        "r_late": 0.1885,
+        "r_late_per_seed": [
+          0.1823,
+          0.1947
+        ],
+        "rho_early": 0.0634,
+        "rho_early_per_seed": [
+          0.0621,
+          0.0647
+        ],
+        "rho_mid": 0.0938,
+        "rho_mid_per_seed": [
+          0.0929,
+          0.0948
+        ],
+        "rho_late": 0.1468,
+        "rho_late_per_seed": [
+          0.1445,
+          0.1492
+        ],
+        "grp_rank_rho_early": 0.1144,
+        "grp_rank_rho_early_per_seed": [
+          0.1121,
+          0.1168
+        ],
+        "grp_rank_rho_mid": 0.157,
+        "grp_rank_rho_mid_per_seed": [
+          0.1507,
+          0.1634
+        ],
+        "grp_rank_rho_late": 0.2208,
+        "grp_rank_rho_late_per_seed": [
+          0.2134,
+          0.2281
+        ],
+        "val_mse": 0.9351,
+        "val_mse_per_seed": [
+          0.9387,
+          0.9315
+        ]
+      }
+    }
+  },
+  "runs": [
+    {
+      "mode": "value_v2_e2e_resbn128x40",
+      "variant": "a",
+      "seed": 0,
+      "steps": 30000,
+      "score_scale": 30.0,
+      "conditioning": false,
+      "train_data": "final2_only",
+      "n_val_final2": 72529,
+      "n_val_official": 584841,
+      "src_ids": null,
+      "metrics_final2": {
+        "r_all": 0.7118,
+        "rho_all": 0.655,
+        "r_early": 0.635,
+        "rho_early": 0.5743,
+        "r_mid": 0.7101,
+        "rho_mid": 0.6619,
+        "r_late": 0.7771,
+        "rho_late": 0.7239,
+        "grp_rank_rho_early": 0.5656,
+        "grp_games_early": 1227,
+        "grp_rank_rho_mid": 0.6422,
+        "grp_games_mid": 1216,
+        "grp_rank_rho_late": 0.6852,
+        "grp_games_late": 1228,
+        "val_mse": 0.4745
+      },
+      "metrics_official": {
+        "r_all": 0.0433,
+        "rho_all": 0.0297,
+        "r_early": 0.0342,
+        "rho_early": 0.0212,
+        "r_mid": 0.0464,
+        "rho_mid": 0.0284,
+        "r_late": 0.0482,
+        "rho_late": 0.0374,
+        "grp_rank_rho_early": 0.0406,
+        "grp_games_early": 9819,
+        "grp_rank_rho_mid": 0.049,
+        "grp_games_mid": 9798,
+        "grp_rank_rho_late": 0.0541,
+        "grp_games_late": 9816,
+        "val_mse": 1.1307
+      },
+      "seconds": 2940.6
+    },
+    {
+      "mode": "value_v2_e2e_resbn128x40",
+      "variant": "a",
+      "seed": 1,
+      "steps": 30000,
+      "score_scale": 30.0,
+      "conditioning": false,
+      "train_data": "final2_only",
+      "n_val_final2": 72529,
+      "n_val_official": 584841,
+      "src_ids": null,
+      "metrics_final2": {
+        "r_all": 0.7127,
+        "rho_all": 0.6534,
+        "r_early": 0.6372,
+        "rho_early": 0.5736,
+        "r_mid": 0.7094,
+        "rho_mid": 0.6563,
+        "r_late": 0.7786,
+        "rho_late": 0.7251,
+        "grp_rank_rho_early": 0.5663,
+        "grp_games_early": 1227,
+        "grp_rank_rho_mid": 0.6369,
+        "grp_games_mid": 1216,
+        "grp_rank_rho_late": 0.6961,
+        "grp_games_late": 1228,
+        "val_mse": 0.4754
+      },
+      "metrics_official": {
+        "r_all": 0.0375,
+        "rho_all": 0.0228,
+        "r_early": 0.0352,
+        "rho_early": 0.0195,
+        "r_mid": 0.0385,
+        "rho_mid": 0.0216,
+        "r_late": 0.0389,
+        "rho_late": 0.0261,
+        "grp_rank_rho_early": 0.0522,
+        "grp_games_early": 9819,
+        "grp_rank_rho_mid": 0.0518,
+        "grp_games_mid": 9798,
+        "grp_rank_rho_late": 0.0438,
+        "grp_games_late": 9816,
+        "val_mse": 1.1336
+      },
+      "seconds": 2967.3
+    },
+    {
+      "mode": "value_v2_e2e_resbn128x40",
+      "variant": "b",
+      "seed": 0,
+      "steps": 30000,
+      "score_scale": 30.0,
+      "conditioning": false,
+      "train_data": "final2+official_50_50",
+      "n_val_final2": 72529,
+      "n_val_official": 584841,
+      "src_ids": null,
+      "metrics_final2": {
+        "r_all": 0.7132,
+        "rho_all": 0.618,
+        "r_early": 0.6396,
+        "rho_early": 0.553,
+        "r_mid": 0.7105,
+        "rho_mid": 0.622,
+        "r_late": 0.7775,
+        "rho_late": 0.6786,
+        "grp_rank_rho_early": 0.543,
+        "grp_games_early": 1227,
+        "grp_rank_rho_mid": 0.6068,
+        "grp_games_mid": 1216,
+        "grp_rank_rho_late": 0.6529,
+        "grp_games_late": 1228,
+        "val_mse": 0.4664
+      },
+      "metrics_official": {
+        "r_all": 0.1337,
+        "rho_all": 0.0956,
+        "r_early": 0.0886,
+        "rho_early": 0.0579,
+        "r_mid": 0.1201,
+        "rho_mid": 0.0845,
+        "r_late": 0.1764,
+        "rho_late": 0.1327,
+        "grp_rank_rho_early": 0.1086,
+        "grp_games_early": 9819,
+        "grp_rank_rho_mid": 0.1415,
+        "grp_games_mid": 9798,
+        "grp_rank_rho_late": 0.2021,
+        "grp_games_late": 9816,
+        "val_mse": 0.9648
+      },
+      "seconds": 2950.0
+    },
+    {
+      "mode": "value_v2_e2e_resbn128x40",
+      "variant": "b",
+      "seed": 1,
+      "steps": 30000,
+      "score_scale": 30.0,
+      "conditioning": false,
+      "train_data": "final2+official_50_50",
+      "n_val_final2": 72529,
+      "n_val_official": 584841,
+      "src_ids": null,
+      "metrics_final2": {
+        "r_all": 0.0,
+        "rho_all": 0.0,
+        "r_early": 0.0,
+        "rho_early": 0.0,
+        "r_mid": 0.0,
+        "rho_mid": 0.0,
+        "r_late": 0.0,
+        "rho_late": 0.0,
+        "grp_rank_rho_early": 0.0,
+        "grp_games_early": 1227,
+        "grp_rank_rho_mid": 0.0,
+        "grp_games_mid": 1216,
+        "grp_rank_rho_late": 0.0,
+        "grp_games_late": 1228,
+        "val_mse": 0.9207
+      },
+      "metrics_official": {
+        "r_all": 0.0,
+        "rho_all": 0.0,
+        "r_early": 0.0,
+        "rho_early": 0.0,
+        "r_mid": 0.0,
+        "rho_mid": 0.0,
+        "r_late": 0.0,
+        "rho_late": 0.0,
+        "grp_rank_rho_early": 0.0,
+        "grp_games_early": 9819,
+        "grp_rank_rho_mid": 0.0,
+        "grp_games_mid": 9798,
+        "grp_rank_rho_late": 0.0,
+        "grp_games_late": 9816,
+        "val_mse": 0.8662
+      },
+      "seconds": 2895.1
+    },
+    {
+      "mode": "value_v2_e2e_resbn128x40",
+      "variant": "c",
+      "seed": 0,
+      "steps": 30000,
+      "score_scale": 30.0,
+      "conditioning": true,
+      "train_data": "final2+official_50_50",
+      "n_val_final2": 72529,
+      "n_val_official": 584841,
+      "src_ids": "final2 bot 0-3, official-human 4",
+      "metrics_final2": {
+        "r_all": 0.715,
+        "rho_all": 0.6162,
+        "r_early": 0.6424,
+        "rho_early": 0.5509,
+        "r_mid": 0.7129,
+        "rho_mid": 0.6216,
+        "r_late": 0.7781,
+        "rho_late": 0.6773,
+        "grp_rank_rho_early": 0.5382,
+        "grp_games_early": 1227,
+        "grp_rank_rho_mid": 0.6184,
+        "grp_games_mid": 1216,
+        "grp_rank_rho_late": 0.6482,
+        "grp_games_late": 1228,
+        "val_mse": 0.4661
+      },
+      "metrics_official": {
+        "r_all": 0.1368,
+        "rho_all": 0.1035,
+        "r_early": 0.0911,
+        "rho_early": 0.0621,
+        "r_mid": 0.1199,
+        "rho_mid": 0.0929,
+        "r_late": 0.1823,
+        "rho_late": 0.1445,
+        "grp_rank_rho_early": 0.1121,
+        "grp_games_early": 9819,
+        "grp_rank_rho_mid": 0.1507,
+        "grp_games_mid": 9798,
+        "grp_rank_rho_late": 0.2134,
+        "grp_games_late": 9816,
+        "val_mse": 0.9387
+      },
+      "seconds": 3925.6
+    },
+    {
+      "mode": "value_v2_e2e_resbn128x40",
+      "variant": "c",
+      "seed": 1,
+      "steps": 30000,
+      "score_scale": 30.0,
+      "conditioning": true,
+      "train_data": "final2+official_50_50",
+      "n_val_final2": 72529,
+      "n_val_official": 584841,
+      "src_ids": "final2 bot 0-3, official-human 4",
+      "metrics_final2": {
+        "r_all": 0.7078,
+        "rho_all": 0.6125,
+        "r_early": 0.6368,
+        "rho_early": 0.5506,
+        "r_mid": 0.7051,
+        "rho_mid": 0.6185,
+        "r_late": 0.7702,
+        "rho_late": 0.6709,
+        "grp_rank_rho_early": 0.5431,
+        "grp_games_early": 1227,
+        "grp_rank_rho_mid": 0.6144,
+        "grp_games_mid": 1216,
+        "grp_rank_rho_late": 0.6536,
+        "grp_games_late": 1228,
+        "val_mse": 0.4758
+      },
+      "metrics_official": {
+        "r_all": 0.1443,
+        "rho_all": 0.1069,
+        "r_early": 0.0889,
+        "rho_early": 0.0647,
+        "r_mid": 0.1286,
+        "rho_mid": 0.0948,
+        "r_late": 0.1947,
+        "rho_late": 0.1492,
+        "grp_rank_rho_early": 0.1168,
+        "grp_games_early": 9819,
+        "grp_rank_rho_mid": 0.1634,
+        "grp_games_mid": 9798,
+        "grp_rank_rho_late": 0.2281,
+        "grp_games_late": 9816,
+        "val_mse": 0.9315
+      },
+      "seconds": 3903.5
+    }
+  ],
+  "verdict": {
+    "v1_final2": {
+      "r_all": 0.7118,
+      "r_late": 0.7771
+    },
+    "a_repro_final2": {
+      "r_all": 0.7123,
+      "r_late": 0.7778
+    },
+    "best_v2_variant_on_final2": "c",
+    "best_v2_final2": {
+      "r_all": 0.7114,
+      "r_late": 0.7742
+    },
+    "more_data_helps_final2_b_minus_a_r_all": -0.3557,
+    "conditioning_helps_final2_c_minus_b_r_all": 0.3548,
+    "conditioning_helps_official_c_minus_b_r_all": 0.0737,
+    "cross_domain_a_on_official_r_all": 0.0404,
+    "beats_v1_r_all": false,
+    "beats_v1_r_late": false
+  }
+}

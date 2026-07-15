@@ -1,0 +1,13 @@
+{
+  "cand": [
+    "jd_lam1.0_s0.pkl",
+    "jd_lam1.0_s1.pkl",
+    "jd_lam1.0_s2.pkl"
+  ],
+  "ref": "aug_128x40_s0.pkl",
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer)",
+  "games": 2000,
+  "placement_pts": 2.4905,
+  "seconds": 73.3,
+  "seed0": 301500
+}

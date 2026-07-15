@@ -1,0 +1,37 @@
+{
+  "policy": "random",
+  "n_games_per_level": 8,
+  "max_plies": 300,
+  "levels": {
+    "1": {
+      "score": 0.0,
+      "elo_diff_vs_level": -1199.8,
+      "w_d_l": [
+        0,
+        0,
+        8
+      ],
+      "sec": 0.2
+    },
+    "64": {
+      "score": 0.0,
+      "elo_diff_vs_level": -1199.8,
+      "w_d_l": [
+        0,
+        0,
+        8
+      ],
+      "sec": 0.3
+    },
+    "1024": {
+      "score": 0.0,
+      "elo_diff_vs_level": -1199.8,
+      "w_d_l": [
+        0,
+        0,
+        8
+      ],
+      "sec": 0.4
+    }
+  }
+}

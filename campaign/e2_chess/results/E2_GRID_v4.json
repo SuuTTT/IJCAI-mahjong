@@ -1,0 +1,238 @@
+{
+  "design": "E2 grid v4: teacher_ens = games-weighted mean over all available teacher trios (trioA/B: s0-s5; trioE/F: independent s6-s11); student trios student400 (s10-s12, from s0-s5) and student2 (s20-s22 REPLICATION, from s6-s11); gap = student_ens - teacher_ens per Stockfish node level, averaged over levels",
+  "prediction": "student-ens minus teacher-ens gap grows as source rating drops",
+  "bands_low_to_high": [
+    "0800-1200",
+    "1600-2000",
+    "2400plus"
+  ],
+  "bands": {
+    "0800-1200": {
+      "n_games_per_level": {
+        "trioA": 200,
+        "trioB": 200,
+        "trioE": 400,
+        "trioF": 400,
+        "student400": 400,
+        "student2": 400
+      },
+      "teacher_trios_used": [
+        "trioA",
+        "trioB",
+        "trioE",
+        "trioF"
+      ],
+      "student_trios_used": [
+        "student400",
+        "student2"
+      ],
+      "levels": {
+        "16": {
+          "teacher_trios": {
+            "trioA": 0.2075,
+            "trioB": 0.0025,
+            "trioE": 0.0013,
+            "trioF": 0.0
+          },
+          "teacher_ens_weighted": 0.0354,
+          "single_teacher": 0.005,
+          "student400": 0.1263,
+          "gap_student400": 0.0909,
+          "student2": 0.0013,
+          "gap_student2": -0.0341
+        },
+        "64": {
+          "teacher_trios": {
+            "trioA": 0.2025,
+            "trioB": 0.01,
+            "trioE": 0.2238,
+            "trioF": 0.0125
+          },
+          "teacher_ens_weighted": 0.1142,
+          "single_teacher": 0.09,
+          "student400": 0.02,
+          "gap_student400": -0.0942,
+          "student2": 0.2062,
+          "gap_student2": 0.092
+        },
+        "256": {
+          "teacher_trios": {
+            "trioA": 0.065,
+            "trioB": 0.065,
+            "trioE": 0.0425,
+            "trioF": 0.045
+          },
+          "teacher_ens_weighted": 0.0508,
+          "single_teacher": 0.055,
+          "student400": 0.065,
+          "gap_student400": 0.0142,
+          "student2": 0.0725,
+          "gap_student2": 0.0217
+        }
+      },
+      "trio_spread": 0.2138,
+      "mean_gap_student400": 0.0036,
+      "mean_gap_student2": 0.0265,
+      "mean_gap_pooled": 0.0151
+    },
+    "1600-2000": {
+      "n_games_per_level": {
+        "trioA": 200,
+        "trioB": 200,
+        "trioE": 400,
+        "trioF": 400,
+        "student400": 400,
+        "student2": 400
+      },
+      "teacher_trios_used": [
+        "trioA",
+        "trioB",
+        "trioE",
+        "trioF"
+      ],
+      "student_trios_used": [
+        "student400",
+        "student2"
+      ],
+      "levels": {
+        "16": {
+          "teacher_trios": {
+            "trioA": 0.2475,
+            "trioB": 0.4975,
+            "trioE": 0.4975,
+            "trioF": 0.0125
+          },
+          "teacher_ens_weighted": 0.2942,
+          "single_teacher": 0.2475,
+          "student400": 0.2475,
+          "gap_student400": -0.0467,
+          "student2": 0.0037,
+          "gap_student2": -0.2905
+        },
+        "64": {
+          "teacher_trios": {
+            "trioA": 0.02,
+            "trioB": 0.3375,
+            "trioE": 0.07,
+            "trioF": 0.0125
+          },
+          "teacher_ens_weighted": 0.0871,
+          "single_teacher": 0.015,
+          "student400": 0.2562,
+          "gap_student400": 0.1691,
+          "student2": 0.0088,
+          "gap_student2": -0.0783
+        },
+        "256": {
+          "teacher_trios": {
+            "trioA": 0.1,
+            "trioB": 0.0875,
+            "trioE": 0.0912,
+            "trioF": 0.1075
+          },
+          "teacher_ens_weighted": 0.0975,
+          "single_teacher": 0.1,
+          "student400": 0.1087,
+          "gap_student400": 0.0112,
+          "student2": 0.1075,
+          "gap_student2": 0.01
+        }
+      },
+      "trio_spread": 0.485,
+      "mean_gap_student400": 0.0446,
+      "mean_gap_student2": -0.1196,
+      "mean_gap_pooled": -0.0375
+    },
+    "2400plus": {
+      "n_games_per_level": {
+        "trioA": 200,
+        "trioB": 200,
+        "trioE": 400,
+        "trioF": 400,
+        "student400": 400,
+        "student2": 400
+      },
+      "teacher_trios_used": [
+        "trioA",
+        "trioB",
+        "trioE",
+        "trioF"
+      ],
+      "student_trios_used": [
+        "student400",
+        "student2"
+      ],
+      "levels": {
+        "16": {
+          "teacher_trios": {
+            "trioA": 0.005,
+            "trioB": 0.49,
+            "trioE": 0.3113,
+            "trioF": 0.1713
+          },
+          "teacher_ens_weighted": 0.2434,
+          "single_teacher": 0.005,
+          "student400": 0.25,
+          "gap_student400": 0.0066,
+          "student2": 0.1313,
+          "gap_student2": -0.1121
+        },
+        "64": {
+          "teacher_trios": {
+            "trioA": 0.2375,
+            "trioB": 0.35,
+            "trioE": 0.0163,
+            "trioF": 0.2762
+          },
+          "teacher_ens_weighted": 0.1954,
+          "single_teacher": 0.01,
+          "student400": 0.5375,
+          "gap_student400": 0.3421,
+          "student2": 0.0238,
+          "gap_student2": -0.1716
+        },
+        "256": {
+          "teacher_trios": {
+            "trioA": 0.1225,
+            "trioB": 0.1825,
+            "trioE": 0.1537,
+            "trioF": 0.1288
+          },
+          "teacher_ens_weighted": 0.145,
+          "single_teacher": 0.1275,
+          "student400": 0.1575,
+          "gap_student400": 0.0125,
+          "student2": 0.15,
+          "gap_student2": 0.005
+        }
+      },
+      "trio_spread": 0.485,
+      "mean_gap_student400": 0.1204,
+      "mean_gap_student2": -0.0929,
+      "mean_gap_pooled": 0.0138
+    }
+  },
+  "missing": [],
+  "gap_by_band_pooled": {
+    "0800-1200": 0.0151,
+    "1600-2000": -0.0375,
+    "2400plus": 0.0138
+  },
+  "gap_low_minus_high_pooled": 0.0013,
+  "verdict_pooled": "PARTIAL: gap(lowest band) > gap(highest band) but not monotone across all three",
+  "gap_by_band_student400": {
+    "0800-1200": 0.0036,
+    "1600-2000": 0.0446,
+    "2400plus": 0.1204
+  },
+  "gap_low_minus_high_student400": -0.1168,
+  "verdict_student400": "REVERSED (monotone): gap strictly INCREASES with source rating",
+  "gap_by_band_student2": {
+    "0800-1200": 0.0265,
+    "1600-2000": -0.1196,
+    "2400plus": -0.0929
+  },
+  "gap_low_minus_high_student2": 0.1194,
+  "verdict_student2": "PARTIAL: gap(lowest band) > gap(highest band) but not monotone across all three",
+  "replication": "DIVERGES: student400 -> REVERSED (monotone): gap strictly INCREASES with source rating ; student2 -> PARTIAL: gap(lowest band) > gap(highest band) but not monotone across all three"
+}

@@ -1,0 +1,61 @@
+{
+ "now": [
+  {
+   "t": "Warpath M8+M10",
+   "d": "fog of war, replays into shared archive, queued production + placement ghosts (roadmap #1)",
+   "tag": "game"
+  },
+  {
+   "t": "Warpath PPO baseline",
+   "d": "reuse league harness; scripted commander = calibration anchor (roadmap #2)",
+   "tag": "training"
+  },
+  {
+   "t": "SMAX hard-map recipe",
+   "d": "curriculum 8m->5m_vs_6m, 40M steps, ent sweep; goal >=60% both marine maps (roadmap #3)",
+   "tag": "training"
+  },
+  {
+   "t": "Boom polish",
+   "d": "per-card sight ranges + balance telemetry page (roadmap #4)",
+   "tag": "engine"
+  },
+  {
+   "t": "Weekly Boom cup #1",
+   "d": "tournament scheduler + bracket page (roadmap #5)",
+   "tag": "platform"
+  },
+  {
+   "t": "League (continuous)",
+   "d": "champion gen 166 (v15-era) defending; window cadence automated",
+   "tag": "training"
+  }
+ ],
+ "next": [
+  {
+   "t": "hok_env 1v1 adapter (Kaiwu-mimic)",
+   "d": "hero/minion/tower entities from hok_env obs; iso profile",
+   "tag": "renderer"
+  },
+  {
+   "t": "Bigger-network league track",
+   "d": "moved from priority to todo per owner",
+   "tag": "training"
+  },
+  {
+   "t": "Swap2 gomoku division + weekly tournament",
+   "d": "todo",
+   "tag": "platform"
+  },
+  {
+   "t": "Clone v2 + capped training slots",
+   "d": "todo",
+   "tag": "feature"
+  },
+  {
+   "t": "Card-family stage (Hold'em/Mahjong/YGO)",
+   "d": "zones + token entities + per-seat reveal filtering",
+   "tag": "renderer"
+  }
+ ]
+}

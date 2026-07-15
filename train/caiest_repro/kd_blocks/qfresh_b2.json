@@ -1,0 +1,13 @@
+{
+  "cand": [
+    "quarter_s0.pkl",
+    "quarter_s1.pkl",
+    "quarter_s2.pkl"
+  ],
+  "ref": "aug_128x40_s0.pkl",
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer)",
+  "games": 8000,
+  "placement_pts": 2.4864,
+  "seconds": 603.5,
+  "seed0": 764000
+}

@@ -1,0 +1,15 @@
+{
+  "eps": 0.5,
+  "nseeds": 3000,
+  "seed0": 10000,
+  "seat": 0,
+  "dev": "cuda",
+  "single": 0.46433,
+  "seed_ens": 0.38667,
+  "distill_ens": 0.45767,
+  "distill_ensB": 0.45967,
+  "gap": 0.071,
+  "gap_ci95": 0.0127,
+  "gap_B": 0.073,
+  "calibration_delta": 0.0
+}

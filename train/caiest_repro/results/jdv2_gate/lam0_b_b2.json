@@ -1,0 +1,18 @@
+{
+  "cand": [
+    "jd_lam0_s0.pkl",
+    "jd_lam0_s1.pkl"
+  ],
+  "ref": [
+    "aug_128x40_s0.pkl"
+  ],
+  "rule": "mean-softmax-over-legal (deploy ensemble_infer); ref same rule if >1",
+  "games": 2000,
+  "placement_pts": 2.5362,
+  "cand_score_mean": 0.8925,
+  "ref_score_mean": -0.2975,
+  "score_diff": 1.19,
+  "games_per_hour": 80661.2,
+  "seconds": 89.3,
+  "seed0": 301000
+}

@@ -1,0 +1,2023 @@
+{
+ "pack": "boom-base",
+ "style": "ludus-look v1: painterly-flat, readable top-down silhouettes, team color via neutral gray masks",
+ "entries": {
+  "ground_grass.png": {
+   "sha256": "966ed99fc43a1bcc",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "ground_grass_dark.png": {
+   "sha256": "439ef00108a4e597",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "river_water.png": {
+   "sha256": "cea0183b68fdb195",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "bridge_planks.png": {
+   "sha256": "aef2ad97a475c0e1",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "tower_pad.png": {
+   "sha256": "5814bd41219d375c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "card_frame.png": {
+   "sha256": "42359a16d1711966",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "card_frame_gold.png": {
+   "sha256": "3cfb88d877c73a00",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "elixir_drop.png": {
+   "sha256": "106c4db8946c10e8",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "elixir_bar.png": {
+   "sha256": "9b0924794fa23730",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "hp_frame.png": {
+   "sha256": "447aaa4d32e5154e",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch1"
+   }
+  },
+  "unit_ramhound.png": {
+   "sha256": "022f6006a22e9313",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "unit_frostsprite.png": {
+   "sha256": "cdad3e4154e12d4d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "unit_sporelings.png": {
+   "sha256": "44b38302a818dde1",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "unit_watchpost.png": {
+   "sha256": "0bbb36b7b78b4d9b",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "unit_longshot.png": {
+   "sha256": "834bbf5d45f541e5",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "unit_shellfort.png": {
+   "sha256": "353f48d17ddd1969",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "unit_lancer.png": {
+   "sha256": "5efe8b8dda103eb1",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "fx_fireburst.png": {
+   "sha256": "c70b9de1e954f8df",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "fx_shockwave.png": {
+   "sha256": "0c66cd8a88528038",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "portrait_ramhound.png": {
+   "sha256": "b50aba1e11d4f5e1",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "batch2"
+   }
+  },
+  "models/index.json": {
+   "added": "2026-07-05",
+   "license": "ours (registry file)",
+   "sha256": "-"
+  },
+  "models/tower_king.glb": {
+   "sha256": "76aea9888ca729ea",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/tower_princess.glb": {
+   "sha256": "b06b84cb19b6c297",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_bulwark.glb": {
+   "sha256": "9fd05c51bcdc0cd5",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll0",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_frostsprite.glb": {
+   "sha256": "e050521079bc05b2",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll0",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_lancer.glb": {
+   "sha256": "7d3d65f8902c1595",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll0",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_longshot.glb": {
+   "sha256": "314222d350c7c3ca",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll0",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_ramhound.glb": {
+   "sha256": "eb16b47436f43919",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll0",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_shellfort.glb": {
+   "sha256": "21a098271162f2db",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll0",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_watchpost.glb": {
+   "sha256": "edd691e90c310a60",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll0",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_ashhorde.glb": {
+   "sha256": "49b9885b413755aa",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_boarband.glb": {
+   "sha256": "e126f6ff0f98af0d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_bonekites.glb": {
+   "sha256": "1f29baca3563a63d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_boomkiln.glb": {
+   "sha256": "ef63428b06ca02e3",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_burrower.glb": {
+   "sha256": "85ce280cc13fad02",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_cinderpup.glb": {
+   "sha256": "88a4b339cf7e856f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_cindersprite.glb": {
+   "sha256": "ea7b35f02f40de6d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_cloudcalf.glb": {
+   "sha256": "0fc1d8d590a1dd40",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_dart_frog.glb": {
+   "sha256": "c5cc2fb0c6e47407",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_duneworm.glb": {
+   "sha256": "f9cf18ad6c72b282",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_duskblade.glb": {
+   "sha256": "14356c9e30e6f02d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_emberwing.glb": {
+   "sha256": "be20af00d9e1ac75",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_emberwitch.glb": {
+   "sha256": "33c8deec186c45de",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_flakbot.glb": {
+   "sha256": "aabd0fc7326a9349",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_frostcaller.glb": {
+   "sha256": "aa1d08c2ba2a6dce",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_gnatcloud.glb": {
+   "sha256": "93d0857bd02fbd3c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_golemite.glb": {
+   "sha256": "c39efddaf3f6ad1c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_gravewalker.glb": {
+   "sha256": "060baa6a90c892bc",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_headsman.glb": {
+   "sha256": "aada66a436417336",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_hexarcher.glb": {
+   "sha256": "7c4d97a143397d49",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_ironhide.glb": {
+   "sha256": "e9c947b67a7e5501",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_marrowlings.glb": {
+   "sha256": "9fd2478e18e7ef20",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_mortar_crab.glb": {
+   "sha256": "3a4cedc0fa3f3031",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_mossback.glb": {
+   "sha256": "0d6839d357eb5559",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_prismgunner.glb": {
+   "sha256": "e7fa6e480ad3740c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_quillquick.glb": {
+   "sha256": "ae5fcb2aa1ff1f1c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_ratpack.glb": {
+   "sha256": "026aebd50146a68d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_rockhurler.glb": {
+   "sha256": "93b4b9feb554625d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_siege_snail.glb": {
+   "sha256": "b0e18d15e07266fb",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_skewerhulk.glb": {
+   "sha256": "17b1a6a78942b00c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_skyray.glb": {
+   "sha256": "c534ca5ea6cb34ff",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_skystinger.glb": {
+   "sha256": "77e8a58138f4d87e",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_sparkmaw.glb": {
+   "sha256": "26451736c5f6060f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_stormkite.glb": {
+   "sha256": "b43a1f341cbac438",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_tesla_bloom.glb": {
+   "sha256": "dce0b5a19fa58180",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_thistlekin.glb": {
+   "sha256": "967ea2ab86f3ec6f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_thornsling.glb": {
+   "sha256": "d9fe8e38dd782a9f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_timberbeast.glb": {
+   "sha256": "b7c805639d38b7d9",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_triplet_muses.glb": {
+   "sha256": "f61f5ef2b610f098",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_voltmage.glb": {
+   "sha256": "dbe353c12bc4149f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_voltsprite.glb": {
+   "sha256": "d720c404ef5db504",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_wallgnashers.glb": {
+   "sha256": "ce28344deb9c399f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_whirligig.glb": {
+   "sha256": "c3e0436649c92678",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "rolls1-5",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_wispflock.glb": {
+   "sha256": "50a5a2366719cb28",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/unit_zephyrling.glb": {
+   "sha256": "d4ae09dde7306683",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "models/proj_arrow.glb": {
+   "sha256": "4964a1064d147edb",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_bolt.glb": {
+   "sha256": "e7823b3b2b999ddb",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_bomb.glb": {
+   "sha256": "bfdfa9a83cb62872",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_boulder.glb": {
+   "sha256": "df0c3b96117a4367",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_cannonball.glb": {
+   "sha256": "e1b9a0cbe6ad380a",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_fireball.glb": {
+   "sha256": "527bb0a392bc5725",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_shard.glb": {
+   "sha256": "b3e4908635fa8f74",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_snowball.glb": {
+   "sha256": "b98d130a6c2c0107",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_spear.glb": {
+   "sha256": "0cfdce2e6dbe1f45",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/proj_zapbolt.glb": {
+   "sha256": "7584b98c2e9c07d6",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d (owner)",
+    "prompt_id": "roll6"
+   }
+  },
+  "models/unit_sporelings.glb": {
+   "sha256": "0f804b55f5424552",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "text-to-3d rig+animate (owner)",
+    "prompt_id": "roll1b-single",
+    "clips": [
+     "idle",
+     "walk",
+     "attack"
+    ]
+   }
+  },
+  "portraits/portrait_ashhorde.png": {
+   "sha256": "1bd56d9c62e61a61",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 10)"
+   }
+  },
+  "portraits/portrait_gnatcloud.png": {
+   "sha256": "ee0577f6f745350d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 11)"
+   }
+  },
+  "portraits/portrait_zephyrling.png": {
+   "sha256": "7c09c7df7bba391b",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 12)"
+   }
+  },
+  "portraits/portrait_wispflock.png": {
+   "sha256": "247bdf5533465e3c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 13)"
+   }
+  },
+  "portraits/portrait_skyray.png": {
+   "sha256": "0bdd70ae56eedfa2",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 14)"
+   }
+  },
+  "portraits/portrait_emberwing.png": {
+   "sha256": "50bd2e2e2f812e0c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 15)"
+   }
+  },
+  "portraits/portrait_bonekites.png": {
+   "sha256": "9c31c21754a6b242",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 16)"
+   }
+  },
+  "portraits/portrait_cloudcalf.png": {
+   "sha256": "b2b65e779ec3fab8",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 17)"
+   }
+  },
+  "portraits/portrait_stormkite.png": {
+   "sha256": "77c87f435d8f66f9",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 18)"
+   }
+  },
+  "portraits/portrait_whirligig.png": {
+   "sha256": "d2dd8180e1fc4a7c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 19)"
+   }
+  },
+  "portraits/portrait_emberwitch.png": {
+   "sha256": "4f7f33f0f8daca08",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 20)"
+   }
+  },
+  "portraits/portrait_cinderpup.png": {
+   "sha256": "34bcfae5728de409",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 21)"
+   }
+  },
+  "portraits/portrait_headsman.png": {
+   "sha256": "c4a30f953190edee",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 22)"
+   }
+  },
+  "portraits/portrait_rockhurler.png": {
+   "sha256": "a41f91bb3f3aec05",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 23)"
+   }
+  },
+  "portraits/portrait_sparkmaw.png": {
+   "sha256": "dbf375b63a87a384",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 24)"
+   }
+  },
+  "portraits/portrait_longshot.png": {
+   "sha256": "41e6c30cbc0e3203",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 25)"
+   }
+  },
+  "portraits/portrait_hexarcher.png": {
+   "sha256": "9317169dbb2da681",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 26)"
+   }
+  },
+  "portraits/portrait_quillquick.png": {
+   "sha256": "1c5fefffcbee3ccc",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 27)"
+   }
+  },
+  "portraits/portrait_dart_frog.png": {
+   "sha256": "28f5ebe8ca09807e",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 28)"
+   }
+  },
+  "portraits/portrait_prismgunner.png": {
+   "sha256": "3e7e8a0e308fee46",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 29)"
+   }
+  },
+  "portraits/portrait_thornsling.png": {
+   "sha256": "dc5904df124fc753",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 30)"
+   }
+  },
+  "portraits/portrait_flakbot.png": {
+   "sha256": "bc00e9807e4923bd",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 31)"
+   }
+  },
+  "portraits/portrait_frostcaller.png": {
+   "sha256": "8c129c1745ab5e6f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 32)"
+   }
+  },
+  "portraits/portrait_voltmage.png": {
+   "sha256": "a6e323a26b49a8fd",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 33)"
+   }
+  },
+  "portraits/portrait_skewerhulk.png": {
+   "sha256": "550bb3f3331d0eb3",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 34)"
+   }
+  },
+  "portraits/portrait_timberbeast.png": {
+   "sha256": "f79200017feec7fa",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 35)"
+   }
+  },
+  "portraits/portrait_cindersprite.png": {
+   "sha256": "b7bf11198bd59c52",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 36)"
+   }
+  },
+  "portraits/portrait_frostsprite.png": {
+   "sha256": "de5e4c2e35cebcab",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 37)"
+   }
+  },
+  "portraits/portrait_voltsprite.png": {
+   "sha256": "d51f94f60658ff8b",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 38)"
+   }
+  },
+  "portraits/portrait_ramhound.png": {
+   "sha256": "9989248a716e2448",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 39)"
+   }
+  },
+  "portraits/portrait_siege_snail.png": {
+   "sha256": "9b588bf192947266",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 40)"
+   }
+  },
+  "portraits/portrait_duneworm.png": {
+   "sha256": "7af8adb522359a22",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 41)"
+   }
+  },
+  "portraits/portrait_boarband.png": {
+   "sha256": "d62e482d48901635",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 42)"
+   }
+  },
+  "portraits/portrait_triplet_muses.png": {
+   "sha256": "5a2978f913961feb",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 43)"
+   }
+  },
+  "portraits/portrait_wallgnashers.png": {
+   "sha256": "99734a161cc214c1",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 44)"
+   }
+  },
+  "portraits/portrait_burrower.png": {
+   "sha256": "7a6e2801cfc18c6d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 45)"
+   }
+  },
+  "portraits/portrait_gravewalker.png": {
+   "sha256": "14c432f856140e89",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 46)"
+   }
+  },
+  "portraits/portrait_watchpost.png": {
+   "sha256": "db7a64ba741a3bef",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 47)"
+   }
+  },
+  "portraits/portrait_tesla_bloom.png": {
+   "sha256": "430bae0431aeec8d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 48)"
+   }
+  },
+  "portraits/portrait_boomkiln.png": {
+   "sha256": "5339b5019a54e4a2",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 49)"
+   }
+  },
+  "portraits/portrait_mortar_crab.png": {
+   "sha256": "f5c0d2cfa31a4492",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 50)"
+   }
+  },
+  "portraits/portrait_skystinger.png": {
+   "sha256": "d92b50d75ae65bda",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 51)"
+   }
+  },
+  "portraits/portrait_fireburst.png": {
+   "sha256": "d7c39c84e7bf1361",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 52)"
+   }
+  },
+  "portraits/portrait_sparkarc.png": {
+   "sha256": "90f9ed4d9279de8a",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 53)"
+   }
+  },
+  "portraits/portrait_stonefall.png": {
+   "sha256": "b67292369b926432",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 54)"
+   }
+  },
+  "portraits/portrait_glacierlash.png": {
+   "sha256": "04e6b4db67281968",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 55)"
+   }
+  },
+  "portraits/portrait_shockwave.png": {
+   "sha256": "2a902e3c07c20732",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 56)"
+   }
+  },
+  "portraits/portrait_overclock.png": {
+   "sha256": "95b737acbf3a6d0f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 57)"
+   }
+  },
+  "portraits/portrait_frostfield.png": {
+   "sha256": "d0f631267fa2e84f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 58)"
+   }
+  },
+  "portraits/portrait_emberrain.png": {
+   "sha256": "5800be63cf105e50",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "portraits (card id 59)"
+   }
+  },
+  "portraits_thumb/portrait_ashhorde.png": {
+   "sha256": "791366381dfcd68b",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_boarband.png": {
+   "sha256": "8681d4d44f010226",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_bonekites.png": {
+   "sha256": "eb8d7667572ba679",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_boomkiln.png": {
+   "sha256": "a561216abc9b1b03",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_burrower.png": {
+   "sha256": "66ddc63eebbf2833",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_cinderpup.png": {
+   "sha256": "eb6dcda8edefaaf8",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_cindersprite.png": {
+   "sha256": "86634f44041d1e34",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_cloudcalf.png": {
+   "sha256": "95a55ea1033cb2eb",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_dart_frog.png": {
+   "sha256": "fb71e0c7ba1b637a",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_duneworm.png": {
+   "sha256": "39b6b5cf8c579338",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_emberrain.png": {
+   "sha256": "408dbbf1c4dde8eb",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_emberwing.png": {
+   "sha256": "c0d6850855097eb8",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_emberwitch.png": {
+   "sha256": "a27bc4a68de2f23a",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_fireburst.png": {
+   "sha256": "3acde88024fa39ca",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_flakbot.png": {
+   "sha256": "f1473a54e2e1df24",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_frostcaller.png": {
+   "sha256": "0670d8b261deff9d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_frostfield.png": {
+   "sha256": "0dfc52862402bd7a",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_frostsprite.png": {
+   "sha256": "8cd414ed87955e6e",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_glacierlash.png": {
+   "sha256": "e86f79907c0e587f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_gnatcloud.png": {
+   "sha256": "c77fe72682c5ab14",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_gravewalker.png": {
+   "sha256": "a97666fc4b108a9f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_headsman.png": {
+   "sha256": "885896ab481d8099",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_hexarcher.png": {
+   "sha256": "6e2ac4472eafa73d",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_longshot.png": {
+   "sha256": "aed54e03198fb687",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_mortar_crab.png": {
+   "sha256": "d199ea9c86c6a475",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_overclock.png": {
+   "sha256": "94b149bcfa9c9791",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_prismgunner.png": {
+   "sha256": "a39bac4e858aa01f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_quillquick.png": {
+   "sha256": "8fb850976d20bb49",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_ramhound.png": {
+   "sha256": "bd73a27223d94842",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_rockhurler.png": {
+   "sha256": "559fc0db3f544d6e",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_shockwave.png": {
+   "sha256": "8391ca2e72fb4796",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_siege_snail.png": {
+   "sha256": "a36263d219544e22",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_skewerhulk.png": {
+   "sha256": "818a33c0aca697b4",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_skyray.png": {
+   "sha256": "db6601b791be0bc0",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_skystinger.png": {
+   "sha256": "b1bf59bec5ebdefc",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_sparkarc.png": {
+   "sha256": "d9e6bdffe137f102",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_sparkmaw.png": {
+   "sha256": "2fd9bd7b0be82beb",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_stonefall.png": {
+   "sha256": "f1c4e8137cb0df2a",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_stormkite.png": {
+   "sha256": "eaab9a509ef3f5e6",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_tesla_bloom.png": {
+   "sha256": "528431ed5874427b",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_thornsling.png": {
+   "sha256": "91b0996749c25a4c",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_timberbeast.png": {
+   "sha256": "b1809d92f32e45f5",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_triplet_muses.png": {
+   "sha256": "1dd690a8be457c44",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_voltmage.png": {
+   "sha256": "8b6d779f38b9b569",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_voltsprite.png": {
+   "sha256": "a3377363dbbc2303",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_wallgnashers.png": {
+   "sha256": "12334a9d0f9fdb47",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_watchpost.png": {
+   "sha256": "e5c41b5357539908",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_whirligig.png": {
+   "sha256": "b75b6fc133b63265",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_wispflock.png": {
+   "sha256": "cad0d13aefac13a6",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits_thumb/portrait_zephyrling.png": {
+   "sha256": "c4aa1028afeb6c79",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "derived (thumbnail of portraits/)",
+    "prompt_id": "auto"
+   }
+  },
+  "portraits/portrait_bulwark.png": {
+   "sha256": "ee8caccbe8ef52a7",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_bulwark.png": {
+   "sha256": "ea49a9af2a60afef",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_ironhide.png": {
+   "sha256": "0e39102de719ee3f",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_ironhide.png": {
+   "sha256": "29f0dd4d4fd184f2",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_golemite.png": {
+   "sha256": "a85e19ef127a4b48",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_golemite.png": {
+   "sha256": "1475d52a6ade7d65",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_shellfort.png": {
+   "sha256": "35974b88e61654fc",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_shellfort.png": {
+   "sha256": "e55c35179cf6163b",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_duskblade.png": {
+   "sha256": "9e626ac3c24dabf6",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_duskblade.png": {
+   "sha256": "370f60c6982444f1",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_mossback.png": {
+   "sha256": "3917d9562f8fc896",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_mossback.png": {
+   "sha256": "29d673bf6227e6bd",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_sporelings.png": {
+   "sha256": "13e0dfc207eed649",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_sporelings.png": {
+   "sha256": "58a96dfc84da5e29",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_ratpack.png": {
+   "sha256": "cd0b032274a157df",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_ratpack.png": {
+   "sha256": "ddd75f2969d7d922",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_marrowlings.png": {
+   "sha256": "8ea69724e61fa3e4",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_marrowlings.png": {
+   "sha256": "16608bbba56a5730",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_thistlekin.png": {
+   "sha256": "03eb633116696df2",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_thistlekin.png": {
+   "sha256": "2fa3e20aee07ec11",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits/portrait_lancer.png": {
+   "sha256": "023ee5864af376de",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "portraits_thumb/portrait_lancer.png": {
+   "sha256": "e3d8a4f890c17306",
+   "added": "2026-07-05",
+   "provenance": {
+    "tool": "gpt-image",
+    "prompt_id": "missing11"
+   }
+  },
+  "audio/bgm_battle_loop.ogg": {
+   "sha256": "b600102e5bc47109",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "musicgen-small (self-generated on 3090)",
+    "prompt_id": "audio-roll14",
+    "license": "cc-by-nc-4.0 (musicgen output)"
+   }
+  },
+  "audio/bgm_menu.ogg": {
+   "sha256": "fbcfba3b933247b0",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "musicgen-small (self-generated on 3090)",
+    "prompt_id": "audio-roll14",
+    "license": "cc-by-nc-4.0 (musicgen output)"
+   }
+  },
+  "audio/sfx_melee.ogg": {
+   "sha256": "e31d948bd52cdc03",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "procedural synthesis (numpy/scipy, self-made)",
+    "prompt_id": "audio-roll14",
+    "license": "CC0 (original synthesis)"
+   }
+  },
+  "audio/sfx_place.ogg": {
+   "sha256": "5da0a9827879ebf0",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "procedural synthesis (numpy/scipy, self-made)",
+    "prompt_id": "audio-roll14",
+    "license": "CC0 (original synthesis)"
+   }
+  },
+  "audio/sfx_defeat.ogg": {
+   "sha256": "101967cb14f3df8a",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "procedural synthesis (numpy/scipy, self-made)",
+    "prompt_id": "audio-roll14",
+    "license": "CC0 (original synthesis)"
+   }
+  },
+  "audio/sfx_explosion.ogg": {
+   "sha256": "919e85f14b51c08e",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "procedural synthesis (numpy/scipy, self-made)",
+    "prompt_id": "audio-roll14",
+    "license": "CC0 (original synthesis)"
+   }
+  },
+  "audio/sfx_tower_fall.ogg": {
+   "sha256": "91e227dc670883d9",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "procedural synthesis (numpy/scipy, self-made)",
+    "prompt_id": "audio-roll14",
+    "license": "CC0 (original synthesis)"
+   }
+  },
+  "audio/sfx_victory.ogg": {
+   "sha256": "57f1882b1ca0a0da",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "procedural synthesis (numpy/scipy, self-made)",
+    "prompt_id": "audio-roll14",
+    "license": "CC0 (original synthesis)"
+   }
+  },
+  "audio/sfx_shot.ogg": {
+   "sha256": "9d4933fb0e70c070",
+   "added": "2026-07-06",
+   "provenance": {
+    "tool": "procedural synthesis (numpy/scipy, self-made)",
+    "prompt_id": "audio-roll14",
+    "license": "CC0 (original synthesis)"
+   }
+  }
+ }
+}

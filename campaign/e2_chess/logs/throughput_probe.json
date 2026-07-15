@@ -1,0 +1,13 @@
+{
+  "shards_loaded": 4,
+  "positions": 698586,
+  "load_s": 2.3,
+  "load_positions_per_s": 303230.0,
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA RTX A4000",
+  "model": "resnet c64 b6",
+  "batch": 1024,
+  "train_iters_per_s": 11.92,
+  "train_positions_per_s": 12211.0,
+  "infer_positions_per_s": 121223.0
+}

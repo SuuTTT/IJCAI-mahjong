@@ -1,0 +1,32 @@
+{
+  "regime": "noisy_eps0.3",
+  "metric": "mean_payoff seat0 vs 2 rule agents",
+  "nseeds": 3000,
+  "calibrated_reference": {
+    "pkl": "dou_nstudent_s210 (single)",
+    "mean_payoff": 0.464,
+    "ci95": 0.01785
+  },
+  "curve": {
+    "1": {
+      "mean_payoff": 0.45467,
+      "ci95": 0.01782,
+      "K_students": 3
+    },
+    "2": {
+      "mean_payoff": 0.46733,
+      "ci95": 0.01786,
+      "K_students": 3
+    },
+    "4": {
+      "mean_payoff": 0.465,
+      "ci95": 0.01785,
+      "K_students": 3
+    },
+    "8": {
+      "mean_payoff": 0.45867,
+      "ci95": 0.01783,
+      "K_students": 3
+    }
+  }
+}

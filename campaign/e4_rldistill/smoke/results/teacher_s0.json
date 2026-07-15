@@ -1,0 +1,20 @@
+{
+  "experiment": "E4_teacher_solo_eval",
+  "env": "minatar/breakout",
+  "train_seed": 0,
+  "n_episodes": 5,
+  "eval_seed_range": [
+    10000,
+    10004
+  ],
+  "eval_policy": "greedy(argmax softmax), sticky_action_prob=0.1",
+  "mean_return": 0.8,
+  "ci95": 0.392,
+  "returns": [
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ]
+}

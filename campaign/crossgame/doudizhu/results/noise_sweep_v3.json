@@ -1,0 +1,75 @@
+{
+ "note": "v3: FULLY uniform protocol (6 teachers, ~520k data, paired 3000 seeds, seed-ens averaged over disjoint trios). eps 0/0.3 retrained under sweep protocol (closes audit M1).",
+ "by_eps": {
+  "0": {
+   "seed_trios": [
+    0.49633,
+    0.49433
+   ],
+   "seed_mean": 0.4953,
+   "trio_spread": 0.002,
+   "distill": [
+    0.497,
+    0.496
+   ],
+   "distill_mean": 0.4965,
+   "gap": 0.0012
+  },
+  "0.3": {
+   "seed_trios": [
+    0.391,
+    0.385
+   ],
+   "seed_mean": 0.388,
+   "trio_spread": 0.006,
+   "distill": [
+    0.44867,
+    0.45567
+   ],
+   "distill_mean": 0.4522,
+   "gap": 0.0642
+  },
+  "0.1": {
+   "seed_trios": [
+    0.49267,
+    0.495
+   ],
+   "seed_mean": 0.49383,
+   "trio_spread": 0.00233,
+   "distill": [
+    0.49033,
+    0.49067
+   ],
+   "distill_mean": 0.4905,
+   "gap": -0.0033
+  },
+  "0.2": {
+   "seed_trios": [
+    0.404,
+    0.48867
+   ],
+   "seed_mean": 0.44633,
+   "trio_spread": 0.08467,
+   "distill": [
+    0.48067,
+    0.48367
+   ],
+   "distill_mean": 0.48217,
+   "gap": 0.0358
+  },
+  "0.5": {
+   "seed_trios": [
+    0.38667,
+    0.39067
+   ],
+   "seed_mean": 0.38867,
+   "trio_spread": 0.004,
+   "distill": [
+    0.45767,
+    0.45967
+   ],
+   "distill_mean": 0.45867,
+   "gap": 0.07
+  }
+ }
+}

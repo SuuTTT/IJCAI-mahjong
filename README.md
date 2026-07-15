@@ -26,6 +26,8 @@ on the ladder to 2nd of 25 in the full-field simulation, then **3rd of 16 in Sta
 
 | Doc | What |
 |-----|------|
+| [doc/TECHNICAL_REPORT_IJCAI2026_MCR.md](doc/TECHNICAL_REPORT_IJCAI2026_MCR.md) | **📄 Competition technical report** — full solution, ~32-lever iteration catalogue, competition story, lessons (for the competition meeting) |
+| [HANDOFF_2027.md](HANDOFF_2027.md) | **🤝 Resume-the-project handoff** — for papers *or* the 2027 competition (assets, access, next levers, eval discipline) |
 | [docs/phase1_autopsy.html](docs/phase1_autopsy.html) | **Phase-1 post-mortem** — what we built, what died, 3 lessons, the plan |
 | [docs/index.html](docs/index.html) | "Chasing the Ceiling" — the campaign log / blog |
 | [docs/FINDINGS_2026-06-14.md](docs/FINDINGS_2026-06-14.md) | Latest findings: the scoring bug, RL infeasibility, strong-teacher distill null |

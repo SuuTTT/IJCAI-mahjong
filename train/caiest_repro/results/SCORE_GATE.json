@@ -1,0 +1,104 @@
+{
+  "experiment": "SCORE-METRIC DUPLICATE GATE (e12_score_gate.py): Botzone Final Stage-2 metric (cumulative raw duplicate score) alongside placement, same paired duplicate sim. Validation: kdens3 3-ens vs aug_s0, 12 blocks x 500 seeds.",
+  "calibration": {
+    "ens_vs_same_ens": {
+      "cand": [
+        "kd_128x40_s0.pkl",
+        "kd_128x40_s1.pkl",
+        "kd_128x40_s2.pkl"
+      ],
+      "ref": [
+        "kd_128x40_s0.pkl",
+        "kd_128x40_s1.pkl",
+        "kd_128x40_s2.pkl"
+      ],
+      "rule": "mean-softmax-over-legal (deploy ensemble_infer); ref same rule if >1",
+      "games": 96,
+      "placement_pts": 2.5,
+      "cand_score_mean": 0.0,
+      "ref_score_mean": 0.0,
+      "score_diff": 0.0,
+      "games_per_hour": 11487.7,
+      "seconds": 30.1,
+      "seed0": 990000
+    },
+    "single_vs_same_single": {
+      "cand": [
+        "aug_128x40_s0.pkl"
+      ],
+      "ref": [
+        "aug_128x40_s0.pkl"
+      ],
+      "rule": "mean-softmax-over-legal (deploy ensemble_infer); ref same rule if >1",
+      "games": 96,
+      "placement_pts": 2.5,
+      "cand_score_mean": 0.0,
+      "ref_score_mean": 0.0,
+      "score_diff": 0.0,
+      "games_per_hour": 32499.6,
+      "seconds": 10.6,
+      "seed0": 990000
+    }
+  },
+  "validation_kdens3_vs_aug_s0": {
+    "blocks": 12,
+    "games": 24000,
+    "placement": {
+      "mean": 2.5002,
+      "ci": 0.0076,
+      "lo": 2.4927,
+      "hi": 2.5078,
+      "n": 12
+    },
+    "score_diff": {
+      "mean": 0.1772,
+      "ci": 0.3688,
+      "lo": -0.1916,
+      "hi": 0.546,
+      "n": 12
+    },
+    "cand_score": {
+      "mean": 0.1329,
+      "ci": 0.2766,
+      "lo": -0.1437,
+      "hi": 0.4095,
+      "n": 12
+    },
+    "block_placements": [
+      2.4918,
+      2.496,
+      2.5165,
+      2.4823,
+      2.4995,
+      2.505,
+      2.5057,
+      2.5177,
+      2.5078,
+      2.5075,
+      2.4823,
+      2.4905
+    ],
+    "block_score_diffs": [
+      -0.5787,
+      -0.258,
+      0.7687,
+      -0.234,
+      -0.1173,
+      0.7147,
+      0.59,
+      0.8867,
+      0.566,
+      0.6127,
+      -0.8253,
+      0.0007
+    ]
+  },
+  "historical_placement_reference": "kdens3 vs aug_s0 = 2.5054 (lo 2.5012) + repl 2.5057",
+  "throughput_games_per_hour_per_gateproc": 72533.2,
+  "final_format_replica_hours_12288_games": 0.17,
+  "agreement": {
+    "placement_verdict": "null (2.5002 [2.4927,2.5078], parity=2.5)",
+    "score_verdict": "null (diff 0.1772 [-0.1916,0.546] pts/game, parity=0)",
+    "agree": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "tag": "N8",
+  "pkls": [
+    "ckpt/students_curve/dou_cstudent_N8_s4080.pkl",
+    "ckpt/students_curve/dou_cstudent_N8_s4081.pkl",
+    "ckpt/students_curve/dou_cstudent_N8_s4082.pkl"
+  ],
+  "K": 3,
+  "seat": 0,
+  "nseeds": 3000,
+  "mean_payoff": 0.45867,
+  "ci95": 0.01783,
+  "dev": "cuda",
+  "seconds": 185.5
+}

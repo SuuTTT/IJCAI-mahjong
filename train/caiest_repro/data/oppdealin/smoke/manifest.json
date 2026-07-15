@@ -1,0 +1,22 @@
+{
+ "tag": "smoke",
+ "games": 400,
+ "decisions": 19940,
+ "candidate_rows": 197562,
+ "candidate_pos": 2814,
+ "per_candidate_base_rate": 0.014244,
+ "seed0": 9000000,
+ "seed_range": [
+  9000000,
+  9000400
+ ],
+ "shards": 20,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "seconds": 100.3,
+ "decisions_per_game": 49.85,
+ "cand_per_decision": 9.91
+}

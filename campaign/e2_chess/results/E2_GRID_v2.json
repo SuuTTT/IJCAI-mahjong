@@ -1,0 +1,147 @@
+{
+  "prediction": "student-ens minus teacher-ens gap grows as source rating drops",
+  "bands_low_to_high": [
+    "0800-1200",
+    "1600-2000",
+    "2400plus"
+  ],
+  "bands": {
+    "0800-1200": {
+      "n_games_per_level": 200,
+      "levels": {
+        "16": {
+          "single_teacher": 0.005,
+          "trioA": 0.2075,
+          "trioB": 0.0025,
+          "teacher_ens": 0.105,
+          "student_ens": 0.1275,
+          "gap_student_minus_teacher_ens": 0.0225,
+          "elo_single": -919.5,
+          "elo_trioA": -232.8,
+          "elo_trioB": -1040.4,
+          "elo_student": -334.1
+        },
+        "64": {
+          "single_teacher": 0.09,
+          "trioA": 0.2025,
+          "trioB": 0.01,
+          "teacher_ens": 0.1063,
+          "student_ens": 0.195,
+          "gap_student_minus_teacher_ens": 0.0887,
+          "elo_single": -401.9,
+          "elo_trioA": -238.1,
+          "elo_trioB": -798.3,
+          "elo_student": -246.3
+        },
+        "256": {
+          "single_teacher": 0.055,
+          "trioA": 0.065,
+          "trioB": 0.065,
+          "teacher_ens": 0.065,
+          "student_ens": 0.1,
+          "gap_student_minus_teacher_ens": 0.035,
+          "elo_single": -494.0,
+          "elo_trioA": -463.2,
+          "elo_trioB": -463.2,
+          "elo_student": -381.7
+        }
+      },
+      "mean_gap": 0.0487,
+      "trio_spread": 0.205
+    },
+    "1600-2000": {
+      "n_games_per_level": 200,
+      "levels": {
+        "16": {
+          "single_teacher": 0.2475,
+          "trioA": 0.2475,
+          "trioB": 0.4975,
+          "teacher_ens": 0.3725,
+          "student_ens": 0.245,
+          "gap_student_minus_teacher_ens": -0.1275,
+          "elo_single": -193.2,
+          "elo_trioA": -193.2,
+          "elo_trioB": -1.7,
+          "elo_student": -195.5
+        },
+        "64": {
+          "single_teacher": 0.015,
+          "trioA": 0.02,
+          "trioB": 0.3375,
+          "teacher_ens": 0.1788,
+          "student_ens": 0.4125,
+          "gap_student_minus_teacher_ens": 0.2337,
+          "elo_single": -726.9,
+          "elo_trioA": -676.1,
+          "elo_trioB": -117.2,
+          "elo_student": -61.4
+        },
+        "256": {
+          "single_teacher": 0.1,
+          "trioA": 0.1,
+          "trioB": 0.0875,
+          "teacher_ens": 0.0938,
+          "student_ens": 0.1325,
+          "gap_student_minus_teacher_ens": 0.0388,
+          "elo_single": -381.7,
+          "elo_trioA": -381.7,
+          "elo_trioB": -407.3,
+          "elo_student": -326.4
+        }
+      },
+      "mean_gap": 0.0483,
+      "trio_spread": 0.3175
+    },
+    "2400plus": {
+      "n_games_per_level": 200,
+      "levels": {
+        "16": {
+          "single_teacher": 0.005,
+          "trioA": 0.005,
+          "trioB": 0.49,
+          "teacher_ens": 0.2475,
+          "student_ens": 0.25,
+          "gap_student_minus_teacher_ens": 0.0025,
+          "elo_single": -919.5,
+          "elo_trioA": -919.5,
+          "elo_trioB": -6.9,
+          "elo_student": -190.8
+        },
+        "64": {
+          "single_teacher": 0.01,
+          "trioA": 0.2375,
+          "trioB": 0.35,
+          "teacher_ens": 0.2937,
+          "student_ens": 0.48,
+          "gap_student_minus_teacher_ens": 0.1863,
+          "elo_single": -798.3,
+          "elo_trioA": -202.6,
+          "elo_trioB": -107.5,
+          "elo_student": -13.9
+        },
+        "256": {
+          "single_teacher": 0.1275,
+          "trioA": 0.1225,
+          "trioB": 0.1825,
+          "teacher_ens": 0.1525,
+          "student_ens": 0.1675,
+          "gap_student_minus_teacher_ens": 0.015,
+          "elo_single": -334.1,
+          "elo_trioA": -342.0,
+          "elo_trioB": -260.5,
+          "elo_student": -278.5
+        }
+      },
+      "mean_gap": 0.0679,
+      "trio_spread": 0.485
+    }
+  },
+  "missing": [],
+  "gap_by_band": {
+    "0800-1200": 0.0487,
+    "1600-2000": 0.0483,
+    "2400plus": 0.0679
+  },
+  "gap_low_minus_high": -0.0192,
+  "verdict": "NOT SUPPORTED: gap does not shrink as source rating rises"
+}

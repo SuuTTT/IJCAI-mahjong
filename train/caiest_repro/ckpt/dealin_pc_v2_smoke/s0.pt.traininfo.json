@@ -1,0 +1,79 @@
+{
+  "seed": 0,
+  "arch": "DealInFused",
+  "in_planes": 39,
+  "channels": 128,
+  "blocks": 40,
+  "steps": 4000,
+  "bs": 512,
+  "lr": 0.001,
+  "loss": "BCE_unweighted",
+  "conditioning": "per-candidate: 39th one-hot tile plane at (tile//9,tile%9)",
+  "label": "OFF-POLICY: engine _fan Ron gate on every legal candidate vs true opp hands",
+  "data": "data/oppdealin/smoke",
+  "decisions": 19940,
+  "candidate_pairs": 197562,
+  "games": 400,
+  "per_candidate_base_rate": 0.014244,
+  "n_train": 177017,
+  "n_val": 20545,
+  "val_frac": 0.1,
+  "val_split_seed": 20260713,
+  "train_sample_seed": 1000,
+  "val_auroc": 0.8308,
+  "val_prauc": 0.0666,
+  "val_base_rate": 0.0167,
+  "calibration_deciles": [
+    {
+      "pred": 0.0,
+      "actual": 0.0,
+      "n": 2055
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.0,
+      "n": 2055
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.000487,
+      "n": 2055
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.002433,
+      "n": 2055
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.003893,
+      "n": 2055
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.00779,
+      "n": 2054
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.016066,
+      "n": 2054
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.029211,
+      "n": 2054
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.040409,
+      "n": 2054
+    },
+    {
+      "pred": 0.0,
+      "actual": 0.066699,
+      "n": 2054
+    }
+  ],
+  "elapsed_s": 477.6
+}

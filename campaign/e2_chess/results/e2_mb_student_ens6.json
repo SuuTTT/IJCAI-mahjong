@@ -1,0 +1,49 @@
+{
+  "band": "mixedband",
+  "name": "mb_student_ens6",
+  "ckpts": [
+    "ckpt/mixedband/student_s40.pt",
+    "ckpt/mixedband/student_s41.pt",
+    "ckpt/mixedband/student_s42.pt",
+    "ckpt/mixedband/student_s43.pt",
+    "ckpt/mixedband/student_s44.pt",
+    "ckpt/mixedband/student_s45.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 924.9,
+  "policy": "mixedband/mb_student_ens6",
+  "n_games_per_level": 600,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.25,
+      "elo_diff_vs_level": -190.8,
+      "w_d_l": [
+        0,
+        300,
+        300
+      ],
+      "sec": 386.6
+    },
+    "64": {
+      "score": 0.0042,
+      "elo_diff_vs_level": -951.4,
+      "w_d_l": [
+        0,
+        5,
+        595
+      ],
+      "sec": 200.1
+    },
+    "256": {
+      "score": 0.1125,
+      "elo_diff_vs_level": -358.8,
+      "w_d_l": [
+        7,
+        121,
+        472
+      ],
+      "sec": 338.0
+    }
+  }
+}

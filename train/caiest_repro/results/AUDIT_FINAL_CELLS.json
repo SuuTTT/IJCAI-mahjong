@@ -1,0 +1,79 @@
+{
+  "design": "12 disjoint fresh blocks x 2000 seeds (8000 duplicate games) per cell, e12_ens_gate deploy mean-softmax rule vs ckpt/aug/aug_128x40_s0.pkl; ci_lo = mean - 1.96*sd/sqrt(n); calibration parity = 2.500",
+  "date": "2026-07-13 03:23 UTC",
+  "a03ens": {
+    "n": 12,
+    "games_total": 96000,
+    "mean": 2.5,
+    "ci_lo": 2.4963,
+    "ci_hi": 2.5036,
+    "sd_blocks": 0.00644,
+    "blocks": [
+      2.5046,
+      2.4959,
+      2.4979,
+      2.4966,
+      2.5099,
+      2.504,
+      2.5051,
+      2.498,
+      2.4857,
+      2.4976,
+      2.5066,
+      2.498
+    ],
+    "beats_parity_ci": false,
+    "desc": "3x alpha=0.3 KD students (paperx a03_s0/s1/s2), deploy ensemble vs aug_s0",
+    "seed0_base": 1000000
+  },
+  "kd1tens": {
+    "n": 12,
+    "games_total": 96000,
+    "mean": 2.5006,
+    "ci_lo": 2.4981,
+    "ci_hi": 2.5032,
+    "sd_blocks": 0.00442,
+    "blocks": [
+      2.495,
+      2.4979,
+      2.5005,
+      2.5,
+      2.512,
+      2.4998,
+      2.4978,
+      2.5006,
+      2.5061,
+      2.5,
+      2.5001,
+      2.498
+    ],
+    "beats_parity_ci": false,
+    "desc": "3x 1-teacher KD students (kdcurve kd1t_s0/s1/s3), deploy ensemble vs aug_s0",
+    "seed0_base": 1030000
+  },
+  "kd2tens": {
+    "n": 12,
+    "games_total": 96000,
+    "mean": 2.5032,
+    "ci_lo": 2.5003,
+    "ci_hi": 2.5062,
+    "sd_blocks": 0.00524,
+    "blocks": [
+      2.5057,
+      2.5075,
+      2.5089,
+      2.5086,
+      2.5056,
+      2.5062,
+      2.5042,
+      2.4962,
+      2.5013,
+      2.4962,
+      2.5048,
+      2.4934
+    ],
+    "beats_parity_ci": true,
+    "desc": "3x 2-teacher KD students (kdcurve kd2t_s0/s1/s2), deploy ensemble vs aug_s0",
+    "seed0_base": 1060000
+  }
+}

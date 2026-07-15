@@ -1,0 +1,46 @@
+{
+  "band": "mixedband",
+  "name": "student",
+  "ckpts": [
+    "ckpt/mixedband/student_s40.pt",
+    "ckpt/mixedband/student_s41.pt",
+    "ckpt/mixedband/student_s42.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 583.2,
+  "policy": "mixedband/student",
+  "n_games_per_level": 400,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.2475,
+      "elo_diff_vs_level": -193.2,
+      "w_d_l": [
+        0,
+        198,
+        202
+      ],
+      "sec": 198.3
+    },
+    "64": {
+      "score": 0.2487,
+      "elo_diff_vs_level": -192.0,
+      "w_d_l": [
+        0,
+        199,
+        201
+      ],
+      "sec": 142.8
+    },
+    "256": {
+      "score": 0.1275,
+      "elo_diff_vs_level": -334.1,
+      "w_d_l": [
+        2,
+        98,
+        300
+      ],
+      "sec": 241.8
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "a": "ppo(params_latest.msgpack)",
+  "b": "rule_v0",
+  "matches": 256,
+  "seat_swapped": true,
+  "a_win_rate": 0.8046875,
+  "b_win_rate": 0.15234375,
+  "draw_rate": 0.04296875,
+  "a_win_as_p0": 0.8515625,
+  "a_win_as_p1": 0.7578125,
+  "a_win_ci95_lower": 0.7517691603098199,
+  "commit": "a67e7207d7b3f638ff7cd151d193357ad751af95",
+  "device": "cuda:0",
+  "integrity": {
+    "expected": 256,
+    "actual": 256,
+    "complete": true
+  }
+}

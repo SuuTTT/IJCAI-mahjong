@@ -1,0 +1,48 @@
+{
+  "regime": "noisy_eps0.3",
+  "metric": "mean_payoff seat0 vs 2 rule agents",
+  "n_blocks": 2,
+  "nseeds_per_block": 12,
+  "mean_distill": 0.41667,
+  "mean_seed": 0.25,
+  "mean_gap": 0.16667,
+  "gap_sd": 0.11785,
+  "gap_ci95_lo": -0.89219,
+  "gap_ci95_hi": 1.22552,
+  "blocks": [
+    {
+      "block": 0,
+      "seed0": 30000,
+      "distill_students": [
+        "dou_r2student_s6000.pkl",
+        "dou_r2student_s6001.pkl",
+        "dou_r2student_s6002.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s200.pkl",
+        "dou_nteacher_s201.pkl",
+        "dou_nteacher_s202.pkl"
+      ],
+      "distill_ens_payoff": 0.25,
+      "seed_ens_payoff": 0.16667,
+      "gap": 0.08333
+    },
+    {
+      "block": 1,
+      "seed0": 30012,
+      "distill_students": [
+        "dou_r2student_s6003.pkl",
+        "dou_r2student_s6004.pkl",
+        "dou_r2student_s6005.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s201.pkl",
+        "dou_nteacher_s202.pkl",
+        "dou_nteacher_s203.pkl"
+      ],
+      "distill_ens_payoff": 0.58333,
+      "seed_ens_payoff": 0.33333,
+      "gap": 0.25
+    }
+  ]
+}

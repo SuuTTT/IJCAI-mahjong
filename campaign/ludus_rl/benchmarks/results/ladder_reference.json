@@ -1,0 +1,59 @@
+{
+  "self_tests": {
+    "random_v0": {
+      "pass": true,
+      "pairs": 8,
+      "deviations": 0,
+      "illegal": 0
+    },
+    "rule_v0": {
+      "pass": true,
+      "pairs": 8,
+      "deviations": 0,
+      "illegal": 0
+    },
+    "ppo_weak_v0": {
+      "pass": true,
+      "pairs": 8,
+      "deviations": 0,
+      "illegal": 0
+    },
+    "ppo_v0": {
+      "pass": true,
+      "pairs": 8,
+      "deviations": 0,
+      "illegal": 0
+    }
+  },
+  "pairings": {
+    "random_v0|rule_v0": {
+      "mean_pair_score": 0.0156,
+      "illegal": 0
+    },
+    "random_v0|ppo_weak_v0": {
+      "mean_pair_score": 0.25,
+      "illegal": 0
+    },
+    "random_v0|ppo_v0": {
+      "mean_pair_score": 0.1094,
+      "illegal": 0
+    },
+    "rule_v0|ppo_weak_v0": {
+      "mean_pair_score": 0.6484,
+      "illegal": 0
+    },
+    "rule_v0|ppo_v0": {
+      "mean_pair_score": 0.5,
+      "illegal": 0
+    },
+    "ppo_weak_v0|ppo_v0": {
+      "mean_pair_score": 0.4219,
+      "illegal": 0
+    }
+  },
+  "pairs_per_block": 32,
+  "env_version": "boom/v5",
+  "judge_hash": "99638e5287f3d5c0",
+  "commit": "84a8e4c607c39f5ff883143e6c2284fdcf12fc1a",
+  "t": 1783088116.7165515
+}

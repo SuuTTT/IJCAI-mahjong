@@ -1,0 +1,75 @@
+{
+ "experiment": "value-aware action-value defense A=V-lam*P_dealin*L vs kdens3",
+ "null_run": false,
+ "lam": 4.0,
+ "K": 3,
+ "L_dealin": 0.6833333333333333,
+ "deploy_src": 0,
+ "SC": 30.0,
+ "avg_fan": 12.5,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "value": [
+  "results/VALUE_C_60K.pt",
+  "results/VALUE_C_60K_s1.pt",
+  "results/VALUE_C_60K_s3.pt",
+  "results/VALUE_C_60K_s4.pt",
+  "results/VALUE_C_60K_s6.pt"
+ ],
+ "pc": [
+  "ckpt/dealin_pc/dealin_pc_s0.pt",
+  "ckpt/dealin_pc/dealin_pc_s1.pt",
+  "ckpt/dealin_pc/dealin_pc_s2.pt"
+ ],
+ "ngpu": 8,
+ "blocks": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "seeds_per_block": 500,
+ "seed_ranges": {
+  "0": [
+   9500000,
+   9500500
+  ],
+  "1": [
+   9503000,
+   9503500
+  ],
+  "2": [
+   9506000,
+   9506500
+  ],
+  "3": [
+   9509000,
+   9509500
+  ]
+ },
+ "n_blocks": 4,
+ "n_seeds": 2000,
+ "n_games": 8000,
+ "block_means": {
+  "0": 2.1843,
+  "1": 2.21,
+  "2": 2.1835,
+  "3": 2.2043
+ },
+ "block_mean_placement": 2.1955,
+ "block_sd": 0.01363,
+ "ci95_halfwidth": 0.02169,
+ "ci95": [
+  2.17381,
+  2.21719
+ ],
+ "override_fraction": 0.5755,
+ "n_discard_decisions": 107053,
+ "n_overrides": 61611,
+ "verdict": "LOSES to kdens3 (CI<2.5)",
+ "seconds": 1517.2,
+ "workers": 30
+}

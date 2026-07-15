@@ -1,0 +1,10 @@
+{
+  "depth": 6,
+  "n_states": 100000,
+  "seed": 4006,
+  "p_explore": 0.12,
+  "open_plies": 4,
+  "board": "6x6",
+  "workers": 24,
+  "gen_seconds": 240.8
+}

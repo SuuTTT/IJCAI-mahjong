@@ -1,0 +1,63 @@
+{
+ "experiment": "deployable defensive discard policy (pc deal-in, top-K safe divert) vs kdens3",
+ "null_run": false,
+ "tau": 0.3,
+ "K": 3,
+ "kd": [
+  "ckpt/kd/kd_128x40_s0.pkl",
+  "ckpt/kd/kd_128x40_s1.pkl",
+  "ckpt/kd/kd_128x40_s2.pkl"
+ ],
+ "pc": [
+  "ckpt/dealin_pc/dealin_pc_s0.pt",
+  "ckpt/dealin_pc/dealin_pc_s1.pt",
+  "ckpt/dealin_pc/dealin_pc_s2.pt"
+ ],
+ "blocks": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "seeds_per_block": 500,
+ "seed_ranges": {
+  "0": [
+   9000000,
+   9000500
+  ],
+  "1": [
+   9003000,
+   9003500
+  ],
+  "2": [
+   9006000,
+   9006500
+  ],
+  "3": [
+   9009000,
+   9009500
+  ]
+ },
+ "n_blocks": 4,
+ "n_seeds": 2000,
+ "n_games": 8000,
+ "block_means": {
+  "0": 2.477,
+  "1": 2.4808,
+  "2": 2.4657,
+  "3": 2.4623
+ },
+ "block_mean_placement": 2.471437,
+ "block_sd": 0.00884,
+ "ci95_halfwidth": 0.01406,
+ "ci95": [
+  2.45737,
+  2.4855
+ ],
+ "override_fraction": 0.015,
+ "n_discard_decisions": 100196,
+ "n_overrides": 1507,
+ "verdict": "DEFENSE LOSES to kdens3 (CI<2.5) -- danger prediction != better placement",
+ "seconds": 613.1,
+ "workers": 120
+}

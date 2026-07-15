@@ -1,0 +1,205 @@
+{
+  "domain": "Othello 6x6 (perfect information, minimax teacher)",
+  "theory": "distill-then-ensemble beats teacher-ensembling more as the imitated policy becomes stronger/more coherent; PREDICTION: gap = student_ens - teacher_ens grows with teacher search depth D.",
+  "teacher": "alpha-beta minimax, positional+mobility heuristic; depth D controls coherence/strength",
+  "opponent_ladder": "minimax depth {1,3,5}, paired random openings",
+  "n_cells": 8,
+  "gap_vs_depth_curves": {
+    "eps=0.0": [
+      {
+        "teacher_depth": 1,
+        "teacher_ens_winrate": 0.215,
+        "student_ens_winrate": 0.2392,
+        "teacher_single_winrate": 0.205,
+        "student_single_winrate": 0.2258,
+        "gap_student_ens_minus_teacher_ens": 0.0242,
+        "gap_by_opponent": {
+          "D1": 0.0,
+          "D3": 0.0375,
+          "D5": 0.035
+        },
+        "teacher_ens_ci95": [
+          0.184,
+          0.2496
+        ],
+        "student_ens_ci95": [
+          0.2068,
+          0.2749
+        ],
+        "n_games_per_arm": 600
+      },
+      {
+        "teacher_depth": 2,
+        "teacher_ens_winrate": 0.3008,
+        "student_ens_winrate": 0.3108,
+        "teacher_single_winrate": 0.2517,
+        "student_single_winrate": 0.27,
+        "gap_student_ens_minus_teacher_ens": 0.01,
+        "gap_by_opponent": {
+          "D1": 0.035,
+          "D3": -0.0175,
+          "D5": 0.0125
+        },
+        "teacher_ens_ci95": [
+          0.2655,
+          0.3387
+        ],
+        "student_ens_ci95": [
+          0.2751,
+          0.349
+        ],
+        "n_games_per_arm": 600
+      },
+      {
+        "teacher_depth": 4,
+        "teacher_ens_winrate": 0.37,
+        "student_ens_winrate": 0.4058,
+        "teacher_single_winrate": 0.3492,
+        "student_single_winrate": 0.3408,
+        "gap_student_ens_minus_teacher_ens": 0.0358,
+        "gap_by_opponent": {
+          "D1": 0.0025,
+          "D3": 0.0575,
+          "D5": 0.0475
+        },
+        "teacher_ens_ci95": [
+          0.3323,
+          0.4093
+        ],
+        "student_ens_ci95": [
+          0.3673,
+          0.4456
+        ],
+        "n_games_per_arm": 600
+      },
+      {
+        "teacher_depth": 6,
+        "teacher_ens_winrate": 0.4283,
+        "student_ens_winrate": 0.3667,
+        "teacher_single_winrate": 0.3592,
+        "student_single_winrate": 0.3825,
+        "gap_student_ens_minus_teacher_ens": -0.0616,
+        "gap_by_opponent": {
+          "D1": -0.085,
+          "D3": -0.0575,
+          "D5": -0.0425
+        },
+        "teacher_ens_ci95": [
+          0.3893,
+          0.4683
+        ],
+        "student_ens_ci95": [
+          0.3291,
+          0.406
+        ],
+        "n_games_per_arm": 600
+      }
+    ],
+    "eps=0.2": [
+      {
+        "teacher_depth": 1,
+        "teacher_ens_winrate": 0.2075,
+        "student_ens_winrate": 0.1867,
+        "teacher_single_winrate": 0.1667,
+        "student_single_winrate": 0.2167,
+        "gap_student_ens_minus_teacher_ens": -0.0208,
+        "gap_by_opponent": {
+          "D1": -0.0325,
+          "D3": -0.0125,
+          "D5": -0.0175
+        },
+        "teacher_ens_ci95": [
+          0.177,
+          0.2418
+        ],
+        "student_ens_ci95": [
+          0.1575,
+          0.2198
+        ],
+        "n_games_per_arm": 600
+      },
+      {
+        "teacher_depth": 2,
+        "teacher_ens_winrate": 0.2967,
+        "student_ens_winrate": 0.2533,
+        "teacher_single_winrate": 0.2817,
+        "student_single_winrate": 0.2792,
+        "gap_student_ens_minus_teacher_ens": -0.0434,
+        "gap_by_opponent": {
+          "D1": -0.0575,
+          "D3": -0.0225,
+          "D5": -0.05
+        },
+        "teacher_ens_ci95": [
+          0.2615,
+          0.3344
+        ],
+        "student_ens_ci95": [
+          0.2202,
+          0.2896
+        ],
+        "n_games_per_arm": 600
+      },
+      {
+        "teacher_depth": 4,
+        "teacher_ens_winrate": 0.3508,
+        "student_ens_winrate": 0.3433,
+        "teacher_single_winrate": 0.3208,
+        "student_single_winrate": 0.3517,
+        "gap_student_ens_minus_teacher_ens": -0.0075,
+        "gap_by_opponent": {
+          "D1": 0.0075,
+          "D3": -0.0225,
+          "D5": -0.0075
+        },
+        "teacher_ens_ci95": [
+          0.3137,
+          0.3899
+        ],
+        "student_ens_ci95": [
+          0.3064,
+          0.3822
+        ],
+        "n_games_per_arm": 600
+      },
+      {
+        "teacher_depth": 6,
+        "teacher_ens_winrate": 0.3475,
+        "student_ens_winrate": 0.3825,
+        "teacher_single_winrate": 0.335,
+        "student_single_winrate": 0.3733,
+        "gap_student_ens_minus_teacher_ens": 0.035,
+        "gap_by_opponent": {
+          "D1": 0.17,
+          "D3": -0.04,
+          "D5": -0.025
+        },
+        "teacher_ens_ci95": [
+          0.3105,
+          0.3865
+        ],
+        "student_ens_ci95": [
+          0.3445,
+          0.422
+        ],
+        "n_games_per_arm": 600
+      }
+    ]
+  },
+  "verdicts": {
+    "eps=0.0": {
+      "gap_vs_depth_slope": -0.0142,
+      "monotone_rising": false,
+      "gap_at_min_depth": 0.0242,
+      "gap_at_max_depth": -0.0616,
+      "prediction_holds_positive_slope": false
+    },
+    "eps=0.2": {
+      "gap_vs_depth_slope": 0.01299,
+      "monotone_rising": false,
+      "gap_at_min_depth": -0.0208,
+      "gap_at_max_depth": 0.035,
+      "prediction_holds_positive_slope": true
+    }
+  }
+}

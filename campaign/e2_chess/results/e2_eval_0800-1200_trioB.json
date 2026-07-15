@@ -1,0 +1,46 @@
+{
+  "band": "0800-1200",
+  "name": "trioB",
+  "ckpts": [
+    "ckpt/0800-1200/teacher_s3.pt",
+    "ckpt/0800-1200/teacher_s4.pt",
+    "ckpt/0800-1200/teacher_s5.pt"
+  ],
+  "device": "cuda:0",
+  "wall_s": 127.3,
+  "policy": "0800-1200/trioB",
+  "n_games_per_level": 200,
+  "max_plies": 300,
+  "levels": {
+    "16": {
+      "score": 0.0025,
+      "elo_diff_vs_level": -1040.4,
+      "w_d_l": [
+        0,
+        1,
+        199
+      ],
+      "sec": 36.2
+    },
+    "64": {
+      "score": 0.01,
+      "elo_diff_vs_level": -798.3,
+      "w_d_l": [
+        0,
+        4,
+        196
+      ],
+      "sec": 43.9
+    },
+    "256": {
+      "score": 0.065,
+      "elo_diff_vs_level": -463.2,
+      "w_d_l": [
+        1,
+        24,
+        175
+      ],
+      "sec": 47.1
+    }
+  }
+}

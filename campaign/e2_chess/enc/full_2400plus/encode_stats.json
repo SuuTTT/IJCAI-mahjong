@@ -1,0 +1,10 @@
+{
+  "games_ok": 210000,
+  "games_bad": 0,
+  "moves": 24650240,
+  "illegal": 0,
+  "shards": 84,
+  "elapsed_s": 765.6,
+  "pgn": "data/band_2400plus_elite.pgn",
+  "shard_size": 2500
+}

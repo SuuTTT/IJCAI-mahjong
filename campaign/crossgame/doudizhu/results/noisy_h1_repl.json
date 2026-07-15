@@ -1,0 +1,116 @@
+{
+  "regime": "noisy_eps0.3",
+  "metric": "mean_payoff seat0 vs 2 rule agents",
+  "n_blocks": 6,
+  "nseeds_per_block": 2000,
+  "mean_distill": 0.45475,
+  "mean_seed": 0.42658,
+  "mean_gap": 0.02817,
+  "gap_sd": 0.01131,
+  "gap_ci95_lo": 0.0163,
+  "gap_ci95_hi": 0.04004,
+  "blocks": [
+    {
+      "block": 0,
+      "seed0": 30000,
+      "distill_students": [
+        "dou_astudent_s7700.pkl",
+        "dou_astudent_s7701.pkl",
+        "dou_astudent_s7702.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s200.pkl",
+        "dou_nteacher_s201.pkl",
+        "dou_nteacher_s202.pkl"
+      ],
+      "distill_ens_payoff": 0.464,
+      "seed_ens_payoff": 0.438,
+      "gap": 0.026
+    },
+    {
+      "block": 1,
+      "seed0": 32000,
+      "distill_students": [
+        "dou_astudent_s7703.pkl",
+        "dou_astudent_s7704.pkl",
+        "dou_astudent_s7705.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s201.pkl",
+        "dou_nteacher_s202.pkl",
+        "dou_nteacher_s203.pkl"
+      ],
+      "distill_ens_payoff": 0.445,
+      "seed_ens_payoff": 0.415,
+      "gap": 0.03
+    },
+    {
+      "block": 2,
+      "seed0": 34000,
+      "distill_students": [
+        "dou_astudent_s7706.pkl",
+        "dou_astudent_s7707.pkl",
+        "dou_r2student_s6000.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s202.pkl",
+        "dou_nteacher_s203.pkl",
+        "dou_nteacher_s204.pkl"
+      ],
+      "distill_ens_payoff": 0.4545,
+      "seed_ens_payoff": 0.44,
+      "gap": 0.0145
+    },
+    {
+      "block": 3,
+      "seed0": 36000,
+      "distill_students": [
+        "dou_r2student_s6001.pkl",
+        "dou_r2student_s6002.pkl",
+        "dou_r2student_s6003.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s203.pkl",
+        "dou_nteacher_s204.pkl",
+        "dou_nteacher_s205.pkl"
+      ],
+      "distill_ens_payoff": 0.4565,
+      "seed_ens_payoff": 0.417,
+      "gap": 0.0395
+    },
+    {
+      "block": 4,
+      "seed0": 38000,
+      "distill_students": [
+        "dou_r2student_s6004.pkl",
+        "dou_r2student_s6005.pkl",
+        "dou_rstudent_s5000.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s204.pkl",
+        "dou_nteacher_s205.pkl",
+        "dou_nteacher_s206.pkl"
+      ],
+      "distill_ens_payoff": 0.4535,
+      "seed_ens_payoff": 0.4365,
+      "gap": 0.017
+    },
+    {
+      "block": 5,
+      "seed0": 40000,
+      "distill_students": [
+        "dou_nstudent_s210.pkl",
+        "dou_nstudent_s211.pkl",
+        "dou_nstudent_s212.pkl"
+      ],
+      "seed_teachers": [
+        "dou_nteacher_s205.pkl",
+        "dou_nteacher_s206.pkl",
+        "dou_nteacher_s207.pkl"
+      ],
+      "distill_ens_payoff": 0.455,
+      "seed_ens_payoff": 0.413,
+      "gap": 0.042
+    }
+  ]
+}

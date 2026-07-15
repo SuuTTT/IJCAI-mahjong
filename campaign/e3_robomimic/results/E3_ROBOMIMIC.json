@@ -1,0 +1,200 @@
+{
+ "design": "E3 robomimic low_dim BC: 6 teachers -> 2 disjoint teacher-trios vs 3 KD students (continuous KD: MSE to teacher-mean action, alpha 0.7 soft / 0.3 hard) -> student-trio; >=100 fixed-seed rollouts per point",
+ "cells": {
+  "lift_ph": {
+   "teacher_single_rates": [
+    0.89,
+    0.91,
+    0.92,
+    0.97,
+    0.91,
+    0.92
+   ],
+   "teacher_single_mean": 0.92,
+   "teacher_ens_rates": [
+    0.92,
+    0.96
+   ],
+   "teacher_ens_mean": 0.94,
+   "student_single_rates": [
+    0.9,
+    0.95,
+    0.87
+   ],
+   "student_single_mean": 0.9066666666666667,
+   "student_ens": 0.97,
+   "student_ens_ci95": [
+    0.9155,
+    0.9897
+   ],
+   "gap_studentens_minus_teacherens": 0.03,
+   "n_missing": 0
+  },
+  "lift_mh": {
+   "teacher_single_rates": [
+    0.65,
+    0.61,
+    0.69,
+    0.7,
+    0.62,
+    0.69
+   ],
+   "teacher_single_mean": 0.66,
+   "teacher_ens_rates": [
+    0.79,
+    0.84
+   ],
+   "teacher_ens_mean": 0.815,
+   "student_single_rates": [
+    0.64,
+    0.61,
+    0.71
+   ],
+   "student_single_mean": 0.6533333333333333,
+   "student_ens": 0.72,
+   "student_ens_ci95": [
+    0.6251,
+    0.7986
+   ],
+   "gap_studentens_minus_teacherens": -0.095,
+   "n_missing": 0
+  },
+  "can_ph": {
+   "teacher_single_rates": [
+    0.7,
+    0.8,
+    0.61,
+    0.8,
+    0.82,
+    0.82
+   ],
+   "teacher_single_mean": 0.7583333333333333,
+   "teacher_ens_rates": [
+    0.85,
+    0.95
+   ],
+   "teacher_ens_mean": 0.8999999999999999,
+   "student_single_rates": [
+    0.74,
+    0.74,
+    0.9
+   ],
+   "student_single_mean": 0.7933333333333333,
+   "student_ens": 0.91,
+   "student_ens_ci95": [
+    0.8377,
+    0.9519
+   ],
+   "gap_studentens_minus_teacherens": 0.01,
+   "n_missing": 0
+  },
+  "can_mh": {
+   "teacher_single_rates": [
+    0.31,
+    0.39,
+    0.38,
+    0.34,
+    0.32,
+    0.47
+   ],
+   "teacher_single_mean": 0.36833333333333335,
+   "teacher_ens_rates": [
+    0.45,
+    0.46
+   ],
+   "teacher_ens_mean": 0.455,
+   "student_single_rates": [
+    0.35,
+    0.31,
+    0.3
+   ],
+   "student_single_mean": 0.32,
+   "student_ens": 0.48,
+   "student_ens_ci95": [
+    0.3846,
+    0.5768
+   ],
+   "gap_studentens_minus_teacherens": 0.025,
+   "n_missing": 0
+  },
+  "square_ph": {
+   "teacher_single_rates": [
+    0.36,
+    0.42,
+    0.35,
+    0.44,
+    0.45,
+    0.49
+   ],
+   "teacher_single_mean": 0.4183333333333333,
+   "teacher_ens_rates": [
+    0.69,
+    0.68
+   ],
+   "teacher_ens_mean": 0.685,
+   "student_single_rates": [
+    0.45,
+    0.38,
+    0.34
+   ],
+   "student_single_mean": 0.39000000000000007,
+   "student_ens": 0.57,
+   "student_ens_ci95": [
+    0.4722,
+    0.6627
+   ],
+   "gap_studentens_minus_teacherens": -0.115,
+   "n_missing": 0
+  },
+  "square_mh": {
+   "teacher_single_rates": [
+    0.09,
+    0.13,
+    0.11,
+    0.12,
+    0.06,
+    0.08
+   ],
+   "teacher_single_mean": 0.09833333333333333,
+   "teacher_ens_rates": [
+    0.16,
+    0.16
+   ],
+   "teacher_ens_mean": 0.16,
+   "student_single_rates": [
+    0.16,
+    0.06,
+    0.07
+   ],
+   "student_single_mean": 0.09666666666666668,
+   "student_ens": 0.17,
+   "student_ens_ci95": [
+    0.1089,
+    0.2555
+   ],
+   "gap_studentens_minus_teacherens": 0.01,
+   "n_missing": 0
+  }
+ },
+ "prediction_check": {
+  "lift": {
+   "gap_ph": 0.03,
+   "gap_mh": -0.095,
+   "mh_minus_ph": -0.125,
+   "prediction_holds": false
+  },
+  "can": {
+   "gap_ph": 0.01,
+   "gap_mh": 0.025,
+   "mh_minus_ph": 0.015,
+   "prediction_holds": true
+  },
+  "square": {
+   "gap_ph": -0.115,
+   "gap_mh": 0.01,
+   "mh_minus_ph": 0.125,
+   "prediction_holds": true
+  },
+  "mean_mh_minus_ph": 0.005
+ }
+}

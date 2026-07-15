@@ -1,0 +1,310 @@
+{
+  "design": "HistGB on cumulative per-hand outcome features after h hands -> 3-class field; split by match (idx%5==0 test); balanced sample weights; kdens3 seat-0 (pre-switch dist)",
+  "data": "/root/caiest_repro/data/e6_match_train.npz",
+  "classes": [
+    "weak",
+    "mixed",
+    "strongchamp"
+  ],
+  "feat_names": [
+    "draw",
+    "w_s0",
+    "w_s1",
+    "w_s2",
+    "w_s3",
+    "zimo",
+    "ron",
+    "s0_dealin",
+    "fan",
+    "plays",
+    "chi_o1",
+    "peng_o1",
+    "gang_o1",
+    "chi_o2",
+    "peng_o2",
+    "gang_o2",
+    "chi_o3",
+    "peng_o3",
+    "gang_o3",
+    "s0_score"
+  ],
+  "n_matches_per_field": 2000,
+  "hands_per_match": 8,
+  "by_h": {
+    "1": {
+      "n_train": 6400,
+      "n_test": 1600,
+      "bal_acc": 0.3937,
+      "acc": 0.3837,
+      "recalls": {
+        "weak": 0.4675,
+        "mixed": 0.36,
+        "strongchamp": 0.3538
+      },
+      "weak_precision": 0.3031,
+      "confusion_rows_true_cols_pred": [
+        [
+          187,
+          131,
+          82
+        ],
+        [
+          164,
+          144,
+          92
+        ],
+        [
+          266,
+          251,
+          283
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.4675,
+        "mixed": 0.41,
+        "strong": 0.35,
+        "champion": 0.315
+      },
+      "n_iter": 16,
+      "seconds": 0.3,
+      "ckpt": "ckpt/e6/e6_match_est_h1.pkl"
+    },
+    "2": {
+      "n_train": 6400,
+      "n_test": 1600,
+      "bal_acc": 0.4342,
+      "acc": 0.4375,
+      "recalls": {
+        "weak": 0.525,
+        "mixed": 0.33,
+        "strongchamp": 0.4475
+      },
+      "weak_precision": 0.3312,
+      "confusion_rows_true_cols_pred": [
+        [
+          210,
+          104,
+          86
+        ],
+        [
+          181,
+          132,
+          87
+        ],
+        [
+          243,
+          199,
+          358
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.525,
+        "mixed": 0.4525,
+        "strong": 0.3325,
+        "champion": 0.275
+      },
+      "n_iter": 27,
+      "seconds": 0.5,
+      "ckpt": "ckpt/e6/e6_match_est_h2.pkl"
+    },
+    "3": {
+      "n_train": 6400,
+      "n_test": 1600,
+      "bal_acc": 0.4892,
+      "acc": 0.4888,
+      "recalls": {
+        "weak": 0.5725,
+        "mixed": 0.4075,
+        "strongchamp": 0.4875
+      },
+      "weak_precision": 0.3804,
+      "confusion_rows_true_cols_pred": [
+        [
+          229,
+          95,
+          76
+        ],
+        [
+          145,
+          163,
+          92
+        ],
+        [
+          228,
+          182,
+          390
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.5725,
+        "mixed": 0.3625,
+        "strong": 0.31,
+        "champion": 0.26
+      },
+      "n_iter": 38,
+      "seconds": 0.7,
+      "ckpt": "ckpt/e6/e6_match_est_h3.pkl"
+    },
+    "4": {
+      "n_train": 6400,
+      "n_test": 1600,
+      "bal_acc": 0.4954,
+      "acc": 0.5069,
+      "recalls": {
+        "weak": 0.55,
+        "mixed": 0.395,
+        "strongchamp": 0.5413
+      },
+      "weak_precision": 0.3964,
+      "confusion_rows_true_cols_pred": [
+        [
+          220,
+          91,
+          89
+        ],
+        [
+          150,
+          158,
+          92
+        ],
+        [
+          185,
+          182,
+          433
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.55,
+        "mixed": 0.375,
+        "strong": 0.2225,
+        "champion": 0.24
+      },
+      "n_iter": 29,
+      "seconds": 0.6,
+      "ckpt": "ckpt/e6/e6_match_est_h4.pkl"
+    },
+    "5": {
+      "n_train": 6400,
+      "n_test": 1600,
+      "bal_acc": 0.5354,
+      "acc": 0.5444,
+      "recalls": {
+        "weak": 0.5975,
+        "mixed": 0.4375,
+        "strongchamp": 0.5713
+      },
+      "weak_precision": 0.4369,
+      "confusion_rows_true_cols_pred": [
+        [
+          239,
+          80,
+          81
+        ],
+        [
+          124,
+          175,
+          101
+        ],
+        [
+          184,
+          159,
+          457
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.5975,
+        "mixed": 0.31,
+        "strong": 0.2275,
+        "champion": 0.2325
+      },
+      "n_iter": 28,
+      "seconds": 0.6,
+      "ckpt": "ckpt/e6/e6_match_est_h5.pkl"
+    },
+    "6": {
+      "n_train": 6400,
+      "n_test": 1600,
+      "bal_acc": 0.5592,
+      "acc": 0.5656,
+      "recalls": {
+        "weak": 0.615,
+        "mixed": 0.4775,
+        "strongchamp": 0.585
+      },
+      "weak_precision": 0.4615,
+      "confusion_rows_true_cols_pred": [
+        [
+          246,
+          82,
+          72
+        ],
+        [
+          120,
+          191,
+          89
+        ],
+        [
+          167,
+          165,
+          468
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.615,
+        "mixed": 0.3,
+        "strong": 0.195,
+        "champion": 0.2225
+      },
+      "n_iter": 35,
+      "seconds": 0.7,
+      "ckpt": "ckpt/e6/e6_match_est_h6.pkl"
+    },
+    "7": {
+      "n_train": 6400,
+      "n_test": 1600,
+      "bal_acc": 0.5875,
+      "acc": 0.5938,
+      "recalls": {
+        "weak": 0.6275,
+        "mixed": 0.5225,
+        "strongchamp": 0.6125
+      },
+      "weak_precision": 0.4912,
+      "confusion_rows_true_cols_pred": [
+        [
+          251,
+          80,
+          69
+        ],
+        [
+          109,
+          209,
+          82
+        ],
+        [
+          151,
+          159,
+          490
+        ]
+      ],
+      "pred_weak_rate_by_true_field": {
+        "weak": 0.6275,
+        "mixed": 0.2725,
+        "strong": 0.1875,
+        "champion": 0.19
+      },
+      "n_iter": 38,
+      "seconds": 0.8,
+      "ckpt": "ckpt/e6/e6_match_est_h7.pkl"
+    }
+  },
+  "bal_acc_by_h": {
+    "1": 0.3937,
+    "2": 0.4342,
+    "3": 0.4892,
+    "4": 0.4954,
+    "5": 0.5354,
+    "6": 0.5592,
+    "7": 0.5875
+  }
+}
