@@ -11,7 +11,7 @@ import numpy as np, torch
 HERE = os.path.dirname(os.path.abspath(__file__)); GD = os.path.join(HERE, "ckpt", "archx", "gates")
 os.makedirs(GD, exist_ok=True)
 REF = "ckpt/aug/aug_128x40_s0.pkl"
-NB = 6; SEEDS = 500; WORKERS = 48
+NB = 18; SEEDS = 500; WORKERS = 48
 STOP = "/root/STOP_ARCH"; DISK_FLOOR_GB = 10
 TCRIT = {1:12.706,2:4.303,3:3.182,4:2.776,5:2.571,6:2.447,7:2.365,8:2.306,9:2.262,10:2.228,11:2.201,12:2.179}
 
@@ -21,6 +21,20 @@ ARCHS = {
  "cnnattn_s0": ("e11",  "cnn_attn", "channels=192,conv_blocks=8,layers=6,heads=8",  "ckpt/archx/cnnattn_s0.pkl", 820000),
  "gnn_s0":     ("e11",  "gnn",      "hidden=384,layers=6",                          "ckpt/archx/gnn_s0.pkl",     830000),
  "temporal_s0":("seq",  None,       "channels=128,blocks=40,emb=64,gru=256",        "ckpt/archx/temporal_s0.pkl",900000),
+ "resse_s0":   ("e11",  "resse",    "channels=128,blocks=40,se_r=8",              "ckpt/se/se_128x40_s0.pkl", 950000),
+ "meldw3_s0":  ("e11",  "resbn_fused", "channels=128,blocks=40",               "ckpt/meldw/meldw3_128x40_s0.pkl", 960000),
+ "val1_s0":    ("e11",  "resbn_fused", "channels=128,blocks=40",               "ckpt/val1/val1_128x40_s0.pkl", 780000),
+ "val2_s0":    ("e11",  "resbn_fused", "channels=128,blocks=40",               "ckpt/val2/val2_128x40_s0.pkl", 700000),
+ "seval_s0":   ("e11",  "resse",       "channels=128,blocks=40,se_r=8",       "ckpt/seval/seval_128x40_s0.pkl", 600000),
+ "rl1it30_s0": ("e11",  "resbn_fused", "channels=128,blocks=40",              "ckpt/rl1/rl1_it30_fused.pkl", 500000),
+ "rl2it30_s0": ("e11",  "resbn_fused", "channels=128,blocks=40",              "ckpt/rl2/rl2_it30_fused.pkl", 400000),
+ "rl2bit30_s0":("e11",  "resbn_fused", "channels=128,blocks=40",              "ckpt/rl2b/rl2b_it30_fused.pkl", 300000),
+ "rl2cit30_s0":("e11",  "resbn_fused", "channels=128,blocks=40",              "ckpt/rl2c/rl2c_it30_fused.pkl", 200000),
+ "rl2dit30_s0":("e11",  "resbn_fused", "channels=128,blocks=40",              "ckpt/rl2d/rl2d_it30_fused.pkl", 100000),
+ "rl2dit30verify_s0":("e11", "resbn_fused", "channels=128,blocks=40",       "ckpt/rl2d/rl2d_it30_fused.pkl", 850000),
+ "rl2eit30_s0":("e11", "resbn_fused", "channels=128,blocks=40",              "ckpt/rl2e/rl2e_it30_fused.pkl", 50000),
+ "rl2fit30_s0":("e11", "resbn_fused", "channels=128,blocks=40",              "ckpt/rl2f/rl2f_it30_fused.pkl", 950000),
+ "rl2git100_s0":("e11", "resbn_fused", "channels=128,blocks=40",             "ckpt/rl2g/rl2g_it100_fused.pkl", 600000),
 }
 CALIB = ("e11", "resbn_fused", "channels=128,blocks=40", REF, 800000)
 

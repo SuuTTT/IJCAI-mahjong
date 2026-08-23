@@ -129,6 +129,7 @@ class Sim:
             if self.cai is not None: self.cai[s].request2obs("Deal " + " ".join(self.hand[s]))
         self.traj = [[] for _ in range(4)]   # (obs,mask,act)
         self.scores = [0, 0, 0, 0]
+        self.win_info = None  # (winner_seat, wintype, fan, discarder_or_None)
         # shanten of the seeded seat at start (for reward shaping)
         self.start_shanten = _hand_shanten(self.hand[self.seed_seat]) if self.seed_hand is not None else None
 
@@ -303,12 +304,14 @@ class Sim:
     def _score_selfdraw(self, w, f):
         for s in range(4):
             self.scores[s] = 3*(8+f) if s == w else -(8+f)
+        self.win_info = (w, 'selfdraw', f, None)
 
     def _score_rong(self, w, src, f):
         for s in range(4):
             if s == w: self.scores[s] = 24+f
             elif s == src: self.scores[s] = -(8+f)
             else: self.scores[s] = -8
+        self.win_info = (w, 'rong', f, src)
 
 
 if __name__ == "__main__":

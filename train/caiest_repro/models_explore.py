@@ -39,6 +39,106 @@ class ResBNCNN(nn.Module):
         x = d['obs']['observation'].float()
         return _mask(self.foot(self.body(self.stem(x))), d['obs']['action_mask'])
 
+# ---- 1a) ResBNCNN + auxiliary VALUE head (win-conversion / final-score-loss reproduction) ----
+# Same stem/body/foot as ResBNCNN (identical policy path, identical state_dict keys for those
+# three submodules) plus an auxiliary value_head branching off the same backbone features,
+# regressing this seat's final raw hand score (z-target from the Score line, same target for
+# every decision in a hand -- classic AlphaZero-style terminal value). Trained jointly so the
+# value loss's gradient shapes the shared stem/body; value_head itself is DISCARDED after
+# training (strip its keys, load stem/body/foot into a plain ResBNCNN, fuse as normal) so the
+# deployed/gated checkpoint is architecturally identical to aug_s0 -- this isolates "was the
+# backbone shaped by a score-aware auxiliary loss" from any inference-time architecture change.
+class ResBNValueCNN(nn.Module):
+    def __init__(self, channels=128, blocks=40, **_):
+        super().__init__()
+        self.stem = nn.Sequential(nn.Conv2d(IN_PLANES, channels, 3, 1, 1, bias=False),
+                                  nn.BatchNorm2d(channels), nn.ReLU())
+        self.body = nn.Sequential(*(_BNBlock(channels) for _ in range(blocks)))
+        self.foot = nn.Sequential(nn.Flatten(), nn.Linear(channels * GRID, 512), nn.ReLU(), nn.Linear(512, 235))
+        self.value_head = nn.Sequential(nn.Flatten(), nn.Linear(channels * GRID, 256), nn.ReLU(), nn.Linear(256, 1))
+    def forward(self, d):
+        # inference-compatible: same signature/return as ResBNCNN (masked policy logits only)
+        self.train(d.get('is_training', False))
+        x = d['obs']['observation'].float()
+        return _mask(self.foot(self.body(self.stem(x))), d['obs']['action_mask'])
+    def forward_train(self, d):
+        # training-only: also returns the value prediction
+        self.train(True)
+        x = d['obs']['observation'].float()
+        feat = self.body(self.stem(x))
+        logits = _mask(self.foot(feat), d['obs']['action_mask'])
+        value = self.value_head(feat).squeeze(-1)
+        return logits, value
+
+# ---- 1b) Squeeze-Excitation variant of the residual block (V7-reproduction ablation) ----
+# Structurally identical to _BNBlock/ResBNCNN (same stem, same foot, same conv/BN layout) with
+# one lever changed: a channel-attention gate inserted before the residual add, matching the
+# "Res-SE" block a competing IJCAI-2026 MCR team (V7+call150, reported as competition first
+# place) used in their backbone. Kept at our own proven channels=128/blocks=40 by default so
+# this isolates the SE mechanism alone, not a combined width/depth/SE change.
+class _SEBlock(nn.Module):
+    def __init__(self, ch, r=8):
+        super().__init__()
+        hidden = max(ch // r, 8)
+        self.fc1 = nn.Linear(ch, hidden)
+        self.fc2 = nn.Linear(hidden, ch)
+    def forward(self, x):
+        s = x.mean(dim=(2, 3))
+        s = torch.relu(self.fc1(s))
+        s = torch.sigmoid(self.fc2(s))
+        return x * s.unsqueeze(-1).unsqueeze(-1)
+
+class _SEBNBlock(nn.Module):
+    def __init__(self, ch, se_r=8):
+        super().__init__()
+        self.c1 = nn.Conv2d(ch, ch, 3, 1, 1, bias=False); self.b1 = nn.BatchNorm2d(ch)
+        self.c2 = nn.Conv2d(ch, ch, 3, 1, 1, bias=False); self.b2 = nn.BatchNorm2d(ch)
+        self.se = _SEBlock(ch, r=se_r)
+    def forward(self, x):
+        y = torch.relu(self.b1(self.c1(x)))
+        y = self.b2(self.c2(y))
+        y = self.se(y)
+        return torch.relu(x + y)
+
+class ResSEValCNN(nn.Module):
+    # Combined-lever reproduction: SE-blocks (kong's backbone) + an auxiliary value head
+    # (kong's Value-head/final-score loss), trained together. Individually SE ties and the
+    # value-head-shaped-backbone idea ties (both confirmed null, session of 2026-08-17/18) --
+    # this tests whether kong's real edge only shows up from the COMBINATION of levers, the
+    # way their actual recipe stacks SE + meld-upweight + final-score loss simultaneously
+    # rather than any one lever alone. value_head is discarded after training (see
+    # e11_seval_train.py), matching the same policy-only deploy path as ResSECNN.
+    def __init__(self, channels=128, blocks=40, se_r=8, **_):
+        super().__init__()
+        self.stem = nn.Sequential(nn.Conv2d(IN_PLANES, channels, 3, 1, 1, bias=False),
+                                  nn.BatchNorm2d(channels), nn.ReLU())
+        self.body = nn.Sequential(*(_SEBNBlock(channels, se_r=se_r) for _ in range(blocks)))
+        self.foot = nn.Sequential(nn.Flatten(), nn.Linear(channels * GRID, 512), nn.ReLU(), nn.Linear(512, 235))
+        self.value_head = nn.Sequential(nn.Flatten(), nn.Linear(channels * GRID, 256), nn.ReLU(), nn.Linear(256, 1))
+    def forward(self, d):
+        self.train(d.get('is_training', False))
+        x = d['obs']['observation'].float()
+        return _mask(self.foot(self.body(self.stem(x))), d['obs']['action_mask'])
+    def forward_train(self, d):
+        self.train(True)
+        x = d['obs']['observation'].float()
+        feat = self.body(self.stem(x))
+        logits = _mask(self.foot(feat), d['obs']['action_mask'])
+        value = self.value_head(feat).squeeze(-1)
+        return logits, value
+
+class ResSECNN(nn.Module):
+    def __init__(self, channels=128, blocks=40, se_r=8, **_):
+        super().__init__()
+        self.stem = nn.Sequential(nn.Conv2d(IN_PLANES, channels, 3, 1, 1, bias=False),
+                                  nn.BatchNorm2d(channels), nn.ReLU())
+        self.body = nn.Sequential(*(_SEBNBlock(channels, se_r=se_r) for _ in range(blocks)))
+        self.foot = nn.Sequential(nn.Flatten(), nn.Linear(channels * GRID, 512), nn.ReLU(), nn.Linear(512, 235))
+    def forward(self, d):
+        self.train(d.get('is_training', False))
+        x = d['obs']['observation'].float()
+        return _mask(self.foot(self.body(self.stem(x))), d['obs']['action_mask'])
+
 # ---- 2) Tile-token Transformer (36 positions as tokens, 38-dim features) ----
 class TileTransformer(nn.Module):
     def __init__(self, d_model=128, layers=6, heads=8, **_):
@@ -153,5 +253,6 @@ def fuse_resbn(resbn):
 def build(kind, **cfg):
     if kind == 'cnn':                       # the 16-block base CNN (model.py); same input interface
         from model import CNNModel; return CNNModel()
-    return {'resbn': ResBNCNN, 'resbn_fused': ResFused, 'attn': TileTransformer,
-            'cnn_attn': CNNTransformer, 'gnn': TileGNN}[kind](**cfg)
+    return {'resbn': ResBNCNN, 'resbn_fused': ResFused, 'resse': ResSECNN, 'resbnval': ResBNValueCNN,
+            'resseval': ResSEValCNN,
+            'attn': TileTransformer, 'cnn_attn': CNNTransformer, 'gnn': TileGNN}[kind](**cfg)
