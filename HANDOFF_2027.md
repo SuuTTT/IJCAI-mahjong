@@ -259,6 +259,28 @@ baseline*, not a replacement.
    evidence chain (three replicated wins + fan-per-win mechanism) as the main claim, and this
    control as a secondary robustness check — explicitly caveated as "beats an imitation of the
    champion, not the champion" rather than implied as a top-1 win.
+   **2026-08-23/24 — `ckpt/rl2h/` (cumulative iter ~311→411, seed0=1100000, `--iters 100`),
+   gated on c225 (128-core lab box, CPU-only gate — no GPU contention with concurrent
+   training).** Two checkpoints tested, fresh disjoint seeds each:
+   - **it60 (cumulative ~371): BEATS.** placement mean 2.5064, CI **[2.5002, 2.5126]**
+     (margin_lo=+0.0002); raw score mean **+0.284/game, CI [+0.109, +0.459]**. **Fourth**
+     independently-gated checkpoint to clear significance (after iter 134, 211, 311).
+   - **it100 (cumulative ~411, end of this segment): TIED_NOT_SEPARATED on placement** — mean
+     2.5028, CI [2.4980, 2.5075] (margin_lo=−0.0020) — **but raw score still clears zero**: mean
+     **+0.149/game, CI [+0.0139, +0.284]**. Not a reversion to null so much as a return to the
+     "raw score positive, placement noisy" pattern already seen at iter 168 — placement is the
+     lower-resolution metric and bounces above/below significance from block to block at this
+     effect size, exactly as flagged above.
+   Reading: **still no monotonic improvement past the ~iter 130-370 plateau** (+0.15 to +0.28
+   raw score/game, 4-5 of 6 gated checkpoints in this range clearing placement significance) —
+   more iterations are not compounding the gain, just resampling around the same plateau.
+   Continued 2026-08-23/24 as `ckpt/rl2i/` (same pattern, from `ckpt/rl2h/_rollout_current.pkl`,
+   seed0=1300000). **Still missing**: the independently-trained-from-scratch replica (a fresh
+   random init through the same actor-critic recipe, not a continuation of this lineage) that
+   would confirm the plateau is a property of the method rather than of this one lucky
+   trajectory — blocked purely on spare GPU capacity (the vast.ai 3060 has been continuously
+   busy with this training chain; c225's two RTX 6000 Ada were claimed by another lab user as of
+   2026-08-24). Launch it opportunistically the moment either GPU frees up.
 2. **A better data source** (higher-tier human data or a provably-superhuman self-play corpus).
    Everything we have is teacher-capped; this is the only thing that moves the ceiling.
 3. **Win-conversion as an explicit objective — now the best-supported door.** The final
