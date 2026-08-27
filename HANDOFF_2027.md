@@ -281,6 +281,23 @@ baseline*, not a replacement.
    trajectory — blocked purely on spare GPU capacity (the vast.ai 3060 has been continuously
    busy with this training chain; c225's two RTX 6000 Ada were claimed by another lab user as of
    2026-08-24). Launch it opportunistically the moment either GPU frees up.
+   **2026-08-26/27 — RESOLVED. Two independently-seeded, from-scratch replicas launched (fresh
+   `aug_s0` init, no `--resume_full`, distinct seeds, on two different boxes) once broader
+   cluster access became available.** `rl3indep` (vast.ai, seed0=2000000, 100 iterations) and
+   `rl3indep_b` (c203, a shared lab box's spare GPU0, seed0=3000000, 100 iterations — finished
+   in 1.67h thanks to that box's 80 modern cores vs. the vast.ai box's 48). Both gated at n=18
+   blocks / 36,000 games each, on their own fresh seed ranges:
+   - **`rl3indep_b`: BEATS.** Placement mean 2.5070, CI **[2.5021, 2.5119]**; raw score mean
+     **+0.2248/game, CI [+0.1005, +0.3491]**.
+   - **`rl3indep`: gating in progress** (started later; ~4h remaining at last check).
+   **This directly answers the open question: the effect reproduces in an independently-seeded
+   training run, not a continuation of the original lineage — it is not one lucky trajectory
+   through this specific chain.** Same magnitude as the original lineage's plateau (+0.15 to
+   +0.28 raw score/game), same discipline (fresh disjoint seeds, no selection among multiple
+   replica checkpoints — each replica was gated once, at its single final checkpoint). Update
+   this entry with `rl3indep`'s result once its gate completes; if it also clears the tie
+   point, this becomes two-for-two independent replications and the strongest evidence in the
+   whole campaign that the actor-critic self-play recipe reliably reproduces the gain.
 2. **A better data source** (higher-tier human data or a provably-superhuman self-play corpus).
    Everything we have is teacher-capped; this is the only thing that moves the ceiling.
 3. **Win-conversion as an explicit objective — now the best-supported door.** The final
