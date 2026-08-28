@@ -289,15 +289,24 @@ baseline*, not a replacement.
    blocks / 36,000 games each, on their own fresh seed ranges:
    - **`rl3indep_b`: BEATS.** Placement mean 2.5070, CI **[2.5021, 2.5119]**; raw score mean
      **+0.2248/game, CI [+0.1005, +0.3491]**.
-   - **`rl3indep`: gating in progress** (started later; ~4h remaining at last check).
-   **This directly answers the open question: the effect reproduces in an independently-seeded
-   training run, not a continuation of the original lineage — it is not one lucky trajectory
-   through this specific chain.** Same magnitude as the original lineage's plateau (+0.15 to
-   +0.28 raw score/game), same discipline (fresh disjoint seeds, no selection among multiple
-   replica checkpoints — each replica was gated once, at its single final checkpoint). Update
-   this entry with `rl3indep`'s result once its gate completes; if it also clears the tie
-   point, this becomes two-for-two independent replications and the strongest evidence in the
-   whole campaign that the actor-critic self-play recipe reliably reproduces the gain.
+   - **`rl3indep`: TIED_NOT_SEPARATED.** Placement mean 2.5036, CI **[2.4986, 2.5087]** (crosses
+     the tie point). Raw score mean **+0.1275/game, CI [−0.0316, +0.2866]** — positive point
+     estimate, same direction as every other checkpoint gated this whole campaign, but this CI
+     also crosses zero, so not itself a significant confirmation.
+   **Honest reading: 1 of 2 independently-seeded, from-scratch replicas confirms BEATS; the
+   other is TIED but directionally positive on both metrics.** This is NOT two-for-two, and it
+   would be overclaiming to report it that way. What it does still support: neither replica
+   reverted to a *negative* or definitively-null result the way the historical kdens3 false
+   positive did under fresh disjoint re-gating (§3.2's earlier discussion) — both point
+   estimates sit on the same side of the tie point as the original lineage's plateau, one
+   clearing significance and one not. This is consistent with the original lineage's own
+   pattern (roughly half of its checkpoints clear placement significance, half land in
+   TIED_NOT_SEPARATED with a positive raw score — see iter 168 and iter ~411 above) — i.e. the
+   *effect size itself* appears to sit close enough to this gate's detection threshold (n=18
+   blocks) that a single checkpoint clearing significance is not guaranteed even when the
+   underlying effect is real, not that the effect is illusory. A THIRD from-scratch replica, or
+   pooling `rl3indep`+`rl3indep_b` at higher n, would sharpen this further; not yet run. Report
+   this mixed result plainly in any paper citing it — do not round it up to "reproduces".
 2. **A better data source** (higher-tier human data or a provably-superhuman self-play corpus).
    Everything we have is teacher-capped; this is the only thing that moves the ceiling.
 3. **Win-conversion as an explicit objective — now the best-supported door.** The final
