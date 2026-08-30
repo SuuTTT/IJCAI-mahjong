@@ -275,7 +275,16 @@ baseline*, not a replacement.
    raw score/game, 4-5 of 6 gated checkpoints in this range clearing placement significance) —
    more iterations are not compounding the gain, just resampling around the same plateau.
    Continued 2026-08-23/24 as `ckpt/rl2i/` (same pattern, from `ckpt/rl2h/_rollout_current.pkl`,
-   seed0=1300000). **Still missing**: the independently-trained-from-scratch replica (a fresh
+   seed0=1300000). **2026-08-30 — `rl2i` gated (n=18, fresh seed range 2100000-2117000): BEATS,
+   strongest single-checkpoint result of the whole lineage.** Placement mean 2.5094, CI
+   **[2.5031, 2.5156]**; raw score mean **+0.3384/game, CI [0.1792, 0.4977]** — both comfortably
+   clear their thresholds, the raw-score point estimate the highest of any checkpoint gated in
+   this campaign. This checkpoint had been trained but sat ungated for several days (found and
+   closed as a bookkeeping gap on 2026-08-30) — a caution for future segments: check for trained-
+   but-never-gated checkpoints before assuming the most recent gated result is the latest state.
+   This is now the **6th checkpoint across the lineage to independently clear placement
+   significance** (after iters 134, 211, 311, 371, and now ~511), with none reverting to a
+   negative result. **Still missing**: the independently-trained-from-scratch replica (a fresh
    random init through the same actor-critic recipe, not a continuation of this lineage) that
    would confirm the plateau is a property of the method rather than of this one lucky
    trajectory — blocked purely on spare GPU capacity (the vast.ai 3060 has been continuously
