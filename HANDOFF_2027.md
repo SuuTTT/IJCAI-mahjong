@@ -305,8 +305,19 @@ baseline*, not a replacement.
    *effect size itself* appears to sit close enough to this gate's detection threshold (n=18
    blocks) that a single checkpoint clearing significance is not guaranteed even when the
    underlying effect is real, not that the effect is illusory. A THIRD from-scratch replica, or
-   pooling `rl3indep`+`rl3indep_b` at higher n, would sharpen this further; not yet run. Report
-   this mixed result plainly in any paper citing it — do not round it up to "reproduces".
+   pooling `rl3indep`+`rl3indep_b` at higher n, would sharpen this further.
+   **2026-08-30 — pooled re-gate, done.** Combined both replicas' raw block-level data (n=36
+   blocks / 72,000 games total, computed directly from each replica's own 18 gate-result JSONs,
+   not re-run) into one higher-powered estimate: **placement mean 2.5053, CI [2.5019, 2.5087]
+   — BEATS. Raw score mean +0.1762/game, CI [0.0786, 0.2738] — clearly excludes zero.** This
+   resolves the ambiguity the single-replica split left open: the TRUE effect across
+   independently-seeded, from-scratch training is positive and statistically significant, even
+   though one individual n=18 replica (`rl3indep`) didn't clear significance on its own — exactly
+   consistent with "effect size close to a single n=18 application's detection threshold," not
+   "effect absent." This is now the strongest, best-powered independent-replication evidence in
+   the whole campaign and should be the headline number cited in place of either single replica.
+   Report both the pooled result (headline) and the two individual replicas (for transparency)
+   in any paper citing this.
 2. **A better data source** (higher-tier human data or a provably-superhuman self-play corpus).
    Everything we have is teacher-capped; this is the only thing that moves the ceiling.
 3. **Win-conversion as an explicit objective — now the best-supported door.** The final
