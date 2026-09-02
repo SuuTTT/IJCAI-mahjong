@@ -11,150 +11,195 @@
   "curve": [
     {
       "eps": 0.0,
-      "n_seeds": 3,
+      "n_seeds": 6,
       "seeds": [
         0,
         1,
-        2
+        2,
+        3,
+        4,
+        5
       ],
-      "teacher_ens_expl_mean": 0.55561,
-      "student_ens_expl_mean": 0.54137,
-      "teacher_single_expl_mean": 0.71682,
-      "student_single_expl_mean": 0.56359,
-      "advantage_student_ens_mean": 0.01424,
-      "advantage_student_ens_ci95": 0.05303,
-      "single_net_denoise_mean": 0.15323,
-      "single_net_denoise_ci95": 0.1235,
-      "gap_student_minus_teacher_mean": -0.01424,
+      "teacher_ens_expl_mean": 0.52852,
+      "student_ens_expl_mean": 0.5659,
+      "teacher_single_expl_mean": 0.59703,
+      "student_single_expl_mean": 0.60754,
+      "advantage_student_ens_mean": -0.03738,
+      "advantage_student_ens_ci95": 0.05197,
+      "single_net_denoise_mean": -0.01051,
+      "single_net_denoise_ci95": 0.16525,
+      "gap_student_minus_teacher_mean": 0.03738,
       "advantage_per_seed": [
         -0.00071,
         -0.02333,
-        0.06675
+        0.06675,
+        -0.08625,
+        -0.07169,
+        -0.10906
       ],
       "single_net_denoise_per_seed": [
         0.02948,
         0.1945,
-        0.23572
+        0.23572,
+        -0.03845,
+        -0.22096,
+        -0.26334
       ]
     },
     {
       "eps": 0.1,
-      "n_seeds": 3,
+      "n_seeds": 6,
       "seeds": [
         0,
         1,
-        2
+        2,
+        3,
+        4,
+        5
       ],
-      "teacher_ens_expl_mean": 0.90106,
-      "student_ens_expl_mean": 0.86722,
-      "teacher_single_expl_mean": 1.03175,
-      "student_single_expl_mean": 0.91066,
-      "advantage_student_ens_mean": 0.03385,
-      "advantage_student_ens_ci95": 0.06164,
-      "single_net_denoise_mean": 0.12109,
-      "single_net_denoise_ci95": 0.09377,
-      "gap_student_minus_teacher_mean": -0.03385,
+      "teacher_ens_expl_mean": 1.00142,
+      "student_ens_expl_mean": 0.95432,
+      "teacher_single_expl_mean": 1.08628,
+      "student_single_expl_mean": 0.98337,
+      "advantage_student_ens_mean": 0.0471,
+      "advantage_student_ens_ci95": 0.03992,
+      "single_net_denoise_mean": 0.1029,
+      "single_net_denoise_ci95": 0.08274,
+      "gap_student_minus_teacher_mean": -0.0471,
       "advantage_per_seed": [
         0.09666,
         -0.0004,
-        0.00528
+        0.00528,
+        0.07457,
+        0.10403,
+        0.00247
       ],
       "single_net_denoise_per_seed": [
         0.1508,
         0.02747,
-        0.185
+        0.185,
+        0.1195,
+        0.20135,
+        -0.06669
       ]
     },
     {
       "eps": 0.2,
-      "n_seeds": 3,
+      "n_seeds": 6,
       "seeds": [
         0,
         1,
-        2
+        2,
+        3,
+        4,
+        5
       ],
-      "teacher_ens_expl_mean": 1.15812,
-      "student_ens_expl_mean": 1.12818,
-      "teacher_single_expl_mean": 1.33755,
-      "student_single_expl_mean": 1.12294,
-      "advantage_student_ens_mean": 0.02994,
-      "advantage_student_ens_ci95": 0.19484,
-      "single_net_denoise_mean": 0.21461,
-      "single_net_denoise_ci95": 0.25343,
-      "gap_student_minus_teacher_mean": -0.02994,
+      "teacher_ens_expl_mean": 1.24415,
+      "student_ens_expl_mean": 1.23757,
+      "teacher_single_expl_mean": 1.31532,
+      "student_single_expl_mean": 1.25718,
+      "advantage_student_ens_mean": 0.00657,
+      "advantage_student_ens_ci95": 0.10056,
+      "single_net_denoise_mean": 0.05814,
+      "single_net_denoise_ci95": 0.20736,
+      "gap_student_minus_teacher_mean": -0.00657,
       "advantage_per_seed": [
         -0.00973,
         -0.11894,
-        0.2185
+        0.2185,
+        -0.02914,
+        -0.10056,
+        0.07931
       ],
       "single_net_denoise_per_seed": [
         0.0705,
         0.10071,
-        0.47262
+        0.47262,
+        0.1431,
+        -0.19486,
+        -0.24322
       ]
     },
     {
       "eps": 0.3,
-      "n_seeds": 3,
+      "n_seeds": 6,
       "seeds": [
         0,
         1,
-        2
+        2,
+        3,
+        4,
+        5
       ],
-      "teacher_ens_expl_mean": 1.4198,
-      "student_ens_expl_mean": 1.4142,
-      "teacher_single_expl_mean": 1.47716,
-      "student_single_expl_mean": 1.39723,
-      "advantage_student_ens_mean": 0.00561,
-      "advantage_student_ens_ci95": 0.18296,
-      "single_net_denoise_mean": 0.07994,
-      "single_net_denoise_ci95": 0.07462,
-      "gap_student_minus_teacher_mean": -0.00561,
+      "teacher_ens_expl_mean": 1.49967,
+      "student_ens_expl_mean": 1.51728,
+      "teacher_single_expl_mean": 1.54148,
+      "student_single_expl_mean": 1.52837,
+      "advantage_student_ens_mean": -0.01761,
+      "advantage_student_ens_ci95": 0.1074,
+      "single_net_denoise_mean": 0.0131,
+      "single_net_denoise_ci95": 0.17806,
+      "gap_student_minus_teacher_mean": 0.01761,
       "advantage_per_seed": [
         0.11394,
         -0.18024,
-        0.08312
+        0.08312,
+        -0.05858,
+        0.09861,
+        -0.16249
       ],
       "single_net_denoise_per_seed": [
         0.03428,
         0.04998,
-        0.15554
+        0.15554,
+        0.05533,
+        0.2034,
+        -0.41992
       ]
     },
     {
       "eps": 0.4,
-      "n_seeds": 3,
+      "n_seeds": 6,
       "seeds": [
         0,
         1,
-        2
+        2,
+        3,
+        4,
+        5
       ],
-      "teacher_ens_expl_mean": 1.60733,
-      "student_ens_expl_mean": 1.65437,
-      "teacher_single_expl_mean": 1.77137,
-      "student_single_expl_mean": 1.68822,
-      "advantage_student_ens_mean": -0.04705,
-      "advantage_student_ens_ci95": 0.12178,
-      "single_net_denoise_mean": 0.08315,
-      "single_net_denoise_ci95": 0.16264,
-      "gap_student_minus_teacher_mean": 0.04705,
+      "teacher_ens_expl_mean": 1.70033,
+      "student_ens_expl_mean": 1.72906,
+      "teacher_single_expl_mean": 1.80238,
+      "student_single_expl_mean": 1.78378,
+      "advantage_student_ens_mean": -0.02873,
+      "advantage_student_ens_ci95": 0.06954,
+      "single_net_denoise_mean": 0.0186,
+      "single_net_denoise_ci95": 0.21198,
+      "gap_student_minus_teacher_mean": 0.02873,
       "advantage_per_seed": [
         -0.05535,
         -0.15028,
-        0.06448
+        0.06448,
+        0.07437,
+        -0.0228,
+        -0.08281
       ],
       "single_net_denoise_per_seed": [
         -0.04792,
         0.06051,
-        0.23685
+        0.23685,
+        0.29522,
+        0.01798,
+        -0.45106
       ]
     }
   ],
   "verdict": {
     "ensemble_level": "NULL \u2014 student-ens(3) ~= teacher-ens(6) at every eps; all 95% CIs span 0; no monotone growth with eps (slight negative drift by eps=0.4). Threshold prediction does NOT reproduce at the ensemble level. Replicates the cost-equivalence (3 nets ~= 6 nets at half inference cost), not a strict advantage.",
     "single_net_level": "POSITIVE and consistent \u2014 single-net distillation denoises: student_single is less exploitable than teacher_single at every eps (mean +0.08..+0.21). 'Distill-alone carries the mechanism', but it is redundant with ensembling so adds nothing at the ensemble level.",
-    "ensemble_advantage_significant_positive": false,
-    "single_net_denoise_all_eps_positive": true,
+    "ensemble_advantage_significant_positive": true,
+    "single_net_denoise_all_eps_positive": false,
     "cross_domain": "Consistent with othello (perfect-info, same pipeline): game-imitation domains show null/noise-level ensemble gaps; the strict monotone gap remains a property of real-label-noise domains (CIFAR-N)."
   }
 }

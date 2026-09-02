@@ -18,3 +18,8 @@ train/jax_env/*.npy
 # secure handoff (credentials) — never commit
 HANDOFF_MAHJONG_*.md
 *secure*handoff*
+
+# raw checkpoint/venv scratch backups (large binaries; kept on c225 /date, not in git)
+campaign/.venv_cpu/
+train/caiest_repro/ckpt_vastai_full_backup/
+train/caiest_repro/ckpt/CONFIRMED_WIN_20260821/

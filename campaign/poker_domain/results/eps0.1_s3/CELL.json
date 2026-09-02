@@ -1,0 +1,27 @@
+{
+  "domain": "leduc_poker",
+  "metric": "exploitability_lower_better",
+  "eps": 0.1,
+  "seed": 3,
+  "N_teachers": 6,
+  "M_students": 3,
+  "alpha": 0.7,
+  "kd_temp": 2.0,
+  "hidden": 64,
+  "epochs": 20,
+  "lr": 0.002,
+  "bs": 512,
+  "n_samples": 159869,
+  "n_corrupt_labels": 15991,
+  "n_infosets": 288,
+  "reference_exploitability": 0.012194,
+  "exploitability": {
+    "teacher_ens": 0.993813,
+    "student_ens": 0.919248,
+    "teacher_single": 1.038228,
+    "student_single": 0.918728
+  },
+  "gap_student_ens_minus_teacher_ens": -0.074565,
+  "advantage_student_ens_over_teacher_ens": 0.074565,
+  "wall_seconds": 839.9
+}
